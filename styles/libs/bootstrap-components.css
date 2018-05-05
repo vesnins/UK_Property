@@ -804,19 +804,17 @@
     padding: 5px;
     background: #fff;
     border-color: #d7d7d7;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .range-slider .input-group label {
     font-size: 14px;
     color: #2c2543;
-    padding: 0 15px;
+    padding: 0 5px;
 }
 
 @media (max-width: 1380px) {
-    .range-slider .input-group label {
-        padding: 0 10px;
-    }
+
 }
 
 @media (max-width: 1200px) {
