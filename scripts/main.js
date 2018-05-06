@@ -33,12 +33,10 @@ jQuery(function () {
     if (customSelect.length !== 0) {
         customSelect.selectpicker();
     }
-
     var validationForm = jQuery('.validate-form');
     if (validationForm.length !== 0) {
         formValidation();
     }
-
     var phoneField = jQuery('input[type="tel"]');
     if (phoneField.length !== 0) {
         phoneField.each(function () {
@@ -46,19 +44,18 @@ jQuery(function () {
             thisTel.mask('+0 (000) 000-00-00');
         });
     }
-
     if (jQuery('.billboard-slider').length !== 0) {
         billboardSlider();
     }
-
     if (jQuery('.product-gallery').length !== 0) {
         productGallerySlider();
     }
-
     if (jQuery('.service-slider').length !== 0) {
         serviceSlider();
     }
-
+    if (jQuery('.article-slider').length !== 0) {
+        articlesSlider();
+    }
     var venoboxLink = jQuery('.venobox-btn');
     if (venoboxLink.length !== 0) {
         venoboxLink.venobox({
@@ -66,29 +63,28 @@ jQuery(function () {
             frameheight: '100vh'
         });
     }
-
     if (jQuery('.simple-slider').length !== 0) {
         customSliderDots();
     }
-
     if (jQuery('.product-filter-form').length !== 0) {
         sidebarFilterAccordion();
     }
-
     if (jQuery('.tab-holder').length !== 0) {
         customTabInit();
     }
-
     if (jQuery('.product-grid-section').length !== 0) {
         sidebarViewSwitcher();
     }
-
     if (jQuery('.range-slider').length !== 0) {
         customRangeSlider();
     }
 
     if (jQuery('[data-sticky-container]').length !== 0) {
         sticky = new Sticky('[data-sticky]', {});
+    }
+    if (jQuery('.custom-fields-group').length !== 0) {
+        addFieldFunction();
+        removeFieldFunction();
     }
 });
 
@@ -314,6 +310,12 @@ function formValidation() {
             rules: {
                 phone: "required",
                 name: "required",
+                surname: "required",
+                location: "required",
+                rooms: "required",
+                priceFrom: "required",
+                priceTo: "required",
+                enquirySelect: "required",
                 email: {
                     required: true,
                     email: true
@@ -324,7 +326,13 @@ function formValidation() {
                 phone: "purpose of error",
                 email: "purpose of error",
                 name: "purpose of error",
-                checkbox: "purpose of error"
+                surname: "purpose of error",
+                checkbox: "purpose of error",
+                location: "purpose of error",
+                rooms: "purpose of error",
+                priceFrom: "purpose of error",
+                priceTo: "purpose of error",
+                enquirySelect: "purpose of error"
             }
         });
         jQuery(document).on('af_complete', function (event, response) {
@@ -386,7 +394,6 @@ function serviceSlider() {
 
     slider.slick({
         slidesToShow: 4,
-        arrows: true,
         dots: true,
         autoplay: true,
         autoplaySpeed: 6000,
@@ -464,27 +471,59 @@ function productGallerySlider() {
     });
 }
 
+function articlesSlider() {
+    var slider = jQuery('.article-slider');
+
+    slider.slick({
+        slidesToShow: 4,
+        arrows: false,
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 6000,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3
+                }
+            }, {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 2
+                }
+            }, {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+}
+
 function customSliderDots() {
     var simpleSlider = jQuery('.simple-slider.slick-initialized');
 
     var sliderDotsNav = simpleSlider.find('.slick-dots');
-    var activeDots = sliderDotsNav.find('.slick-active');
-
-    sliderDotsNav.append('<li class="circle"></li>');
-
-    var decorCircle = jQuery('.circle'),
-        defaultPosition;
-
-    function setDecorLinePosition(activeDots) {
-        defaultPosition = activeDots.position().left + activeDots.width() / 2;
-        decorCircle.css('left', defaultPosition);
-    }
-
-    setDecorLinePosition(activeDots);
-    simpleSlider.on('afterChange', function (slick, currentSlide) {
+    if (sliderDotsNav.length !== 0) {
         var activeDots = sliderDotsNav.find('.slick-active');
+
+        sliderDotsNav.append('<li class="circle"></li>');
+
+        var decorCircle = jQuery('.circle'),
+            defaultPosition;
+
+        function setDecorLinePosition(activeDots) {
+            defaultPosition = activeDots.position().left + activeDots.width() / 2;
+            decorCircle.css('left', defaultPosition);
+        }
+
         setDecorLinePosition(activeDots);
-    });
+        simpleSlider.on('afterChange', function (slick, currentSlide) {
+            var activeDots = sliderDotsNav.find('.slick-active');
+            setDecorLinePosition(activeDots);
+        });
+    }
 }
 
 var btnPosition = {
@@ -705,3 +744,78 @@ function customRangeSlider() {
     });
 }
 
+/*--------------------------------------------------------
+ * Bootstrap Modal Check Max Height for vertical alignment
+ * ------------------------------------------------------ */
+
+function setModalMaxHeight(element) {
+    this.$element = jQuery(element);
+    this.$content = this.$element.find('.modal-content');
+    var borderWidth = this.$content.outerHeight() - this.$content.innerHeight();
+    var dialogMargin = jQuery(window).width() < 768 ? 20 : 60;
+    var contentHeight = jQuery(window).height() - (dialogMargin + borderWidth);
+    var headerHeight = this.$element.find('.modal-header').outerHeight() || 0;
+    var footerHeight = this.$element.find('.modal-footer').outerHeight() || 0;
+    var maxHeight = contentHeight - (headerHeight + footerHeight);
+
+    this.$content.css({
+        'overflow': 'hidden'
+    });
+
+    this.$element
+        .find('.modal-body').css({
+        'max-height': maxHeight,
+        'overflow-y': 'auto'
+    });
+}
+
+jQuery('.modal').on('show.bs.modal', function () {
+    jQuery(this).show();
+    setModalMaxHeight(this);
+});
+
+jQuery(window).resize(function () {
+    if (jQuery('.modal.in').length != 0) {
+        setModalMaxHeight(jQuery('.modal.in'));
+    }
+});
+
+/*-------------------------------------------------------------
+ * Bootstrap Modal Check Max Height for vertical alignment END
+ * ---------------------------------------------------------- */
+
+function addFieldFunction() {
+    jQuery('body').on('click', '.custom-fields-group .add-field-btn', function (e) {
+        e.preventDefault();
+        var currentBtn = jQuery(this),
+            fieldsGroup = currentBtn.closest('.custom-fields-group'),
+            currentField = currentBtn.closest('.input-holder'),
+            cloneField = currentField.clone();
+
+        cloneField.find('input').removeClass('error').val('');
+        cloneField.find('label.error').remove();
+
+        cloneField.add(currentField).find('.del-field-btn').show();
+        fieldsGroup.append(cloneField);
+        currentBtn.hide();
+        formValidation();
+    });
+}
+
+function removeFieldFunction() {
+    jQuery('body').on('click', '.custom-fields-group .del-field-btn', function (e) {
+        e.preventDefault();
+        var delBtn = jQuery(this),
+            fieldsGroup = delBtn.closest('.custom-fields-group'),
+            currentInputContainer = delBtn.closest('.input-holder');
+
+        if (fieldsGroup.find('.input-holder').length > 1) {
+            currentInputContainer.remove();
+            fieldsGroup.find('.input-holder:last-child').find('.add-field-btn').show();
+        }
+
+        if (fieldsGroup.find('.input-holder').length < 2) {
+            fieldsGroup.find('.del-field-btn').hide();
+        }
+    });
+}

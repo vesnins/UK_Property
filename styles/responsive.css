@@ -33,6 +33,10 @@
         padding: 0 15px;
     }
 
+    .products .product-item .del-btn {
+        right: 30px;
+    }
+
     .service-info-area.reverse .limit-box,
     .service-info-area .limit-box {
         padding-top: 0;
@@ -75,6 +79,7 @@
         right: 6%;
     }
 
+    .product-section .product-listing,
     .product-section .product-info {
         padding-right: 25px;
     }
@@ -109,6 +114,18 @@
         right: 40px;
         font-size: 32px;
         padding: 10px 20px;
+    }
+
+    .article-slider .slick-slide {
+        margin: 0 15px;
+    }
+
+    .application-form-holder h1 {
+        margin-bottom: 120px;
+    }
+
+    .application-form-holder {
+        padding: 140px 0 70px;
     }
 }
 
@@ -234,16 +251,14 @@
         margin-left: -28%;
     }
 
-    .products .product-item {
-        width: 33.33%;
-    }
-
-    .product-grid-section:not(.hidden) .products .product-item {
-        width: 50%;
-    }
-
+    .products .product-item,
     .hidden[data-type="map"] .products .product-item {
         width: 33.33%;
+    }
+
+    .product-section .products .product-item,
+    .product-grid-section:not(.hidden) .products .product-item {
+        width: 50%;
     }
 
     .product-grid-section .pagination {
@@ -348,6 +363,30 @@
         font-size: 24px;
         padding: 8px 15px;
     }
+
+    .article-slider .slick-slide .text-box {
+        padding: 10px 15px 15px;
+    }
+
+    .article-slider .slick-slide h4 {
+        font-size: 16px;
+    }
+
+    .contact-area {
+        margin-top: 40px;
+    }
+
+    #map-canvas {
+        height: 500px;
+    }
+
+    .application-form-holder {
+        padding: 110px 0 60px;
+    }
+
+    .application-form-holder h1 {
+        margin-bottom: 90px;
+    }
 }
 
 /* Large devices (large desktops, 1200px and below) */
@@ -389,6 +428,7 @@
         padding-bottom: 46%;
     }
 
+    .search-results-page .search-form-holder form,
     .search-form-holder form.active {
         width: 530px;
     }
@@ -502,6 +542,7 @@
         left: 20px;
     }
 
+    .product-section .product-listing,
     .product-section .product-info {
         width: 70%;
         padding-right: 15px;
@@ -540,6 +581,66 @@
 
     .tag-list {
         margin-bottom: 35px;
+    }
+
+    .entry-holder blockquote {
+        font-size: 22px;
+    }
+
+    .entry-holder .align-left,
+    .entry-holder .align-right {
+        width: 45%;
+    }
+
+    .entry-holder .align-right {
+        margin-right: -25px;
+        margin-left: 30px;
+    }
+
+    .entry-holder .align-left {
+        margin-left: -25px;
+        margin-right: 30px;
+    }
+
+    .entry-holder .not-align {
+        width: calc(100% + 50px);
+        margin-left: -25px;
+        margin-right: -25px;
+    }
+
+    .entry-holder blockquote,
+    .entry-holder img {
+        margin-bottom: 45px;
+    }
+
+    #map-canvas {
+        height: 400px;
+    }
+
+    .contact-area .contact-info .info-box,
+    .contact-area .contact-info .form-box {
+        padding: 30px 30px 25px;
+    }
+
+    .application-form {
+        padding: 35px;
+        font-size: 14px;
+    }
+
+    .application-form .input-group select,
+    .application-form .input-group input {
+        font-size: 14px;
+        height: 30px;
+        width: 200px;
+    }
+
+    .application-form .input-holder,
+    .application-form .input-group label {
+        margin-bottom: 20px;
+    }
+
+    .application-form .button {
+        margin-top: 35px;
     }
 }
 
@@ -780,6 +881,7 @@
         display: none;
     }
 
+    .contact-area .social-list a,
     .site-footer .social-list a {
         width: 38px;
         height: 38px;
@@ -825,6 +927,7 @@
         line-height: 36px;
     }
 
+    .product-section .product-listing,
     .product-section .product-info {
         width: 100%;
         padding-right: 0;
@@ -848,6 +951,105 @@
     .tag-list {
         font-size: 12px;
         margin-bottom: 25px;
+    }
+
+    .modal .modal-body {
+        padding: 35px 70px 35px;
+    }
+
+    .modal .modal-body .decor-box {
+        width: 100%;
+        opacity: .2;
+    }
+
+    .articles {
+        margin-bottom: 45px;
+    }
+
+    .articles .article {
+        margin-bottom: 30px;
+    }
+
+    .entry-holder {
+        margin-bottom: 30px;
+    }
+
+    .entry-holder .author-box {
+        margin-bottom: 30px;
+    }
+
+    .entry-holder .align-right {
+        margin-right: 0;
+        margin-left: 20px;
+    }
+
+    .entry-holder .align-left {
+        margin-left: 0;
+        margin-right: 20px;
+    }
+
+    .entry-holder blockquote,
+    .entry-holder img {
+        margin-bottom: 35px;
+    }
+
+    .entry-holder blockquote {
+        font-size: 18px;
+    }
+
+    .entry-holder .entry-content *:not(blockquote) + img {
+        margin-top: 15px;
+    }
+
+    .entry-holder .not-align {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .entry-footer .social-list li:not(:last-child) {
+        margin-right: 15px;
+    }
+
+    .entry-footer {
+        padding-top: 15px;
+    }
+
+    .article-slider .slick-slide h4 {
+        font-size: 14px;
+    }
+
+    .article-slider .slick-slide {
+        margin: 0 10px;
+    }
+
+    .contact-area .contact-info .info-box,
+    .contact-area .contact-info .form-box {
+        padding: 20px 15px;
+    }
+
+    .contact-area .contact-info .info-box {
+        font-size: 14px;
+    }
+
+    .contact-area .contact-info address {
+        margin-bottom: 30px;
+    }
+
+    .contact-area form .button {
+        margin-top: 0;
+    }
+
+    .error-page-content {
+        padding-top: 25%;
+    }
+
+    .application-form-holder .decor-img {
+        padding-bottom: 45%;
+    }
+
+    .application-form .input-group br {
+        display: none;
     }
 }
 
@@ -875,6 +1077,25 @@
 
     h4 {
         font-size: 20px;
+    }
+
+    input[type="text"],
+    input[type="search"],
+    input[type="email"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="password"] {
+        height: 40px;
+        padding: 8px 12px;
+    }
+
+    select {
+        height: 40px;
+    }
+
+    textarea {
+        height: 80px;
     }
 
     .mb-xs {
@@ -1072,6 +1293,7 @@
         width: 100%;
     }
 
+    .product-section .products .product-item,
     .hidden[data-type="map"] .products .product-item,
     .product-grid-section:not(.hidden) .products .product-item,
     .products .product-item {
@@ -1141,6 +1363,122 @@
     .tag-list a {
         padding: 2px 10px;
     }
+
+    .modal h3 {
+        font-size: 28px;
+    }
+
+    .modal .modal-body {
+        padding: 35px 15px 20px;
+    }
+
+    .articles {
+        margin-bottom: 35px;
+    }
+
+    .articles .article {
+        margin-bottom: 25px;
+    }
+
+    .entry-holder .align-left,
+    .entry-holder .align-right {
+        float: none;
+        margin: 0 auto 20px;
+        display: block;
+        width: auto;
+    }
+
+    .entry-holder ol,
+    .entry-holder ul {
+        margin-bottom: 15px;
+    }
+
+    .entry-holder ol li,
+    .entry-holder ul li {
+        margin-bottom: 5px;
+    }
+
+    .entry-holder .entry-content *:not(blockquote) + img {
+        margin-top: 10px;
+    }
+
+    .entry-holder blockquote {
+        padding-left: 10px;
+        border-left-width: 5px;
+    }
+
+    .entry-holder blockquote,
+    .entry-holder img {
+        margin-bottom: 20px;
+    }
+
+    .entry-footer .social-list svg {
+        width: 15px;
+        height: 16px;
+        margin-right: 0;
+    }
+
+    .entry-footer .social-list li:first-child {
+        font-size: 16px;
+    }
+
+    .entry-footer .social-list li:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    .contact-area .contact-info .info-box,
+    .contact-area .contact-info .form-box {
+        width: 100%;
+    }
+
+    .contact-area .contact-info {
+        margin-bottom: 30px;
+    }
+
+    .contact-area h2 {
+        margin-bottom: 10px;
+    }
+
+    .error-page-content {
+        padding-top: 35%;
+    }
+
+    .application-form-holder {
+        padding: 50px 0;
+    }
+
+    .application-form-holder h1 {
+        margin-bottom: 35px;
+    }
+
+    .application-form {
+        padding: 20px;
+    }
+
+    .application-form .input-holder {
+        width: 100%;
+        margin: 0 0 15px;
+    }
+
+    .application-form .input-group label {
+        width: 100%;
+        margin: 0 0 5px;
+    }
+
+    .application-form .input-group select,
+    .application-form .input-group input {
+        width: 100%;
+        border-width: 1px;
+        padding: 5px 10px;
+    }
+
+    .application-form .input-group .sm {
+        width: 100%;
+    }
+
+    .application-form .input-group select {
+        background-position: 98% 50%;
+    }
 }
 
 /* Extra-small devices (mobile - portrait, 480px and below) */
@@ -1167,10 +1505,6 @@
 
     .indent-block {
         padding: 25px 0;
-    }
-
-    .site-header .navigation-area {
-        padding: 5px 15px;
     }
 
     .site-header .logo svg {
@@ -1308,11 +1642,24 @@
     }
 
     .site-footer .subscribe-form .select {
-        width: 50%;
+        width: 100%;
+        border-left: none;
     }
 
     .site-footer .subscribe-form .button {
         width: 100%;
+    }
+
+    .site-footer .subscribe-form .input-holder {
+        margin-bottom: 5px;
+    }
+
+    .site-footer .subscribe-form .flex-group {
+        border-radius: 0;
+    }
+
+    .site-footer .subscribe-form .button {
+        border-top: none;
     }
 
     .site-footer ul li {
@@ -1366,5 +1713,84 @@
 
     .tag-list {
         margin-bottom: 15px;
+    }
+
+    .articles .article h3 {
+        font-size: 18px;
+    }
+
+    .entry-holder {
+        margin-bottom: 20px;
+    }
+
+    .entry-holder .author-box .ovh-box {
+        padding-top: 5px;
+    }
+
+    .entry-holder .author-box .photo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .entry-holder .author-box .author-name {
+        font-size: 16px;
+    }
+
+    .entry-footer {
+        padding-top: 10px;
+    }
+
+    .entry-footer .row > div {
+        width: 100%;
+        text-align: center;
+    }
+
+    #map-canvas {
+        height: 300px;
+    }
+
+    .contact-area {
+        margin-top: 25px;
+    }
+
+    .contact-area .contact-info .info-box,
+    .contact-area .contact-info .form-box {
+        padding: 15px;
+    }
+
+    .product-info .product-description ul {
+        column-count: 1;
+        margin-bottom: 15px;
+    }
+
+    .error-page-content {
+        padding-top: 50%;
+    }
+
+    .application-form {
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .application-form-holder h1 {
+        margin-bottom: 25px;
+    }
+
+    .application-form-holder .decor-img {
+        display: none;
+    }
+
+    .application-form-holder {
+        padding: 35px 0 50px;
+    }
+
+    .application-form .input-group {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+
+    .application-form .button {
+        margin-top: 15px;
     }
 }
