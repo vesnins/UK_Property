@@ -127,6 +127,29 @@
     .application-form-holder {
         padding: 140px 0 70px;
     }
+
+    .certificate-area .custom-row {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .certificate-slider {
+        padding: 0 30px;
+    }
+
+    .certificate-slider .slick-slide,
+    .certificate-area .custom-row .slider-holder,
+    .certificate-area .custom-row .description-box {
+        padding: 0 15px;
+    }
+
+    .certificate-slider .slick-prev {
+        left: 0;
+    }
+
+    .certificate-slider .slick-next {
+        right: 0;
+    }
 }
 
 @media (max-width: 1380px) {
@@ -387,6 +410,35 @@
     .application-form-holder h1 {
         margin-bottom: 90px;
     }
+
+    .about-info {
+        padding-top: 35px;
+    }
+
+    .about-info .info-item {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .about-info .info-item .text-box,
+    .about-info .info-item .img-box {
+        padding: 0 15px;
+    }
+
+    .testimonials-slider .slick-slide {
+        padding: 25px;
+    }
+
+    .testimonials-slider .slick-list {
+        padding: 45px 0 !important;
+    }
+
+    .testimonials-slider .slick-center:before {
+        top: 0;
+        bottom: 0;
+        left: -25px;
+        right: -25px;
+    }
 }
 
 /* Large devices (large desktops, 1200px and below) */
@@ -641,6 +693,38 @@
 
     .application-form .button {
         margin-top: 35px;
+    }
+
+    .percent-box {
+        font-size: 20px;
+    }
+
+    .percent-box .percent {
+        font-size: 3.8em;
+    }
+
+    .about-info .percent-box {
+        max-width: 280px;
+        margin-top: 30px;
+    }
+
+    .about-info .info-item:not(:last-child) {
+        margin-bottom: 60px;
+    }
+
+    .blockquote {
+        font-size: 18px;
+        line-height: 1.65;
+    }
+
+    .blockquote:before {
+        width: 3em;
+        height: 3em;
+        margin-bottom: 5px;
+    }
+
+    .blockquote cite {
+        font-size: 22px;
     }
 }
 
@@ -931,7 +1015,7 @@
     .product-section .product-info {
         width: 100%;
         padding-right: 0;
-        margin-bottom: 30px;
+        margin-bottom: 35px;
     }
 
     .product-section .contact-section {
@@ -958,8 +1042,7 @@
     }
 
     .modal .modal-body .decor-box {
-        width: 100%;
-        opacity: .2;
+        display: none;
     }
 
     .articles {
@@ -1051,6 +1134,56 @@
     .application-form .input-group br {
         display: none;
     }
+
+    .about-info {
+        padding-top: 25px;
+    }
+
+    .about-info .info-item {
+        -webkit-box-align: start;
+        -moz-box-align: start;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        font-size: 14px;
+    }
+
+    .percent-box {
+        font-size: 18px;
+    }
+
+    .about-info .percent-box {
+        max-width: 250px;
+        margin-top: 0;
+    }
+
+    .certificate-area .custom-row .description-box {
+        font-size: 14px;
+    }
+
+    .blockquote {
+        font-size: 16px;
+    }
+
+    .testimonials-slider {
+        padding: 0;
+        margin: 0 -50px 15px;
+    }
+
+    .testimonials-slider .slick-slide {
+        padding: 20px 15px;
+    }
+
+    .testimonials-slider .slick-center:before {
+        top: 0;
+        bottom: 0;
+        left: -15px;
+        right: -15px;
+    }
+
+    .page-search-form {
+        margin-bottom: 40px;
+    }
 }
 
 /* Small devices (mobile, 767px and below) */
@@ -1111,7 +1244,11 @@
     }
 
     .mb-lg {
-        margin-bottom: 35px;
+        margin-bottom: 40px;
+    }
+
+    .indent-block {
+        padding: 40px 0;
     }
 
     .site-header .button {
@@ -1122,8 +1259,16 @@
         margin-left: 15px;
     }
 
+    .site-header .sound-switcher {
+        display: none;
+    }
+
     .billboard p {
         margin-bottom: 20px;
+    }
+
+    .billboard .go-down-btn {
+        display: none;
     }
 
     .products .product-item {
@@ -1234,8 +1379,9 @@
         width: 20%;
     }
 
+    .site-footer address,
     .site-footer .subscribe-form {
-        margin-bottom: 20px;
+        margin-bottom: 35px;
     }
 
     .site-footer .secondary-footer {
@@ -1269,11 +1415,11 @@
         background: #f5f5f5;
     }
 
-    .product-grid-section .sidebar .collapse-btn {
+    .collapse-menu-holder .collapse-btn {
         display: block;
     }
 
-    .product-grid-section .product-filter-form {
+    .collapse-menu-holder .hidden-box {
         display: none;
     }
 
@@ -1383,14 +1529,9 @@
     .entry-holder .align-left,
     .entry-holder .align-right {
         float: none;
-        margin: 0 auto 20px;
+        margin: 0 auto 25px;
         display: block;
         width: auto;
-    }
-
-    .entry-holder ol,
-    .entry-holder ul {
-        margin-bottom: 15px;
     }
 
     .entry-holder ol li,
@@ -1407,9 +1548,12 @@
         border-left-width: 5px;
     }
 
-    .entry-holder blockquote,
+    .entry-holder blockquote {
+        margin: 35px 0;
+    }
+
     .entry-holder img {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     .entry-footer .social-list svg {
@@ -1432,7 +1576,7 @@
     }
 
     .contact-area .contact-info {
-        margin-bottom: 30px;
+        margin-bottom: 35px;
     }
 
     .contact-area h2 {
@@ -1479,6 +1623,78 @@
     .application-form .input-group select {
         background-position: 98% 50%;
     }
+
+    .about-info {
+        padding-top: 15px;
+    }
+
+    .about-info .info-item {
+        display: block;
+    }
+
+    .about-info .info-item:not(:last-child) {
+        margin-bottom: 45px;
+    }
+
+    .about-info .info-item .text-box,
+    .about-info .info-item .img-box {
+        width: 100%;
+    }
+
+    .about-info .info-item .img-box {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .certificate-area .custom-row .slider-holder,
+    .certificate-area .custom-row .description-box {
+        width: 100%;
+    }
+
+    .certificate-area .custom-row .description-box {
+        margin-bottom: 35px;
+    }
+
+    .subscribe-section p {
+        font-size: 16px;
+    }
+
+    .subscribe-section .section-title {
+        font-size: 24px;
+    }
+
+    .testimonials-slider {
+        margin: 0 0 15px;
+        padding: 0 15px 15px;
+    }
+
+    .testimonials-slider .slick-slide {
+        background: #fff;
+    }
+
+    .testimonials-slider .slick-center {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        background: #fff;
+    }
+
+    .testimonials-slider .slick-list {
+        padding: 0 !important;
+    }
+
+    .testimonials-slider .slick-slide:before {
+        display: none;
+    }
+
+    .page-search-form {
+        margin-bottom: 30px;
+    }
+
+    .page-search-form .search-form .button {
+        min-width: 130px;
+        margin-left: 10px;
+        padding: 11px 20px;
+    }
 }
 
 /* Extra-small devices (mobile - portrait, 480px and below) */
@@ -1504,7 +1720,7 @@
     }
 
     .indent-block {
-        padding: 25px 0;
+        padding: 35px 0;
     }
 
     .site-header .logo svg {
@@ -1538,12 +1754,6 @@
         padding: 5px 10px;
     }
 
-    .site-header .sound-switcher {
-        height: 36px;
-        width: 38px;
-        line-height: 36px;
-    }
-
     .site-header .menu-btn {
         margin-left: 10px;
         width: 28px;
@@ -1572,6 +1782,10 @@
         padding: 8px;
     }
 
+    .products .product-item {
+        margin-bottom: 25px;
+    }
+
     .products .product-item .price {
         font-size: 16px;
     }
@@ -1581,7 +1795,7 @@
     }
 
     .products .product-item p {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     .service-links {
@@ -1743,6 +1957,7 @@
     .entry-footer .row > div {
         width: 100%;
         text-align: center;
+        margin: 5px 0;
     }
 
     #map-canvas {
@@ -1792,5 +2007,23 @@
 
     .application-form .button {
         margin-top: 15px;
+    }
+
+    .subscribe-section p {
+        font-size: 14px;
+    }
+
+    .subscribe-section .section-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .subscribe-section .link {
+        font-size: 16px;
+    }
+
+    .page-search-form .search-form .button {
+        min-width: 90px;
+        padding: 11px 15px;
     }
 }

@@ -601,7 +601,6 @@
                         <li><a href="#">О компании</a></li>
                         <li><a href="#">Портфолио</a></li>
                         <li><a href="#">Блог</a></li>
-                        <li><a href="#">Отзывы</a></li>
                         <li><a href="#">Контакты</a></li>
                     </ul>
                 </div>
@@ -668,9 +667,9 @@
         </div>
         <div class="go-top" style="display: block;"><svg><use xlink:href="images/svg/sprite.svg#arrow-up"></use></svg></div>
     </footer>
-   <!-- <audio class="audio-record" autoplay="true" loop="true" hidden="true">
+    <audio class="audio-record" autoplay="true" loop="true" hidden="true">
         <source src="audio/audio-record.mp3">
-    </audio>-->
+    </audio>
 </div>
 <div class="modal fade request-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -681,27 +680,38 @@
                 <h3 class="text-center">Заказать звонок</h3>
                 <form action="#" class="validate-form">
                     <div class="input-holder">
-                        <input type="text" name="name" placeholder="Your Name *">
-                    </div>
-                    <div class="input-holder">
-                        <input type="text" name="surname" placeholder="Your Surname *">
-                    </div>
-                    <div class="input-holder">
-                        <input type="email" name="email" placeholder="Your Email *">
-                    </div>
-                    <div class="input-holder">
                         <input type="tel" name="phone" placeholder="Your Phone *">
                     </div>
                     <div class="input-holder">
-                        <textarea placeholder="Comment"></textarea>
+                        <input type="email" placeholder="Convenient time for a call">
                     </div>
                     <div class="input-holder">
-                        <label class="checkbox-label"><input type="checkbox" name="checkbox"><span>Согласен на обработку данных</span></label>
+                        <input type="text" name="name" placeholder="First Name *">
+                    </div>
+                    <div class="input-holder">
+                        <input type="text" name="surname" placeholder="Second Name *">
+                    </div>
+                    <div class="input-holder">
+                        <label class="checkbox-label"><input type="checkbox" name="checkbox" checked><span>I have read and agree to the <a href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">Privacy policy</a>.</span></label>
                     </div>
                     <div class="text-center">
                         <input class="button" type="submit" value="send">
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade success-message" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><svg><use xlink:href="images/svg/sprite.svg#close-icon"></use></svg></button>
+                <div class="decor-box" style="background-image: url('images/decor/img_14.jpg')"></div>
+                <p>&nbsp;</p>
+                <h3 class="text-center">Your request has been sent!</h3>
+                <h4 class="text-center">Our specialists will contact you!</h4>
+                <p>&nbsp;</p>
             </div>
         </div>
     </div>
