@@ -362,10 +362,11 @@ function formValidation() {
 jQuery('a[href*="#"]:not([href="#"])').click(function clickOnAnchorLink() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
         var target = jQuery(this.hash);
+        var headerHeight = jQuery('.site-header .navigation-area').outerHeight(true);
         target = target.length ? target : jQuery('[name=' + this.hash.slice(1) + ']');
         if (target.length) {
             jQuery('html,body').animate({
-                scrollTop: target.offset().top
+                scrollTop: target.offset().top - headerHeight
             }, 1000);
             return false;
         }

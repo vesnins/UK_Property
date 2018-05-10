@@ -26,6 +26,7 @@ body {
 
 .not-scroll {
     overflow: hidden;
+    position: relative;
 }
 
 h1,
@@ -937,6 +938,10 @@ select::-ms-expand {
     padding: 7px 50px;
     color: #fff;
     font-style: italic;
+}
+
+.site-nav .search-form input[type="search"] {
+    font-size: 16px;
 }
 
 .site-nav .search-form input[type="search"]::-webkit-input-placeholder,
@@ -2170,6 +2175,7 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     padding: 4px 15px;
     border: 1px solid #e5e5e5;
     margin-bottom: 4px;
+    background: #fff;
 }
 
 .tag-list a:hover {
@@ -3429,11 +3435,14 @@ body:not(.touch-device) .posts-list .post:hover:before {
 }
 
 .error-page-content {
-    padding: 21% 0 5%;
     background: center center no-repeat;
     background-size: cover;
     position: relative;
     z-index: 1;
+}
+
+.error-page-content .inner-box {
+    padding: 21% 0 5%;
 }
 
 .error-page-content:before {
