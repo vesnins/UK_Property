@@ -42,8 +42,8 @@
 .container-fluid {
     margin-right: auto;
     margin-left: auto;
-    padding-left: 35px;
-    padding-right: 35px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 @media (max-width: 1580px) {

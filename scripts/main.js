@@ -42,13 +42,15 @@ jQuery(function () {
     if (validationForm.length !== 0) {
         formValidation();
     }
-    var phoneField = jQuery('input[type="tel"]');
+
+   /* var phoneField = jQuery('input[type="tel"]');
     if (phoneField.length !== 0) {
         phoneField.each(function () {
             var thisTel = jQuery(this);
             thisTel.mask('+0 (000) 000-00-00');
         });
-    }
+    }*/
+
     if (jQuery('.billboard-slider').length !== 0) {
         billboardSlider();
     }
@@ -399,7 +401,7 @@ function billboardSlider() {
         arrows: false,
         fade: true,
         autoplay: true,
-        autoplaySpeed: 2500
+        autoplaySpeed: 2000
     });
 }
 
@@ -462,7 +464,6 @@ function productGallerySlider() {
     previewSlider.slick({
         slidesToShow: 5,
         asNavFor: mainSlider,
-        arrows: false,
         focusOnSelect: true,
         responsive: [
             {

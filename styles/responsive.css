@@ -88,6 +88,7 @@
         padding-right: 25px;
     }
 
+    .product-section #map,
     .product-gallery {
         margin-bottom: 35px;
     }
@@ -102,7 +103,7 @@
     }
 
     .characteristics .value {
-        font-size: 1.8em;
+        font-size: 1em;
     }
 
     .data-table {
@@ -380,8 +381,16 @@
         padding: 11px 35px;
     }
 
+    .characteristics {
+        font-size: 16px;
+    }
+
     .characteristics .value {
         line-height: 1.25;
+    }
+
+    .characteristics td {
+        padding: 10px;
     }
 
     .product-section.sold-product .product-gallery:not(.plan-image-slider):before {
@@ -1131,7 +1140,7 @@
         margin-top: 0;
     }
 
-    .error-page-content .inner-box{
+    .error-page-content .inner-box {
         padding-top: 25%;
     }
 
@@ -1496,12 +1505,36 @@
         height: 24px;
     }
 
+    .product-section #map,
     .product-gallery {
         margin-bottom: 30px;
     }
 
-    .characteristics .value {
-        font-size: 1.5em;
+    .characteristics,
+    .characteristics tbody,
+    .characteristics tr,
+    .characteristics td {
+        display: block;
+    }
+
+    .characteristics tr {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .characteristics {
+        border: 1px solid #cfcfcf;
+    }
+
+    .characteristics td {
+        width: 50%;
+        border: 1px solid #cfcfcf;
     }
 
     .related-products-section h2 {
@@ -1591,7 +1624,7 @@
         margin-bottom: 10px;
     }
 
-    .error-page-content .inner-box{
+    .error-page-content .inner-box {
         padding-top: 35%;
     }
 
@@ -1897,6 +1930,7 @@
         text-align: center;
     }
 
+    .product-section #map,
     .product-gallery {
         margin-bottom: 25px;
     }
@@ -1906,12 +1940,11 @@
     }
 
     .characteristics {
-        font-size: 12px;
         margin-bottom: 20px;
     }
 
     .characteristics td {
-        padding: 5px;
+        width: 100%;
     }
 
     .characteristics .value {
@@ -1986,7 +2019,7 @@
         margin-bottom: 15px;
     }
 
-    .error-page-content .inner-box{
+    .error-page-content .inner-box {
         padding-top: 50%;
     }
 

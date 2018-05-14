@@ -1747,6 +1747,7 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     width: 100%;
     max-width: 770px;
     margin: 0 auto;
+    color: #fff;
 }
 
 .subscribe-form .flex-group {
@@ -2865,6 +2866,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
     background: #240d4d;
 }
 
+.product-section #map,
 .product-gallery {
     position: relative;
     margin-bottom: 50px;
@@ -2904,6 +2906,18 @@ body:not(.touch-device) .posts-list .post:hover:before {
     right: 12%;
 }
 
+.product-gallery .preview-slider .slick-arrow {
+    opacity: 1;
+}
+
+.product-gallery .preview-slider .slick-prev {
+    left: -20px;
+}
+
+.product-gallery .preview-slider .slick-next {
+    right: -20px;
+}
+
 .product-gallery .preview-slider .slick-slide {
     margin: 0 11px;
 }
@@ -2930,11 +2944,6 @@ body:not(.touch-device) .posts-list .post:hover:before {
 .product-gallery .preview-slider .inner-box:hover:before,
 .product-gallery .preview-slider .slick-current .inner-box:before {
     height: 10px;
-}
-
-.product-info .product-description ul {
-    column-count: 2;
-    column-gap: 30px;
 }
 
 .product-section .contact-section {
@@ -3034,7 +3043,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
 
 .characteristics .value {
     display: block;
-    font-size: 2em;
+    font-size: 1.1em;
     line-height: 1.4;
     color: #2c2543;
 }
@@ -3046,11 +3055,12 @@ body:not(.touch-device) .posts-list .post:hover:before {
 .data-table {
     font-weight: 600;
     color: #2c2543;
+    font-size: 14px;
     margin-bottom: 20px;
 }
 
 .data-table td {
-    padding: 8px 25px;
+    padding: 8px 20px;
 }
 
 .data-table tr:nth-child(odd) td {
@@ -3919,7 +3929,7 @@ address .address-info svg {
     margin-bottom: 30px;
 }
 
-.site-footer .subscribe-form .flex-group {
+.subscribe-form .flex-group {
     margin-bottom: 17px;
 }
 
