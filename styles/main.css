@@ -2782,41 +2782,12 @@ body:not(.touch-device) .posts-list .post:hover:before {
     margin-bottom: 5px;
 }
 
-.product-section .heading .flex-row {
-    -webkit-box-pack: justify;
-    -moz-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    margin: 0 -10px 15px;
-}
-
-.product-section .heading .price,
 .product-section .heading .product-title {
     font-size: 48px;
     text-transform: none;
-    padding: 0 10px;
     font-weight: 600;
     line-height: 1;
-    margin-bottom: 0;
-}
-
-.product-section .heading .price {
-    white-space: nowrap;
-}
-
-.product-section.sold-product .heading .price {
-    opacity: .3;
-}
-
-.product-section .heading .price sub {
-    font-size: 14px;
-    text-transform: uppercase;
-    color: #4c4c4c;
-    font-weight: normal;
+    margin-bottom: 15px;
 }
 
 .product-section .heading .address-info {
@@ -3053,7 +3024,6 @@ body:not(.touch-device) .posts-list .post:hover:before {
 }
 
 .data-table {
-    font-weight: 600;
     color: #2c2543;
     font-size: 14px;
     margin-bottom: 20px;
