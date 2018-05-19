@@ -43,13 +43,13 @@ jQuery(function () {
         formValidation();
     }
 
-   /* var phoneField = jQuery('input[type="tel"]');
-    if (phoneField.length !== 0) {
-        phoneField.each(function () {
-            var thisTel = jQuery(this);
-            thisTel.mask('+0 (000) 000-00-00');
-        });
-    }*/
+    /* var phoneField = jQuery('input[type="tel"]');
+     if (phoneField.length !== 0) {
+         phoneField.each(function () {
+             var thisTel = jQuery(this);
+             thisTel.mask('+0 (000) 000-00-00');
+         });
+     }*/
 
     if (jQuery('.billboard-slider').length !== 0) {
         billboardSlider();
@@ -411,6 +411,7 @@ function serviceSlider() {
     slider.slick({
         slidesToShow: 4,
         dots: true,
+        infinite: false,
         autoplay: true,
         autoplaySpeed: 6000,
         responsive: [

@@ -2882,10 +2882,12 @@ body:not(.touch-device) .posts-list .post:hover:before {
 }
 
 .product-gallery .preview-slider .slick-prev {
+    background-image: url('../images/svg/arrow-left-pink.svg');
     left: -20px;
 }
 
 .product-gallery .preview-slider .slick-next {
+    background-image: url('../images/svg/arrow-right-pink.svg');
     right: -20px;
 }
 

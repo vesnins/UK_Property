@@ -556,7 +556,7 @@
             <div class="container">
                 <div class="limit-box">
                     <h4>Проконсультируйтесь по вопросам инвестиций, приобретению и аренде недвижимости или по другим вопросам касаемых недвижимости</h4>
-                    <a href="#" class="more-button">Получить консультацию</a>
+                    <a href="#" class="more-button" data-toggle="modal" data-target=".consultation-modal">Получить консультацию</a>
                     <ul class="social">
                         <li><a href="#"><svg><use xlink:href="images/svg/sprite.svg#facebook"></use></svg> 123</a></li>
                         <li><a href="#"><svg><use xlink:href="images/svg/sprite.svg#linkedin"></use></svg> 95</a></li>
@@ -694,6 +694,41 @@
                     </div>
                     <div class="input-holder">
                         <label class="checkbox-label"><input type="checkbox" name="checkbox" checked><span>I have read and agree to the <a href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">Privacy policy</a>.</span></label>
+                    </div>
+                    <div class="text-center">
+                        <input class="button" type="submit" value="send">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade consultation-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><svg><use xlink:href="images/svg/sprite.svg#close-icon"></use></svg></button>
+                <div class="decor-box" style="background-image: url('images/banners/img_6.jpg')"></div>
+                <h3 class="text-center">Получить консультацию</h3>
+                <form action="#" class="validate-form">
+                    <div class="input-holder">
+                        <input type="text" name="name" placeholder="First Name *">
+                    </div>
+                    <div class="input-holder">
+                        <input type="text" name="surname" placeholder="Second Name *">
+                    </div>
+                    <div class="input-holder">
+                        <input type="tel" name="phone" placeholder="Phone Number *">
+                    </div>
+                    <div class="input-holder">
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <div class="input-holder">
+                        <textarea placeholder="Message"></textarea>
+                    </div>
+                    <div class="input-holder">
+                        <label class="checkbox-label"><input type="checkbox" name="checkbox" checked><span>I have read and agree to the <a href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">Privacy policy</a>.</span></label>
+                        <label class="checkbox-label"><input type="checkbox" checked><span>I agree to receive property updates and latest news via email.</span></label>
                     </div>
                     <div class="text-center">
                         <input class="button" type="submit" value="send">
