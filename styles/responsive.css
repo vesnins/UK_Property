@@ -78,6 +78,22 @@
         padding: 30px 25px;
     }
 
+    .product-section .contact-section address,
+    .product-section .contact-section address .address-info {
+        margin-bottom: 10px;
+    }
+
+    .product-section .contact-section input[type="text"],
+    .product-section .contact-section input[type="tel"],
+    .product-section .contact-section input[type="email"] {
+        height: 42px;
+    }
+
+    .product-section .contact-section .button {
+        margin-top: 20px;
+        padding: 12px 44px;
+    }
+
     .product-gallery .preview-slider {
         left: 6%;
         right: 6%;
@@ -212,7 +228,7 @@
     }
 
     .site-nav .menu > li > a {
-        padding: 15px 0;
+        padding: 8px 0;
     }
 
     .site-nav .menu > li > a:before {
@@ -367,11 +383,6 @@
 
     .product-section .contact-section .address-info svg {
         top: 4px;
-    }
-
-    .product-section .contact-section p,
-    .product-section .contact-section address {
-        margin-bottom: 10%;
     }
 
     .product-section .contact-section .button {
@@ -589,6 +600,14 @@
     .product-section .heading .product-title {
         font-size: 30px;
         margin-bottom: 10px;
+    }
+
+    .product-section .contact-section p {
+        margin-bottom: 20px;
+    }
+
+    .product-section .contact-section .button {
+        margin-top: 10px;
     }
 
     .product-gallery .add-to-wishList svg {

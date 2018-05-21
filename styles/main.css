@@ -1700,6 +1700,7 @@ body:not(.touch-device) .products .product-item:hover .image-box {
 
 .service-links p {
     margin-bottom: 5px;
+    color: #240d4d;
 }
 
 .service-links .more-link {
@@ -2944,9 +2945,13 @@ body:not(.touch-device) .posts-list .post:hover:before {
     top: 6px;
 }
 
-.product-section .contact-section p,
-.product-section .contact-section address {
-    margin-bottom: 11%;
+.product-section .contact-section address,
+.product-section .contact-section address .address-info {
+    margin-bottom: 20px;
+}
+
+.product-section .contact-section p {
+    margin-bottom: 30px;
 }
 
 .product-section .contact-section .button {
