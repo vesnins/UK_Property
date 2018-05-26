@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Modules\Admin\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Modules extends Model
+{
+	protected $table = 'modules';
+}

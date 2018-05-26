@@ -1,0 +1,9 @@
+{
+	"name": "Admin",
+	"slug": "admin",
+	"namespace": "Admin",
+	"version": "3.0.0",
+	"author": "Igor Nosachev",
+	"license": "Private",
+	"description": "Apmin panel"
+}
