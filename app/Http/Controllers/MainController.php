@@ -37,6 +37,7 @@ class MainController extends Controller
 		$this->dynamic  = new DynamicModel();
 		$this->request  = $request->all();
 		$this->requests = $request;
+
 	}
 
 	/**
