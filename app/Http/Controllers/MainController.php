@@ -37,7 +37,6 @@ class MainController extends Controller
 		$this->dynamic  = new DynamicModel();
 		$this->request  = $request->all();
 		$this->requests = $request;
-
 	}
 
 	/**
@@ -49,7 +48,6 @@ class MainController extends Controller
 	{
 		$whereBlog[]   = ['blog.active', 1];
 		$whereBlog[]   = ['blog.tags', '!=', '\'\''];
-		$whereVillas[] = ['villas.active', 1];
 
 		$data['blog'] = $this->dynamic->t('blog')
 			->where($whereBlog)
@@ -70,31 +68,11 @@ class MainController extends Controller
 			->orderBy('blog.id', 'DESC')
 			->paginate(4);
 
-		$data['villas'] = $this->dynamic->t('villas')
-			->where($whereVillas)
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('villas.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'villasalbum')
-						->where('files.main', '=', 1);
-				}
-			)
-
-			->select('villas.*', 'files.file', 'files.crop')
-			->groupBy('villas.id')
-			->orderBy('villas.id', 'DESC')
-			->orderBy('villas.is_best', 'ASC')
-			->paginate(10);
-
 		$data['preview'] = $this
 			->dynamic
 			->t('files')
 			->where('name_table', 'mainalbum')
-			->orderBy('order', 'ASC')
+			->orderBy('sort', 'ASC')
 			->get()
 			->toArray();
 
@@ -102,64 +80,7 @@ class MainController extends Controller
 			->dynamic
 			->t('files')
 			->where('name_table', 'maincollections')
-			->orderBy('order', 'ASC')
-			->get()
-			->toArray();
-
-		$data['img_mobile'] = $this
-			->dynamic
-			->t('files')
-			->where('name_table', 'mainmain_img_small')
-			->orderBy('order', 'ASC')
-			->first()
-			->toArray();
-
-		$data['locations'] = $this->dynamic
-			->t('locations')
-			->where([['locations.active','=', 1]])
-
-			->join(
-				'villas',
-
-				function($join) {
-					$join->type = 'LEFT';
-					$join->on('villas.cat_location', '=', 'locations.cat');
-				}
-			)
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('locations.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'locationsalbum')
-						->where('files.main', '=', 1);
-				}
-			)
-
-			->select('locations.*', 'files.file', 'files.crop')
-			->groupBy('villas.cat_location')
-			->get()
-			->toArray();
-
-		$data['locations_main'] = $this->dynamic
-			->t('locations')
-			->where([['locations.active','=', 1], ['locations.to_main','=', 1]])
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('locations.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'locationsalbum')
-						->where('files.main', '=', 1);
-				}
-			)
-
-			->select('locations.*', 'files.file', 'files.crop')
-			->limit(2)
+			->orderBy('sort', 'ASC')
 			->get()
 			->toArray();
 
@@ -523,7 +444,35 @@ class MainController extends Controller
 					}
 				)
 
-				->select('blog.*', 'files.file', 'files.crop')
+				->join(
+					'users',
+
+					function($join) {
+						$join->type = 'LEFT OUTER';
+						$join->on('users.id', '=', 'blog.author_id');
+					}
+				)
+
+				->join(
+					'files AS files_users',
+
+					function($join) {
+						$join->type = 'LEFT OUTER';
+						$join->on('blog.author_id', '=', 'files_users.id_album')
+							->where('files_users.name_table', '=', 'usersalbum')
+							->where('files_users.main', '=', 1);
+					}
+				)
+
+				->select(
+					'blog.*',
+					'files.file',
+					'files.crop',
+					'files_users.file AS users_file',
+					'files_users.crop AS users_crop',
+					'users.name AS author_name'
+				)
+
 				->first();
 
 			if(empty($data['blog']))
@@ -584,9 +533,24 @@ class MainController extends Controller
 					}
 				)
 
-				->select('blog.*', 'files.file', 'files.crop')
+				->join(
+					'users',
+
+					function($join) {
+						$join->type = 'LEFT OUTER';
+						$join->on('users.id', '=', 'blog.author_id');
+					}
+				)
+
+				->select(
+					'blog.*',
+					'files.file',
+					'files.crop',
+					'users.name AS author_name'
+				)
+
 				->orderBy('blog.' . $group, 'DESC')
-				->limit(20)
+				->limit(4)
 				->get()
 				->toArray();
 
@@ -619,7 +583,16 @@ class MainController extends Controller
 					}
 				)
 
-				->select('blog.*', 'files.file', 'files.crop')
+				->join(
+					'users',
+
+					function($join) {
+						$join->type = 'LEFT OUTER';
+						$join->on('users.id', '=', 'blog.author_id');
+					}
+				)
+
+				->select('blog.*', 'files.file', 'files.crop', 'users.name AS author_name')
 				->groupBy('blog.id')
 				->orderBy('blog.' . $group, 'DESC')
 				->paginate($count_box);
@@ -790,95 +763,6 @@ class MainController extends Controller
 
 			return $this->base->view_s("site.main.vacancies", $data);
 		}
-	}
-
-	/**
-	 * Location.
-	 *
-	 * @param $id
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function location($id)
-	{
-		$whereVillas[] = ['villas.active', 1];
-
-		$data['location'] = $this
-			->dynamic
-			->t('locations')
-
-			->join(
-				'menu',
-				function($join) use ($id) {
-					$join->type = 'RIGHT OUTER';
-					$join->on('menu.id', '=', 'locations.cat');
-				}
-			)
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('locations.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'locationsalbum')
-						->where('files.main', '=', 1);
-				}
-			)
-
-			->select('locations.*', 'files.file', 'files.crop')
-			->where('locations.active', 1)
-			->where('menu.translation', '=', $id)
-			->orWhere('menu.id', '=', $id)
-			->first();
-
-
-		$data['locations'] = $this->dynamic
-			->t('locations')
-			->where([['locations.active','=', 1]])
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('locations.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'locationsalbum')
-						->where('files.main', '=', 1);
-				}
-			)
-
-			->select('locations.*', 'files.file', 'files.crop')
-			->get()
-			->toArray();
-
-		$whereVillas['villas.cat_location'] = $data['location']['cat'];
-
-		if(empty($data['location']))
-			return $this->errors_404();
-
-		$data['villas'] = $this->dynamic->t('villas')
-			->where($whereVillas)
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('villas.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'villasalbum')
-						->where('files.main', '=', 1);
-				}
-			)
-
-			->select('villas.*', 'files.file', 'files.crop')
-			->groupBy('villas.id')
-			->orderBy('villas.id', 'DESC')
-			->orderBy('villas.is_best', 'ASC')
-			->paginate(4);
-
-		$data['meta_c'] = $this->base->getMeta($data, 'location');
-
-		return $this->base->view_s("site.main.location_id", $data);
 	}
 
 	/**
@@ -1111,7 +995,7 @@ class MainController extends Controller
 //			->whereNotIn('villas.id', $id_ignoring)
 			->select('villas.*', 'files.file', 'files.crop', 'menu.name AS place')
 			->groupBy('villas.id')
-			->orderBy('villas.order', 'DESC')
+			->orderBy('villas.sort', 'DESC')
 			->orderBy('villas.' . $group, 'DESC')
 			->paginate($count_box);
 

@@ -111,16 +111,16 @@
 		"tabs"       : "htmlInserts"
 	},
 	{
-		"name"        : "order",
+		"name"        : "sort",
 		"typeField"   : "input",
 		"type"        : "number",
 		"classAttr"   : "border-green",
 		"nameText"    : "Сортировка",
 		"nameAttr"    : "pl[order]",
 		"description" : "Текстовое поле инпут \"Порядок сортировки\"",
-		"idAttr"      : "inputOrder",
+		"idAttr"      : "inputSort",
 		"showOnly"    : ["admin", "specialist"],
-		"sql_column"  : "order",
+		"sql_column"  : "sort",
 		"translateKey ": "order"
 	},
 	{
@@ -158,6 +158,7 @@
 		"nameAttr"   : "pl[little_description]",
 		"description": "Текстовое поле \"Little_description\"",
 		"idAttr"     : "textareaLittle_description",
+		"maxlength"  : "120",
 		"sql_column" : "little_description"
 	},
 	{
@@ -1177,16 +1178,15 @@
 		"translateKey": "specialist_comment"
 	},
 	{
-		"name"        : "specialist",
+		"name"        : "author_id",
 		"typeField"   : "select",
 		"classAttr"   : "select2",
-		"nameText"    : "Специалист",
-		"nameAttr"    : "pl[specialist]",
-		"description" : "Селект \"specialist\"",
-		"idAttr"      : "selectSpecialist",
-		"sql_column"  : "specialist",
-		"showOnly"    : ["admin", "specialist"],
-		"translateKey": "specialist",
+		"nameText"    : "Автор из пользователей",
+		"nameAttr"    : "pl[author_id]",
+		"description" : "Селект \"author_id\"",
+		"idAttr"      : "selectAuthor_id",
+		"sql_column"  : "author_id",
+		"translateKey": "author_of_users",
 		"body"        : {
 			"text": "<option value=\"0\">-</option>{-option-}",
 			"type": "replace"
@@ -1247,6 +1247,19 @@
 		"sql_column"     : "vacation_together",
 		"showOnly"       : ["admin", "specialist"],
 		"translateKey"   : "vacation_together"
+	},
+	{
+		"name"           : "usefull",
+		"typeField"      : "checkbox",
+		"classAttr"      : "flat border-green",
+		"classAttrDiv"   : "border-green-checkbox",
+		"nameText"       : "Полезное",
+		"nameAttr"       : "pl[usefull]",
+		"description"    : "Селект \"usefull\"",
+		"idAttr"         : "checkboxUsefull",
+		"functionsBefore": "checkboxCheck",
+		"sql_column"     : "usefull",
+		"translateKey"   : "usefull"
 	},
 	{
 		"name"            : "what_is_next",

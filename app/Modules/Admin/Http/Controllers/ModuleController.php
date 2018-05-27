@@ -308,7 +308,7 @@ class ModuleController extends Controller
 				}
 			}
 
-			$menu        = $this->base->get_cat($page);
+			$menu        = $this->base->get_cat($page, [], 'sort');
 			$modules     = Base::getModule("link_module", $page)[0];
 			$plugins     = config('admin.plugins');
 			$plugins_sel = [];

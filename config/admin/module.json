@@ -43,100 +43,6 @@
 		"translate_key"   : "menu"
 	},
 	{
-		"id"              : "5",
-		"active"          : true,
-		"big_height"      : "800",
-		"big_width"       : "1200",
-		"class_module"    : "fa fa-star",
-		"column_index"    : [
-			"name",
-			"description",
-			"album",
-			"active",
-			"order",
-			"to_main",
-			"is_hot"
-		],
-		"count_module"    : "100",
-		"show_count"      : true,
-		"filters"         : [],
-		"lang"            : [
-			"name",
-			"title",
-			"keywords",
-			"description",
-			"text",
-			"key_feature",
-			"layout",
-			"convenience",
-			"services",
-			"distances",
-			"location_name",
-			"location_description",
-			"specialist_comment"
-		],
-		"link_module"     : "villas",
-		"link_site_module": "/villas/",
-		"menu_table_name" : "menu",
-		"name_module"     : "Виллы",
-		"order"           : "3",
-		"plugins"         : [
-			"is_hot",
-			"to_main",
-			"villas_by_the_sea",
-			"villas_with_private_service",
-			"vacation_together",
-			"specialist",
-			"order",
-			"name",
-			"text",
-			"key_feature",
-			"layout",
-			"active",
-			"cat_location",
-			"convenience",
-			"services",
-			"distances",
-			"title",
-			"author",
-			"keywords",
-			"description",
-			"album",
-			"what_is_next",
-			"files",
-			"guests_person",
-			"bedroom",
-			"bathroom",
-			"sea",
-			"coordinates",
-			"location",
-			"location_name",
-			"location_description",
-			"price_money",
-			"booking_calendar",
-			"specialist_comment"
-		],
-		"small_width"     : "445",
-		"small_height"    : "255",
-		"sort"            : "1",
-		"views_module"    : "table",
-		"translate_key"   : "villas",
-		"showOnlyYour"    : true,
-		"isList"          : [],
-		"params"          : {
-			"specialist": {
-				"table": "users",
-				"where": [["user_another_type", "=", "specialist"]]
-			},
-			"files": {
-				"limit": 1
-			}
-		},
-		"idCatShow"       : {
-			"cat_location": 4
-		}
-	},
-	{
 		"id"              : "2",
 		"active"          : true,
 		"big_height"      : "1200",
@@ -223,60 +129,6 @@
 		"sort"            : "1",
 		"views_module"    : "table",
 		"translate_key"   : "seo"
-	},
-	{
-		"id"              : "11",
-		"active"          : true,
-		"big_height"      : "1200",
-		"big_width"       : "800",
-		"class_module"    : "fa fa-map-marker",
-		"column_index"    : [
-			"name",
-			"description",
-			"to_main",
-			"translation",
-			"cat",
-			"album",
-			"active"
-		],
-		"count_module"    : "20",
-		"show_count"      : true,
-		"filters"         : [],
-		"lang"            : [
-			"name",
-			"name_p",
-			"little_description",
-			"text",
-			"title",
-			"author",
-			"keywords",
-			"description"
-		],
-		"link_module"     : "locations",
-		"link_site_module": "",
-		"menu_table_name" : "menu",
-		"name_module"     : "Места",
-		"order"           : "5",
-		"plugins"         : [
-			"name",
-			"name_p",
-			"little_description",
-			"translation",
-			"cat",
-			"to_main",
-			"text",
-			"album",
-			"title",
-			"author",
-			"keywords",
-			"description",
-			"active"
-		],
-		"small_width"     : "500",
-		"small_height"    : "350",
-		"sort"            : "1",
-		"views_module"    : "table",
-		"translate_key"   : "locations"
 	},
 	{
 		"id"              : "9",
@@ -538,68 +390,6 @@
 		"translate_key"   : "main_page"
 	},
 	{
-		"id"              : "13",
-		"active"          : true,
-		"big_height"      : "1200",
-		"big_width"       : "800",
-		"class_module"    : "fa fa-briefcase",
-		"column_index"    : [
-			"name",
-			"active",
-			"text",
-			"price_money",
-			"album"
-		],
-		"count_module"    : "20",
-		"show_count"      : false,
-		"filters"         : [],
-		"lang"            : [
-			"name",
-			"text",
-			"location_name",
-			"title",
-			"author",
-			"keywords",
-			"description"
-		],
-		"link_module"     : "vacancies",
-		"link_site_module": "",
-		"menu_table_name" : "menu",
-		"name_module"     : "Вакансии",
-		"order"           : "6",
-		"plugins"         : [
-			"name",
-			"active",
-			"price_money",
-			"album",
-			"text",
-			"location_name",
-			"title",
-			"author",
-			"keywords",
-			"description"
-		],
-		"main_page": [
-			"working_conditions",
-			"benefits",
-			"little_description",
-			"title",
-			"keywords",
-			"description"
-		],
-		"lang_main_page": [
-			"little_description",
-			"title",
-			"keywords",
-			"description"
-		],
-		"small_width"     : "500",
-		"small_height"    : "350",
-		"sort"            : "1",
-		"views_module"    : "table",
-		"translate_key"   : "vacancies"
-	},
-	{
 		"id"              : "14",
 		"active"          : true,
 		"big_height"      : "1200",
@@ -608,6 +398,7 @@
 		"column_index"    : [
 			"name",
 			"description",
+			"little_description",
 			"album",
 			"tags",
 			"active"
@@ -618,8 +409,8 @@
 		"lang"            : [
 			"name",
 			"text",
+			"little_description",
 			"title",
-			"author",
 			"keywords",
 			"description"
 		],
@@ -631,16 +422,27 @@
 		"plugins"         : [
 			"name",
 			"text",
+			"little_description",
 			"active",
+			"usefull",
+			"author_id",
 			"translation",
 			"date",
 			"title",
-			"author",
 			"keywords",
 			"description",
 			"album",
 			"tags"
 		],
+		"params"          : {
+			"author_id": {
+				"table": "users",
+				"where": [["user_another_type", "=", "specialist"]]
+			},
+			"files": {
+				"limit": 1
+			}
+		},
 		"small_width"     : "500",
 		"small_height"    : "350",
 		"sort"            : "1",

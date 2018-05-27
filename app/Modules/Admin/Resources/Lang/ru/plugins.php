@@ -47,4 +47,6 @@ return [
 	'collections'                 => 'Изображения подборок',
 	'main_img_small'              => 'Первый экран(mobile)',
 	'guests_person'               => 'Кол-во гостей/человек',
+	'usefull'                     => 'Полезное',
+	'author_of_users'             => 'Автор из пользователей',
 ];

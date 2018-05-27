@@ -2,46 +2,77 @@
 
 @section('content')
 	@php($path = '/images/files/small/')
-	@php($img = $blog['file'] ? $blog['crop'] ? $path . $blog['crop'] : $path . $blog['file'] : '')
 
-	<section class="simple-page--bg">
-		<div class="intro-figure dynamic">
-			<figure style="@if($img)background-image: url({{ $img }})@endif"></figure>
-		</div>
+	@php($img_author = $blog['users_file']
+		? $blog['users_crop'] ? $path . $blog['users_crop'] : $path . $blog['users_file']
+		: env('PATH_TO_IMG_DEFAULT')
+	)
 
-		<div class="content content_md">
-			<header class="light-style">
-				<h1 class="headline_main">{{ $langSt($blog['name']) }}</h1>
+	<main class="main">
+		<section class="indent-block">
+			<div class="container">
+				<div class="entry-holder">
+					<h2>{{ $langSt($blog['name']) }}</h2>
 
-				<div class="article-data">
-					@if($blog['date'])
-						@php($date = explode('-', $blog['date']))
-					@else
-						@php($date = explode('-', $blog['created_at']))
-					@endif
-					<time>{{ (int) $date['2'] . ' ' . $mount($date['1']) . ' ' . $date['0'] }}</time>
+					<div class="author-box">
+						<div class="photo">
+							<div style="background: url('{{ $img_author }}') 50%/125px; width: 100%; height: 100%"></div>
+						</div>
 
-					@if($langSt($blog['author']))
-						<span class="auth">@lang('main.author'): {{ $langSt($blog['author']) }}</span>
-					@endif
+						<div class="ovh-box">
+							<span class="author-name">{{ $langSt($blog['author_name']) ?? $langSt($blog['author']) }}</span>
+
+							@if($blog['date'])
+								@php($date = explode('/', $blog['date']))
+							@else
+								@php($date = explode('-', $blog['created_at']))
+							@endif
+
+							<time datetime="{{ $blog['date'] }}">
+								{{ $date['0'] . '-' . $date['1'] . '-' . $date['2'] }}
+							</time>
+						</div>
+					</div>
+
+					<div class="entry-content">{!! $langSt($blog['text']) !!}</div>
 				</div>
-			</header>
-		</div>
-	</section>
 
-	<div class="simple-page--main">
-		<div class="content content_sm"><div class="location-text text-box">{!! $langSt($blog['text']) !!}</div></div>
-	</div>
+				<footer class="entry-footer">
+					<div class="row flex-row align-row">
+						<div class="col-xs-5">
+							<a href="/blog" class="back-btn">
+								<svg><use xlink:href="/images/svg/sprite.svg#long-arrow-left"></use></svg>
+								@lang('main.back_to_blog')
+							</a>
+						</div>
 
-	@push('bottom')
-	<div class="blog-box">
-		<div class="content">
-			<div class="blog-box--wrap">
-				<ul class="layout layout_sm">
-					@include('site.block.related-articles')
-				</ul>
+						<div class="col-xs-7 text-right">
+							<ul class="social-list">
+								<li>@lang('main.share'):</li>
+								<li><a href="#">
+										<svg><use xlink:href="/images/svg/sprite.svg#facebook"></use></svg>
+										<span class="qty">123</span></a>
+								</li>
+
+								<li><a href="#">
+										<svg><use xlink:href="/images/svg/sprite.svg#linkedin"></use></svg>
+										<span class="qty">95</span></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</footer>
 			</div>
-		</div>
-	</div>
-	@endpush
+		</section>
+
+		<section class="indent-block related-articles-section">
+			<div class="container-fluid">
+				<h3 class="text-center">@lang('main.similar_article')</h3>
+
+				<div class="article-slider simple-slider">
+					@include('site.block.blog_id_footer', ['blogs' => $blogs])
+				</div>
+			</div>
+		</section>
+	</main>
 @endsection
