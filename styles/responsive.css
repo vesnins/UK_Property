@@ -1292,6 +1292,10 @@
         display: none;
     }
 
+    .billboard {
+        font-size: 18px;
+    }
+
     .billboard p {
         margin-bottom: 20px;
     }
@@ -1795,6 +1799,10 @@
     .site-header .menu-btn {
         margin-left: 10px;
         width: 28px;
+    }
+
+    .billboard {
+        font-size: 16px;
     }
 
     .billboard .go-down-btn {
