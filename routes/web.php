@@ -11,6 +11,7 @@ Route::group(
 		Route::get('/villas/{id?}', 'MainController@villas');
 		Route::get('/blog/{id?}', 'MainController@blog');
 		Route::get('/about-us', 'MainController@about_us');
+		Route::get('/about-company', 'MainController@about_company');
 		Route::get('/contact-us', 'MainController@contact_us');
 		Route::get('/vacancies/{id?}', 'MainController@vacancies');
 		Route::get('/location/{id}', 'MainController@location');

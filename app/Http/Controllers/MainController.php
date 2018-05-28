@@ -22,6 +22,11 @@ class MainController extends Controller
 	private $dynamic;
 
 	/**
+	 * @var HelperController
+	 */
+	private $helper;
+
+	/**
 	 * @var array
 	 */
 	private $request;
@@ -37,6 +42,7 @@ class MainController extends Controller
 		$this->dynamic  = new DynamicModel();
 		$this->request  = $request->all();
 		$this->requests = $request;
+		$this->helper = new HelperController($request);
 	}
 
 	/**
@@ -48,25 +54,7 @@ class MainController extends Controller
 	{
 		$whereBlog[]   = ['blog.active', 1];
 		$whereBlog[]   = ['blog.tags', '!=', '\'\''];
-
-		$data['blog'] = $this->dynamic->t('blog')
-			->where($whereBlog)
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('blog.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'blogalbum')
-						->where('files.main', '=', 1);
-				}
-			)
-
-			->select('blog.*', 'files.file', 'files.crop')
-			->groupBy('blog.id')
-			->orderBy('blog.id', 'DESC')
-			->paginate(4);
+		$data['blog'] = $this->helper->_blog(null, ['count_box' => 3]);
 
 		$data['preview'] = $this
 			->dynamic
@@ -127,13 +115,25 @@ class MainController extends Controller
 	}
 
 	/**
+	 * About Company.
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function about_company()
+	{
+		$data = [];
+
+		return $this->base->view_s("site.main.about_company", $data);
+	}
+
+	/**
 	 * Selection request.
 	 *
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function selection_request()
 	{
-		$data['locations'] = $this->dynamic->t('locations')->where('locations.active', 1)->get()->toArray();
+		$data['locations'] = [];
 
 		return $this->base->view_s("site.main.selection_request", $data);
 	}
@@ -184,8 +184,6 @@ class MainController extends Controller
 
 			->select('menu.*', 'files.file', 'files.crop')
 			->first();
-
-		$data['locations'] = $this->dynamic->t('locations')->where('locations.active', 1)->get()->toArray();
 
 		return $this->base->view_s("site.main.favorite", $data);
 	}
@@ -430,50 +428,7 @@ class MainController extends Controller
 			else
 				$where_id = ['blog.id' => $id];
 
-			$data['blog'] = $this->dynamic->t('blog')
-				->where(array_merge($where, $where_id))
-
-				->join(
-					'files',
-
-					function($join) {
-						$join->type = 'LEFT OUTER';
-						$join->on('blog.id', '=', 'files.id_album')
-							->where('files.name_table', '=', 'blogalbum')
-							->where('files.main', '=', 1);
-					}
-				)
-
-				->join(
-					'users',
-
-					function($join) {
-						$join->type = 'LEFT OUTER';
-						$join->on('users.id', '=', 'blog.author_id');
-					}
-				)
-
-				->join(
-					'files AS files_users',
-
-					function($join) {
-						$join->type = 'LEFT OUTER';
-						$join->on('blog.author_id', '=', 'files_users.id_album')
-							->where('files_users.name_table', '=', 'usersalbum')
-							->where('files_users.main', '=', 1);
-					}
-				)
-
-				->select(
-					'blog.*',
-					'files.file',
-					'files.crop',
-					'files_users.file AS users_file',
-					'files_users.crop AS users_crop',
-					'users.name AS author_name'
-				)
-
-				->first();
+			$data['blog'] = $this->helper->_blog($id);
 
 			if(empty($data['blog']))
 				return $this->errors_404();
@@ -508,51 +463,10 @@ class MainController extends Controller
 
 			$data['meta_c'] = $this->base->getMeta($data, 'blog');
 
-			$data['blogs'] = $this->dynamic->t('blog')
-				->whereNotIn('blog.id', [$data['blog']['id']])
-
-				// TODO скорее отвалится когда теги будут с id больше 10
-				->where(
-					function($query) use ($data) {
-						$tags = explode(',', $data['blog']['tags']);
-
-						for($i = 0; $i < count($tags); $i++) {
-							$query->orwhere('blog.tags', 'like', '%' . $tags[$i] . '%');
-						}
-					}
-				)
-
-				->join(
-					'files',
-
-					function($join) {
-						$join->type = 'LEFT OUTER';
-						$join->on('blog.id', '=', 'files.id_album')
-							->where('files.name_table', '=', 'blogalbum')
-							->where('files.main', '=', 1);
-					}
-				)
-
-				->join(
-					'users',
-
-					function($join) {
-						$join->type = 'LEFT OUTER';
-						$join->on('users.id', '=', 'blog.author_id');
-					}
-				)
-
-				->select(
-					'blog.*',
-					'files.file',
-					'files.crop',
-					'users.name AS author_name'
-				)
-
-				->orderBy('blog.' . $group, 'DESC')
-				->limit(4)
-				->get()
-				->toArray();
+			$data['blogs'] = $this->helper->_blog(
+				null,
+				['count_box' => 4, 'group' => $group, 'tags' => explode(',', $data['blog']['tags'])]
+			);
 
 			return $this->base->view_s("site.main.blog_id", $data);
 		} else {
@@ -560,127 +474,13 @@ class MainController extends Controller
 			$data['current_tags'] = $tags;
 			$where[]              = ['blog.tags', '!=', '\'\''];
 
-			$data['blog'] = $this->dynamic->t('blog')
-				->where($where)
-
-				// TODO скорее отвалится когда теги будут с id больше 10
-				->where(
-					function($query) use ($tags) {
-						for($i = 0; $i < count($tags); $i++) {
-							$query->orwhere('blog.tags', 'like', '%' . $tags[$i] . '%');
-						}
-					}
-				)
-
-				->join(
-					'files',
-
-					function($join) {
-						$join->type = 'LEFT OUTER';
-						$join->on('blog.id', '=', 'files.id_album')
-							->where('files.name_table', '=', 'blogalbum')
-							->where('files.main', '=', 1);
-					}
-				)
-
-				->join(
-					'users',
-
-					function($join) {
-						$join->type = 'LEFT OUTER';
-						$join->on('users.id', '=', 'blog.author_id');
-					}
-				)
-
-				->select('blog.*', 'files.file', 'files.crop', 'users.name AS author_name')
-				->groupBy('blog.id')
-				->orderBy('blog.' . $group, 'DESC')
-				->paginate($count_box);
+			$data['blog'] = $this->helper->_blog(
+				$id,
+				['count_box' => $count_box, 'group' => $group, 'tags' => $tags]
+			);
 
 			return $this->base->view_s("site.main.blog", $data);
 		}
-	}
-
-	/**
-	 * About Us.
-	 *
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function about_us()
-	{
-		$id_segment = $this->requests->segment(1);
-
-		if(!is_numeric($id_segment))
-			$where_id = ['menu.translation' => $id_segment];
-		else
-			$where_id = ['menu.id' => $id_segment];
-
-		$data['menu_segment'] = $this->dynamic->t('menu')
-			->where($where_id)
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('menu.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'menualbum')
-						->where('files.main', '=', 1);
-				}
-			)
-
-			->select('menu.*', 'files.file', 'files.crop')
-			->first();
-
-		$where[] = ['str.active', 1];
-
-		if((int) $id_segment == 0 || strlen($id_segment) > 5) {
-			$data['field'] = 'translation';
-			$where[]       = ['str.translation', $id_segment];
-		} else {
-			$where['str.id'] = $id_segment;
-		}
-
-		$data['page'] = $this->dynamic->t('str')
-			->where($where)
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('str.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'stralbum');
-				}
-			)
-
-			->select('str.*', 'files.file', 'files.crop')
-			->first();
-
-		if(empty($data['page'])) {
-			return $this->errors_404();
-		}
-
-		$data['meta_c'] = $this->base->getMeta($data, 'page');
-
-		$data['users'] = $this->dynamic->t('users')
-			->where([['users.is_about_us', 1]])
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('users.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'usersalbum');
-				}
-			)
-
-			->select('users.*', 'files.file', 'files.crop')
-			->get()
-			->toArray();
-
-		return $this->base->view_s("site.main.about_us", $data);
 	}
 
 	/**
@@ -781,11 +581,11 @@ class MainController extends Controller
 		$query = function($count) use ($q) {
 			return '
 			(SELECT
-			 ' . ($count ? 'COUNT(villas.id) AS count' : ('villas.id COLLATE utf8_general_ci as id,
-			 villas.name COLLATE utf8_general_ci as name,
-			 villas.name_table COLLATE utf8_general_ci as name_table,
-			 villas.text COLLATE utf8_general_ci as text')) . '
-			FROM villas
+			 ' . ($count ? 'COUNT(str.id) AS count' : ('str.id COLLATE utf8_general_ci as id,
+			 str.name COLLATE utf8_general_ci as name,
+			 str.name_table COLLATE utf8_general_ci as name_table,
+			 str.text COLLATE utf8_general_ci as text')) . '
+			FROM str
 			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
 			
 			UNION ALL

@@ -36,7 +36,7 @@
 			<div class="container-fluid">
 				<div class="search-form-holder">
 					<form role="search" class="search-form" action="/search">
-						<input type="search" name="r" class="search-field" placeholder="@lang('main.i_m_searching_for') ..." />
+						<input type="search" name="q" class="search-field" placeholder="@lang('main.i_m_searching_for') ..." />
 						<input type="submit" class="search-submit" value="OK" />
 					</form>
 
@@ -93,7 +93,7 @@
 				</a>
 
 				<form role="search" class="search-form" action="/search">
-					<input type="search" name="r" class="search-field" placeholder="@lang('main.i_m_searching_for') ..." />
+					<input type="search" name="q" class="search-field" placeholder="@lang('main.i_m_searching_for') ..." />
 					<input type="submit" class="search-submit" value="OK" />
 				</form>
 
@@ -104,7 +104,7 @@
 								@if(is_array($menu[$v['id']]))
 									<li class="parent-item">
 										<a
-											href="/{{ $v['translation'] ?? $v['id'] }}"
+											href="javascript:void(0)"
 											class="@if(($v['translation'] ?? $v['id']) === $segment1) active @endif"
 										>
 											{{ $langSt($v['name']) }}
@@ -126,7 +126,7 @@
 								@else
 									<li>
 										<a
-											href="/{{ $v['translation'] ?? $v['id'] }} }}"
+											href="/{{ $v['translation'] ?? $v['id'] }}"
 											class="@if(($v['translation'] ?? $v['id']) === $segment1) active @endif"
 										>
 											{{ $langSt($v['name']) }}
@@ -139,8 +139,9 @@
 				</ul>
 			</nav>
 			<div class="position-box">
-				<a href="#" class="button light">@lang('main.selection_request')</a>
-				<a href="#" class="wish-list">
+				<a href="/selection-request" class="button light">@lang('main.selection_request')</a>
+
+				<a href="/favorite" class="wish-list">
 					<svg><use xlink:href="/images/svg/sprite.svg#heart-icon"></use></svg>
 					<span class="qty">(12)</span>
 				</a>

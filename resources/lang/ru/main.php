@@ -3,7 +3,6 @@
 return [
 	'request_for_accommodation'       => 'Запрос на размещение',
 	'selection_request_title'         => 'Заполните заявку и получите подборку вилл по вашим критериям',
-	'all_articles'                    => 'Все статьи',
 	'all'                             => 'Все',
 	'blog'                            => 'Блог',
 	'blog_title'                      => 'Самое интересное о Греции от местных',
@@ -139,11 +138,14 @@ return [
 	'more_than'                      => 'более',
 
 
-	'selection_request' => 'Запрос на подбор',
-	'search'            => 'Поиск',
-	'similar_article'   => 'Похожие статьи',
-	'back_to_blog'      => 'Вернуться в Блог',
-	'share'             => 'Поделиться',
-	'request_a_call'    => 'Заказать звонок',
-	'i_m_searching_for' => 'Я ищу',
+	'selection_request'     => 'Запрос на подбор',
+	'search'                => 'Поиск',
+	'all_articles'          => 'Все статьи',
+	'similar_article'       => 'Похожие статьи',
+	'back_to_blog'          => 'Вернуться в Блог',
+	'share'                 => 'Поделиться',
+	'request_a_call'        => 'Заказать звонок',
+	'i_m_searching_for'     => 'Я ищу',
+	'to_get_a_consultation' => 'Получить консультацию',
+	'contacts_us'           => 'Контакты',
 ];

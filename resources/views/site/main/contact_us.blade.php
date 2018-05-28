@@ -1,140 +1,165 @@
 @extends('site.layouts.default')
 
 @section('content')
-	<div class="map-container">
-		<div class="contact-form">
-			<div class="contacts">
-				<h3 class="title">@lang('main.contacts')</h3>
+	<main class="main">
+		<div id="map-canvas"></div>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO4_qS5tqKWQwDl2-ujJpAn95dHU90GzU&amp;libraries=places&amp;sensor=false"></script>
+		<script>
+			function initMap() {
+				var myLatLng = {lat: 51.5127637, lng: -0.1530711};
+				var map      = new google.maps.Map(document.getElementById('map-canvas'), {
+					zoom  : 12,
+					center: myLatLng,
 
-				<ul>
-					<li>
-						<i class="ico-tel"><svg><use xlink:href="/images/svg/sprite.svg#ico_contact-tel"></use></svg></i>
+					styles: [
+						{"featureType": "road", "stylers": [{"hue": "#5e00ff"}, {"saturation": -79}]},
 
-						<a href="tel:{{ $langSt($params['phone_footer']['key']) }}">
-							{{ $langSt($params['phone_footer']['key']) }}
-						</a>
-					</li>
+						{
+							"featureType": "poi",
 
-					<li>
-						<i class="ico-fly"><svg><use xlink:href="/images/svg/sprite.svg#ico_contact-fly"></use></svg></i>
-						<a href="mailto:{{ $langSt($params['email']['key']) }}">{{ $langSt($params['email']['key']) }}</a>
-					</li>
+							"stylers": [
+								{"saturation": -78},
+								{"hue": "#6600ff"},
+								{"lightness": -47},
+								{"visibility": "off"}
+							]
+						},
 
-					<li>
-						<i class="ico-adr"><svg><use xlink:href="/images/svg/sprite.svg#ico_contact-address"></use></svg></i>
-						<span>{{ $langSt($params['footer_address']['key']) }}</span>
-					</li>
+						{"featureType": "road.local", "stylers": [{"lightness": 22}]},
+						{"featureType": "landscape", "stylers": [{"hue": "#6600ff"}, {"saturation": -11}]},
+						{},
+						{},
+						{"featureType": "water", "stylers": [{"saturation": -65}, {"hue": "#1900ff"}, {"lightness": 8}]},
+						{"featureType": "road.local", "stylers": [{"weight": 1.3}, {"lightness": 30}]},
 
-					<li>
-						<i class="ico-mes"><svg><use xlink:href="/images/svg/sprite.svg#ico_contact-messenger"></use></svg></i>
-						<span>{!! $langSt($params['official_accounts']['key']) !!}</span>
-					</li>
-				</ul>
+						{
+							"featureType": "transit",
+							"stylers"    : [{"visibility": "simplified"}, {"hue": "#5e00ff"}, {"saturation": -16}]
+						},
+
+						{"featureType": "transit.line", "stylers": [{"saturation": -72}]},
+						{}
+					]
+				});
+
+				var marker = new google.maps.Marker({
+					position: myLatLng,
+					map     : map,
+					icon    : window.location.origin + '/images/pin.png'
+				});
+			}
+
+			initMap();
+		</script>
+
+		<div class="container contact-area">
+			<h1>@lang('main.contacts_us')</h1>
+
+			<div class="contact-info flex-row">
+				<div class="info-box">
+					<address>
+						<span class="address-info">
+							<svg><use xlink:href="/images/svg/sprite.svg#pin"></use></svg>
+							UK Property Advisors Ltd. <br> 71-75 Shelton street <br> London, WC2H 9JQ
+						</span>
+
+						<span class="address-info">
+							<svg><use xlink:href="/images/svg/sprite.svg#envelope"></use></svg>
+
+							<a href="mailto:info@ukpropadv.com">info@ukpropadv.com</a>
+						</span>
+
+						<span class="address-info">
+							<svg><use xlink:href="/images/svg/sprite.svg#phone"></use></svg>
+
+							WhatsApp/Viber/Telegram:
+							<br />
+							<a href="tel:+440-755-310-9657">+44 (0) 755 310 9657</a>
+							<br />
+							<a href="tel:+440-2086-05-2068">+44 (0) 2086 05 2068</a>
+						</span>
+					</address>
+
+					<ul class="social-list">
+						<li><a href="#"><svg><use xlink:href="/images/svg/sprite.svg#facebook"></use></svg></a></li>
+						<li><a href="#"><svg><use xlink:href="/images/svg/sprite.svg#linkedin"></use></svg></a></li>
+					</ul>
+				</div>
+				<div class="form-box">
+					<h4>Leave your info and we will contact you soon!</h4>
+					<form action="#" class="validate-form">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-holder">
+									<input type="text" name="name" placeholder="First Name *" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="input-holder">
+									<input type="text" name="surname" placeholder="Second Name *" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-holder">
+									<input type="tel" name="phone" placeholder="Phone Number *" />
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<div class="input-holder">
+									<input type="email" placeholder="Email" />
+								</div>
+							</div>
+						</div>
+
+						<div class="input-holder">
+							<textarea placeholder="Message"></textarea>
+						</div>
+
+						<div class="input-holder">
+							<label class="checkbox-label"><input type="checkbox" name="checkbox" checked />
+								<span>I have read and agree to the
+									<a href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">
+										Privacy policy
+									</a>.
+								</span>
+							</label>
+
+							<label class="checkbox-label">
+								<input type="checkbox" checked />
+								<span>I agree to receive property updates and latest news via email.</span>
+							</label>
+						</div>
+
+						<div class="text-center">
+							<input class="button" type="submit" value="send">
+						</div>
+					</form>
+				</div>
 			</div>
-
-			<div class="contact-form-box">
-				<form action="#" id="contact-us-form">
-					<div class="fields">
-						<div class="fieldset">
-							<div class="field">
-								<div class="input">
-									<input id="name" name="name" type="text" placeholder="@lang('main.your_name')" />
-								</div>
-							</div>
-
-							<div class="field">
-								<div class="input">
-									<input type="text" name="mail" id="mail" placeholder="*@lang('main.e_mail')" />
-								</div>
-							</div>
-
-							<div class="field">
-								<div class="input">
-									<input type="text" id="telephone" name="telephone" placeholder="@lang('main.phone')" />
-								</div>
-							</div>
-						</div>
-
-						<div class="fieldset">
-							<div class="field">
-								<div class="input">
-									<textarea
-										id="message_form"
-										name="message_form"
-										rows="3"
-										placeholder="@lang('main.message')"></textarea>
-								</div>
-							</div>
-						</div>
-
-						<div class="fieldset">
-							<div class="check check_field">
-								<label>
-									<input type="checkbox" checked id="securityPolicy" name="securityPolicy" />
-
-									<span>
-										<a href="/privacy-policy" target="_blank" class="link-black">*@lang('main.security_policy_text')</a>
-									</span>
-								</label>
-							</div>
-						</div>
-
-						<p class="asterisk">*@lang('main.required_fields')</p>
-					</div>
-
-					<div class="btn-box">
-						<button type="submit">
-							<i><svg><use xlink:href="/images/svg/sprite.svg#ico_submit"></use></svg></i>
-						</button>
-					</div>
-				</form>
-
-				<div class="form-success" style="width: 100%;">
-					<span class="close"><svg> <use xlink:href="/images/svg/sprite.svg#ico_close"></use> </svg></span>
-					<div class="form-success--main">
-						<div class="text">
-							<h5 class="success-title">@lang('main.request_was_successfully_sent')</h5>
-
-							<div class="btn_center">
-								<a href="/blog" class="more">@lang('main.read_our_blog')</a>
-							</div>
-						</div>
-					</div>
+			<div class="row flex-row align-row">
+				<div class="col-sm-7 col-xs-12">
+					<h2>Как нас найти</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing et accusamus et iusto odio dignissimos ducimus, qui
+						blanditiis praesentium voluptatum deleniti corrupi? Sed ut perspiciatis, unde omnis iste natus error sit
+						voluptatem
+						<mark>accusantium doloremque</mark>
+						laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae
+						dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed
+						quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est,.
+					</p>
+					<p><strong>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum
+							deleniti atque corrupti</strong>. Nemo enim ipsam voluptatem, quia voluptas sit, sed quia consequuntur
+						magni dolores eos, qui ratione voluptatem sequi nesciunt, ut labore et dolore magnam aliquam quaerat
+						voluptatem.</p>
+				</div>
+				<div class="col-sm-5 col-xs-12 text-right">
+					<img src="/images/content/img_31.jpg" alt="">
 				</div>
 			</div>
 		</div>
-
-		<div id="map" class="map-box"></div>
-	</div>
-
-	@push('footer')
-	<script type="text/javascript">
-		var map;
-		function initMap() {
-
-			var icon = './images/map-mark.png';
-
-			var mapOptions = {
-				zoom: 13,
-				styles: [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#e9e9e9"}, { "lightness": 17}]}, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5"}, { "lightness": 20}]}, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff"}, { "lightness": 17}]}, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#ffffff"}, { "lightness": 29}, { "weight": 0.2}]}, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#ffffff"}, { "lightness": 18}]}, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#ffffff"}, { "lightness": 16}]}, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5"}, { "lightness": 21}]}, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#dedede"}, { "lightness": 21}]}, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on"}, { "color": "#ffffff"}, { "lightness": 16}]}, { "elementType": "labels.text.fill", "stylers": [{ "saturation": 36}, { "color": "#333333"}, { "lightness": 40}]}, { "elementType": "labels.icon", "stylers": [{ "visibility": "off"}]}, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2"}, { "lightness": 19}]}, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#fefefe"}, { "lightness": 20}]}, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#fefefe"}, { "lightness": 17}, { "weight": 1.2}]}],
-				scrollwheel: false,
-				center: new google.maps.LatLng(35.318354, 25.196429)
-			};
-			map = new google.maps.Map(document.getElementById('map'), mapOptions );
-
-			var marker = new google.maps.Marker({
-				position: {lat: 35.318354, lng: 25.196429},
-				map: map,
-				icon: icon
-			});
-		}
-	</script>
-
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6PFq1z3G7_YGiZl1KUuVVH_kxI2YAdaA&callback=initMap"></script>
-
-	<!--validate-->
-	<script>
-		formsFull.initContactUs();
-	</script>
-	@endpush
+	</main>
 @endsection

@@ -60,7 +60,7 @@
 			],
 
 			toolbar: "insertfile undo redo | styleselect | bold italic blockquote |" +
-			" bullist numlist | link | media image | code",
+			" bullist numlist | link | media image | alignleft aligncenter alignright alignjustify | code",
 
 			images_upload_handler: function(blobInfo, success, failure) {
 				var
@@ -101,13 +101,33 @@
 			image_class_list: [
 				{title: 'None', value: ''},
 				{title: 'Clear', value: 'clear'},
-				{title: 'Thumbnail', value: 'thumbnail'}
+				{title: 'Thumbnail', value: 'thumbnail'},
+				{title: 'Right', value: 'align-right'},
+				{title: 'Left', value: 'align-left'},
+				{title: 'Not align', value: 'not-align'},
+				{title: 'Center', value: 'align-center'},
 			],
+
+			media_class_list: [
+				{title: 'None', value: ''},
+				{title: 'Clear', value: 'clear'},
+				{title: 'Thumbnail', value: 'thumbnail'},
+				{title: 'Right', value: 'align-right'},
+				{title: 'Left', value: 'align-left'},
+				{title: 'Not align', value: 'not-align'},
+				{title: 'Center', value: 'align-center'},
+			],
+
+			media_live_embeds: true,
 
 			class_list: [
 				{title: 'None', value: ''},
 				{title: 'Clear', value: 'clear'},
-				{title: 'Thumbnail', value: 'thumbnail'}
+				{title: 'Thumbnail', value: 'thumbnail'},
+				{title: 'Right', value: 'align-right'},
+				{title: 'Left', value: 'align-left'},
+				{title: 'Not align', value: 'not-align'},
+				{title: 'Center', value: 'align-center'},
 			],
 
 			style_formats: [

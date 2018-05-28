@@ -29,7 +29,7 @@
 							@endif
 
 							<time datetime="{{ $blog['date'] }}">
-								{{ $date['0'] . '-' . $date['1'] . '-' . $date['2'] }}
+								{{ $date['0'] . '.' . $date['1'] . '.' . $date['2'] }}
 							</time>
 						</div>
 					</div>
@@ -49,15 +49,7 @@
 						<div class="col-xs-7 text-right">
 							<ul class="social-list">
 								<li>@lang('main.share'):</li>
-								<li><a href="#">
-										<svg><use xlink:href="/images/svg/sprite.svg#facebook"></use></svg>
-										<span class="qty">123</span></a>
-								</li>
-
-								<li><a href="#">
-										<svg><use xlink:href="/images/svg/sprite.svg#linkedin"></use></svg>
-										<span class="qty">95</span></a>
-								</li>
+								@include('site.block.sharing')
 							</ul>
 						</div>
 					</div>

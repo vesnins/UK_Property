@@ -44,9 +44,9 @@
 					</div>
 					<div class="image-section">
 						<div class="image-box" style="background-image: url('/images/content/img_1.jpg')"></div>
-						<img class="small-img" src="/images/content/img_2.jpg" data-parallax='{"y": -80, "smoothness": 10}' alt="">
-						<img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' alt="">
-						<img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' alt="">
+						<img class="small-img" src="/images/content/img_2.jpg" data-parallax='{"y": -80, "smoothness": 10}' />
+						<img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' />
+						<img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' />
 					</div>
 				</div>
 				<div class="products">
@@ -135,9 +135,9 @@
 					</div>
 					<div class="image-section">
 						<div class="image-box" style="background-image: url('/images/content/img_7.jpg')"></div>
-						<img class="small-img" src="/images/content/img_8.jpg" data-parallax='{"y": -80, "smoothness": 10}' alt="">
-						<img class="decor-top" src="/images/decor/img_3.png" data-parallax='{"y": -40, "smoothness": 20}' alt="">
-						<img class="decor-bottom" src="/images/decor/img_4.png" data-parallax='{"y": -120, "smoothness": 30}' alt="">
+						<img class="small-img" src="/images/content/img_8.jpg" data-parallax='{"y": -80, "smoothness": 10}' />
+						<img class="decor-top" src="/images/decor/img_3.png" data-parallax='{"y": -40, "smoothness": 20}' />
+						<img class="decor-bottom" src="/images/decor/img_4.png" data-parallax='{"y": -120, "smoothness": 30}' />
 					</div>
 				</div>
 				<div class="products">
@@ -226,9 +226,9 @@
 					</div>
 					<div class="image-section">
 						<div class="image-box" style="background-image: url('/images/content/img_13.jpg')"></div>
-						<img class="small-img" src="/images/content/img_14.jpg" data-parallax='{"y": -80, "smoothness": 10}' alt="">
-						<img class="decor-top" src="/images/decor/img_2.png" data-parallax='{"y": -40, "smoothness": 20}' alt="">
-						<img class="decor-bottom" src="/images/decor/img_1.png" data-parallax='{"y": -120, "smoothness": 30}' alt="">
+						<img class="small-img" src="/images/content/img_14.jpg" data-parallax='{"y": -80, "smoothness": 10}' />
+						<img class="decor-top" src="/images/decor/img_2.png" data-parallax='{"y": -40, "smoothness": 20}' />
+						<img class="decor-bottom" src="/images/decor/img_1.png" data-parallax='{"y": -120, "smoothness": 30}' />
 					</div>
 				</div>
 				<div class="products">
@@ -317,9 +317,9 @@
 					</div>
 					<div class="image-section">
 						<div class="image-box" style="background-image: url('/images/content/img_1.jpg')"></div>
-						<img class="small-img" src="/images/content/img_2.jpg" data-parallax='{"y": -80, "smoothness": 10}' alt="">
-						<img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' alt="">
-						<img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' alt="">
+						<img class="small-img" src="/images/content/img_2.jpg" data-parallax='{"y": -80, "smoothness": 10}' />
+						<img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' />
+						<img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' />
 					</div>
 				</div>
 				<div class="products">
@@ -501,64 +501,52 @@
 						<p>Достижения компании в цифрах («800 тысяч тонн отгруженного сырья за год», «250 торговых точек по ЦФО»), но правда, а не вымысел. Лицензии, сертификаты, отраслевые награды. Информация о компании в СМИ. Будьте осторожны: заказные статьи в малотиражных СМИ негативно воспринимаются профессионалами.</p>
 						<a href="#" class="more-link">Подробнее о компании</a>
 					</div>
+
 					<div class="img-box">
 						<div class="position-box">
-							<img src="/images/content/img_18.jpg" alt="">
-							<a href="#" class="social-link"><svg><use xlink:href="/images/svg/sprite.svg#linkedin-square"></use></svg></a>
+							<img src="/images/content/img_18.jpg" />
+
+							<a href="#" class="social-link">
+								<svg><use xlink:href="/images/svg/sprite.svg#linkedin-square"></use></svg>
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<div class="blog-section indent-block">
-			<div class="container">
-				<div class="posts-list">
-					<div class="post-group single">
-						<a href="#" class="post">
-							<div class="img-box" style="background-image: url('/images/content/img_19.jpg')"></div>
-							<div class="text-box">
-								<header>
-									<time datetime="2018-02-23">23.02.2018</time>
-									<span class="post-author"><svg><use xlink:href="/images/svg/sprite.svg#user"></use></svg> Анна</span>
-								</header>
-								<h4>Заголовок статьи</h4>
-								<p>Инвестиционная продажа жилья в столичном регионе и под Москвой. Мы предлагаем квартиры, пентхаусы и апартаменты в самых престижных районах столицы...</p>
-							</div>
-						</a>
+
+		@if(empty($blog))
+			<div class="blog-section indent-block">
+				<div class="container">
+					<div class="posts-list">
+						@include('site.block.blog_main_list')
 					</div>
-					<div class="post-group">
-						<a href="#" class="post">
-							<div class="img-box" style="background-image: url('/images/content/img_20.jpg')"></div>
-							<div class="text-box">
-								<header>
-									<time datetime="2018-02-23">23.02.2018</time>
-									<span class="post-author"><svg><use xlink:href="/images/svg/sprite.svg#user"></use></svg> Анна</span>
-								</header>
-								<h4>Очень длинный заголовок статьи, который даже в 2 строки</h4>
-							</div>
-						</a>
-						<a href="#" class="post">
-							<div class="img-box" style="background-image: url('/images/content/img_21.jpg')"></div>
-							<div class="text-box">
-								<header>
-									<time datetime="2018-02-23">23.02.2018</time>
-									<span class="post-author"><svg><use xlink:href="/images/svg/sprite.svg#user"></use></svg> Анна</span>
-								</header>
-								<h4>Заголовок статьи</h4>
-							</div>
-						</a>
+
+					<div class="text-center">
+						<a href="/blog" class="button">@lang('main.all_articles')</a>
 					</div>
 				</div>
-				<div class="text-center">
-					<a href="#" class="button">Все статьи</a>
+
+				<img class="decor-left" src="/images/decor/img_5.png" data-parallax='{"y": -60, "smoothness": 30}' />
+				<img class="decor-right" src="/images/decor/img_6.png" data-parallax='{"y": -100, "smoothness": 15}' />
+				<img class="decor-bottom" src="/images/decor/img_7.png" data-parallax='{"y": -140, "smoothness": 45}' />
+			</div>
+		@endif
+
+		<div class="consultation-request" style="background-image: url('/images/banners/img_4.jpg')">
+			<div class="container">
+				<div class="limit-box">
+					<h4>{!! $langSt($params['text_consultation_main']['key']) !!}</h4>
+
+					<a href="#" class="more-button" data-toggle="modal" data-target=".consultation-modal">
+						@lang('main.to_get_a_consultation')
+					</a>
+
+					<ul class="social">
+						@include('site.block.sharing')
+					</ul>
 				</div>
 			</div>
-			<img class="decor-left" src="/images/decor/img_5.png" data-parallax='{"y": -60, "smoothness": 30}' alt="">
-			<img class="decor-right" src="/images/decor/img_6.png" data-parallax='{"y": -100, "smoothness": 15}' alt="">
-			<img class="decor-bottom" src="/images/decor/img_7.png" data-parallax='{"y": -140, "smoothness": 45}' alt="">
 		</div>
-
 	</main>
-
-	@include('site.block.sharing')
 @endsection

@@ -1,10 +1,8 @@
 <?php
 
 return [
-	'selection_request'               => 'Selection request',
 	'request_for_accommodation'       => 'Request for accommodation',
 	'selection_request_title'         => 'Fill out the application and get a selection of villas according to your criteria',
-	'all_articles'                    => 'All articles',
 	'all'                             => 'All',
 	'blog'                            => 'Blog',
 	'blog_title'                      => 'The most interesting about Greece from the local',
@@ -143,11 +141,14 @@ We will contact you shortly!',
 	'more_than'                      => 'more than',
 
 
-	'selection_request' => 'Selection request',
-	'search'            => 'Search',
-	'similar_article'   => 'Similar article',
-	'back_to_blog'      => 'Back to Blog',
-	'share'             => 'Share',
-	'request_a_call'    => 'Request a call',
-	'i_m_searching_for' => 'I\'m searching for',
+	'selection_request'     => 'Selection request',
+	'search'                => 'Search',
+	'all_articles'          => 'All articles',
+	'similar_article'       => 'Similar article',
+	'back_to_blog'          => 'Back to Blog',
+	'share'                 => 'Share',
+	'request_a_call'        => 'Request a call',
+	'i_m_searching_for'     => 'I\'m searching for',
+	'to_get_a_consultation' => 'To get a consultation',
+	'contacts_us'           => 'Contacts Us',
 ];

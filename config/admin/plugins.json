@@ -158,7 +158,7 @@
 		"nameAttr"   : "pl[little_description]",
 		"description": "Текстовое поле \"Little_description\"",
 		"idAttr"     : "textareaLittle_description",
-		"maxlength"  : "120",
+		"maxlength"  : "12000",
 		"sql_column" : "little_description"
 	},
 	{
