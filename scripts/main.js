@@ -28,7 +28,7 @@ jQuery(function () {
     mobileMenuInit();
     subMenuNavigation();
     btnPosition.init();
-    togglePlay();
+    audioPlaySwitcher();
 
     if (jQuery('.fixed-subheader').length !== 0) {
         fixedSubHeader.init();
@@ -377,23 +377,76 @@ jQuery('a[href*="#"]:not([href="#"])').click(function clickOnAnchorLink() {
     }
 });
 
-function togglePlay() {
+function audioPlaySwitcher() {
     var myAudio = jQuery('.audio-record');
     var audioSrc = myAudio.find('source').attr('src');
     var isPlaying = true;
-    jQuery('.site-header .sound-switcher').on('click', function (e) {
-        e.preventDefault();
-        if (audioSrc !== '') {
-            jQuery(this).toggleClass('muted');
-            if (isPlaying) {
-                myAudio.get(0).pause();
-                isPlaying = false;
-            } else {
-                myAudio.get(0).play();
-                isPlaying = true;
+    var soundSwitcher = jQuery('.site-header .sound-switcher');
+
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : false;
+    }
+
+    function setCookie(name, value, options) {
+        options = options || {};
+
+        var expires = options.expires;
+
+        if (typeof expires == "number" && expires) {
+            var d = new Date();
+            d.setTime(d.getTime() + expires * 1000);
+            expires = options.expires = d;
+        }
+        if (expires && expires.toUTCString) {
+            options.expires = expires.toUTCString();
+        }
+
+        value = encodeURIComponent(value);
+
+        var updatedCookie = name + "=" + value;
+
+        for (var propName in options) {
+            updatedCookie += "; " + propName;
+            var propValue = options[propName];
+            if (propValue !== true) {
+                updatedCookie += "=" + propValue;
             }
         }
-    });
+
+        document.cookie = updatedCookie;
+        jQuery('body').trigger('set_cookie');
+    }
+
+    function togglePlay() {
+        var playState = getCookie('play-state');
+
+        if (playState && playState === 'pause') {
+            myAudio.get(0).pause();
+            isPlaying = false;
+            soundSwitcher.addClass('muted');
+            console.log('pause');
+        }
+
+        soundSwitcher.on('click', function (e) {
+            e.preventDefault();
+            if (audioSrc !== '') {
+                jQuery(this).toggleClass('muted');
+                if (isPlaying) {
+                    myAudio.get(0).pause();
+                    setCookie('play-state', 'pause', {expires: 60 * 60 * 24 * 7, path: '/'});
+                    isPlaying = false;
+                } else {
+                    myAudio.get(0).play();
+                    setCookie('play-state', 'play', {expires: 60 * 60 * 24 * 7, path: '/'});
+                    isPlaying = true;
+                }
+            }
+        });
+    }
+    togglePlay();
 }
 
 function billboardSlider() {
