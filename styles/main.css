@@ -3247,11 +3247,31 @@ body:not(.touch-device) .posts-list .post:hover:before {
     margin-left: 50px;
 }
 
+.entry-holder .align-center,
 .entry-holder .not-align {
     width: 120%;
     max-width: inherit;
     margin-left: -10%;
     margin-right: -10%;
+}
+
+.entry-holder .iframe-holder {
+    position: relative;
+    padding-bottom: 56%;
+    overflow: hidden;
+}
+
+.entry-holder .iframe-holder iframe {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .entry-holder blockquote {
@@ -3265,11 +3285,13 @@ body:not(.touch-device) .posts-list .post:hover:before {
     margin: 0;
 }
 
+.entry-holder .iframe-holder,
 .entry-holder blockquote,
 .entry-holder img {
     margin-bottom: 60px;
 }
 
+.entry-holder .entry-content *:not(blockquote) + .iframe-holder,
 .entry-holder .entry-content *:not(blockquote) + img {
     margin-top: 30px;
 }
