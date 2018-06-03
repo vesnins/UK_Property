@@ -122,23 +122,23 @@
 				</button>
 
 				<div class="decor-box" style="background-image: url('images/banners/img_6.jpg')"></div>
-				<h3 class="text-center">@lang('main.request_a_call')</h3>
+				<h3 class="text-center">@lang('main.consultation')</h3>
 
 				<form action="#" class="validate-form">
 					<div class="input-holder">
-						<input type="tel" name="phone" placeholder="Your Phone *">
+						<input type="text" name="fullName" placeholder="@lang('main.full_name') *" />
 					</div>
 
 					<div class="input-holder">
-						<input type="email" placeholder="Convenient time for a call">
+						<input type="email" placeholder="Email" />
 					</div>
 
 					<div class="input-holder">
-						<input type="text" name="name" placeholder="First Name *">
+						<input type="tel" name="phone" placeholder="@lang('main.phone_number') *" />
 					</div>
 
 					<div class="input-holder">
-						<input type="text" name="surname" placeholder="Second Name *">
+						<textarea placeholder="@lang('main.write_here')"></textarea>
 					</div>
 
 					<div class="input-holder">
@@ -146,10 +146,16 @@
 							<input type="checkbox" name="checkbox" checked />
 
 							<span>
-								I have read and agree to the
-								<a href="#" target="_blank">Terms&Conditions</a>
-								and <a href="#" target="_blank">Privacy policy</a>.
+								@lang('main.i_have_read_and_agree_to_the')
+								<a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
+								@lang('main._and')
+								<a href="#" target="_blank">@lang('main.privacy_policy')</a>.
 							</span>
+						</label>
+
+						<label class="checkbox-label">
+							<input type="checkbox" checked />
+							<span>@lang('main.text_mail_sending')</span>
 						</label>
 					</div>
 
@@ -162,44 +168,6 @@
 	</div>
 </div>
 
-<div class="modal fade consultation-modal" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-body">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<svg><use xlink:href="/images/svg/sprite.svg#close-icon"></use></svg>
-				</button>
-
-				<div class="decor-box" style="background-image: url('images/banners/img_6.jpg')"></div>
-				<h3 class="text-center">Получить консультацию</h3>
-				<form action="#" class="validate-form">
-					<div class="input-holder">
-						<input type="text" name="name" placeholder="First Name *">
-					</div>
-					<div class="input-holder">
-						<input type="text" name="surname" placeholder="Second Name *">
-					</div>
-					<div class="input-holder">
-						<input type="tel" name="phone" placeholder="Phone Number *">
-					</div>
-					<div class="input-holder">
-						<input type="email" placeholder="Email">
-					</div>
-					<div class="input-holder">
-						<textarea placeholder="Message"></textarea>
-					</div>
-					<div class="input-holder">
-						<label class="checkbox-label"><input type="checkbox" name="checkbox" checked><span>I have read and agree to the <a href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">Privacy policy</a>.</span></label>
-						<label class="checkbox-label"><input type="checkbox" checked><span>I agree to receive property updates and latest news via email.</span></label>
-					</div>
-					<div class="text-center">
-						<input class="button" type="submit" value="send">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
 <div class="modal fade success-message" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">

@@ -21,7 +21,6 @@
 						</div>
 
 						<br />
-
 						<label for="build-type">I’m interested in</label>
 
 						<div class="input-holder">
@@ -40,7 +39,6 @@
 						</div>
 
 						<br />
-
 						<label for="rooms">Preferred number of bedrooms is</label>
 
 						<div class="input-holder">
@@ -53,7 +51,7 @@
 							<input class="sm" type="text" id="price-from" name="priceFrom" placeholder="price *" />
 						</div>
 
-						<label for="price-to">I’ll consider options between £</label>
+						<label for="price-to">and £</label>
 
 						<div class="input-holder">
 							<input class="sm" type="text" id="price-to" name="priceTo" placeholder="price *" />
@@ -96,15 +94,16 @@
 						<input type="checkbox" name="checkbox" checked />
 
 						<span>
-							I have read and agree to the
-							<a href="#" target="_blank">Terms&Conditions</a>
-							and <a href="#" target="_blank">Privacy policy</a>.
+							@lang('main.i_have_read_and_agree_to_the')
+							<a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
+							@lang('main._and')
+							<a href="#" target="_blank">@lang('main.privacy_policy')</a>.
 						</span>
 					</label>
 
 					<label class="checkbox-label">
 						<input type="checkbox" checked />
-						<span>I agree to receive property updates and latest news via email.</span>
+						<span>@lang('main.text_mail_sending')</span>
 					</label>
 
 					<div class="text-center">
