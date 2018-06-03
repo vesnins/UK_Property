@@ -709,6 +709,7 @@ li.current-page a {
     height: 55px;
     margin: 0;
     padding-left: 10px;
+    font-weight: 600;
 }
 
 .site_title:hover, .site_title:focus {

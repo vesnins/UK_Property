@@ -11,7 +11,8 @@
 		: env('PATH_TO_IMG_DEFAULT')
 	)
 
-	<a href="/blog/{{ (int) $val['translation'] ? $val['translation'] : $val['id'] }}">
+	@php($translation = ($blog['translation'] !== '0' && $blog['translation'] !== '') ? $blog['translation'] : false)
+	<a href="/blog/{{ $translation or $blog['id'] }}">
 		<div class="img-box" style="background-image: url('{{ $img }}')"></div>
 
 		<div class="text-box">

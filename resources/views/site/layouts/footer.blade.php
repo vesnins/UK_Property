@@ -105,9 +105,9 @@
 
 <audio
 	class="audio-record"
-	autoplay="{{ env('AUDIO_AUTOPLAY') ? 'true' : 'false' }}"
-	loop="{{ env('AUDIO_LOOP') ? 'true' : 'false' }}"
-	hidden="{{ env('AUDIO_HIDDEN') ? 'true' : 'false' }}"
+	{{ env('AUDIO_AUTOPLAY') ? 'autoplay' : '' }}
+	{{ env('AUDIO_LOOP') ? 'loop' : '' }}
+	{{ env('AUDIO_HIDDEN') ? 'hidden' : '' }}
 >
 	<source src="/images/audio/audio-record.mp3">
 </audio>

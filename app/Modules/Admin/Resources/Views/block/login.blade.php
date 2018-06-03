@@ -38,7 +38,7 @@
 
 						<div>
 							<a href="/" class="logo">
-								<img style="width: 100%" src="/images/svg/logo-green.svg" alt="GrecoBooking" />
+								@lang('admin::main.nameSite')
 							</a>
 						</div>
 					</div>

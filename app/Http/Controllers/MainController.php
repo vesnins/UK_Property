@@ -54,7 +54,13 @@ class MainController extends Controller
 	{
 		$whereBlog[]   = ['blog.active', 1];
 		$whereBlog[]   = ['blog.tags', '!=', '\'\''];
-		$data['blog'] = $this->helper->_blog(null, ['count_box' => 3]);
+
+		$data['blog'] = $this->helper->_blog(
+			null,
+			[
+				'count_box' => 3,
+				'order_by'  => [['blog.usefull', 'DESC'], ['blog.id', 'DESC']]
+			]);
 
 		$data['preview'] = $this
 			->dynamic

@@ -1246,6 +1246,21 @@ select::-ms-expand {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.billboard:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .billboard p {
@@ -1259,6 +1274,8 @@ select::-ms-expand {
 
 .billboard .align-box {
     width: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 .ie-browser .billboard .align-box {
@@ -1282,7 +1299,7 @@ select::-ms-expand {
 
 .billboard .go-down-btn {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     display: block;
     bottom: 50px;
     left: 50%;
@@ -3230,11 +3247,31 @@ body:not(.touch-device) .posts-list .post:hover:before {
     margin-left: 50px;
 }
 
+.entry-holder .align-center,
 .entry-holder .not-align {
     width: 120%;
     max-width: inherit;
     margin-left: -10%;
     margin-right: -10%;
+}
+
+.entry-holder .iframe-holder {
+    position: relative;
+    padding-bottom: 56%;
+    overflow: hidden;
+}
+
+.entry-holder .iframe-holder iframe {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .entry-holder blockquote {
@@ -3248,11 +3285,13 @@ body:not(.touch-device) .posts-list .post:hover:before {
     margin: 0;
 }
 
+.entry-holder .iframe-holder,
 .entry-holder blockquote,
 .entry-holder img {
     margin-bottom: 60px;
 }
 
+.entry-holder .entry-content *:not(blockquote) + .iframe-holder,
 .entry-holder .entry-content *:not(blockquote) + img {
     margin-top: 30px;
 }
@@ -3519,8 +3558,8 @@ body:not(.touch-device) .posts-list .post:hover:before {
 }
 
 .application-form .input-holder {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .application-form .button {

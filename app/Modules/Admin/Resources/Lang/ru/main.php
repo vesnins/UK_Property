@@ -2,6 +2,7 @@
 
 return [
 	'namePanel'                 => 'Админ панель',
+	'nameSite'                  => 'UK Property',
 	'openSite'                  => 'Открыть сайт',
 	'administrator'             => 'Администратор',
 	'help'                      => 'Помощь',

@@ -515,7 +515,7 @@
 			</div>
 		</section>
 
-		@if(empty($blog))
+		@if(!empty($blog))
 			<div class="blog-section indent-block">
 				<div class="container">
 					<div class="posts-list">

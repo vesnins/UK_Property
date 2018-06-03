@@ -100,7 +100,7 @@ class HelperController extends Controller
 
 				->first();
 		} else {
-			$result = $this->dynamic->t('blog')
+			$query = $this->dynamic->t('blog')
 				->where($where)
 
 				// TODO скорее отвалится когда теги будут с id больше 10
@@ -132,9 +132,17 @@ class HelperController extends Controller
 					}
 				)
 
-				->select('blog.*', 'files.file', 'files.crop', 'users.name AS author_name')
+				->select('blog.*', 'files.file', 'files.crop', 'users.name AS author_name');
+
+			foreach($options['order_by'] ?? [] as $order_by) {
+				$query = $query->orderBy($order_by[0], $order_by[1]);
+			}
+
+			if(!isset($options['order_by']))
+				$query = $query->orderBy('blog.' . ($options['group'] ?? 'id'), 'DESC');
+
+			$result = $query
 				->groupBy('blog.id')
-				->orderBy('blog.' . ($options['group'] ?? 'id'), 'DESC')
 				->paginate($options['count_box'] ?? 1);
 		}
 

@@ -2,7 +2,7 @@
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title" style="border: 0;">
 			<a href="/admin/" class="site_title" style="text-align: left">
-				<img style="max-width: 205px;" src="/images/svg/logo-green.svg" alt="GrecoBooking" />
+				@lang('admin::main.nameSite')
 			</a>
 		</div>
 		<div class="clearfix"></div>

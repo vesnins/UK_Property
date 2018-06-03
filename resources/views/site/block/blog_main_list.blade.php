@@ -22,7 +22,8 @@
 		: '/images/files/no-image.jpg'
 	)
 
-	<a href="/blog/{{ (int) $val['translation'] ? $val['translation'] : $val['id'] }}" class="post">
+	@php($translation = ($val['translation'] !== '0' && $val['translation'] !== '') ? $val['translation'] : false)
+	<a href="/blog/{{ $translation or $val['id'] }}" class="post">
 		<div class="img-box" style="background-image: url('{{ $img }}')"></div>
 
 		<div class="text-box">
@@ -33,7 +34,7 @@
 					@php($date = explode('-', $val['created_at']))
 				@endif
 
-				<time datetime="{{ $val['date'] }}">{{ $date['0'] . '-' . $date['1'] . '-' . $date['2'] }}</time>
+				<time datetime="{{ $val['date'] }}">{{ $date['0'] . '.' . $date['1'] . '.' . $date['2'] }}</time>
 
 				<span class="post-author">
 					<svg><use xlink:href="images/svg/sprite.svg#user"></use></svg>
