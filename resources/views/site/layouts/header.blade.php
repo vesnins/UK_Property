@@ -24,7 +24,7 @@
 	{{--<meta property="fb:admins" content="USER_ID"/>--}}
 	<meta property="og:description" content="{{ $meta['description'] ?? '' }}" />
 </head>
-<body class="home">
+<body>
 <div class="wrapper">
 	<div class="preloader">
 		<div class="inner-box">

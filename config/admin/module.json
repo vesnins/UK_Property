@@ -90,6 +90,54 @@
 		"translate_key"   : "articles"
 	},
 	{
+		"id"              : "3",
+		"active"          : true,
+		"big_height"      : "1200",
+		"big_width"       : "800",
+		"class_module"    : "fa fa-inbox",
+		"column_index"    : [
+			"name",
+			"description",
+			"album",
+			"active"
+		],
+		"count_module"    : "20",
+		"show_count"      : true,
+		"filters"         : [],
+		"lang"            : [
+			"name",
+			"text",
+			"title",
+			"author",
+			"keywords",
+			"description"
+		],
+		"link_module"     : "services",
+		"link_site_module": "/services/",
+		"menu_table_name" : "menu",
+		"name_module"     : "Услуги",
+		"order"           : "7",
+		"plugins"         : [
+			"name",
+			"text",
+			"active",
+			"sort",
+			"cat",
+			"translation",
+			"date",
+			"title",
+			"author",
+			"keywords",
+			"description",
+			"album"
+		],
+		"small_width"     : "500",
+		"small_height"    : "350",
+		"sort"            : "1",
+		"views_module"    : "table",
+		"translate_key"   : "services"
+	},
+	{
 		"id"              : "4",
 		"active"          : true,
 		"big_height"      : "0",

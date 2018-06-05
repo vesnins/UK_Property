@@ -42,7 +42,7 @@ class MainController extends Controller
 		$this->dynamic  = new DynamicModel();
 		$this->request  = $request->all();
 		$this->requests = $request;
-		$this->helper = new HelperController($request);
+		$this->helper   = new HelperController($request);
 	}
 
 	/**
@@ -52,15 +52,18 @@ class MainController extends Controller
 	 */
 	public function main()
 	{
-		$whereBlog[]   = ['blog.active', 1];
-		$whereBlog[]   = ['blog.tags', '!=', '\'\''];
+		$whereBlog[] = ['blog.active', 1];
+		$whereBlog[] = ['blog.tags', '!=', '\'\''];
 
 		$data['blog'] = $this->helper->_blog(
 			null,
 			[
 				'count_box' => 3,
-				'order_by'  => [['blog.usefull', 'DESC'], ['blog.id', 'DESC']]
-			]);
+				'order_by'  => [['blog.usefull', 'DESC'], ['blog.id', 'DESC']],
+			]
+		);
+
+		$data['services'] = $this->helper->_services();
 
 		$data['preview'] = $this
 			->dynamic
@@ -105,19 +108,21 @@ class MainController extends Controller
 			->get()
 			->toArray();
 
-		$data['meta_c']    = $this->base->getMeta($data['main_page']);
+		$data['meta_c'] = $this->base->getMeta($data['main_page']);
 
 		return $this->base->view_s("site.main.index", $data);
 	}
 
 	/**
-	 * errors_404.
+	 * Услуги.
 	 *
+	 * @param null $id
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-	public function errors_404()
+	public function services($id = null)
 	{
-		return $this->base->view_s("errors.404", []);
+		$data['services'] = $this->helper->_services();
+		return $this->helper->_page("services/$id", 'site.main.service_id', 'services', $data);
 	}
 
 	/**
@@ -261,16 +266,18 @@ class MainController extends Controller
 				->first();
 
 			$data['recommended_villas'] = $this->dynamic->t('villas')
-				->where(array_merge(
-									$where,
+				->where(
+					array_merge(
+						$where,
 
-									[
-										'bedroom' => $data['villa']['bedroom'],
-										'bathroom' => $data['villa']['bathroom'],
-									]
-								))
+						[
+							'bedroom'  => $data['villa']['bedroom'],
+							'bathroom' => $data['villa']['bathroom'],
+						]
+					)
+				)
 				//				->whereIn('villas.id', json_decode($data['villa']['recommendedVillas'], true) ?? [])
-								->whereNotIn('villas.id', [$data['villa']['id']])
+				->whereNotIn('villas.id', [$data['villa']['id']])
 				->join(
 					'files',
 
@@ -410,6 +417,45 @@ class MainController extends Controller
 	}
 
 	/**
+	 * getUrlVilla.
+	 *
+	 * @return string
+	 */
+	function getUrlVilla()
+	{
+		$url = '?';
+
+		if(($this->request['way'] ?? -1) !== -1)
+			$url .= '&way=' . $this->request['way'];
+
+		if(($this->request['date_to'] ?? -1) !== -1)
+			$url .= '&date_to=' . $this->request['date_to'];
+
+		if(($this->request['date_from'] ?? -1) !== -1)
+			$url .= '&date_from=' . $this->request['date_from'];
+
+		if(($this->request['rooms'] ?? -1) !== -1)
+			$url .= '&rooms=' . $this->request['rooms'];
+
+		if(($this->request['hot'] ?? -1) !== -1)
+			$url .= '&hot=1';
+
+		if(($this->request['villas_by_the_sea'] ?? -1) !== -1)
+			$url .= '&villas_by_the_sea=' . $this->request['villas_by_the_sea'];
+
+		if(($this->request['villas_with_private_service'] ?? -1) !== -1)
+			$url .= '&villas_with_private_service=1';
+
+		if(($this->request['vacation_together'] ?? -1) !== -1)
+			$url .= '&vacation_together=1';
+
+		if(($this->request['return'] ?? -1) !== -1)
+			$url .= '&return=1';
+
+		return str_replace('?&', '?', $url);
+	}
+
+	/**
 	 * Blog.
 	 *
 	 * @param null $id
@@ -437,7 +483,7 @@ class MainController extends Controller
 			$data['blog'] = $this->helper->_blog($id);
 
 			if(empty($data['blog']))
-				return $this->errors_404();
+				return $this->helper->_errors_404();
 
 			$views_ip = $this
 				->dynamic
@@ -747,8 +793,8 @@ class MainController extends Controller
 			$where[] = ['villas.vacation_together', 1];
 
 		if((int) $date_to !== -1) {
-			$tomorrow    = Carbon::createFromFormat('Y-m-d', substr($date_from, 0, 10))->addDay(1)->toDateString();
-			$dates       = $this->base->getDatesFromRange($tomorrow, $date_to);
+			$tomorrow = Carbon::createFromFormat('Y-m-d', substr($date_from, 0, 10))->addDay(1)->toDateString();
+			$dates    = $this->base->getDatesFromRange($tomorrow, $date_to);
 		}
 
 		if($dates)
@@ -798,7 +844,7 @@ class MainController extends Controller
 			$villas_query = $villas_query->whereIn('villas.id', $params['id']);
 
 		$villas_query = $villas_query
-//			->whereNotIn('villas.id', $id_ignoring)
+			//			->whereNotIn('villas.id', $id_ignoring)
 			->select('villas.*', 'files.file', 'files.crop', 'menu.name AS place')
 			->groupBy('villas.id')
 			->orderBy('villas.sort', 'DESC')
@@ -820,97 +866,16 @@ class MainController extends Controller
 	}
 
 	/**
-	 * getUrlVilla.
-	 *
-	 * @return string
-	 */
-	function getUrlVilla()
-	{
-		$url = '?';
-
-		if(($this->request['way'] ?? -1) !== -1)
-			$url .= '&way=' . $this->request['way'];
-
-		if(($this->request['date_to'] ?? -1) !== -1)
-			$url .= '&date_to=' . $this->request['date_to'];
-
-		if(($this->request['date_from'] ?? -1) !== -1)
-			$url .= '&date_from=' . $this->request['date_from'];
-
-		if(($this->request['rooms'] ?? -1) !== -1)
-			$url .= '&rooms=' . $this->request['rooms'];
-
-		if(($this->request['hot'] ?? -1) !== -1)
-			$url .= '&hot=1';
-
-		if(($this->request['villas_by_the_sea'] ?? -1) !== -1)
-			$url .= '&villas_by_the_sea=' . $this->request['villas_by_the_sea'];
-
-		if(($this->request['villas_with_private_service'] ?? -1) !== -1)
-			$url .= '&villas_with_private_service=1';
-
-		if(($this->request['vacation_together'] ?? -1) !== -1)
-			$url .= '&vacation_together=1';
-
-		if(($this->request['return'] ?? -1) !== -1)
-			$url .= '&return=1';
-
-		return str_replace('?&', '?', $url);
-	}
-
-	/**
 	 * Страницы.
 	 *
-	 * @param null $id
+	 * @param null   $id
+	 * @param string $view
+	 * @param string $name_table
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-	public function page($id = null)
+	public function page($id = null, $view = 'page_id', $name_table = 'str')
 	{
-		if(!$id)
-			return $this->errors_404();
-
-		$Mod     = $this->dynamic;
-		$data    = [];
-		$where[] = ['str.active', 1];
-
-		if((int) $id == 0 || strlen($id) > 5) {
-			$data['field'] = 'translation';
-			$where[]       = ['str.translation', $id];
-		} else {
-			$where['str.id'] = $id;
-		}
-
-		$data['page'] = $Mod->t('str')
-			->where($where)
-
-			->join(
-				'files',
-
-				function($join) {
-					$join->type = 'LEFT OUTER';
-					$join->on('str.id', '=', 'files.id_album')
-						->where('files.name_table', '=', 'stralbum');
-				}
-			)
-
-			->select('str.*', 'files.file', 'files.crop')
-			->first();
-
-		if(empty($data['page'])) {
-			return $this->errors_404();
-		}
-
-		$data['meta_c'] = $this->base->getMeta($data, 'page');
-
-		if(!empty($data['page'][0])) {
-			$data['files'] = $Mod->t('files')
-				->where(['files.active' => 1])
-				->where(['id_album' => $data['page'][0]['id'], 'name_table' => 'str'])->get();
-		} else {
-			$data['files'] = [];
-		}
-
-		return $this->base->view_s("site.main.page_id", $data);
+		return $this->helper->_page($id, $view, $name_table);
 	}
 
 	/**
@@ -918,8 +883,8 @@ class MainController extends Controller
 	 */
 	public function submit_required()
 	{
-		$param  = $this->dynamic->t('params')->select('params.*', 'little_description as key')->get();
-		$params = [];
+		$param            = $this->dynamic->t('params')->select('params.*', 'little_description as key')->get();
+		$params           = [];
 		$params['params'] = [];
 
 		$params['langSt'] = function($t, $l = '') {
@@ -961,29 +926,29 @@ class MainController extends Controller
 				array_merge($form_data, $params),
 
 				function($m) use ($param, $title, $from, $form_data) {
-				$m->from($from, __('main.selection_request_mess_user'));
-				$m->to($form_data['mail'], 'no-realy')->subject(__('main.selection_request_mess_user'));
-			}
+					$m->from($from, __('main.selection_request_mess_user'));
+					$m->to($form_data['mail'], 'no-realy')->subject(__('main.selection_request_mess_user'));
+				}
 			);
 
 			$title = __('main.selection_request_mess_admin');
 
-//			/* subscription */
-//			if($form_data['subscription'] === 'on') {
-//				// Insert Subscribe email
-//				$subscribe_mail = $this->dynamic->t('params_subscribe')
-//					->where('subscribe_mail', '=', trim($form_data['mail']))
-//					->first();
-//
-//				if(!$subscribe_mail)
-//					$this->dynamic->t('params_subscribe')->insertGetId(
-//						[
-//							'created_at'     => Carbon::now(),
-//							'subscribe_mail' => $form_data['mail'],
-//						]
-//					);
-//			}
-//			/* subscription */
+			//			/* subscription */
+			//			if($form_data['subscription'] === 'on') {
+			//				// Insert Subscribe email
+			//				$subscribe_mail = $this->dynamic->t('params_subscribe')
+			//					->where('subscribe_mail', '=', trim($form_data['mail']))
+			//					->first();
+			//
+			//				if(!$subscribe_mail)
+			//					$this->dynamic->t('params_subscribe')->insertGetId(
+			//						[
+			//							'created_at'     => Carbon::now(),
+			//							'subscribe_mail' => $form_data['mail'],
+			//						]
+			//					);
+			//			}
+			//			/* subscription */
 		}
 
 		if($type == 'request_for_accommodation') {
@@ -1060,9 +1025,9 @@ class MainController extends Controller
 					array_merge($form_data, $params),
 
 					function($m) use ($param, $title, $from, $form_data) {
-					$m->from($from, __('main.send_compilation_friend_user'));
-					$m->to($form_data['yourEmail'], 'no-realy')->subject(__('main.send_compilation_friend_user'));
-				}
+						$m->from($from, __('main.send_compilation_friend_user'));
+						$m->to($form_data['yourEmail'], 'no-realy')->subject(__('main.send_compilation_friend_user'));
+					}
 				);
 
 			foreach($form_data['friendMail'] ?? [] as $mail) {

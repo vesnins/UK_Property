@@ -39,17 +39,16 @@
 					<li><a href="#">Контакты</a></li>
 				</ul>
 			</div>
+
 			<div class="foo-col foo-menu mb-hidden">
-				<h4>Услуги</h4>
+				<h4>@lang('main.services')</h4>
 				<ul class="menu">
-					<li><a href="#">Инвестировать в новострой</a></li>
-					<li><a href="#">Инвестировать в девелоперские проекты</a></li>
-					<li><a href="#">Купить</a></li>
-					<li><a href="#">Арендовать</a></li>
-					<li><a href="#">Продать</a></li>
-					<li><a href="#">Управление недвижимостью</a></li>
+					@foreach($services as $service)
+						<li><a href="/{{ $service['translation'] }}">{{ $langSt($service['name']) }}</a></li>
+					@endforeach
 				</ul>
 			</div>
+
 			<div class="foo-col foo-request">
 				<h4>Получай самые последние новости!</h4>
 				<form action="#" class="subscribe-form validate-form">

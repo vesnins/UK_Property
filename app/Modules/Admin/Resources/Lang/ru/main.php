@@ -112,4 +112,5 @@ return [
 	'is_about_us'               => 'Отображать в "О нас"',
 	'insert_table_row'          => 'Добавлена новая запись',
 	'update_table_row'          => 'Обновлена запись',
+	'services'                  => 'Услуги',
 ];

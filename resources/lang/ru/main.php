@@ -58,7 +58,6 @@ return [
 	'facilities_services'             => 'Удобства и услуги',
 	'on_the_map'                      => 'На карте',
 	'facilities'                      => 'Удобства',
-	'services'                        => 'Услуги',
 	'distances_and_location'          => 'Расстояния и расположение',
 	'what_is_nearby'                  => 'Что есть рядом',
 	'you_may_also_like'               => 'Вам может понравиться',
@@ -157,4 +156,5 @@ return [
 	'terms_&_Conditions'           => 'Правила и условия',
 	'i_have_read_and_agree_to_the' => 'Я прочитал и согласен с',
 	'write_here'                   => 'Пишите здесь',
+	'services'                     => 'Услуги',
 ];

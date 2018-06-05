@@ -7,6 +7,8 @@ Route::group(
 
 	function() {
 		Route::get('/', 'MainController@main');
+		Route::get('/services/{id?}', 'MainController@services');
+
 		Route::get('/selection-request', 'MainController@selection_request');
 		Route::get('/villas/{id?}', 'MainController@villas');
 		Route::get('/blog/{id?}', 'MainController@blog');

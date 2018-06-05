@@ -58,7 +58,6 @@ return [
 	'facilities_services'             => 'Facilities & Services',
 	'on_the_map'                      => 'On the map',
 	'facilities'                      => 'Facilities',
-	'services'                        => 'Services',
 	'distances_and_location'          => 'Distances and location',
 	'what_is_nearby'                  => 'What is nearby',
 	'you_may_also_like'               => 'You may also like',
@@ -160,4 +159,5 @@ We will contact you shortly!',
 	'terms_&_Conditions'           => 'Terms&Conditions',
 	'i_have_read_and_agree_to_the' => 'I have read and agree to the',
 	'write_here'                   => 'Write here',
+	'services'                     => 'Services',
 ];

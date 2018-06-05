@@ -112,4 +112,5 @@ return [
 	'is_about_us'               => 'Display in "About Us"',
 	'insert_table_row'          => 'New record added',
 	'update_table_row'          => 'Updated record',
+	'services'                  => 'Services',
 ];
