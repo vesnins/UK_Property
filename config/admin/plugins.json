@@ -162,6 +162,17 @@
 		"sql_column" : "little_description"
 	},
 	{
+		"name"       : "little_description_catalog",
+		"typeField"  : "textarea",
+		"classAttr"  : "area",
+		"nameText"   : "Сокращённый текст для каталога",
+		"nameAttr"   : "pl[little_description_catalog]",
+		"description": "Текстовое поле \"Little_description_catalog\"",
+		"idAttr"     : "textareaLittle_description_catalog",
+		"maxlength"  : "12000",
+		"sql_column" : "little_description_catalog"
+	},
+	{
 		"name"        : "key_feature",
 		"typeField"   : "textarea",
 		"nameText"    : "Ключевая особенность",
@@ -1323,18 +1334,18 @@
 		"translateKey": "main_img_small"
 	},
 	{
-		"name"            : "distances",
+		"name"            : "how_working",
 		"typeField"       : "functions",
-		"functionsBefore" : "insertDistances",
-		"js_init_function": "distancesInit",
+		"functionsBefore" : "insertHow_working",
+		"js_init_function": "how_workingInit",
 		"nameText"        : "Расстояния",
-		"nameAttr"        : "pl[distances]",
-		"description"     : "Плагин \"distances\"",
-		"idAttr"          : "inputDistances",
-		"sql_column"      : "distances",
-		"translateKey"    : "distances_location",
+		"nameAttr"        : "pl[how_working]",
+		"description"     : "Плагин \"how_working\"",
+		"idAttr"          : "inputHow_working",
+		"sql_column"      : "how_working",
+		"translateKey"    : "how_we_are_working",
 		"body"            : {
-			"text": "<button data-n=\"0\" type=\"button\" class=\"add-distances-]-options-[- btn btn-success btn-icon\"><i class=\"fa fa-plus\"></i></button><div id=\"distances-]-options-[-\" class=\"form-group\"></div>"
+			"text": "<button data-n=\"0\" type=\"button\" class=\"add-how_working-]-options-[- btn btn-success btn-icon\"><i class=\"fa fa-plus\"></i></button><div id=\"how_working-]-options-[-\" class=\"form-group\"></div>"
 		}
 	},
 	{

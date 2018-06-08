@@ -101,7 +101,13 @@ class HelperController extends Controller
               $query->orwhere('blog.tags', 'like', '%' . ($options['tags'] ?? [])[$i] . '%');
             }
           }
-        )
+        );
+
+      if(isset($options['not_in']))
+        $query = $query
+          ->whereNotIn("blog.{$options['not_in'][0]}", $options['not_in'][1]);
+
+      $query = $query
         ->join(
           'files',
 
@@ -148,6 +154,7 @@ class HelperController extends Controller
       ->dynamic
       ->t('services')
       ->where('services.active', 1)
+
       ->join(
         'files',
 
@@ -158,7 +165,39 @@ class HelperController extends Controller
             ->where('files.main', '=', 1);
         }
       )
-      ->select('services.*', 'files.file', 'files.crop')
+
+      ->join(
+        'files AS collections_files',
+
+        function($join) {
+          $join->type = 'LEFT OUTER';
+          $join->on('services.id', '=', 'collections_files.id_album')
+            ->where('collections_files.name_table', '=', 'servicescollections')
+            ->where('collections_files.main', '=', 1);
+        }
+      )
+
+      ->join(
+        'files AS collections_files_2',
+
+        function($join) {
+          $join->type = 'LEFT OUTER';
+          $join->on('services.id', '=', 'collections_files_2.id_album')
+            ->where('collections_files_2.name_table', '=', 'servicescollections')
+            ->where('collections_files_2.main', '!=', 1);
+        }
+      )
+
+      ->select(
+        'services.*',
+        'files.file',
+        'files.crop',
+        'collections_files.file AS collections_files',
+        'collections_files.crop AS collections_crop',
+        'collections_files_2.file AS collections_files_2',
+        'collections_files_2.crop AS collections_crop_2'
+      )
+
       ->orderBy('services.sort', 'ASC')
       ->get()
       ->toArray();

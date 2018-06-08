@@ -45,9 +45,12 @@ return [
 	'villas_with_private_service' => 'Villas with private service',
 	'vacation_together'           => 'Vacation together',
 	'caption'                     => 'Caption',
-	'collections'                 => 'Image collections',
+	'collections'                 => 'Images on the main page',
 	'main_img_small'              => 'First Screen(mobile)',
 	'guests_person'               => 'Number of Guests / Person',
 	'usefull'                     => 'Usefull',
 	'author_of_users'             => 'Author of Users',
+	'little_description_catalog'  => 'Short description for catalog',
+	'little_description'          => 'Short description',
+	'how_we_are_working'          => 'How we are working',
 ];

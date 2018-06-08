@@ -3,6 +3,7 @@
 return [
 	'title'                       => 'Название',
 	'fullText'                    => 'Текст',
+	'text'                        => 'Текст',
 	'author'                      => 'Author',
 	'location_name'               => 'Название локации',
 	'location_description'        => 'Описание локации',
@@ -44,9 +45,12 @@ return [
 	'villas_with_private_service' => 'Виллы с отельным обслуживанием',
 	'vacation_together'           => 'Отдых вдвоем',
 	'caption'                     => 'Заголовок',
-	'collections'                 => 'Изображения подборок',
+	'collections'                 => 'Изображения на главную',
 	'main_img_small'              => 'Первый экран(mobile)',
 	'guests_person'               => 'Кол-во гостей/человек',
 	'usefull'                     => 'Полезное',
 	'author_of_users'             => 'Автор из пользователей',
+  'little_description_catalog'  => 'Краткое описание для каталога',
+  'little_description'          => 'Краткое описание',
+  'how_we_are_working'          => 'Как мы работаем',
 ];

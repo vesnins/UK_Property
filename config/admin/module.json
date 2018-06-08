@@ -107,6 +107,9 @@
 		"lang"            : [
 			"name",
 			"text",
+			"little_description",
+			"little_description_catalog",
+			"how_working",
 			"title",
 			"author",
 			"keywords",
@@ -120,6 +123,9 @@
 		"plugins"         : [
 			"name",
 			"text",
+			"little_description",
+			"little_description_catalog",
+			"how_working",
 			"active",
 			"sort",
 			"cat",
@@ -129,10 +135,11 @@
 			"author",
 			"keywords",
 			"description",
-			"album"
+			"album",
+			"collections"
 		],
-		"small_width"     : "500",
-		"small_height"    : "350",
+		"small_width"     : "417",
+		"small_height"    : "251",
 		"sort"            : "1",
 		"views_module"    : "table",
 		"translate_key"   : "services"

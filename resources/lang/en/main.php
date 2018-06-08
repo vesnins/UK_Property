@@ -160,4 +160,7 @@ We will contact you shortly!',
 	'i_have_read_and_agree_to_the' => 'I have read and agree to the',
 	'write_here'                   => 'Write here',
 	'services'                     => 'Services',
+  'our_services'                 => 'Our services',
+  'more'                         => 'More',
+  'other_options'                => 'Other options',
 ];

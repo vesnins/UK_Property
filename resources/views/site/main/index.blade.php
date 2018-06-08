@@ -1,6 +1,9 @@
 @extends('site.layouts.default')
 
 @section('content')
+  @php($path_small = '/images/files/small/')
+  @php($path_big = '/images/files/big/')
+
   <main class="main">
     <div class="billboard" style="background-image: url('/images/banners/img_1.jpg')">
       <a href="#section_1" class="go-down-btn"><i class="line"></i></a>
@@ -32,28 +35,51 @@
         </div>
       </div>
     </div>
+
     <section class="indent-block" id="section_1">
       <div class="container-fluid mb-lg">
-        <h2 class="text-center">Наши услуги</h2>
+        <h2 class="text-center">@lang('main.our_services')</h2>
+
         <div class="service-info-area">
           <div class="text-section">
             <div class="limit-box">
-              <h3>Инвестиции в Новостройки</h3>
-              <p>Сейчас управление недвижимостью становится все более и более популярным на территории России. Это
-                связано с тем, что несмотря на кризис и следующий за ним тяжелый выход, недвижимости становится все
-                больше.</p>
-              <p>Ни для кого не секрет, что самым популярным вложением у физических лиц в России остается покупка
-                недвижимости. </p>
-              <a href="#" class="more-link">Подробнее</a>
+              <h3>{{ $langSt($services['invest-in-a-new-building']['name']) }}</h3>
+              <p>{{ $langSt($services['invest-in-a-new-building']['little_description']) }}</p>
+
+              <a href="/{{ $langSt($services['invest-in-a-new-building']['translation']) }}" class="more-link">
+                @lang('main.more')
+              </a>
             </div>
           </div>
+
           <div class="image-section">
-            <div class="image-box" style="background-image: url('/images/content/img_1.jpg')"></div>
-            <img class="small-img" src="/images/content/img_2.jpg" data-parallax='{"y": -80, "smoothness": 10}' />
+            @php($collections_crop = $services['invest-in-a-new-building']
+              ? $services['invest-in-a-new-building']['collections_crop']
+                ? $path_big . $services['invest-in-a-new-building']['collections_crop']
+                : $path_big . $services['invest-in-a-new-building']['collections_files']
+              : env('PATH_TO_IMG_DEFAULT')
+             )
+
+            @if($collections_crop)
+              <div class="image-box" style="background-image: url('{{ $collections_crop }}')"></div>
+            @endif
+
+            @php($collections_crop_2 = $services['invest-in-a-new-building']
+             ? $services['invest-in-a-new-building']['collections_crop_2']
+               ? $path_big . $services['invest-in-a-new-building']['collections_crop_2']
+               : $path_big . $services['invest-in-a-new-building']['collections_files_2']
+             : env('PATH_TO_IMG_DEFAULT')
+            )
+
+            @if($collections_crop_2)
+              <img class="small-img" src="{{ $collections_crop_2 }}" data-parallax='{"y": -80, "smoothness": 10}' />
+            @endif
+
             <img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' />
             <img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' />
           </div>
         </div>
+
         <div class="products">
           <div class="product-item">
             <a href="#" class="add-to-wishList">
@@ -152,30 +178,58 @@
             </a>
           </div>
         </div>
+
         <div class="text-center">
-          <a href="#" class="button">Другие варианты</a>
+          <a
+            href="/../catalog/{{ $langSt($services['invest-in-a-new-building']['translation']) }}"
+            class="button"
+          >
+            @lang('main.other_options')
+          </a>
         </div>
       </div>
+
       <div class="container-fluid mb-lg">
         <div class="service-info-area reverse">
           <div class="text-section">
             <div class="limit-box">
-              <h3>Инвестиции <br> в Девелоперские проекты</h3>
-              <p>Сейчас управление недвижимостью становится все более и более популярным на территории России. Это
-                связано с тем, что несмотря на кризис и следующий за ним тяжелый выход, недвижимости становится все
-                больше.</p>
-              <p>Ни для кого не секрет, что самым популярным вложением у физических лиц в России остается покупка
-                недвижимости. </p>
-              <a href="#" class="more-link">Подробнее</a>
+              <h3>{{ $langSt($services['invest-in-development-projects']['name']) }}</h3>
+              <p>{{ $langSt($services['invest-in-development-projects']['little_description']) }}</p>
+
+              <a href="/{{ $langSt($services['invest-in-development-projects']['translation']) }}" class="more-link">
+                @lang('main.more')
+              </a>
             </div>
           </div>
+
           <div class="image-section">
-            <div class="image-box" style="background-image: url('/images/content/img_7.jpg')"></div>
-            <img class="small-img" src="/images/content/img_8.jpg" data-parallax='{"y": -80, "smoothness": 10}' />
-            <img class="decor-top" src="/images/decor/img_3.png" data-parallax='{"y": -40, "smoothness": 20}' />
-            <img class="decor-bottom" src="/images/decor/img_4.png" data-parallax='{"y": -120, "smoothness": 30}' />
+            @php($collections_crop = $services['invest-in-development-projects']
+              ? $services['invest-in-development-projects']['collections_crop']
+                ? $path_big . $services['invest-in-development-projects']['collections_crop']
+                : $path_big . $services['invest-in-development-projects']['collections_files']
+              : env('PATH_TO_IMG_DEFAULT')
+             )
+
+            @if($collections_crop)
+              <div class="image-box" style="background-image: url('{{ $collections_crop }}')"></div>
+            @endif
+
+            @php($collections_crop_2 = $services['invest-in-development-projects']
+             ? $services['invest-in-development-projects']['collections_crop_2']
+               ? $path_big . $services['invest-in-development-projects']['collections_crop_2']
+               : $path_big . $services['invest-in-development-projects']['collections_files_2']
+             : env('PATH_TO_IMG_DEFAULT')
+            )
+
+            @if($collections_crop_2)
+              <img class="small-img" src="{{ $collections_crop_2 }}" data-parallax='{"y": -80, "smoothness": 10}' />
+            @endif
+
+            <img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' />
+            <img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' />
           </div>
         </div>
+
         <div class="products">
           <div class="product-item">
             <a href="#" class="add-to-wishList">
@@ -274,30 +328,58 @@
             </a>
           </div>
         </div>
+
         <div class="text-center">
-          <a href="#" class="button">Другие варианты</a>
+          <a
+            href="/../catalog/{{ $langSt($services['invest-in-development-projects']['translation']) }}"
+            class="button"
+          >
+            @lang('main.other_options')
+          </a>
         </div>
       </div>
+
       <div class="container-fluid mb-lg">
         <div class="service-info-area">
           <div class="text-section">
             <div class="limit-box">
-              <h3>Покупка</h3>
-              <p>Сейчас управление недвижимостью становится все более и более популярным на территории России. Это
-                связано с тем, что несмотря на кризис и следующий за ним тяжелый выход, недвижимости становится все
-                больше.</p>
-              <p>Ни для кого не секрет, что самым популярным вложением у физических лиц в России остается покупка
-                недвижимости. </p>
-              <a href="#" class="more-link">Подробнее</a>
+              <h3>{{ $langSt($services['buy']['name']) }}</h3>
+              <p>{{ $langSt($services['buy']['little_description']) }}</p>
+
+              <a href="/{{ $langSt($services['buy']['translation']) }}" class="more-link">
+                @lang('main.more')
+              </a>
             </div>
           </div>
+
           <div class="image-section">
-            <div class="image-box" style="background-image: url('/images/content/img_13.jpg')"></div>
-            <img class="small-img" src="/images/content/img_14.jpg" data-parallax='{"y": -80, "smoothness": 10}' />
-            <img class="decor-top" src="/images/decor/img_2.png" data-parallax='{"y": -40, "smoothness": 20}' />
-            <img class="decor-bottom" src="/images/decor/img_1.png" data-parallax='{"y": -120, "smoothness": 30}' />
+            @php($collections_crop = $services['buy']
+              ? $services['buy']['collections_crop']
+                ? $path_big . $services['buy']['collections_crop']
+                : $path_big . $services['buy']['collections_files']
+              : env('PATH_TO_IMG_DEFAULT')
+             )
+
+            @if($collections_crop)
+              <div class="image-box" style="background-image: url('{{ $collections_crop }}')"></div>
+            @endif
+
+            @php($collections_crop_2 = $services['buy']
+             ? $services['buy']['collections_crop_2']
+               ? $path_big . $services['buy']['collections_crop_2']
+               : $path_big . $services['buy']['collections_files_2']
+             : env('PATH_TO_IMG_DEFAULT')
+            )
+
+            @if($collections_crop_2)
+              <img class="small-img" src="{{ $collections_crop_2 }}" data-parallax='{"y": -80, "smoothness": 10}' />
+            @endif
+
+            <img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' />
+            <img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' />
           </div>
         </div>
+
         <div class="products">
           <div class="product-item">
             <a href="#" class="add-to-wishList">
@@ -396,30 +478,58 @@
             </a>
           </div>
         </div>
+
         <div class="text-center">
-          <a href="#" class="button">Другие варианты</a>
+          <a
+            href="/../catalog/{{ $langSt($services['buy']['translation']) }}"
+            class="button"
+          >
+            @lang('main.other_options')
+          </a>
         </div>
       </div>
+
       <div class="container-fluid mb-lg">
         <div class="service-info-area reverse">
           <div class="text-section">
             <div class="limit-box">
-              <h3>Аренда</h3>
-              <p>Сейчас управление недвижимостью становится все более и более популярным на территории России. Это
-                связано с тем, что несмотря на кризис и следующий за ним тяжелый выход, недвижимости становится все
-                больше.</p>
-              <p>Ни для кого не секрет, что самым популярным вложением у физических лиц в России остается покупка
-                недвижимости. </p>
-              <a href="#" class="more-link">Подробнее</a>
+              <h3>{{ $langSt($services['rent']['name']) }}</h3>
+              <p>{{ $langSt($services['rent']['little_description']) }}</p>
+
+              <a href="/{{ $langSt($services['rent']['translation']) }}" class="more-link">
+                @lang('main.more')
+              </a>
             </div>
           </div>
+
           <div class="image-section">
-            <div class="image-box" style="background-image: url('/images/content/img_1.jpg')"></div>
-            <img class="small-img" src="/images/content/img_2.jpg" data-parallax='{"y": -80, "smoothness": 10}' />
+            @php($collections_crop = $services['rent']
+              ? $services['rent']['collections_crop']
+                ? $path_big . $services['rent']['collections_crop']
+                : $path_big . $services['rent']['collections_files']
+              : env('PATH_TO_IMG_DEFAULT')
+             )
+
+            @if($collections_crop)
+              <div class="image-box" style="background-image: url('{{ $collections_crop }}')"></div>
+            @endif
+
+            @php($collections_crop_2 = $services['rent']
+             ? $services['rent']['collections_crop_2']
+               ? $path_big . $services['rent']['collections_crop_2']
+               : $path_big . $services['rent']['collections_files_2']
+             : env('PATH_TO_IMG_DEFAULT')
+            )
+
+            @if($collections_crop_2)
+              <img class="small-img" src="{{ $collections_crop_2 }}" data-parallax='{"y": -80, "smoothness": 10}' />
+            @endif
+
             <img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' />
             <img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' />
           </div>
         </div>
+
         <div class="products">
           <div class="product-item">
             <a href="#" class="add-to-wishList">
@@ -518,43 +628,47 @@
             </a>
           </div>
         </div>
+
         <div class="text-center">
-          <a href="#" class="button">Другие варианты</a>
+          <a href="/../catalog/{{ $langSt($services['rent']['translation']) }}" class="button">
+            @lang('main.other_options')
+          </a>
         </div>
       </div>
+
       <div class="container">
         <ul class="service-links">
           <li>
-            <a href="#" class="item-link">
+            <a href="/{{ $langSt($services['sell']['translation']) }}" class="item-link">
               <div class="icon-box">
-                <svg>
-                  <use xlink:href="/images/svg/sprite.svg#rent"></use>
-                </svg>
+                <svg><use xlink:href="/images/svg/sprite.svg#rent"></use></svg>
               </div>
+
               <div class="text-box">
-                <h3>Продать</h3>
-                <p>Делаем оптимальный подбор премиальных объектов под потребности клиента</p>
-                <span class="more-link">Подробнее</span>
+                <h3>{{ $langSt($services['sell']['name']) }}</h3>
+                <p>{{ $langSt($services['sell']['little_description']) }}</p>
+                <span class="more-link">@lang('main.more')</span>
               </div>
             </a>
           </li>
+
           <li>
-            <a href="#" class="item-link">
+            <a href="/{{ $langSt($services['property-management']['translation']) }}" class="item-link">
               <div class="icon-box">
-                <svg>
-                  <use xlink:href="/images/svg/sprite.svg#manage"></use>
-                </svg>
+                <svg><use xlink:href="/images/svg/sprite.svg#manage"></use></svg>
               </div>
+
               <div class="text-box">
-                <h3>Управление недвижимостью</h3>
-                <p>Консультируем по оценке стоимости объектов недвижимости</p>
-                <span class="more-link">Подробнее</span>
+                <h3>{{ $langSt($services['property-management']['name']) }}</h3>
+                <p>{{ $langSt($services['property-management']['little_description']) }}</p>
+                <span class="more-link">@lang('main.more')</span>
               </div>
             </a>
           </li>
         </ul>
       </div>
     </section>
+
     <section class="subscribe-section" style="background-image: url('/images/banners/img_2.jpg')">
       <div class="container">
         <h3 class="text-center">Подпишитесь на рассылку!</h3>

@@ -518,7 +518,13 @@ class MainController extends Controller
 
       $data['blogs'] = $this->helper->_blog(
         null,
-        ['count_box' => 4, 'group' => $group, 'tags' => explode(',', $data['blog']['tags'])]
+
+        [
+          'count_box' => 4,
+          'group'     => $group,
+          'tags'      => explode(',', $data['blog']['tags']),
+          'not_in'    => ['id', [$id]]
+        ]
       );
 
       return $this->base->view_s("site.main.blog_id", $data);

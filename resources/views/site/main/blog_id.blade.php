@@ -59,14 +59,16 @@
       </div>
     </section>
 
-    <section class="indent-block related-articles-section">
-      <div class="container-fluid">
-        <h3 class="text-center">@lang('main.similar_article')</h3>
+    @if(count($blogs))
+      <section class="indent-block related-articles-section">
+        <div class="container-fluid">
+          <h3 class="text-center">@lang('main.similar_article')</h3>
 
-        <div class="article-slider simple-slider">
-          @include('site.block.blog_id_footer', ['blogs' => $blogs])
+          <div class="article-slider simple-slider">
+            @include('site.block.blog_id_footer', ['blogs' => $blogs])
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    @endif
   </main>
 @endsection

@@ -362,20 +362,20 @@ class PluginsController extends Controller
 	}
 
 	/**
-	 * Load view Distances.
+	 * Load view How we are working.
 	 *
 	 * @param        $field
 	 * @param string $table_params
 	 * @param array  $params
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
 	 */
-	public function distances($field, $table_params = '', $params = [])
+	public function how_working($field, $table_params = '', $params = [])
 	{
 		return Base::view(
-			"admin::plugins.distances",
+			"admin::plugins.how_working",
 
 			[
-				'field'  => ModuleController::_body($field, ['class' => 'distances-cont']),
+				'field'  => ModuleController::_body($field, ['class' => 'how_working-cont']),
 				'plugin' => $field,
 				'id'     => $params['id'],
 				'lang'   => \App::getLocale(),
@@ -383,7 +383,7 @@ class PluginsController extends Controller
 		);
 	}
 
-	public function insertDistances($val){
+	public function insertHow_working($val){
 		return json_encode($val, JSON_UNESCAPED_UNICODE);
 	}
 

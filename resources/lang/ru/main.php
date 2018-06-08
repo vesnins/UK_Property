@@ -157,4 +157,7 @@ return [
 	'i_have_read_and_agree_to_the' => 'Я прочитал и согласен с',
 	'write_here'                   => 'Пишите здесь',
 	'services'                     => 'Услуги',
+	'our_services'                 => 'Наши услуги',
+  'more'                         => 'Подробнее',
+  'other_options'                => 'Другие варианты',
 ];
