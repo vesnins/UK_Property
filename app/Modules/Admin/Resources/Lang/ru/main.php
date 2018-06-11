@@ -14,7 +14,7 @@ return [
 	'areYouSure'                => 'Вы уверены?',
 	'desktop'                   => 'Рабочий стол',
 	'menu'                      => 'Меню',
-	'articles'                  => 'Статьи',
+	'articles'                  => 'Текстовые страницы',
 	'news'                      => 'Новости',
 	'seo'                       => 'Seo',
 	'users'                     => 'Пользователи',
@@ -113,4 +113,6 @@ return [
 	'insert_table_row'          => 'Добавлена новая запись',
 	'update_table_row'          => 'Обновлена запись',
 	'services'                  => 'Услуги',
+	'reviews'                   => 'Отзывы',
+  'about_company'             => 'О компании',
 ];

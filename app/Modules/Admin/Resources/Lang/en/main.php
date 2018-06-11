@@ -14,7 +14,7 @@ return [
 	'areYouSure'                => 'Are you sure?',
 	'desktop'                   => 'Desktop',
 	'menu'                      => 'Menu',
-	'articles'                  => 'Articles',
+	'articles'                  => 'Текстовые страницы',
 	'news'                      => 'News',
 	'seo'                       => 'Seo',
 	'users'                     => 'Users',
@@ -113,4 +113,6 @@ return [
 	'insert_table_row'          => 'New record added',
 	'update_table_row'          => 'Updated record',
 	'services'                  => 'Services',
+  'reviews'                   => 'Reviews',
+  'about_company'             => 'About company',
 ];

@@ -1,6 +1,8 @@
 @extends('site.layouts.default')
 
 @section('content')
+  @php($path_big = '/images/files/big/')
+
   <main class="main">
     <div id="map-canvas"></div>
     <script type="text/javascript"
@@ -63,7 +65,7 @@
               <svg>
                 <use xlink:href="/images/svg/sprite.svg#pin"></use>
               </svg>
-              UK Property Advisors Ltd. <br> 71-75 Shelton street <br> London, WC2H 9JQ
+              {!! $langSt($params['address_by_footer']['key']) !!}
             </span>
 
             <span class="address-info">
@@ -71,7 +73,9 @@
                 <use xlink:href="/images/svg/sprite.svg#envelope"></use>
               </svg>
 
-              <a href="mailto:info@ukpropadv.com">info@ukpropadv.com</a>
+              <a href="mailto:{!! $langSt($params['email_by_footer']['key']) !!}">
+                {!! $langSt($params['email_by_footer']['key']) !!}
+              </a>
             </span>
 
             <span class="address-info">
@@ -81,37 +85,52 @@
 
               WhatsApp/Viber/Telegram:
               <br />
-              <a href="tel:+440-755-310-9657">+44 (0) 755 310 9657</a>
+
+              <a href="tel:{!! $langSt($params['soc_phone_by_footer_1']['key']) !!}">
+                {!! $langSt($params['soc_phone_by_footer_1']['key']) !!}
+              </a>
+
               <br />
-              <a href="tel:+440-2086-05-2068">+44 (0) 2086 05 2068</a>
+
+              <a href="tel:{!! $langSt($params['soc_phone_by_footer_2']['key']) !!}">
+                {!! $langSt($params['soc_phone_by_footer_2']['key']) !!}
+              </a>
             </span>
           </address>
 
           <ul class="social-list">
-            <li><a href="#">
+            <li>
+              <a href="/{!! $langSt($params['link_on_facebook']['key']) !!}" target="_blank">
                 <svg>
                   <use xlink:href="/images/svg/sprite.svg#facebook"></use>
                 </svg>
-              </a></li>
-            <li><a href="#">
+              </a>
+            </li>
+
+            <li>
+              <a href="/{!! $langSt($params['link_on_linkedin']['key']) !!}" target="_blank">
                 <svg>
                   <use xlink:href="/images/svg/sprite.svg#linkedin"></use>
                 </svg>
-              </a></li>
+              </a>
+            </li>
           </ul>
         </div>
+
         <div class="form-box">
-          <h4>Leave your info and we will contact you soon!</h4>
+          <h4>@lang('main.contact_us_text_form')</h4>
+
           <form action="#" class="validate-form">
             <div class="row">
               <div class="col-sm-6">
                 <div class="input-holder">
-                  <input type="text" name="name" placeholder="First Name *" />
+                  <input type="text" name="name" placeholder="@lang('main.first_name') *" />
                 </div>
               </div>
+
               <div class="col-sm-6">
                 <div class="input-holder">
-                  <input type="text" name="surname" placeholder="Second Name *" />
+                  <input type="text" name="surname" placeholder="@lang('main.second_name') *" />
                 </div>
               </div>
             </div>
@@ -119,7 +138,7 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="input-holder">
-                  <input type="tel" name="phone" placeholder="Phone Number *" />
+                  <input type="tel" name="phone" placeholder="@lang('main.phone_number') *" />
                 </div>
               </div>
 
@@ -131,49 +150,40 @@
             </div>
 
             <div class="input-holder">
-              <textarea placeholder="Message"></textarea>
+              <textarea placeholder="@lang('main.message')"></textarea>
             </div>
 
             <div class="input-holder">
               <label class="checkbox-label"><input type="checkbox" name="checkbox" checked />
-                <span>I have read and agree to the
-                  <a href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">
-                    Privacy policy
-                  </a>.
+                <span>
+                  @lang('main.i_have_read_and_agree_to_the')
+                  <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
+                  @lang('main._and')
+                  <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
                 </span>
               </label>
 
               <label class="checkbox-label">
                 <input type="checkbox" checked />
-                <span>I agree to receive property updates and latest news via email.</span>
+                <span>@lang('main.text_mail_sending')</span>
               </label>
             </div>
 
             <div class="text-center">
-              <input class="button" type="submit" value="send">
+              <input class="button" type="submit" value="@lang('main.send')" />
             </div>
           </form>
         </div>
       </div>
+
+      @php($img = $page['file']
+        ? $page['crop'] ? $path_big . $page['crop'] : $path_big . $page['file']
+        : env('PATH_TO_IMG_DEFAULT')
+      )
+
       <div class="row flex-row align-row">
-        <div class="col-sm-7 col-xs-12">
-          <h2>Как нас найти</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing et accusamus et iusto odio dignissimos ducimus, qui
-            blanditiis praesentium voluptatum deleniti corrupi? Sed ut perspiciatis, unde omnis iste natus error sit
-            voluptatem
-            <mark>accusantium doloremque</mark>
-            laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed
-            quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est,.
-          </p>
-          <p><strong>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum
-              deleniti atque corrupti</strong>. Nemo enim ipsam voluptatem, quia voluptas sit, sed quia consequuntur
-            magni dolores eos, qui ratione voluptatem sequi nesciunt, ut labore et dolore magnam aliquam quaerat
-            voluptatem.</p>
-        </div>
-        <div class="col-sm-5 col-xs-12 text-right">
-          <img src="/images/content/img_31.jpg" alt="">
-        </div>
+        <div class="col-sm-7 col-xs-12">{!! $langSt($page['text']) !!}</div>
+        <div class="col-sm-5 col-xs-12 text-right"><img src="{{ $img }}" /></div>
       </div>
     </div>
   </main>

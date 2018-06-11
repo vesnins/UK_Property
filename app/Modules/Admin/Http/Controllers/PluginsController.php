@@ -566,4 +566,26 @@ class PluginsController extends Controller
 	{
 		return $value === 'on' ? 1 : 0;
 	}
+
+  /**
+   * @param        $field
+   * @param string $table_params
+   * @param array  $params
+   * @return string
+   */
+  public function slider_1($field, $table_params = '', $params = [])
+  {
+    return $this->album($field, $table_params, $params);
+  }
+
+  /**
+   * @param        $field
+   * @param string $table_params
+   * @param array  $params
+   * @return string
+   */
+  public function slider_2($field, $table_params = '', $params = [])
+  {
+    return $this->album($field, $table_params, $params);
+  }
 }

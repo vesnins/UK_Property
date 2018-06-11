@@ -29,93 +29,6 @@
     }
   }
 
-  var
-    customSelect = $('.selectpicker');
-
-  if(customSelect.length !== 0) {
-    customSelect.selectpicker();
-  }
-
-  var validationForm = $('.validate-form');
-  if(validationForm.length !== 0) {
-    formValidation();
-  }
-
-  /* var phoneField = $('input[type="tel"]');
-   if (phoneField.length !== 0) {
-       phoneField.each(function () {
-           var thisTel = $(this);
-           thisTel.mask('+0 (000) 000-00-00');
-       });
-   }*/
-
-  if($('.billboard-slider').length !== 0) {
-    billboardSlider();
-  }
-
-  if($('.product-gallery').length !== 0) {
-    productGallerySlider();
-  }
-
-  if($('.service-slider').length !== 0) {
-    serviceSlider();
-  }
-
-  if($('.testimonials-slider').length !== 0) {
-    testimonialsSlider();
-  }
-
-  if($('.article-slider').length !== 0) {
-    articlesSlider();
-  }
-
-  if($('.collapse-menu-holder').length !== 0) {
-    mobileTabsMenu();
-  }
-
-  var
-    venoboxLink = $('.venobox-btn');
-
-  if(venoboxLink.length !== 0) {
-    venoboxLink.venobox({
-      framewidth : '100vw',
-      frameheight: '100vh'
-    });
-  }
-
-  if($('.simple-slider').length !== 0) {
-    customSliderDots();
-  }
-
-  if($('.product-filter-form').length !== 0) {
-    sidebarFilterAccordion();
-  }
-
-  if($('.tab-holder').length !== 0) {
-    customTabInit();
-  }
-
-  if($('.product-grid-section').length !== 0) {
-    sidebarViewSwitcher();
-  }
-
-  if($('.range-slider').length !== 0) {
-    customRangeSlider();
-  }
-
-  if($('.certificate-slider').length !== 0) {
-    certificateSlider.init();
-  }
-
-  if($('[data-sticky-container]').length !== 0) {
-    sticky = new Sticky('[data-sticky]', {});
-  }
-
-  if($('.custom-fields-group').length !== 0) {
-    addFieldFunction();
-    removeFieldFunction();
-  }
-
   function detectIE() {
     var
       ua = window.navigator.userAgent;
@@ -1031,6 +944,93 @@
         collapseBox.slideUp();
       }
     });
+  }
+
+  var
+    customSelect = $('.selectpicker');
+
+  if(customSelect.length !== 0) {
+    customSelect.selectpicker();
+  }
+
+  var validationForm = $('.validate-form');
+  if(validationForm.length !== 0) {
+    formValidation();
+  }
+
+  /* var phoneField = $('input[type="tel"]');
+   if (phoneField.length !== 0) {
+       phoneField.each(function () {
+           var thisTel = $(this);
+           thisTel.mask('+0 (000) 000-00-00');
+       });
+   }*/
+
+  if($('.billboard-slider').length !== 0) {
+    billboardSlider();
+  }
+
+  if($('.product-gallery').length !== 0) {
+    productGallerySlider();
+  }
+
+  if($('.service-slider').length !== 0) {
+    serviceSlider();
+  }
+
+  if($('.testimonials-slider').length !== 0) {
+    testimonialsSlider();
+  }
+
+  if($('.article-slider').length !== 0) {
+    articlesSlider();
+  }
+
+  if($('.collapse-menu-holder').length !== 0) {
+    mobileTabsMenu();
+  }
+
+  var
+    venoboxLink = $('.venobox-btn');
+
+  if(venoboxLink.length !== 0) {
+    venoboxLink.venobox({
+      framewidth : '100vw',
+      frameheight: '100vh'
+    });
+  }
+
+  if($('.simple-slider').length !== 0) {
+    customSliderDots();
+  }
+
+  if($('.product-filter-form').length !== 0) {
+    sidebarFilterAccordion();
+  }
+
+  if($('.tab-holder').length !== 0) {
+    customTabInit();
+  }
+
+  if($('.product-grid-section').length !== 0) {
+    sidebarViewSwitcher();
+  }
+
+  if($('.range-slider').length !== 0) {
+    customRangeSlider();
+  }
+
+  if($('.certificate-slider').length !== 0) {
+    certificateSlider.init();
+  }
+
+  if($('[data-sticky-container]').length !== 0) {
+    sticky = new Sticky('[data-sticky]', {});
+  }
+
+  if($('.custom-fields-group').length !== 0) {
+    addFieldFunction();
+    removeFieldFunction();
   }
 
   svg4everybody();

@@ -109,6 +109,19 @@ class MainController extends Controller
       ->get()
       ->toArray();
 
+    $data['about'] = $this
+      ->dynamic
+      ->t('about_company')
+      ->where('about_company.active', '=', 1)
+      ->first()
+      ->toArray();
+
+   // print_r($data['about']);
+   // exit;
+
+
+
+
     $data['meta_c'] = $this->base->getMeta($data['main_page']);
 
     return $this->base->view_s("site.main.index", $data);
@@ -133,7 +146,47 @@ class MainController extends Controller
    */
   public function about_company()
   {
-    $data = [];
+    $data['reviews'] = $this
+      ->dynamic
+      ->t('reviews')
+      ->where('reviews.active', '=', 1)
+      ->get()
+      ->toArray();
+
+    $data['services'] = $this->helper->_services();
+
+    $data['about'] = $this
+      ->dynamic
+      ->t('about_company')
+      ->where('about_company.active', '=', 1)
+      ->first()
+      ->toArray();
+
+    $data['images'] = $this
+      ->dynamic
+      ->t('files')
+      ->where('name_table', 'about_companyalbum')
+      ->orderBy('sort', 'ASC')
+      ->get()
+      ->toArray();
+
+    $data['slider_1'] = $this
+      ->dynamic
+      ->t('files')
+      ->where('name_table', 'about_companyslider_1')
+      ->orderBy('sort', 'ASC')
+      ->get()
+      ->toArray();
+
+    $data['slider_2'] = $this
+      ->dynamic
+      ->t('files')
+      ->where('name_table', 'about_companyslider_2')
+      ->orderBy('sort', 'ASC')
+      ->get()
+      ->toArray();
+
+    $data['meta_c'] = $this->base->getMeta($data, 'about');
 
     return $this->base->view_s("site.main.about_company", $data);
   }
@@ -549,9 +602,7 @@ class MainController extends Controller
    */
   public function contact_us()
   {
-    $data = [];
-
-    return $this->base->view_s("site.main.contact_us", $data);
+    return $this->helper->_page('contact-us', 'site.main.contact_us');
   }
 
   /**

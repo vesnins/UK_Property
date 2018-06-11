@@ -159,6 +159,7 @@
 		"description": "Текстовое поле \"Little_description\"",
 		"idAttr"     : "textareaLittle_description",
 		"maxlength"  : "12000",
+		"translateKey": "little_description",
 		"sql_column" : "little_description"
 	},
 	{
@@ -170,6 +171,7 @@
 		"description": "Текстовое поле \"Little_description_catalog\"",
 		"idAttr"     : "textareaLittle_description_catalog",
 		"maxlength"  : "12000",
+		"translateKey": "little_description",
 		"sql_column" : "little_description_catalog"
 	},
 	{
@@ -1446,5 +1448,133 @@
 			"text": "<option value=\"0\"></option><option value=\"1\">With access to the beach</option><option value=\"2\">500 meters</option><option value=\"3\">1km</option><option value=\"4\">More than 1km</option>",
 			"type": "insert"
 		}
+	},
+	{
+		"name"       : "block_1",
+		"typeField"  : "textarea",
+		"nameText"   : "Блок 1",
+		"nameAttr"   : "pl[block_1]",
+		"description": "Текстовое поле \"block_1\"",
+		"idAttr"     : "textareaBlock_1",
+		"maxlength"  : "12000",
+		"translateKey": "block_1",
+		"sql_column" : "block_1"
+	},
+	{
+		"name"       : "block_2",
+		"typeField"  : "textarea",
+		"nameText"   : "Блок 2",
+		"nameAttr"   : "pl[block_2]",
+		"description": "Текстовое поле \"block_2\"",
+		"idAttr"     : "textareaBlock_2",
+		"maxlength"  : "12000",
+		"translateKey": "block_2",
+		"sql_column" : "block_2"
+	},
+	{
+		"name"       : "block_3",
+		"typeField"  : "textarea",
+		"nameText"   : "Блок 3",
+		"nameAttr"   : "pl[block_3]",
+		"description": "Текстовое поле \"block_3\"",
+		"idAttr"     : "textareaBlock_3",
+		"maxlength"  : "12000",
+		"translateKey": "block_3",
+		"sql_column" : "block_3"
+	},
+	{
+		"name"       : "block_4",
+		"typeField"  : "textarea",
+		"nameText"   : "Блок 4",
+		"nameAttr"   : "pl[block_4]",
+		"description": "Текстовое поле \"block_4\"",
+		"idAttr"     : "textareaBlock_4",
+		"maxlength"  : "12000",
+		"translateKey": "block_4",
+		"sql_column" : "block_4"
+	},
+	{
+		"name"       : "quote_main_block_1_1",
+		"typeField"  : "textarea",
+		"nameText"   : "Блок цитаты для главной страцы 1, 1",
+		"nameAttr"   : "pl[quote_main_block_1_1]",
+		"description": "Текстовое поле \"quote_main_block_1_1\"",
+		"idAttr"     : "textareaQuote_main_block_1_1",
+		"maxlength"  : "12000",
+		"translateKey": "quote_main_block_1_1",
+		"sql_column" : "quote_main_block_1_1"
+	},
+	{
+		"name"       : "quote_main_block_1_2",
+		"typeField"  : "textarea",
+		"nameText"   : "Блок цитаты для главной страцы 1, 2",
+		"nameAttr"   : "pl[quote_main_block_1_2]",
+		"description": "Текстовое поле \"quote_main_block_1_2\"",
+		"idAttr"     : "textareaQuote_main_block_1_2",
+		"maxlength"  : "12000",
+		"translateKey": "quote_main_block_1_2",
+		"sql_column" : "quote_main_block_1_2"
+	},
+	{
+		"name"            : "slider_1",
+		"typeField"       : "functions",
+		"nameText"        : "Изображение",
+		"nameAttr"        : "pl[slider_1]",
+		"description"     : "Плагин \"slider_1\"",
+		"idAttr"          : "inputSlider_1",
+		"sql_column"      : "slider_1",
+		"noSaveInDatabase": true,
+		"translateKey"    : "slider_1"
+	},
+	{
+		"name"            : "slider_2",
+		"typeField"       : "functions",
+		"nameText"        : "Изображение",
+		"nameAttr"        : "pl[slider_2]",
+		"description"     : "Плагин \"slider_2\"",
+		"idAttr"          : "inputSlider_2",
+		"sql_column"      : "slider_2",
+		"noSaveInDatabase": true,
+		"translateKey"    : "slider_2"
+	},
+	{
+		"name"        : "block_1_1",
+		"typeField"   : "input",
+		"nameText"    : "Название",
+		"nameAttr"    : "pl[block_1_1]",
+		"description" : "Текстовое поле инпут block_1_1",
+		"idAttr"      : "inputBlock_1_1",
+		"sql_column"  : "block_1_1",
+		"translateKey": "block_1_1"
+	},
+	{
+		"name"        : "block_1_2",
+		"typeField"   : "input",
+		"nameText"    : "Название",
+		"nameAttr"    : "pl[block_1_2]",
+		"description" : "Текстовое поле инпут block_1_2",
+		"idAttr"      : "inputBlock_1_2",
+		"sql_column"  : "block_1_2",
+		"translateKey": "block_1_2"
+	},
+	{
+		"name"        : "block_3_1",
+		"typeField"   : "input",
+		"nameText"    : "Название",
+		"nameAttr"    : "pl[block_3_1]",
+		"description" : "Текстовое поле инпут block_3_1",
+		"idAttr"      : "inputBlock_3_1",
+		"sql_column"  : "block_3_1",
+		"translateKey": "block_3_1"
+	},
+  {
+		"name"        : "link_how_working",
+		"typeField"   : "input",
+		"nameText"    : "Ссылка на видео \"Как мы работаем\"",
+		"nameAttr"    : "pl[link_how_working]",
+		"description" : "Текстовое поле инпут link_how_working",
+		"idAttr"      : "inputLink_how_working",
+		"sql_column"  : "link_how_working",
+		"translateKey": "link_how_working"
 	}
 ]

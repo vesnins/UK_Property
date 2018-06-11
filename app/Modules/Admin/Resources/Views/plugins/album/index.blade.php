@@ -212,11 +212,11 @@
 								}
 
 								function sendEditImg{{ $name }}(id) {
-									var name, text, order;
+									var name, text, sort;
 
 									name = $('[name="name_img_edit{{ $name }}"]').val();
 									text = $('[name="text_img_edit{{ $name }}"]').val();
-									order = $('[name="order_img_edit{{ $name }}"]').val();
+                  sort = $('[name="sort_img_edit{{ $name }}"]').val();
 
 									$.ajax
 									 ({

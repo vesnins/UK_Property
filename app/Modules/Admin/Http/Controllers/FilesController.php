@@ -385,7 +385,7 @@ class FilesController extends Controller
 					? json_encode($form['text_img_edit' . $data['name']], JSON_UNESCAPED_UNICODE)
 					: $form['text_img_edit' . $data['name']];
 
-				$file->order = (int) $form['order_img_edit' . $data['name']];
+				$file->sort = (int) $form['sort_img_edit' . $data['name']];
 
 				$file->save();
 

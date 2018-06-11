@@ -22,12 +22,12 @@
 
   var
     addHow_working{{ $langName }} = function(ev, d, l) {
-      var
-        n = $(this).data('n');
+     var
+       n = parseInt($('.add-how_working{{ $langName }}').attr('data-n'));
 
-      $(this).data('n', n + 1);
+       $('.add-how_working{{ $langName }}').attr('data-n', n + 1);
 
-      $('#how_working{{ $langName }}').append('<div class="id{{ $langName }}-' + n + ' row" style="margin-bottom: 15px">' +
+      $('#how_working{{ $langName }}').append('<div class="cont-hw id{{ $langName }}-' + n + ' row" style="margin-bottom: 15px">' +
         '<div class="col-md-10">' +
         '<div class="col-md-12">' +
         '<input style="margin-bottom: 5px" placeholder="@lang('admin::plugins.title')" type="text" name="pl[how_working]' + '{{ $lang }}' + '[how_working_name][]" class="form-control" value="' + (d || '') + '" />' +

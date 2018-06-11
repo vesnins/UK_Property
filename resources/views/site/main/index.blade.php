@@ -693,17 +693,30 @@
             </div>
             <input type="submit" class="button" value="Отправить">
           </div>
-          <label class="checkbox-label"><input type="checkbox" name="checkbox" checked><span>I have read and agree to
-              the <a href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">Privacy
-                policy</a>.</span></label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" name="checkbox" checked />
+
+            <span>
+              @lang('main.i_have_read_and_agree_to_the')
+              <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
+              @lang('main._and')
+              <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
+            </span>
+          </label>
         </form>
       </div>
     </section>
     <section class="indent-block">
-      <h2 class="text-center">Как мы работаем</h2>
+      <h2 class="text-center">@lang('main.how_we_are_working')</h2>
+
       <div class="video-box mb-md" style="background-image: url('/images/banners/img_3.jpg')">
-        <a href="https://www.youtube.com/embed/l6pDOwNeTrg?rel=0&amp;controls=0&amp;showinfo=0"
-          class="play-btn venobox-btn" data-autoplay="true" data-vbtype="video">
+        <a
+          href="{{ $about['link_how_working'] }}"
+          class="play-btn venobox-btn"
+          data-autoplay="true"
+          data-vbtype="video"
+        >
           <svg>
             <use xlink:href="/images/svg/sprite.svg#triangle-icon"></use>
           </svg>
@@ -711,69 +724,22 @@
       </div>
       <div class="container">
         <div class="service-slider simple-slider">
-          <div>
-            <div class="inner-box">
-              <span class="slider-count">01</span>
-              <h5>Consultation</h5>
-              <p>We will provide you with free initial consultation with our expert. During the meeting you will receive
-                a detailed overview on the current state of real estate market and its trends. Our expert will help you
-                define key parameters of your ideal property.</p>
-            </div>
-          </div>
-          <div>
-            <div class="inner-box">
-              <span class="slider-count">02</span>
-              <h5>Service Contract sign off</h5>
-              <p>We sign a service agreement with you.</p>
-            </div>
-          </div>
-          <div>
-            <div class="inner-box">
-              <span class="slider-count">03</span>
-              <h5>Analysis of options</h5>
-              <p>Our expert will make a thorough research for options that will meet your criteria. You will receive an
-                invaluable comparative analysis of the options.</p>
-            </div>
-          </div>
-          <div>
-            <div class="inner-box">
-              <span class="slider-count">04</span>
-              <h5>Viewings</h5>
-              <p>Our expert will organise and accompany you for viewings of selected options.</p>
-            </div>
-          </div>
-          <div>
-            <div class="inner-box">
-              <span class="slider-count">05</span>
-              <h5>Consultation</h5>
-              <p>We will provide you with free initial consultation with our expert. During the meeting you will receive
-                a detailed overview on the current state of real estate market and its trends. Our expert will help you
-                define key parameters of your ideal property.</p>
-            </div>
-          </div>
+          @include('site.block.how_working', ['how_working' => $about['how_working']])
         </div>
+
         <div class="preview-post flex-row">
           <div class="text-box">
-            <blockquote>
-              <p>Мы соблюдаем этические и профессиональные нормы, и ценим время клиентов</p>
-            </blockquote>
-            <p>Экспертность компании — позволяет продать больше и дороже. Конкурентные преимущества компании с
-              документальными фактами. К примеру, если компания действительно доставляет быстрее конкурентов, то пишите
-              за какое время. Если у компании есть ноу-хау, стройте маркетинг на нём.</p>
-            <p>Достижения компании в цифрах («800 тысяч тонн отгруженного сырья за год», «250 торговых точек по ЦФО»),
-              но правда, а не вымысел. Лицензии, сертификаты, отраслевые награды. Информация о компании в СМИ. Будьте
-              осторожны: заказные статьи в малотиражных СМИ негативно воспринимаются профессионалами.</p>
-            <a href="#" class="more-link">Подробнее о компании</a>
+            <blockquote><p>{!! $langSt($about['quote_main_block_1_1']) !!}</p></blockquote>
+            <p>{!! $langSt($about['quote_main_block_1_2']) !!}</p>
+            <a href="/about-company" class="more-link">@lang('main.company_details')</a>
           </div>
 
           <div class="img-box">
             <div class="position-box">
               <img src="/images/content/img_18.jpg" />
 
-              <a href="#" class="social-link">
-                <svg>
-                  <use xlink:href="/images/svg/sprite.svg#linkedin-square"></use>
-                </svg>
+              <a href="{!! $langSt($params['link_on_linkedin']['key']) !!}" class="social-link">
+                <svg><use xlink:href="/images/svg/sprite.svg#linkedin-square"></use></svg>
               </a>
             </div>
           </div>

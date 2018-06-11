@@ -53,4 +53,16 @@ return [
 	'little_description_catalog'  => 'Short description for catalog',
 	'little_description'          => 'Short description',
 	'how_we_are_working'          => 'How we are working',
+  'block_1'                     => 'Block 1',
+  'block_1_1'                   => 'Block 1, 1',
+  'block_1_2'                   => 'Block 1, 2',
+  'block_2'                     => 'Block 2',
+  'block_3'                     => 'Block 3',
+  'block_3_1'                   => 'Block 3, 1',
+  'block_4'                     => 'Block 4',
+  'slider_1'                    => 'Slider 1, 1',
+  'slider_2'                    => 'Slider 1, 2',
+  'quote_main_block_1_1'        => 'Quote main block 1, 1',
+  'quote_main_block_1_2'        => 'Quote main block 1, 1',
+  'link_how_working'            => 'Link to video "How we work"'
 ];
