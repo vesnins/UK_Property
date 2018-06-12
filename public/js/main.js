@@ -540,8 +540,10 @@
           defaultPosition;
 
       function setDecorLinePosition(activeDots) {
-        defaultPosition = activeDots.position().left + activeDots.width() / 2;
-        decorCircle.css('left', defaultPosition);
+        if(activeDots.position()) {
+          defaultPosition = activeDots.position().left + activeDots.width() / 2;
+          decorCircle.css('left', defaultPosition);
+        }
       }
 
       setDecorLinePosition(activeDots);

@@ -86,7 +86,6 @@ class MainController extends Controller
       ->dynamic
       ->t('main')
       ->where('main.active', 1)
-
       ->join(
         'files',
 
@@ -97,7 +96,6 @@ class MainController extends Controller
             ->where('files.main', '=', 1);
         }
       )
-
       ->select('main.*', 'files.file', 'files.crop')
       ->first()
       ->toArray();
@@ -116,10 +114,8 @@ class MainController extends Controller
       ->first()
       ->toArray();
 
-   // print_r($data['about']);
-   // exit;
-
-
+    // print_r($data['about']);
+    // exit;
 
 
     $data['meta_c'] = $this->base->getMeta($data['main_page']);
@@ -235,7 +231,6 @@ class MainController extends Controller
 
     $data['menu_segment'] = $this->dynamic->t('menu')
       ->where($where_id)
-
       ->join(
         'files',
 
@@ -246,7 +241,6 @@ class MainController extends Controller
             ->where('files.main', '=', 1);
         }
       )
-
       ->select('menu.*', 'files.file', 'files.crop')
       ->first();
 
@@ -297,7 +291,6 @@ class MainController extends Controller
 
       if($data['villa']['specialist'])
         $data['villa']['specialist'] = $this->dynamic->t('users')
-
           ->join(
             'files',
 
@@ -309,7 +302,6 @@ class MainController extends Controller
                 ->where('files.main', '=', 1);
             }
           )
-
           ->where('users.id', '=', (int) $data['villa']['specialist'])
           ->select('users.*', 'files.file', 'files.crop')
           ->first();
@@ -342,7 +334,6 @@ class MainController extends Controller
               ->where('files.main', '=', 1);
           }
         )
-
         ->join(
           'menu',
 
@@ -351,7 +342,6 @@ class MainController extends Controller
             $join->on('villas.cat_location', '=', 'menu.id');
           }
         )
-
         ->select('villas.*', 'files.file', 'files.crop', 'menu.name AS place')
         ->groupBy('villas.id')
         ->orderBy('villas.' . $group, 'DESC')
@@ -436,7 +426,6 @@ class MainController extends Controller
         ->dynamic
         ->t('locations')
         ->where('locations.active', 1)
-
         ->join(
           'villas',
 
@@ -445,7 +434,6 @@ class MainController extends Controller
             $join->on('villas.cat_location', '=', 'locations.cat');
           }
         )
-
         ->select('locations.*')
         ->groupBy('villas.cat_location')
         ->get()
@@ -553,7 +541,6 @@ class MainController extends Controller
         $this
           ->dynamic
           ->t('views_ip')
-
           ->insert(
             [
               'ip'         => $this->requests->ip(),
@@ -576,7 +563,7 @@ class MainController extends Controller
           'count_box' => 4,
           'group'     => $group,
           'tags'      => explode(',', $data['blog']['tags']),
-          'not_in'    => ['id', [$id]]
+          'not_in'    => ['id', [$id]],
         ]
       );
 
@@ -619,7 +606,6 @@ class MainController extends Controller
       $data['vacancy'] = $this
         ->dynamic
         ->t('vacancies')
-
         ->join(
           'files',
 
@@ -630,7 +616,6 @@ class MainController extends Controller
               ->where('files.main', '=', 1);
           }
         )
-
         ->select('vacancies.*', 'files.file', 'files.crop')
         ->where([['vacancies.active', 1], ['vacancies.id', $id]])
         ->first();
@@ -936,7 +921,7 @@ class MainController extends Controller
     return $this->helper->_page($id, $view, $name_table);
   }
 
-  /**
+  /**invest-in-development-projects
    * Tools Send mail.
    */
   public function submit_required()
@@ -1190,5 +1175,149 @@ class MainController extends Controller
     echo json_encode($ret);
 
     exit;
+  }
+
+  /**
+   * @param      $name
+   * @param null $id
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+   */
+  public function catalog($name, $id = null)
+  {
+    $data = [];
+
+    $filters = [
+      'invest-in-development-projects' => [
+        'name' => 'invest_in_development_projects',
+
+        'filters' => [
+          // Район(Расположение)
+          'cat_location'           => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_cat_location',
+
+            'fields' => [
+              'cat_location' => [
+                'name'  => 'cat_location',
+                'title' => __('main.cat_location'),
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Стоимость, млн евро(Стоимость)
+          'price'                  => [
+            'type' => 'slider_select',
+
+            'fields' => [
+              'price_from' => [
+                'name'  => 'price_from',
+                'title' => __('main.cost_€_million'),
+              ],
+
+              'price_to' => [
+                'name'  => 'price_from',
+                'title' => '',
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Площадь
+          'area'                   => [
+            'type' => 'slider_select_area',
+
+            'fields' => [
+              'area_from' => [
+                'name'  => 'area_from',
+                'title' => __('main.area'),
+              ],
+
+              'price_to' => [
+                'name'  => 'area_from',
+                'title' => '',
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Спальни
+          'bedrooms'               => [
+            'type' => 'slider_select',
+
+            'fields' => [
+              'area_from' => [
+                'name'  => 'bedrooms_from',
+                'title' => __('main.bedrooms'),
+              ],
+
+              'price_to' => [
+                'name'  => 'bedrooms_to',
+                'title' => '',
+              ],
+            ],
+          ],
+
+          // Тип объекта
+          'type_object'            => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_type_object',
+
+            'fields' => [
+              'type_object' => [
+                'name'  => 'type_object',
+                'title' => __('main.type_object'),
+              ],
+            ],
+          ],
+
+          // Инфраструктура
+          'development_facilities' => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_development_facilities',
+
+            'fields' => [
+              'development_facilities' => [
+                'name'  => 'development_facilities',
+                'title' => __('main.development_facilities'),
+              ],
+            ],
+          ],
+
+          // Ожидаемый срок
+          'estimated_completion'   => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_estimated_completion',
+
+            'fields' => [
+              'estimated_completion' => [
+                'name'  => 'estimated_completion',
+                'title' => __('main.estimated_completion'),
+              ],
+            ],
+          ],
+        ],
+      ],
+    ];
+
+    if(!($filters[$name] ?? false))
+      return $this->helper->_errors_404();
+
+    $data['services'] = $this->helper->_services();
+    $data['service']  = [];
+    $data['filters']  = $filters[$name];
+
+    // print_r($data['filters'] );
+
+    foreach($data['services'] as $service)
+      if($service['translation']["services/$name"])
+        $data['service'] = $service;
+
+    $data['meta_c'] = $this->base->getMeta($data, 'service');
+
+    return $this->base->view_s("site.main.{$filters[$name]['name']}", $data);
   }
 }

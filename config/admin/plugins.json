@@ -1,1580 +1,1753 @@
 [
-	{
-		"name"        : "name",
-		"typeField"   : "input",
-		"nameText"    : "Название",
-		"nameAttr"    : "pl[name]",
-		"description" : "Текстовое поле инпут для названия",
-		"idAttr"      : "inputName",
-		"sql_column"  : "name",
-		"translateKey": "caption"
-	},
-	{
-		"name"        : "text",
-		"classAttr"   : "area",
-		"typeField"   : "textarea",
-		"nameText"    : "Полный текст",
-		"nameAttr"    : "pl[text]",
-		"description" : "Текстовое поле \"Полный текст\"",
-		"idAttr"      : "textareaText",
-		"sql_column"  : "text",
-		"translateKey": "fullText"
-	},
-	{
-		"name"       : "comment_1",
-		"typeField"  : "textarea",
-		"nameText"   : "Комментарий для курьера",
-		"nameAttr"   : "pl[comment_1]",
-		"description": "Текстовое поле \"Комментарий для курьера\"",
-		"idAttr"     : "textareaComment_1",
-		"sql_column" : "comment_1"
-	},
-	{
-		"name"       : "comment_2",
-		"typeField"  : "textarea",
-		"nameText"   : "Дополнительный комментарий",
-		"nameAttr"   : "pl[comment_2]",
-		"description": "Текстовое поле \"Дополнительный комментарий\"",
-		"idAttr"     : "textareaComment_2",
-		"sql_column" : "comment_2"
-	},
-	{
-		"name"       : "date_of_birth",
-		"typeField"  : "input",
-		"nameText"   : "Дата рождения",
-		"nameAttr"   : "pl[date_of_birth]",
-		"description": "Мета поле инпут для Даты рождения",
-		"idAttr"     : "inputDate_of_birth",
-		"sql_column" : "date_of_birth"
-	},
-	{
-		"name"       : "title",
-		"typeField"  : "input",
-		"nameText"   : "Title",
-		"nameAttr"   : "pl[title]",
-		"description": "Мета поле инпут для Title",
-		"idAttr"     : "inputTitle",
-		"sql_column" : "title",
-		"tabs"       : "metaData"
-	},
-	{
-		"name"        : "author",
-		"typeField"   : "input",
-		"nameText"    : "Author",
-		"nameAttr"    : "pl[author]",
-		"description" : "Мета поле инпут для Author",
-		"idAttr"      : "inputAuthor",
-		"sql_column"  : "author",
-		"tabs"        : "metaData",
-		"translateKey": "author"
-	},
-	{
-		"name"       : "keywords",
-		"typeField"  : "textarea",
-		"nameText"   : "Keywords",
-		"nameAttr"   : "pl[keywords]",
-		"description": "Мета поле Keywords",
-		"idAttr"     : "textareaDescription",
-		"sql_column" : "keywords",
-		"tabs"       : "metaData"
-	},
-	{
-		"name"       : "description",
-		"typeField"  : "textarea",
-		"nameText"   : "Description",
-		"nameAttr"   : "pl[description]",
-		"description": "Мета поле Description",
-		"idAttr"     : "textareaDescription",
-		"sql_column" : "description",
-		"tabs"       : "metaData"
-	},
-	{
-		"name"       : "html_top",
-		"typeField"  : "textarea",
-		"typeView"   : "accordion",
-		"nameText"   : "Html top",
-		"nameAttr"   : "pl[html_top]",
-		"description": "Html вставки \"html_top\"",
-		"idAttr"     : "textareaHtml_top",
-		"sql_column" : "html_top",
-		"tabs"       : "htmlInserts"
-	},
-	{
-		"name"       : "html_bottom",
-		"typeField"  : "textarea",
-		"typeView"   : "accordion",
-		"nameText"   : "Html bottom",
-		"nameAttr"   : "pl[html_bottom]",
-		"description": "Html вставки \"html_bottom\"",
-		"idAttr"     : "textareaHtml_bottom",
-		"sql_column" : "html_bottom",
-		"tabs"       : "htmlInserts"
-	},
-	{
-		"name"        : "sort",
-		"typeField"   : "input",
-		"type"        : "number",
-		"classAttr"   : "border-green",
-		"nameText"    : "Сортировка",
-		"nameAttr"    : "pl[order]",
-		"description" : "Текстовое поле инпут \"Порядок сортировки\"",
-		"idAttr"      : "inputSort",
-		"showOnly"    : ["admin", "specialist"],
-		"sql_column"  : "sort",
-		"translateKey ": "order"
-	},
-	{
-		"name"       : "class",
-		"typeField"  : "input",
-		"nameText"   : "Class",
-		"nameAttr"   : "pl[class]",
-		"description": "Текстовое поле инпут \"Class\"",
-		"idAttr"     : "inputClass",
-		"sql_column" : "class"
-	},
-	{
-		"name"        : "translation",
-		"typeField"   : "functions",
-		"nameText"    : "Translation",
-		"nameAttr"    : "pl[translation]",
-		"description" : "Текстовое поле инпут \"Translation\"",
-		"idAttr"      : "inputTranslation",
-		"sql_column"  : "translation",
-		"translateKey": "translation"
-	},
-	{
-		"name"       : "controller",
-		"typeField"  : "input",
-		"nameText"   : "Controller",
-		"nameAttr"   : "pl[controller]",
-		"description": "Текстовое поле инпут \"Controller\"",
-		"idAttr"     : "inputController",
-		"sql_column" : "controller"
-	},
-	{
-		"name"       : "little_description",
-		"typeField"  : "textarea",
-		"nameText"   : "Сокращённый текст",
-		"nameAttr"   : "pl[little_description]",
-		"description": "Текстовое поле \"Little_description\"",
-		"idAttr"     : "textareaLittle_description",
-		"maxlength"  : "12000",
-		"translateKey": "little_description",
-		"sql_column" : "little_description"
-	},
-	{
-		"name"       : "little_description_catalog",
-		"typeField"  : "textarea",
-		"classAttr"  : "area",
-		"nameText"   : "Сокращённый текст для каталога",
-		"nameAttr"   : "pl[little_description_catalog]",
-		"description": "Текстовое поле \"Little_description_catalog\"",
-		"idAttr"     : "textareaLittle_description_catalog",
-		"maxlength"  : "12000",
-		"translateKey": "little_description",
-		"sql_column" : "little_description_catalog"
-	},
-	{
-		"name"        : "key_feature",
-		"typeField"   : "textarea",
-		"nameText"    : "Ключевая особенность",
-		"nameAttr"    : "pl[key_feature]",
-		"description" : "Текстовое поле \"Key_feature\"",
-		"idAttr"      : "textareaKey_feature",
-		"sql_column"  : "key_feature",
-		"translateKey": "key_feature"
-	},
-	{
-		"name"        : "layout",
-		"typeField"   : "textarea",
-		"nameText"    : "Планировка",
-		"nameAttr"    : "pl[layout]",
-		"description" : "Текстовое поле \"Layout\"",
-		"idAttr"      : "textareaLayout",
-		"sql_column"  : "layout",
-		"translateKey": "layout"
-	},
-	{
-		"name"       : "information",
-		"typeField"  : "textarea",
-		"nameText"   : "Информация",
-		"nameAttr"   : "pl[information]",
-		"description": "\"Information\"",
-		"idAttr"     : "textareaInformation",
-		"sql_column" : "information"
-	},
-	{
-		"name"       : "date",
-		"typeField"  : "input",
-		"classAttr"  : "date_start",
-		"nameText"   : "Дата публикации",
-		"nameAttr"   : "pl[date]",
-		"description": "Текстовое поле инпут \"date\"",
-		"idAttr"     : "inputStart",
-		"sql_column" : "date"
-	},
-	{
-		"name"       : "date_start",
-		"typeField"  : "input",
-		"classAttr"  : "date_start",
-		"nameText"   : "Дата завершения публикации",
-		"nameAttr"   : "pl[date_start]",
-		"description": "Текстовое поле инпут \"Date_start\"",
-		"idAttr"     : "inputDate_start",
-		"sql_column" : "date_start"
-	},
-	{
-		"name"       : "date_finish",
-		"typeField"  : "input",
-		"classAttr"  : "date_finish",
-		"nameText"   : "Дата завершения публикации",
-		"nameAttr"   : "pl[date_finish]",
-		"description": "Текстовое поле инпут \"Date_finish\"",
-		"idAttr"     : "inputDate_finish",
-		"sql_column" : "date_finish"
-	},
-	{
-		"name"       : "style",
-		"typeField"  : "input",
-		"nameText"   : "Стили",
-		"nameAttr"   : "pl[style]",
-		"description": "Текстовое поле инпут \"Style\" для назначения стилей элементу",
-		"idAttr"     : "inputStyle",
-		"sql_column" : "style"
-	},
-	{
-		"name"       : "sys_cat",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Системная категория",
-		"nameAttr"   : "pl[sys_cat]",
-		"description": "Текстовое поле селект \"Sys_cat\" для назначения стилей элементу",
-		"idAttr"     : "selectSys_cat",
-		"sql_column" : "sys_cat",
-		"body"       : {
-			"text": "<option value=\"\">Не исползуется</option><option value=\"main\">Главная</option><option value=\"gallery\">Галерея</option><option value=\"catalog\">Каталог</option><option value=\"actions\">Акции</option><option value=\"news\">Новости</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"        : "active",
-		"typeField"   : "select",
-		"classAttr"   : "select2",
-		"nameText"    : "Статус отображения",
-		"nameAttr"    : "pl[active]",
-		"description" : "Текстовое поле селект \"Active\" для назначения статуса отображения",
-		"idAttr"      : "selectActive",
-		"sql_column"  : "active",
-		"translateKey": "statusViews",
-		"body"        : {
-			"text": "<option value=\"1\">Отображается</option><option value=\"0\">Не отображается</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"        : "is_best",
-		"typeField"   : "select",
-		"classAttr"   : "select2",
-		"nameText"    : "Отображать в лучших",
-		"nameAttr"    : "pl[is_best]",
-		"description" : "Текстовое поле селект \"Is best\" для назначения статуса отображения",
-		"idAttr"      : "selectIs_beste",
-		"sql_column"  : "is_best",
-		"translateKey": "isBest",
-		"body"        : {
-			"text": "<option value=\"1\">Best</option><option value=\"0\">-</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"        : "cat",
-		"typeField"   : "select",
-		"classAttr"   : "select2",
-		"nameText"    : "Категория",
-		"nameAttr"    : "pl[cat]",
-		"description" : "Текстовое поле селект \"Cat\" для выбора категории",
-		"idAttr"      : "selectCat",
-		"sql_column"  : "cat",
-		"accurate"    : true,
-		"recursive"   : true,
-		"parent_table": "menu",
-		"translateKey": "cat",
-		"body"        : {
-			"text": "<option value=\"0\">(Без категории)</option>{-option-}",
-			"type": "replace"
-		}
-	},
-	{
-		"name"        : "cat_location",
-		"typeField"   : "select",
-		"classAttr"   : "select2",
-		"nameText"    : "Категория",
-		"nameAttr"    : "pl[cat_location]",
-		"description" : "Текстовое поле селект \"Cat\" для выбора категории",
-		"idAttr"      : "selectCat_location",
-		"sql_column"  : "location",
-		"accurate"    : true,
-		"recursive"   : true,
-		"parent_table": "menu",
-		"translateKey": "cat_location",
-		"body"        : {
-			"text": "<option value=\"0\">(Без категории)</option>{-option-}",
-			"type": "replace"
-		}
-	},
-	{
-		"name"        : "recommendedVillas",
-		"typeField"   : "select",
-		"classAttr"   : "select2",
-		"nameText"    : "Рекомендованные виллы",
-		"nameAttr"    : "pl[recommendedVillas]",
-		"description" : "Текстовое поле селект \"recommendedVillas\" для выбора категории",
-		"idAttr"      : "selectRecommendedVillas",
-		"sql_column"  : "recommendedVillas",
-		"accurate"    : true,
-		"recursive"   : true,
-		"parent_table": "villas",
-		"translateKey": "recommendedVillas",
-		"body"        : {
-			"text"    : "<option value=\"0\">(Без категории)</option>{-option-}",
-			"type"    : "replace",
-			"multiple": "multiple"
-		}
-	},
-	{
-		"name"            : "album",
-		"typeField"       : "functions",
-		"nameText"        : "Изображение",
-		"nameAttr"        : "pl[album]",
-		"description"     : "Плагин \"Album\" для выбора создания альбома",
-		"idAttr"          : "inputAlbum",
-		"sql_column"      : "album",
-		"noSaveInDatabase": true,
-		"translateKey"    : "preview"
-	},
-	{
-		"name"            : "files",
-		"typeField"       : "functions",
-		"nameText"        : "Файлы",
-		"nameAttr"        : "pl[files]",
-		"description"     : "Плагин \"Files\"",
-		"idAttr"          : "inputFiles",
-		"noSaveInDatabase": true,
-		"sql_column"      : "files"
-	},
-	{
-		"name"       : "ordering",
-		"typeField"  : "ordering",
-		"nameText"   : "Инормация о заказе",
-		"nameAttr"   : "pl[ordering]",
-		"description": "Плагин \"Инормация о заказе\"",
-		"idAttr"     : "inputOrdering",
-		"sql_column" : "ordering",
-		"body"       : {
-			"text": "<div id=\"ordering\"></div>",
-			"type": "ordering"
-		}
-	},
-	{
-		"name"       : "country",
-		"typeField"  : "input",
-		"nameText"   : "Страна",
-		"nameAttr"   : "pl[country]",
-		"description": "Текстовое поле инпут \"Страна\"",
-		"idAttr"     : "inputCountry",
-		"sql_column" : "country"
-	},
-	{
-		"name"       : "region",
-		"typeField"  : "input",
-		"nameText"   : "Регион",
-		"nameAttr"   : "pl[region]",
-		"description": "Текстовое поле инпут \"Регион\"",
-		"idAttr"     : "inputRegion",
-		"sql_column" : "region"
-	},
-	{
-		"name"       : "locality_name",
-		"typeField"  : "input",
-		"nameText"   : "Город",
-		"nameAttr"   : "pl[locality_name]",
-		"description": "Текстовое поле инпут \"locality-name (Город)\"",
-		"idAttr"     : "inputLocality_name",
-		"sql_column" : "locality_name"
-	},
-	{
-		"name"       : "district",
-		"typeField"  : "input",
-		"nameText"   : "Район",
-		"nameAttr"   : "pl[district]",
-		"description": "Текстовое поле инпут \"Район\"",
-		"idAttr"     : "inputDistrict",
-		"sql_column" : "district"
-	},
-	{
-		"name"       : "address",
-		"typeField"  : "input",
-		"nameText"   : "Адрес",
-		"nameAttr"   : "pl[address]",
-		"description": "Текстовое поле инпут \"Адрес\"",
-		"idAttr"     : "inputAddress",
-		"sql_column" : "address"
-	},
-	{
-		"name"       : "apartment",
-		"typeField"  : "input",
-		"nameText"   : "Квартира или офис",
-		"nameAttr"   : "pl[apartment]",
-		"description": "Текстовое поле инпут \"Квартира или офис\"",
-		"idAttr"     : "inputApartment",
-		"sql_column" : "apartment"
-	},
-	{
-		"name"       : "name_seller",
-		"typeField"  : "input",
-		"nameText"   : "Имя продавца",
-		"nameAttr"   : "pl[name_seller]",
-		"description": "Текстовое поле инпут \"name-seller (Имя продавца)\"",
-		"idAttr"     : "inputName_seller",
-		"sql_column" : "name_seller"
-	},
-	{
-		"name"       : "phone",
-		"typeField"  : "input",
-		"nameText"   : "Телефон",
-		"nameAttr"   : "pl[phone]",
-		"description": "Текстовое поле инпут \"phone Телефон\"",
-		"idAttr"     : "inputPhone",
-		"sql_column" : "phone"
-	},
-	{
-		"name"       : "organization",
-		"typeField"  : "input",
-		"nameText"   : "Организация",
-		"nameAttr"   : "pl[organization]",
-		"description": "Текстовое поле инпут \"Организация\"",
-		"idAttr"     : "inputOrganization",
-		"sql_column" : "organization"
-	},
-	{
-		"name"        : "price_money",
-		"typeField"   : "input",
-		"nameText"    : "Цена(только число)",
-		"nameAttr"    : "pl[price_money]",
-		"description" : "Текстовое поле инпут \"price-money (Цена(только число))\"",
-		"idAttr"      : "inputPrice_money",
-		"sql_column"  : "price_money",
-		"translateKey": "price_money"
-	},
-	{
-		"name"       : "total_cost",
-		"typeField"  : "input",
-		"nameText"   : "Общая стоимость",
-		"nameAttr"   : "pl[total_cost]",
-		"description": "Текстовое поле инпут \"total_cost (Общая стоимость)\"",
-		"idAttr"     : "inputTotal_cost",
-		"sql_column" : "total_cost"
-	},
-	{
-		"name"       : "price_currency",
-		"typeField"  : "input",
-		"nameText"   : "Валюта(RUR|USD)",
-		"nameAttr"   : "pl[price_currency]",
-		"description": "Текстовое поле инпут \"price-currency (Валюта)\"",
-		"idAttr"     : "inputPrice_currency",
-		"sql_column" : "price_currency"
-	},
-	{
-		"name"       : "area_space",
-		"typeField"  : "input",
-		"nameText"   : "Цена(только число)",
-		"nameAttr"   : "pl[area_space]",
-		"description": "Текстовое поле инпут \"area-space (Общая площадь (только число))\"",
-		"idAttr"     : "inputArea_space",
-		"sql_column" : "area_space"
-	},
-	{
-		"name"       : "area_unit",
-		"typeField"  : "input",
-		"nameText"   : "Еденица измерения площади",
-		"nameAttr"   : "pl[area_unit]",
-		"description": "Текстовое поле инпут \"area-unit (Еденица измерения площади)\"",
-		"idAttr"     : "inputArea_unit",
-		"sql_column" : "area_unit"
-	},
-	{
-		"name"       : "rooms",
-		"typeField"  : "input",
-		"nameText"   : "Количество комнат",
-		"nameAttr"   : "pl[rooms]",
-		"description": "Текстовое поле инпут \"Количество комнат\"",
-		"idAttr"     : "inputRooms",
-		"sql_column" : "rooms"
-	},
-	{
-		"name"       : "floor",
-		"typeField"  : "input",
-		"nameText"   : "Номер этажа",
-		"nameAttr"   : "pl[floor]",
-		"description": "Текстовое поле инпут \"Номер этажа\"",
-		"idAttr"     : "inputFloor",
-		"sql_column" : "floor"
-	},
-	{
-		"name"       : "entrance_floor",
-		"typeField"  : "input",
-		"nameText"   : "Подъезд/этаж",
-		"nameAttr"   : "pl[entrance_floor]",
-		"description": "Текстовое поле инпут \"Подъезд/этаж\"",
-		"idAttr"     : "inputEntrance_floor",
-		"sql_column" : "entrance_floor"
-	},
-	{
-		"name"       : "email",
-		"typeField"  : "input",
-		"nameText"   : "Email",
-		"nameAttr"   : "pl[email]",
-		"description": "Текстовое поле инпут \"Email\"",
-		"idAttr"     : "inputEmail",
-		"sql_column" : "email"
-	},
-	{
-		"name"       : "subscribe_mail",
-		"typeField"  : "input",
-		"nameText"   : "Email",
-		"nameAttr"   : "pl[subscribe_mail]",
-		"description": "Текстовое поле инпут \"Email\"",
-		"idAttr"     : "inputSubscribe_mail",
-		"sql_column" : "email"
-	},
-	{
-		"name"       : "full_name",
-		"typeField"  : "input",
-		"nameText"   : "Фамилия Имя Отчество",
-		"nameAttr"   : "pl[full_name]",
-		"description": "Текстовое поле инпут \"Фамилия Имя Отчество\"",
-		"idAttr"     : "inputFull_name",
-		"sql_column" : "full_name"
-	},
-	{
-		"name"       : "delivery_time_1",
-		"typeField"  : "input",
-		"nameText"   : "Время доставки(запрсил клиент)",
-		"nameAttr"   : "pl[delivery_time_1]",
-		"description": "Текстовое поле инпут \"Время доставки(запрсил клиент)\"",
-		"idAttr"     : "inputDelivery_time_1",
-		"sql_column" : "delivery_time_1"
-	},
-	{
-		"name"       : "delivery_time_2",
-		"typeField"  : "input",
-		"classAttr"  : "date_time",
-		"nameText"   : "Время доставки (фиксированное курьером)",
-		"nameAttr"   : "pl[delivery_time_2]",
-		"description": "Текстовое поле инпут \"Время доставки (фиксированное курьером)\"",
-		"idAttr"     : "inputDelivery_time_2",
-		"sql_column" : "delivery_time_2"
-	},
-	{
-		"name"       : "parent_id",
-		"typeField"  : "input",
-		"nameText"   : "Id родителя",
-		"nameAttr"   : "pl[parent_id]",
-		"description": "Текстовое поле инпут \"id родителя(при парсинге)\"",
-		"idAttr"     : "inputParent_id",
-		"sql_column" : "parent_id"
-	},
-	{
-		"name"       : "haggle",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Возможны торги",
-		"nameAttr"   : "pl[haggle]",
-		"description": "Select \"Возможны торги\"",
-		"idAttr"     : "selectHaggle",
-		"sql_column" : "haggle",
-		"body"       : {
-			"text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "not_available",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Нет в наличии",
-		"nameAttr"   : "pl[not_available]",
-		"description": "Select \"Нет в наличии\"",
-		"idAttr"     : "selectNot_available",
-		"sql_column" : "not_available",
-		"body"       : {
-			"text": "<option value=\"0\">В наличии</option><option value=\"1\">Нет в наличии</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "sell_out",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Распродажа",
-		"nameAttr"   : "pl[sell_out]",
-		"description": "Select \"Распродажа\"",
-		"idAttr"     : "selectSell_out",
-		"sql_column" : "sell_out",
-		"body"       : {
-			"text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "gender",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Пол",
-		"nameAttr"   : "pl[gender]",
-		"description": "Select \"Пол\"",
-		"idAttr"     : "selectGender",
-		"sql_column" : "gender",
-		"body"       : {
-			"text": "<option value=\"\">Не выбран</option><option value=\"male\">Мужской</option><option value=\"female\">Женский</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "payment_method",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Способ оплаты",
-		"nameAttr"   : "pl[payment_method]",
-		"description": "Select \"Способ оплаты\"",
-		"idAttr"     : "selectPayment_method",
-		"sql_column" : "payment_method",
-		"body"       : {
-			"text": "<option value=\"\">Не выбран</option><option value=\"cash\">Наличный расчёт</option><option value=\"noncash\">Безналичный расчёт</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "private_house",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Частный дом",
-		"nameAttr"   : "pl[private_house]",
-		"description": "Select \"Частный дом\"",
-		"idAttr"     : "selectPrivate_house",
-		"sql_column" : "private_house",
-		"body"       : {
-			"text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "status_app",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Статус заявки",
-		"nameAttr"   : "pl[status_app]",
-		"description": "Select \"Статус заявки\"",
-		"idAttr"     : "selectStatus_app",
-		"sql_column" : "status_app",
-		"body"       : {
-			"text": "<option value=\"0\">Новая заявка</option><option value=\"1\">В обработке</option><option value=\"2\">Заказ отправлен</option><option value=\"3\">Закрыт</option><option value=\"4\">Отказ</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "mortgage_simple",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Ипотека",
-		"nameAttr"   : "pl[mortgage_simple]",
-		"description": "Select \"Ипотека\"",
-		"idAttr"     : "selectMortgage_simple",
-		"sql_column" : "mortgage_simple",
-		"body"       : {
-			"text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "mortgage_military",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Военная ипотека",
-		"nameAttr"   : "pl[mortgage_military]",
-		"description": "Select \"Военная ипотека\"",
-		"idAttr"     : "selectMortgage_military",
-		"sql_column" : "mortgage_military",
-		"body"       : {
-			"text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "mortgage_maternal",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Материнский капитал",
-		"nameAttr"   : "pl[mortgage_maternal]",
-		"description": "Select \"Материнский капитал\"",
-		"idAttr"     : "selectMortgage_maternal",
-		"sql_column" : "mortgage_maternal",
-		"body"       : {
-			"text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "quality",
-		"typeField"  : "input",
-		"nameText"   : "Качество отделки",
-		"nameAttr"   : "pl[quality]",
-		"description": "Текстовое поле инпут \"Качество отделк\"",
-		"idAttr"     : "inputQuality",
-		"sql_column" : "quality"
-	},
-	{
-		"name"       : "number_room",
-		"typeField"  : "input",
-		"nameText"   : "Номер квартиры",
-		"nameAttr"   : "pl[number_room]",
-		"description": "Текстовое поле инпут \"number-room (Номер квартиры)\"",
-		"idAttr"     : "inputNumber_room",
-		"sql_column" : "number_room"
-	},
-	{
-		"name"       : "section",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Подъезд",
-		"nameAttr"   : "pl[section]",
-		"description": "Select \"Подъезд\"",
-		"idAttr"     : "selectSection",
-		"sql_column" : "section",
-		"body"       : {
-			"text": "<option value=\"\">все</option><option value=\"1\">1</option><option value=\"2\">2</option><option value=\"3\">3</option><option value=\"4\">4</option><option value=\"5\">5</option><option value=\"6\">6</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"        : "coordinates",
-		"typeField"   : "input",
-		"nameText"    : "Координаты",
-		"nameAttr"    : "pl[coordinates]",
-		"description" : "Текстовое поле инпут \"Координаты(latitude|longitude)\"",
-		"idAttr"      : "inputCoordinates",
-		"sql_column"  : "coordinates",
-		"translateKey": "coordinates"
-	},
-	{
-		"name"       : "putting_all",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Очередь сдачи",
-		"nameAttr"   : "pl[putting_all]",
-		"description": "Select \"Putting all\"",
-		"idAttr"     : "selectPutting_all",
-		"sql_column" : "putting_all",
-		"body"       : {
-			"text": "<option value=\"0\">сдан</option><option value=\"2016\">2016</option><option value=\"2017\">2017</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "discount",
-		"typeField"  : "input",
-		"nameText"   : "Скидка (только число, в %)",
-		"nameAttr"   : "pl[discount]",
-		"description": "Текстовое поле инпут \"Скидка\"",
-		"idAttr"     : "inputDiscount",
-		"sql_column" : "discount"
-	},
-	{
-		"name"       : "sort",
-		"typeField"  : "input",
-		"nameText"   : "Сортировка",
-		"nameAttr"   : "pl[sort]",
-		"description": "Текстовое поле инпут \"Сортировка(имя сортируемой таблицы)\"",
-		"idAttr"     : "inputSort",
-		"sql_column" : "sort"
-	},
-	{
-		"name"       : "living_space",
-		"typeField"  : "input",
-		"nameText"   : "Жилая площадь",
-		"nameAttr"   : "pl[living_space]",
-		"description": "Текстовое поле инпут \"Жилая площадь\"",
-		"idAttr"     : "inputLiving_space",
-		"sql_column" : "living_space"
-	},
-	{
-		"name"       : "kitchen_space",
-		"typeField"  : "input",
-		"nameText"   : "Площадь кухни",
-		"nameAttr"   : "pl[kitchen_space]",
-		"description": "Текстовое поле инпут \"Площадь кухни\"",
-		"idAttr"     : "inputKitchen_space",
-		"sql_column" : "kitchen_space"
-	},
-	{
-		"name"       : "status_room",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Статуса продажи",
-		"nameAttr"   : "pl[status_room]",
-		"description": "Select \"Статуса продажи\"",
-		"idAttr"     : "selectStatus_room",
-		"sql_column" : "status_room",
-		"body"       : {
-			"text": "<option value=\"0\">Свободна</option><option value=\"1\">Бронь</option><option value=\"2\">Продана</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "room_1",
-		"typeField"  : "input",
-		"nameText"   : "Жилая комната 1",
-		"nameAttr"   : "pl[room_1]",
-		"description": "Текстовое поле инпут \"Жилая комната 1\"",
-		"idAttr"     : "inputRoom_1",
-		"sql_column" : "room_1"
-	},
-	{
-		"name"       : "room_2",
-		"typeField"  : "input",
-		"nameText"   : "Жилая комната 2",
-		"nameAttr"   : "pl[room_2]",
-		"description": "Текстовое поле инпут \"Жилая комната 2\"",
-		"idAttr"     : "inputRoom_2",
-		"sql_column" : "room_2"
-	},
-	{
-		"name"       : "room_3",
-		"typeField"  : "input",
-		"nameText"   : "Жилая комната 3",
-		"nameAttr"   : "pl[room_3]",
-		"description": "Текстовое поле инпут \"Жилая комната 3\"",
-		"idAttr"     : "inputRoom_3",
-		"sql_column" : "room_3"
-	},
-	{
-		"name"       : "room_4",
-		"typeField"  : "input",
-		"nameText"   : "Жилая комната 4",
-		"nameAttr"   : "pl[room_4]",
-		"description": "Текстовое поле инпут \"Жилая комната 4\"",
-		"idAttr"     : "inputRoom_4",
-		"sql_column" : "room_4"
-	},
-	{
-		"name"       : "number_court",
-		"typeField"  : "input",
-		"nameText"   : "Номер на площадке",
-		"nameAttr"   : "pl[number_court]",
-		"description": "Текстовое поле инпут \"Номер на площадке\"",
-		"idAttr"     : "inputNumber_court",
-		"sql_column" : "number_court"
-	},
-	{
-		"name"       : "home_jd",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Очередь сдачи",
-		"nameAttr"   : "pl[home_jd]",
-		"description": "Select \"Жилой дом\"",
-		"idAttr"     : "selectHome_jd",
-		"sql_column" : "home_jd",
-		"body"       : {
-			"text": "<option value=\"\">все</option><option value=\"5-2\">5-2</option><option value=\"10-1\">10-1</option><option value=\"10-2\">10-2</option><option value=\"10-4\">10-4</option><option value=\"10-5\">10-5</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "type_object",
-		"typeField"  : "input",
-		"nameText"   : "Тип объекта",
-		"nameAttr"   : "pl[type_object]",
-		"description": "Текстовое поле инпут \"Тип объекта\"",
-		"idAttr"     : "inputType_object",
-		"sql_column" : "type_object"
-	},
-	{
-		"name"       : "rightholder",
-		"typeField"  : "input",
-		"nameText"   : "Правообладатель",
-		"nameAttr"   : "pl[rightholder]",
-		"description": "Текстовое поле инпут \"Правообладатель\"",
-		"idAttr"     : "inputRightholder",
-		"sql_column" : "rightholder"
-	},
-	{
-		"name"       : "contractor_type",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Тип лица",
-		"nameAttr"   : "pl[contractor_type]",
-		"description": "Select \"Тип лица\"",
-		"idAttr"     : "selectContractor_type",
-		"sql_column" : "contractor_type",
-		"body"       : {
-			"text": "<option value=\"0\">Физлицо</option><option value=\"1\">Юрлицо</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "contractor_name",
-		"typeField"  : "input",
-		"nameText"   : "Контрагент (имя)",
-		"nameAttr"   : "pl[contractor_name]",
-		"description": "Текстовое поле инпут \"Контрагент (имя)\"",
-		"idAttr"     : "inputContractor_name",
-		"sql_column" : "contractor_name"
-	},
-	{
-		"name"       : "contractor_lastname",
-		"typeField"  : "input",
-		"nameText"   : "Контрагент (фамилия)",
-		"nameAttr"   : "pl[contractor_lastname]",
-		"description": "Текстовое поле инпут \"Контрагент (фамилия)\"",
-		"idAttr"     : "inputContractor_lastname",
-		"sql_column" : "contractor_lastname"
-	},
-	{
-		"name"       : "contractor_patronymic",
-		"typeField"  : "input",
-		"nameText"   : "Контрагент (отчество)",
-		"nameAttr"   : "pl[contractor_patronymic]",
-		"description": "Текстовое поле инпут \"Контрагент (отчество)\"",
-		"idAttr"     : "inputContractor_patronymic",
-		"sql_column" : "contractor_patronymic"
-	},
-	{
-		"name"       : "contractor_saleday",
-		"typeField"  : "input",
-		"nameText"   : "Дата продажи",
-		"nameAttr"   : "pl[contractor_saleday]",
-		"description": "Текстовое поле инпут \"Дата продажи\"",
-		"idAttr"     : "inputContractor_saleday",
-		"sql_column" : "contractor_saleday"
-	},
-	{
-		"name"       : "loggia1_space",
-		"typeField"  : "input",
-		"nameText"   : "Площадь лоджии 1",
-		"nameAttr"   : "pl[loggia1_space]",
-		"description": "Текстовое поле инпут \"Площадь лоджии 1\"",
-		"idAttr"     : "inputLoggia1_space",
-		"sql_column" : "loggia1_space"
-	},
-	{
-		"name"       : "loggia2_space",
-		"typeField"  : "input",
-		"nameText"   : "Площадь лоджии 2",
-		"nameAttr"   : "pl[loggia2_space]",
-		"description": "Текстовое поле инпут \"Площадь лоджии 2\"",
-		"idAttr"     : "inputLoggia2_space",
-		"sql_column" : "loggia2_space"
-	},
-	{
-		"name"       : "from_north",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Расселение с севера",
-		"nameAttr"   : "pl[from_north]",
-		"description": "Select \"Расселение с севера\"",
-		"idAttr"     : "selectFrom_north",
-		"sql_column" : "from_north",
-		"body"       : {
-			"text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "seasonal_goods",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Сезонный товар",
-		"nameAttr"   : "pl[seasonal_goods]",
-		"description": "Select \"Сезонный товар\"",
-		"idAttr"     : "selectSeasonal_goods",
-		"sql_column" : "seasonal_goods",
-		"body"       : {
-			"text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "popular_product",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Популярный продукт",
-		"nameAttr"   : "pl[popular_product]",
-		"description": "Select \"Популярный продукт\"",
-		"idAttr"     : "selectPopular_product",
-		"sql_column" : "popular_product",
-		"body"       : {
-			"text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "weight",
-		"typeField"  : "input",
-		"nameText"   : "Вес (число в граммах)",
-		"nameAttr"   : "pl[weight]",
-		"description": "Текстовое поле инпут \"Вес\"",
-		"idAttr"     : "inputWeight",
-		"sql_column" : "weight"
-	},
-	{
-		"name"       : "path",
-		"typeField"  : "input",
-		"nameText"   : "Путь",
-		"nameAttr"   : "pl[path]",
-		"description": "Текстовое поле инпут \"Путь\"",
-		"idAttr"     : "inputPath",
-		"sql_column" : "path"
-	},
-	{
-		"name"       : "type_measure",
-		"typeField"  : "select",
-		"classAttr"  : "select2",
-		"nameText"   : "Тип измерения",
-		"nameAttr"   : "pl[type_measure]",
-		"description": "Select \"Тип измерения\"",
-		"idAttr"     : "selectType_measure",
-		"sql_column" : "type_measure",
-		"body"       : {
-			"text": "<option value=\"0\">Шт</option><option value=\"1\">Грамм</option><option value=\"2\">Мл</option><option value=\"3\">Шт/грамм</option><option value=\"4\">Шт/мл</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "time_cooking",
-		"typeField"  : "input",
-		"nameText"   : "Время приготовления",
-		"nameAttr"   : "pl[time_cooking]",
-		"description": "Текстовое поле инпут \"Время приготовления\"",
-		"idAttr"     : "inputTime_cooking",
-		"sql_column" : "time_cooking"
-	},
-	{
-		"name"       : "type_cooking",
-		"typeField"  : "input",
-		"nameText"   : "Способ приготовления",
-		"nameAttr"   : "pl[type_cooking]",
-		"description": "Input \"Способ приготовления\"",
-		"idAttr"     : "inputType_cooking",
-		"sql_column" : "type_cooking"
-	},
-	{
-		"name"       : "simple_recipe",
-		"typeField"  : "input",
-		"nameText"   : "Сложность рецепта",
-		"nameAttr"   : "pl[simple_recipe]",
-		"description": "Текстовое поле инпут \"Сложность рецепта\"",
-		"idAttr"     : "inputSimple_recipe",
-		"sql_column" : "simple_recipe"
-	},
-	{
-		"name"       : "rating",
-		"typeField"  : "input",
-		"nameText"   : "Рейтинг",
-		"nameAttr"   : "pl[rating]",
-		"description": "Текстовое поле инпут \"Рейтинг\"",
-		"idAttr"     : "inputRating",
-		"sql_column" : "rating"
-	},
-	{
-		"name"            : "tags",
-		"typeField"       : "functions",
-		"classAttr"       : "select2-tag",
-		"functionsBefore" : "insertTags",
-		"nameText"        : "Теги",
-		"nameAttr"        : "pl[tags]",
-		"description"     : "Текстовое поле селект \"tags (Теги)\"",
-		"idAttr"          : "selectTags",
-		"sql_column"      : "tags",
-		"js_init_function": "tagsInit",
-		"body"            : {
-			"text"    : "",
-			"type"    : "insert",
-			"multiple": "multiple"
-		}
-	},
-	{
-		"name"            : "booking_calendar",
-		"typeField"       : "functions",
-		"classAttr"       : "booking-calendar",
-		"nameText"        : "Календарь бронирования",
-		"nameAttr"        : "pl[booking_calendar]",
-		"description"     : "Текстовое поле селект \"booking_calendar\"",
-		"idAttr"          : "selectBooking_calendar",
-		"sql_column"      : "booking_calendar",
-		"showOnly"        : ["admin", "author", "specialist"],
-		"js_init_function": "bookingCalendarInit",
-		"tabs"            : "calendar",
-		"body"            : {
-			"text": "<div id=\"booking_calendar\"></div>"
-		}
-	},
-	{
-		"name"            : "location",
-		"typeField"       : "functions",
-		"classAttr"       : "location",
-		"nameText"        : "Название локации",
-		"nameAttr"        : "pl[location]",
-		"description"     : "Поле выбора и поиска локации \"location\"",
-		"idAttr"          : "inputLocation",
-		"sql_column"      : "location",
-		"js_init_function": "locationInit",
-		"latitude"        : 39.26706700,
-		"longitude"       : 22.30241100,
-		"body"            : {
-			"text": "<div id=\"location\"></div>"
-		}
-	},
-	{
-		"name"        : "location_name",
-		"typeField"   : "input",
-		"classAttr"   : "location_name",
-		"nameText"    : "Название локации",
-		"nameAttr"    : "pl[location_name]",
-		"description" : "Поле выбора и поиска локации \"location_name\"",
-		"idAttr"      : "inputLocation_name",
-		"sql_column"  : "location_name",
-		"translateKey": "location_name"
-	},
-	{
-		"name"        : "name_p",
-		"typeField"   : "input",
-		"classAttr"   : "name_p",
-		"nameText"    : "Название в предложном падеже",
-		"nameAttr"    : "pl[name_p]",
-		"description" : "Поле для падежа \"name_p\"",
-		"idAttr"      : "inputName_p",
-		"sql_column"  : "name_p",
-		"translateKey": "title_prepositional"
-	},
-	{
-		"name"        : "location_description",
-		"typeField"   : "textarea",
-		"classAttr"   : "location_description",
-		"nameText"    : "Описание локации",
-		"nameAttr"    : "pl[location_description]",
-		"description" : "Поле выбора и поиска локации \"location_description\"",
-		"idAttr"      : "inputLocation_description",
-		"sql_column"  : "location_description",
-		"translateKey": "location_description"
-	},
-	{
-		"name"        : "description_param",
-		"typeField"   : "textarea",
-		"classAttr"   : "description_param",
-		"nameText"    : "Описание параметра",
-		"nameAttr"    : "pl[description_param]",
-		"description" : "Поле выбора и поиска локации \"description_param\"",
-		"idAttr"      : "inputВescription_param",
-		"sql_column"  : "description_param",
-		"translateKey": "description_param"
-	},
-	{
-		"name"        : "specialist_comment",
-		"typeField"   : "textarea",
-		"classAttr"   : "specialist_comment border-green",
-		"nameText"    : "Комментарий специалиста",
-		"nameAttr"    : "pl[specialist_comment]",
-		"description" : "Текстовое поле \"specialist_comment\"",
-		"idAttr"      : "inputSpecialist_comment",
-		"sql_column"  : "specialist_comment",
-		"showOnly"    : ["admin", "specialist"],
-		"translateKey": "specialist_comment"
-	},
-	{
-		"name"        : "author_id",
-		"typeField"   : "select",
-		"classAttr"   : "select2",
-		"nameText"    : "Автор из пользователей",
-		"nameAttr"    : "pl[author_id]",
-		"description" : "Селект \"author_id\"",
-		"idAttr"      : "selectAuthor_id",
-		"sql_column"  : "author_id",
-		"translateKey": "author_of_users",
-		"body"        : {
-			"text": "<option value=\"0\">-</option>{-option-}",
-			"type": "replace"
-		}
-	},
-	{
-		"name"           : "is_hot",
-		"typeField"      : "checkbox",
-		"classAttr"      : "flat border-green",
-		"classAttrDiv"   : "border-green-checkbox",
-		"nameText"       : "Горячее предложение",
-		"nameAttr"       : "pl[is_hot]",
-		"description"    : "Селект \"is_hot\"",
-		"idAttr"         : "checkboxIs_hot",
-		"functionsBefore": "checkboxCheck",
-		"sql_column"     : "is_hot",
-		"showOnly"       : ["admin", "specialist"],
-		"translateKey"   : "is_hot_offer"
-	},
-	{
-		"name"           : "villas_by_the_sea",
-		"typeField"      : "checkbox",
-		"classAttr"      : "flat border-green",
-		"classAttrDiv"   : "border-green-checkbox",
-		"nameText"       : "Виллы на берегу моря",
-		"nameAttr"       : "pl[villas_by_the_sea]",
-		"description"    : "Селект \"villas_by_the_sea\"",
-		"idAttr"         : "checkboxVillas_by_the_seat",
-		"functionsBefore": "checkboxCheck",
-		"sql_column"     : "villas_by_the_sea",
-		"showOnly"       : ["admin", "specialist"],
-		"translateKey"   : "villas_by_the_sea"
-	},
-	{
-		"name"           : "villas_with_private_service",
-		"typeField"      : "checkbox",
-		"classAttr"      : "flat border-green",
-		"classAttrDiv"   : "border-green-checkbox",
-		"nameText"       : "Виллы c отельным обслуживанием",
-		"nameAttr"       : "pl[villas_with_private_service]",
-		"description"    : "Селект \"villas_with_private_service\"",
-		"idAttr"         : "checkboxVillas_with_private_service",
-		"functionsBefore": "checkboxCheck",
-		"sql_column"     : "villas_with_private_service",
-		"showOnly"       : ["admin", "specialist"],
-		"translateKey"   : "villas_with_private_service"
-	},
-	{
-		"name"           : "vacation_together",
-		"typeField"      : "checkbox",
-		"classAttr"      : "flat border-green",
-		"classAttrDiv"   : "border-green-checkbox",
-		"nameText"       : "Отдых вдвоем",
-		"nameAttr"       : "pl[vacation_together]",
-		"description"    : "Селект \"vacation_together\"",
-		"idAttr"         : "checkboxVacation_together",
-		"functionsBefore": "checkboxCheck",
-		"sql_column"     : "vacation_together",
-		"showOnly"       : ["admin", "specialist"],
-		"translateKey"   : "vacation_together"
-	},
-	{
-		"name"           : "usefull",
-		"typeField"      : "checkbox",
-		"classAttr"      : "flat border-green",
-		"classAttrDiv"   : "border-green-checkbox",
-		"nameText"       : "Полезное",
-		"nameAttr"       : "pl[usefull]",
-		"description"    : "Селект \"usefull\"",
-		"idAttr"         : "checkboxUsefull",
-		"functionsBefore": "checkboxCheck",
-		"sql_column"     : "usefull",
-		"translateKey"   : "usefull"
-	},
-	{
-		"name"            : "what_is_next",
-		"typeField"       : "functions",
-		"nameText"        : "Что есть рядом",
-		"nameAttr"        : "pl[what_is_next]",
-		"description"     : "Плагин \"what_is_next\" сделанный из album",
-		"idAttr"          : "inputWhat_is_next",
-		"sql_column"      : "what_is_next",
-		"noSaveInDatabase": true,
-		"translateKey"    : "what_is_next"
-	},
-	{
-		"name"        : "working_conditions",
-		"typeField"   : "functions",
-		"nameText"    : "Условия труда",
-		"nameAttr"    : "pl[working_conditions]",
-		"description" : "Плагин \"working_conditions\" сделанный из album",
-		"idAttr"      : "inputWorking_conditions",
-		"sql_column"  : "working_conditions",
-		"translateKey": "working_conditions"
-	},
-	{
-		"name"        : "benefits",
-		"typeField"   : "functions",
-		"nameText"    : "Benefits",
-		"nameAttr"    : "pl[benefits]",
-		"description" : "Плагин \"benefits\" сделанный из album",
-		"idAttr"      : "inputBenefits",
-		"sql_column"  : "benefits",
-		"translateKey": "benefits"
-	},
-	{
-		"name"        : "benefits_accommodation",
-		"typeField"   : "functions",
-		"nameText"    : "Benefits",
-		"nameAttr"    : "pl[benefits_accommodation]",
-		"description" : "Плагин \"benefits_accommodation\" сделанный из album",
-		"idAttr"      : "inputBenefits_accommodation",
-		"sql_column"  : "benefits_accommodation",
-		"translateKey": "benefits_accommodation"
-	},
-	{
-		"name"        : "collections",
-		"typeField"   : "functions",
-		"nameText"    : "Collections",
-		"nameAttr"    : "pl[collections]",
-		"description" : "Плагин \"collections\" сделанный из album",
-		"idAttr"      : "inputCollections",
-		"sql_column"  : "collections",
-		"translateKey": "collections"
-	},
-	{
-		"name"        : "main_img_small",
-		"typeField"   : "functions",
-		"nameText"    : "Первый экран(mobile)",
-		"nameAttr"    : "pl[main_img_small]",
-		"description" : "Плагин \"main_img_small\" сделанный из album",
-		"idAttr"      : "inputMain_img_small",
-		"sql_column"  : "main_img_small",
-		"translateKey": "main_img_small"
-	},
-	{
-		"name"            : "how_working",
-		"typeField"       : "functions",
-		"functionsBefore" : "insertHow_working",
-		"js_init_function": "how_workingInit",
-		"nameText"        : "Расстояния",
-		"nameAttr"        : "pl[how_working]",
-		"description"     : "Плагин \"how_working\"",
-		"idAttr"          : "inputHow_working",
-		"sql_column"      : "how_working",
-		"translateKey"    : "how_we_are_working",
-		"body"            : {
-			"text": "<button data-n=\"0\" type=\"button\" class=\"add-how_working-]-options-[- btn btn-success btn-icon\"><i class=\"fa fa-plus\"></i></button><div id=\"how_working-]-options-[-\" class=\"form-group\"></div>"
-		}
-	},
-	{
-		"name"            : "booking_is_easy",
-		"typeField"       : "functions",
-		"functionsBefore" : "insertBooking_is_easy",
-		"js_init_function": "booking_is_easyInit",
-		"nameText"        : "Бронирование легко",
-		"nameAttr"        : "pl[booking_is_easy]",
-		"description"     : "Плагин \"booking_is_easy\"",
-		"idAttr"          : "inputBooking_is_easy",
-		"sql_column"      : "booking_is_easy",
-		"translateKey"    : "booking_is_easy",
-		"body"            : {
-			"text": "<button data-n=\"0\" type=\"button\" class=\"add-booking_is_easy-]-options-[- btn btn-success btn-icon\"><i class=\"fa fa-plus\"></i></button><div id=\"booking_is_easy-]-options-[-\" class=\"form-group\"></div>"
-		}
-	},
-	{
-		"name"        : "convenience",
-		"typeField"   : "textarea",
-		"nameText"    : "Удобства",
-		"nameAttr"    : "pl[convenience]",
-		"description" : "Плагин \"convenience\"",
-		"idAttr"      : "inputConvenience",
-		"sql_column"  : "convenience",
-		"translateKey": "convenience",
-		"rows"        : "10"
-	},
-	{
-		"name"        : "services",
-		"typeField"   : "textarea",
-		"nameText"    : "Услуги",
-		"nameAttr"    : "pl[services]",
-		"description" : "Плагин \"services\"",
-		"idAttr"      : "inputServices",
-		"sql_column"  : "services",
-		"translateKey": "services",
-		"rows"        : "10"
-	},
-	{
-		"name"        : "bedroom",
-		"typeField"   : "input",
-		"classAttr"   : "bedroom",
-		"nameText"    : "Спальни",
-		"nameAttr"    : "pl[bedroom]",
-		"description" : "Селект \"Спальни\"",
-		"idAttr"      : "selectBedroom",
-		"sql_column"  : "bedroom",
-		"translateKey": "bedroom"
-	},
-	{
-		"name"        : "guests_person",
-		"typeField"   : "input",
-		"classAttr"   : "guests_person",
-		"nameText"    : "Кол-во гостей/человек",
-		"nameAttr"    : "pl[guests_person]",
-		"description" : "Селект \"Кол-во гостей/человек\"",
-		"idAttr"      : "selectGuests_person",
-		"sql_column"  : "guests_person",
-		"translateKey": "guests_person"
-	},
-	{
-		"name"           : "to_main",
-		"typeField"      : "checkbox",
-		"classAttr"      : "flat",
-		"classAttrDiv"   : "border-green-checkbox",
-		"nameText"       : "На главную",
-		"nameAttr"       : "pl[to_main]",
-		"description"    : "Селект \"На главную\"",
-		"idAttr"         : "checkboxTo_main",
-		"sql_column"     : "to_main",
-		"functionsBefore": "checkboxCheck",
-		"showOnly"       : ["admin", "specialist"],
-		"translateKey"   : "to_main"
-	},
-	{
-		"name"        : "bathroom",
-		"typeField"   : "input",
-		"classAttr"   : "bathroom",
-		"nameText"    : "Спальни",
-		"nameAttr"    : "pl[bathroom]",
-		"description" : "Селект \"Ванные комнаты\"",
-		"idAttr"      : "selectBathroom",
-		"sql_column"  : "bathroom",
-		"translateKey": "bathrooms"
-	},
-	{
-		"name"        : "sea",
-		"typeField"   : "select",
-		"classAttr"   : "select2",
-		"nameText"    : "Море",
-		"nameAttr"    : "pl[sea]",
-		"description" : "Селект \"Море\"",
-		"idAttr"      : "selectSea",
-		"sql_column"  : "sea",
-		"translateKey": "sea",
-		"body"        : {
-			"text": "<option value=\"0\"></option><option value=\"1\">With access to the beach</option><option value=\"2\">500 meters</option><option value=\"3\">1km</option><option value=\"4\">More than 1km</option>",
-			"type": "insert"
-		}
-	},
-	{
-		"name"       : "block_1",
-		"typeField"  : "textarea",
-		"nameText"   : "Блок 1",
-		"nameAttr"   : "pl[block_1]",
-		"description": "Текстовое поле \"block_1\"",
-		"idAttr"     : "textareaBlock_1",
-		"maxlength"  : "12000",
-		"translateKey": "block_1",
-		"sql_column" : "block_1"
-	},
-	{
-		"name"       : "block_2",
-		"typeField"  : "textarea",
-		"nameText"   : "Блок 2",
-		"nameAttr"   : "pl[block_2]",
-		"description": "Текстовое поле \"block_2\"",
-		"idAttr"     : "textareaBlock_2",
-		"maxlength"  : "12000",
-		"translateKey": "block_2",
-		"sql_column" : "block_2"
-	},
-	{
-		"name"       : "block_3",
-		"typeField"  : "textarea",
-		"nameText"   : "Блок 3",
-		"nameAttr"   : "pl[block_3]",
-		"description": "Текстовое поле \"block_3\"",
-		"idAttr"     : "textareaBlock_3",
-		"maxlength"  : "12000",
-		"translateKey": "block_3",
-		"sql_column" : "block_3"
-	},
-	{
-		"name"       : "block_4",
-		"typeField"  : "textarea",
-		"nameText"   : "Блок 4",
-		"nameAttr"   : "pl[block_4]",
-		"description": "Текстовое поле \"block_4\"",
-		"idAttr"     : "textareaBlock_4",
-		"maxlength"  : "12000",
-		"translateKey": "block_4",
-		"sql_column" : "block_4"
-	},
-	{
-		"name"       : "quote_main_block_1_1",
-		"typeField"  : "textarea",
-		"nameText"   : "Блок цитаты для главной страцы 1, 1",
-		"nameAttr"   : "pl[quote_main_block_1_1]",
-		"description": "Текстовое поле \"quote_main_block_1_1\"",
-		"idAttr"     : "textareaQuote_main_block_1_1",
-		"maxlength"  : "12000",
-		"translateKey": "quote_main_block_1_1",
-		"sql_column" : "quote_main_block_1_1"
-	},
-	{
-		"name"       : "quote_main_block_1_2",
-		"typeField"  : "textarea",
-		"nameText"   : "Блок цитаты для главной страцы 1, 2",
-		"nameAttr"   : "pl[quote_main_block_1_2]",
-		"description": "Текстовое поле \"quote_main_block_1_2\"",
-		"idAttr"     : "textareaQuote_main_block_1_2",
-		"maxlength"  : "12000",
-		"translateKey": "quote_main_block_1_2",
-		"sql_column" : "quote_main_block_1_2"
-	},
-	{
-		"name"            : "slider_1",
-		"typeField"       : "functions",
-		"nameText"        : "Изображение",
-		"nameAttr"        : "pl[slider_1]",
-		"description"     : "Плагин \"slider_1\"",
-		"idAttr"          : "inputSlider_1",
-		"sql_column"      : "slider_1",
-		"noSaveInDatabase": true,
-		"translateKey"    : "slider_1"
-	},
-	{
-		"name"            : "slider_2",
-		"typeField"       : "functions",
-		"nameText"        : "Изображение",
-		"nameAttr"        : "pl[slider_2]",
-		"description"     : "Плагин \"slider_2\"",
-		"idAttr"          : "inputSlider_2",
-		"sql_column"      : "slider_2",
-		"noSaveInDatabase": true,
-		"translateKey"    : "slider_2"
-	},
-	{
-		"name"        : "block_1_1",
-		"typeField"   : "input",
-		"nameText"    : "Название",
-		"nameAttr"    : "pl[block_1_1]",
-		"description" : "Текстовое поле инпут block_1_1",
-		"idAttr"      : "inputBlock_1_1",
-		"sql_column"  : "block_1_1",
-		"translateKey": "block_1_1"
-	},
-	{
-		"name"        : "block_1_2",
-		"typeField"   : "input",
-		"nameText"    : "Название",
-		"nameAttr"    : "pl[block_1_2]",
-		"description" : "Текстовое поле инпут block_1_2",
-		"idAttr"      : "inputBlock_1_2",
-		"sql_column"  : "block_1_2",
-		"translateKey": "block_1_2"
-	},
-	{
-		"name"        : "block_3_1",
-		"typeField"   : "input",
-		"nameText"    : "Название",
-		"nameAttr"    : "pl[block_3_1]",
-		"description" : "Текстовое поле инпут block_3_1",
-		"idAttr"      : "inputBlock_3_1",
-		"sql_column"  : "block_3_1",
-		"translateKey": "block_3_1"
-	},
   {
-		"name"        : "link_how_working",
-		"typeField"   : "input",
-		"nameText"    : "Ссылка на видео \"Как мы работаем\"",
-		"nameAttr"    : "pl[link_how_working]",
-		"description" : "Текстовое поле инпут link_how_working",
-		"idAttr"      : "inputLink_how_working",
-		"sql_column"  : "link_how_working",
-		"translateKey": "link_how_working"
-	}
+    "name"        : "name",
+    "typeField"   : "input",
+    "nameText"    : "Название",
+    "nameAttr"    : "pl[name]",
+    "description" : "Текстовое поле инпут для названия",
+    "idAttr"      : "inputName",
+    "sql_column"  : "name",
+    "translateKey": "caption"
+  },
+  {
+    "name"        : "text",
+    "classAttr"   : "area",
+    "typeField"   : "textarea",
+    "nameText"    : "Полный текст",
+    "nameAttr"    : "pl[text]",
+    "description" : "Текстовое поле \"Полный текст\"",
+    "idAttr"      : "textareaText",
+    "sql_column"  : "text",
+    "translateKey": "fullText"
+  },
+  {
+    "name"       : "comment_1",
+    "typeField"  : "textarea",
+    "nameText"   : "Комментарий для курьера",
+    "nameAttr"   : "pl[comment_1]",
+    "description": "Текстовое поле \"Комментарий для курьера\"",
+    "idAttr"     : "textareaComment_1",
+    "sql_column" : "comment_1"
+  },
+  {
+    "name"       : "comment_2",
+    "typeField"  : "textarea",
+    "nameText"   : "Дополнительный комментарий",
+    "nameAttr"   : "pl[comment_2]",
+    "description": "Текстовое поле \"Дополнительный комментарий\"",
+    "idAttr"     : "textareaComment_2",
+    "sql_column" : "comment_2"
+  },
+  {
+    "name"       : "date_of_birth",
+    "typeField"  : "input",
+    "nameText"   : "Дата рождения",
+    "nameAttr"   : "pl[date_of_birth]",
+    "description": "Мета поле инпут для Даты рождения",
+    "idAttr"     : "inputDate_of_birth",
+    "sql_column" : "date_of_birth"
+  },
+  {
+    "name"       : "title",
+    "typeField"  : "input",
+    "nameText"   : "Title",
+    "nameAttr"   : "pl[title]",
+    "description": "Мета поле инпут для Title",
+    "idAttr"     : "inputTitle",
+    "sql_column" : "title",
+    "tabs"       : "metaData"
+  },
+  {
+    "name"        : "author",
+    "typeField"   : "input",
+    "nameText"    : "Author",
+    "nameAttr"    : "pl[author]",
+    "description" : "Мета поле инпут для Author",
+    "idAttr"      : "inputAuthor",
+    "sql_column"  : "author",
+    "tabs"        : "metaData",
+    "translateKey": "author"
+  },
+  {
+    "name"       : "keywords",
+    "typeField"  : "textarea",
+    "nameText"   : "Keywords",
+    "nameAttr"   : "pl[keywords]",
+    "description": "Мета поле Keywords",
+    "idAttr"     : "textareaDescription",
+    "sql_column" : "keywords",
+    "tabs"       : "metaData"
+  },
+  {
+    "name"       : "description",
+    "typeField"  : "textarea",
+    "nameText"   : "Description",
+    "nameAttr"   : "pl[description]",
+    "description": "Мета поле Description",
+    "idAttr"     : "textareaDescription",
+    "sql_column" : "description",
+    "tabs"       : "metaData"
+  },
+  {
+    "name"       : "html_top",
+    "typeField"  : "textarea",
+    "typeView"   : "accordion",
+    "nameText"   : "Html top",
+    "nameAttr"   : "pl[html_top]",
+    "description": "Html вставки \"html_top\"",
+    "idAttr"     : "textareaHtml_top",
+    "sql_column" : "html_top",
+    "tabs"       : "htmlInserts"
+  },
+  {
+    "name"       : "html_bottom",
+    "typeField"  : "textarea",
+    "typeView"   : "accordion",
+    "nameText"   : "Html bottom",
+    "nameAttr"   : "pl[html_bottom]",
+    "description": "Html вставки \"html_bottom\"",
+    "idAttr"     : "textareaHtml_bottom",
+    "sql_column" : "html_bottom",
+    "tabs"       : "htmlInserts"
+  },
+  {
+    "name"         : "sort",
+    "typeField"    : "input",
+    "type"         : "number",
+    "classAttr"    : "border-green",
+    "nameText"     : "Сортировка",
+    "nameAttr"     : "pl[order]",
+    "description"  : "Текстовое поле инпут \"Порядок сортировки\"",
+    "idAttr"       : "inputSort",
+    "sql_column"   : "sort",
+    "translateKey ": "sorting"
+  },
+  {
+    "name"       : "class",
+    "typeField"  : "input",
+    "nameText"   : "Class",
+    "nameAttr"   : "pl[class]",
+    "description": "Текстовое поле инпут \"Class\"",
+    "idAttr"     : "inputClass",
+    "sql_column" : "class"
+  },
+  {
+    "name"        : "translation",
+    "typeField"   : "functions",
+    "nameText"    : "Translation",
+    "nameAttr"    : "pl[translation]",
+    "description" : "Текстовое поле инпут \"Translation\"",
+    "idAttr"      : "inputTranslation",
+    "sql_column"  : "translation",
+    "translateKey": "translation"
+  },
+  {
+    "name"       : "controller",
+    "typeField"  : "input",
+    "nameText"   : "Controller",
+    "nameAttr"   : "pl[controller]",
+    "description": "Текстовое поле инпут \"Controller\"",
+    "idAttr"     : "inputController",
+    "sql_column" : "controller"
+  },
+  {
+    "name"        : "little_description",
+    "typeField"   : "textarea",
+    "nameText"    : "Сокращённый текст",
+    "nameAttr"    : "pl[little_description]",
+    "description" : "Текстовое поле \"Little_description\"",
+    "idAttr"      : "textareaLittle_description",
+    "maxlength"   : "12000",
+    "translateKey": "little_description",
+    "sql_column"  : "little_description"
+  },
+  {
+    "name"        : "little_description_catalog",
+    "typeField"   : "textarea",
+    "classAttr"   : "area",
+    "nameText"    : "Сокращённый текст для каталога",
+    "nameAttr"    : "pl[little_description_catalog]",
+    "description" : "Текстовое поле \"Little_description_catalog\"",
+    "idAttr"      : "textareaLittle_description_catalog",
+    "maxlength"   : "12000",
+    "translateKey": "little_description",
+    "sql_column"  : "little_description_catalog"
+  },
+  {
+    "name"        : "key_feature",
+    "typeField"   : "textarea",
+    "nameText"    : "Ключевая особенность",
+    "nameAttr"    : "pl[key_feature]",
+    "description" : "Текстовое поле \"Key_feature\"",
+    "idAttr"      : "textareaKey_feature",
+    "sql_column"  : "key_feature",
+    "translateKey": "key_feature"
+  },
+  {
+    "name"        : "layout",
+    "typeField"   : "textarea",
+    "nameText"    : "Планировка",
+    "nameAttr"    : "pl[layout]",
+    "description" : "Текстовое поле \"Layout\"",
+    "idAttr"      : "textareaLayout",
+    "sql_column"  : "layout",
+    "translateKey": "layout"
+  },
+  {
+    "name"       : "information",
+    "typeField"  : "textarea",
+    "nameText"   : "Информация",
+    "nameAttr"   : "pl[information]",
+    "description": "\"Information\"",
+    "idAttr"     : "textareaInformation",
+    "sql_column" : "information"
+  },
+  {
+    "name"       : "date",
+    "typeField"  : "input",
+    "classAttr"  : "date_start",
+    "nameText"   : "Дата публикации",
+    "nameAttr"   : "pl[date]",
+    "description": "Текстовое поле инпут \"date\"",
+    "idAttr"     : "inputStart",
+    "sql_column" : "date"
+  },
+  {
+    "name"       : "date_start",
+    "typeField"  : "input",
+    "classAttr"  : "date_start",
+    "nameText"   : "Дата завершения публикации",
+    "nameAttr"   : "pl[date_start]",
+    "description": "Текстовое поле инпут \"Date_start\"",
+    "idAttr"     : "inputDate_start",
+    "sql_column" : "date_start"
+  },
+  {
+    "name"       : "date_finish",
+    "typeField"  : "input",
+    "classAttr"  : "date_finish",
+    "nameText"   : "Дата завершения публикации",
+    "nameAttr"   : "pl[date_finish]",
+    "description": "Текстовое поле инпут \"Date_finish\"",
+    "idAttr"     : "inputDate_finish",
+    "sql_column" : "date_finish"
+  },
+  {
+    "name"       : "style",
+    "typeField"  : "input",
+    "nameText"   : "Стили",
+    "nameAttr"   : "pl[style]",
+    "description": "Текстовое поле инпут \"Style\" для назначения стилей элементу",
+    "idAttr"     : "inputStyle",
+    "sql_column" : "style"
+  },
+  {
+    "name"       : "sys_cat",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Системная категория",
+    "nameAttr"   : "pl[sys_cat]",
+    "description": "Текстовое поле селект \"Sys_cat\" для назначения стилей элементу",
+    "idAttr"     : "selectSys_cat",
+    "sql_column" : "sys_cat",
+    "body"       : {
+      "text": "<option value=\"\">Не исползуется</option><option value=\"main\">Главная</option><option value=\"gallery\">Галерея</option><option value=\"catalog\">Каталог</option><option value=\"actions\">Акции</option><option value=\"news\">Новости</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"        : "active",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Статус отображения",
+    "nameAttr"    : "pl[active]",
+    "description" : "Текстовое поле селект \"Active\" для назначения статуса отображения",
+    "idAttr"      : "selectActive",
+    "sql_column"  : "active",
+    "translateKey": "statusViews",
+    "body"        : {
+      "text": "<option value=\"1\">Отображается</option><option value=\"0\">Не отображается</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"        : "is_best",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Отображать в лучших",
+    "nameAttr"    : "pl[is_best]",
+    "description" : "Текстовое поле селект \"Is best\" для назначения статуса отображения",
+    "idAttr"      : "selectIs_beste",
+    "sql_column"  : "is_best",
+    "translateKey": "isBest",
+    "body"        : {
+      "text": "<option value=\"1\">Best</option><option value=\"0\">-</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"        : "cat",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Категория",
+    "nameAttr"    : "pl[cat]",
+    "description" : "Текстовое поле селект \"Cat\" для выбора категории",
+    "idAttr"      : "selectCat",
+    "sql_column"  : "cat",
+    "accurate"    : true,
+    "recursive"   : true,
+    "parent_table": "menu",
+    "translateKey": "cat",
+    "body"        : {
+      "text": "<option value=\"0\">(Без категории)</option>{-option-}",
+      "type": "replace"
+    }
+  },
+  {
+    "name"        : "cat_location",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Категория",
+    "nameAttr"    : "pl[cat_location]",
+    "description" : "Текстовое поле селект \"Cat\" для выбора категории",
+    "idAttr"      : "selectCat_location",
+    "sql_column"  : "cat_location",
+    "accurate"    : true,
+    "recursive"   : true,
+    "translateKey": "cat_location",
+    "body"        : {
+      "text": "<option value=\"0\">(Без категории)</option>{-option-}",
+      "type": "replace"
+    }
+  },
+  {
+    "name"        : "recommendedVillas",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Рекомендованные виллы",
+    "nameAttr"    : "pl[recommendedVillas]",
+    "description" : "Текстовое поле селект \"recommendedVillas\" для выбора категории",
+    "idAttr"      : "selectRecommendedVillas",
+    "sql_column"  : "recommendedVillas",
+    "accurate"    : true,
+    "recursive"   : true,
+    "parent_table": "villas",
+    "translateKey": "recommendedVillas",
+    "body"        : {
+      "text"    : "<option value=\"0\">(Без категории)</option>{-option-}",
+      "type"    : "replace",
+      "multiple": "multiple"
+    }
+  },
+  {
+    "name"            : "album",
+    "typeField"       : "functions",
+    "nameText"        : "Изображение",
+    "nameAttr"        : "pl[album]",
+    "description"     : "Плагин \"Album\" для выбора создания альбома",
+    "idAttr"          : "inputAlbum",
+    "sql_column"      : "album",
+    "noSaveInDatabase": true,
+    "translateKey"    : "preview"
+  },
+  {
+    "name"            : "plan",
+    "typeField"       : "functions",
+    "nameText"        : "Изображение",
+    "nameAttr"        : "pl[plan]",
+    "description"     : "Плагин \"Plan\" для выбора создания альбома",
+    "idAttr"          : "inputPlan",
+    "sql_column"      : "plan",
+    "noSaveInDatabase": true,
+    "translateKey"    : "plan"
+  },
+  {
+    "name"            : "files",
+    "typeField"       : "functions",
+    "nameText"        : "Файлы",
+    "nameAttr"        : "pl[files]",
+    "description"     : "Плагин \"Files\"",
+    "idAttr"          : "inputFiles",
+    "noSaveInDatabase": true,
+    "sql_column"      : "files"
+  },
+  {
+    "name"       : "ordering",
+    "typeField"  : "ordering",
+    "nameText"   : "Инормация о заказе",
+    "nameAttr"   : "pl[ordering]",
+    "description": "Плагин \"Инормация о заказе\"",
+    "idAttr"     : "inputOrdering",
+    "sql_column" : "ordering",
+    "body"       : {
+      "text": "<div id=\"ordering\"></div>",
+      "type": "ordering"
+    }
+  },
+  {
+    "name"       : "country",
+    "typeField"  : "input",
+    "nameText"   : "Страна",
+    "nameAttr"   : "pl[country]",
+    "description": "Текстовое поле инпут \"Страна\"",
+    "idAttr"     : "inputCountry",
+    "sql_column" : "country"
+  },
+  {
+    "name"       : "region",
+    "typeField"  : "input",
+    "nameText"   : "Регион",
+    "nameAttr"   : "pl[region]",
+    "description": "Текстовое поле инпут \"Регион\"",
+    "idAttr"     : "inputRegion",
+    "sql_column" : "region"
+  },
+  {
+    "name"       : "locality_name",
+    "typeField"  : "input",
+    "nameText"   : "Город",
+    "nameAttr"   : "pl[locality_name]",
+    "description": "Текстовое поле инпут \"locality-name (Город)\"",
+    "idAttr"     : "inputLocality_name",
+    "sql_column" : "locality_name"
+  },
+  {
+    "name"       : "district",
+    "typeField"  : "input",
+    "nameText"   : "Район",
+    "nameAttr"   : "pl[district]",
+    "description": "Текстовое поле инпут \"Район\"",
+    "idAttr"     : "inputDistrict",
+    "sql_column" : "district"
+  },
+  {
+    "name"       : "address",
+    "typeField"  : "input",
+    "nameText"   : "Адрес",
+    "nameAttr"   : "pl[address]",
+    "description": "Текстовое поле инпут \"Адрес\"",
+    "idAttr"     : "inputAddress",
+    "sql_column" : "address"
+  },
+  {
+    "name"       : "apartment",
+    "typeField"  : "input",
+    "nameText"   : "Квартира или офис",
+    "nameAttr"   : "pl[apartment]",
+    "description": "Текстовое поле инпут \"Квартира или офис\"",
+    "idAttr"     : "inputApartment",
+    "sql_column" : "apartment"
+  },
+  {
+    "name"       : "name_seller",
+    "typeField"  : "input",
+    "nameText"   : "Имя продавца",
+    "nameAttr"   : "pl[name_seller]",
+    "description": "Текстовое поле инпут \"name-seller (Имя продавца)\"",
+    "idAttr"     : "inputName_seller",
+    "sql_column" : "name_seller"
+  },
+  {
+    "name"       : "phone",
+    "typeField"  : "input",
+    "nameText"   : "Телефон",
+    "nameAttr"   : "pl[phone]",
+    "description": "Текстовое поле инпут \"phone Телефон\"",
+    "idAttr"     : "inputPhone",
+    "sql_column" : "phone"
+  },
+  {
+    "name"       : "organization",
+    "typeField"  : "input",
+    "nameText"   : "Организация",
+    "nameAttr"   : "pl[organization]",
+    "description": "Текстовое поле инпут \"Организация\"",
+    "idAttr"     : "inputOrganization",
+    "sql_column" : "organization"
+  },
+  {
+    "name"        : "price_money",
+    "typeField"   : "input",
+    "nameText"    : "Цена(только число)",
+    "nameAttr"    : "pl[price_money]",
+    "description" : "Текстовое поле инпут \"price-money (Цена(только число))\"",
+    "idAttr"      : "inputPrice_money",
+    "sql_column"  : "price_money",
+    "translateKey": "price_money"
+  },
+  {
+    "name"       : "total_cost",
+    "typeField"  : "input",
+    "nameText"   : "Общая стоимость",
+    "nameAttr"   : "pl[total_cost]",
+    "description": "Текстовое поле инпут \"total_cost (Общая стоимость)\"",
+    "idAttr"     : "inputTotal_cost",
+    "sql_column" : "total_cost"
+  },
+  {
+    "name"       : "price_currency",
+    "typeField"  : "input",
+    "nameText"   : "Валюта(RUR|USD)",
+    "nameAttr"   : "pl[price_currency]",
+    "description": "Текстовое поле инпут \"price-currency (Валюта)\"",
+    "idAttr"     : "inputPrice_currency",
+    "sql_column" : "price_currency"
+  },
+  {
+    "name"       : "area_space",
+    "typeField"  : "input",
+    "nameText"   : "Цена(только число)",
+    "nameAttr"   : "pl[area_space]",
+    "description": "Текстовое поле инпут \"area-space (Общая площадь (только число))\"",
+    "idAttr"     : "inputArea_space",
+    "sql_column" : "area_space"
+  },
+  {
+    "name"       : "area_unit",
+    "typeField"  : "input",
+    "nameText"   : "Еденица измерения площади",
+    "nameAttr"   : "pl[area_unit]",
+    "description": "Текстовое поле инпут \"area-unit (Еденица измерения площади)\"",
+    "idAttr"     : "inputArea_unit",
+    "sql_column" : "area_unit"
+  },
+  {
+    "name"       : "rooms",
+    "typeField"  : "input",
+    "nameText"   : "Количество комнат",
+    "nameAttr"   : "pl[rooms]",
+    "description": "Текстовое поле инпут \"Количество комнат\"",
+    "idAttr"     : "inputRooms",
+    "sql_column" : "rooms"
+  },
+  {
+    "name"       : "floor",
+    "typeField"  : "input",
+    "nameText"   : "Номер этажа",
+    "nameAttr"   : "pl[floor]",
+    "description": "Текстовое поле инпут \"Номер этажа\"",
+    "idAttr"     : "inputFloor",
+    "sql_column" : "floor"
+  },
+  {
+    "name"       : "entrance_floor",
+    "typeField"  : "input",
+    "nameText"   : "Подъезд/этаж",
+    "nameAttr"   : "pl[entrance_floor]",
+    "description": "Текстовое поле инпут \"Подъезд/этаж\"",
+    "idAttr"     : "inputEntrance_floor",
+    "sql_column" : "entrance_floor"
+  },
+  {
+    "name"       : "email",
+    "typeField"  : "input",
+    "nameText"   : "Email",
+    "nameAttr"   : "pl[email]",
+    "description": "Текстовое поле инпут \"Email\"",
+    "idAttr"     : "inputEmail",
+    "sql_column" : "email"
+  },
+  {
+    "name"       : "subscribe_mail",
+    "typeField"  : "input",
+    "nameText"   : "Email",
+    "nameAttr"   : "pl[subscribe_mail]",
+    "description": "Текстовое поле инпут \"Email\"",
+    "idAttr"     : "inputSubscribe_mail",
+    "sql_column" : "email"
+  },
+  {
+    "name"       : "full_name",
+    "typeField"  : "input",
+    "nameText"   : "Фамилия Имя Отчество",
+    "nameAttr"   : "pl[full_name]",
+    "description": "Текстовое поле инпут \"Фамилия Имя Отчество\"",
+    "idAttr"     : "inputFull_name",
+    "sql_column" : "full_name"
+  },
+  {
+    "name"       : "delivery_time_1",
+    "typeField"  : "input",
+    "nameText"   : "Время доставки(запрсил клиент)",
+    "nameAttr"   : "pl[delivery_time_1]",
+    "description": "Текстовое поле инпут \"Время доставки(запрсил клиент)\"",
+    "idAttr"     : "inputDelivery_time_1",
+    "sql_column" : "delivery_time_1"
+  },
+  {
+    "name"       : "delivery_time_2",
+    "typeField"  : "input",
+    "classAttr"  : "date_time",
+    "nameText"   : "Время доставки (фиксированное курьером)",
+    "nameAttr"   : "pl[delivery_time_2]",
+    "description": "Текстовое поле инпут \"Время доставки (фиксированное курьером)\"",
+    "idAttr"     : "inputDelivery_time_2",
+    "sql_column" : "delivery_time_2"
+  },
+  {
+    "name"       : "parent_id",
+    "typeField"  : "input",
+    "nameText"   : "Id родителя",
+    "nameAttr"   : "pl[parent_id]",
+    "description": "Текстовое поле инпут \"id родителя(при парсинге)\"",
+    "idAttr"     : "inputParent_id",
+    "sql_column" : "parent_id"
+  },
+  {
+    "name"       : "haggle",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Возможны торги",
+    "nameAttr"   : "pl[haggle]",
+    "description": "Select \"Возможны торги\"",
+    "idAttr"     : "selectHaggle",
+    "sql_column" : "haggle",
+    "body"       : {
+      "text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "not_available",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Нет в наличии",
+    "nameAttr"   : "pl[not_available]",
+    "description": "Select \"Нет в наличии\"",
+    "idAttr"     : "selectNot_available",
+    "sql_column" : "not_available",
+    "body"       : {
+      "text": "<option value=\"0\">В наличии</option><option value=\"1\">Нет в наличии</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "sell_out",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Распродажа",
+    "nameAttr"   : "pl[sell_out]",
+    "description": "Select \"Распродажа\"",
+    "idAttr"     : "selectSell_out",
+    "sql_column" : "sell_out",
+    "body"       : {
+      "text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "gender",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Пол",
+    "nameAttr"   : "pl[gender]",
+    "description": "Select \"Пол\"",
+    "idAttr"     : "selectGender",
+    "sql_column" : "gender",
+    "body"       : {
+      "text": "<option value=\"\">Не выбран</option><option value=\"male\">Мужской</option><option value=\"female\">Женский</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "payment_method",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Способ оплаты",
+    "nameAttr"   : "pl[payment_method]",
+    "description": "Select \"Способ оплаты\"",
+    "idAttr"     : "selectPayment_method",
+    "sql_column" : "payment_method",
+    "body"       : {
+      "text": "<option value=\"\">Не выбран</option><option value=\"cash\">Наличный расчёт</option><option value=\"noncash\">Безналичный расчёт</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "private_house",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Частный дом",
+    "nameAttr"   : "pl[private_house]",
+    "description": "Select \"Частный дом\"",
+    "idAttr"     : "selectPrivate_house",
+    "sql_column" : "private_house",
+    "body"       : {
+      "text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "status_app",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Статус заявки",
+    "nameAttr"   : "pl[status_app]",
+    "description": "Select \"Статус заявки\"",
+    "idAttr"     : "selectStatus_app",
+    "sql_column" : "status_app",
+    "body"       : {
+      "text": "<option value=\"0\">Новая заявка</option><option value=\"1\">В обработке</option><option value=\"2\">Заказ отправлен</option><option value=\"3\">Закрыт</option><option value=\"4\">Отказ</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "mortgage_simple",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Ипотека",
+    "nameAttr"   : "pl[mortgage_simple]",
+    "description": "Select \"Ипотека\"",
+    "idAttr"     : "selectMortgage_simple",
+    "sql_column" : "mortgage_simple",
+    "body"       : {
+      "text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "mortgage_military",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Военная ипотека",
+    "nameAttr"   : "pl[mortgage_military]",
+    "description": "Select \"Военная ипотека\"",
+    "idAttr"     : "selectMortgage_military",
+    "sql_column" : "mortgage_military",
+    "body"       : {
+      "text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "mortgage_maternal",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Материнский капитал",
+    "nameAttr"   : "pl[mortgage_maternal]",
+    "description": "Select \"Материнский капитал\"",
+    "idAttr"     : "selectMortgage_maternal",
+    "sql_column" : "mortgage_maternal",
+    "body"       : {
+      "text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "quality",
+    "typeField"  : "input",
+    "nameText"   : "Качество отделки",
+    "nameAttr"   : "pl[quality]",
+    "description": "Текстовое поле инпут \"Качество отделк\"",
+    "idAttr"     : "inputQuality",
+    "sql_column" : "quality"
+  },
+  {
+    "name"       : "number_room",
+    "typeField"  : "input",
+    "nameText"   : "Номер квартиры",
+    "nameAttr"   : "pl[number_room]",
+    "description": "Текстовое поле инпут \"number-room (Номер квартиры)\"",
+    "idAttr"     : "inputNumber_room",
+    "sql_column" : "number_room"
+  },
+  {
+    "name"       : "section",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Подъезд",
+    "nameAttr"   : "pl[section]",
+    "description": "Select \"Подъезд\"",
+    "idAttr"     : "selectSection",
+    "sql_column" : "section",
+    "body"       : {
+      "text": "<option value=\"\">все</option><option value=\"1\">1</option><option value=\"2\">2</option><option value=\"3\">3</option><option value=\"4\">4</option><option value=\"5\">5</option><option value=\"6\">6</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"        : "coordinates",
+    "typeField"   : "input",
+    "nameText"    : "Координаты",
+    "nameAttr"    : "pl[coordinates]",
+    "description" : "Текстовое поле инпут \"Координаты(latitude|longitude)\"",
+    "idAttr"      : "inputCoordinates",
+    "sql_column"  : "coordinates",
+    "translateKey": "coordinates"
+  },
+  {
+    "name"       : "putting_all",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Очередь сдачи",
+    "nameAttr"   : "pl[putting_all]",
+    "description": "Select \"Putting all\"",
+    "idAttr"     : "selectPutting_all",
+    "sql_column" : "putting_all",
+    "body"       : {
+      "text": "<option value=\"0\">сдан</option><option value=\"2016\">2016</option><option value=\"2017\">2017</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "discount",
+    "typeField"  : "input",
+    "nameText"   : "Скидка (только число, в %)",
+    "nameAttr"   : "pl[discount]",
+    "description": "Текстовое поле инпут \"Скидка\"",
+    "idAttr"     : "inputDiscount",
+    "sql_column" : "discount"
+  },
+  {
+    "name"       : "sort",
+    "typeField"  : "input",
+    "nameText"   : "Сортировка",
+    "nameAttr"   : "pl[sort]",
+    "description": "Текстовое поле инпут \"Сортировка(имя сортируемой таблицы)\"",
+    "idAttr"     : "inputSort",
+    "sql_column" : "sort"
+  },
+  {
+    "name"       : "living_space",
+    "typeField"  : "input",
+    "nameText"   : "Жилая площадь",
+    "nameAttr"   : "pl[living_space]",
+    "description": "Текстовое поле инпут \"Жилая площадь\"",
+    "idAttr"     : "inputLiving_space",
+    "sql_column" : "living_space"
+  },
+  {
+    "name"       : "kitchen_space",
+    "typeField"  : "input",
+    "nameText"   : "Площадь кухни",
+    "nameAttr"   : "pl[kitchen_space]",
+    "description": "Текстовое поле инпут \"Площадь кухни\"",
+    "idAttr"     : "inputKitchen_space",
+    "sql_column" : "kitchen_space"
+  },
+  {
+    "name"       : "status_room",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Статуса продажи",
+    "nameAttr"   : "pl[status_room]",
+    "description": "Select \"Статуса продажи\"",
+    "idAttr"     : "selectStatus_room",
+    "sql_column" : "status_room",
+    "body"       : {
+      "text": "<option value=\"0\">Свободна</option><option value=\"1\">Бронь</option><option value=\"2\">Продана</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "room_1",
+    "typeField"  : "input",
+    "nameText"   : "Жилая комната 1",
+    "nameAttr"   : "pl[room_1]",
+    "description": "Текстовое поле инпут \"Жилая комната 1\"",
+    "idAttr"     : "inputRoom_1",
+    "sql_column" : "room_1"
+  },
+  {
+    "name"       : "room_2",
+    "typeField"  : "input",
+    "nameText"   : "Жилая комната 2",
+    "nameAttr"   : "pl[room_2]",
+    "description": "Текстовое поле инпут \"Жилая комната 2\"",
+    "idAttr"     : "inputRoom_2",
+    "sql_column" : "room_2"
+  },
+  {
+    "name"       : "room_3",
+    "typeField"  : "input",
+    "nameText"   : "Жилая комната 3",
+    "nameAttr"   : "pl[room_3]",
+    "description": "Текстовое поле инпут \"Жилая комната 3\"",
+    "idAttr"     : "inputRoom_3",
+    "sql_column" : "room_3"
+  },
+  {
+    "name"       : "room_4",
+    "typeField"  : "input",
+    "nameText"   : "Жилая комната 4",
+    "nameAttr"   : "pl[room_4]",
+    "description": "Текстовое поле инпут \"Жилая комната 4\"",
+    "idAttr"     : "inputRoom_4",
+    "sql_column" : "room_4"
+  },
+  {
+    "name"       : "number_court",
+    "typeField"  : "input",
+    "nameText"   : "Номер на площадке",
+    "nameAttr"   : "pl[number_court]",
+    "description": "Текстовое поле инпут \"Номер на площадке\"",
+    "idAttr"     : "inputNumber_court",
+    "sql_column" : "number_court"
+  },
+  {
+    "name"       : "home_jd",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Очередь сдачи",
+    "nameAttr"   : "pl[home_jd]",
+    "description": "Select \"Жилой дом\"",
+    "idAttr"     : "selectHome_jd",
+    "sql_column" : "home_jd",
+    "body"       : {
+      "text": "<option value=\"\">все</option><option value=\"5-2\">5-2</option><option value=\"10-1\">10-1</option><option value=\"10-2\">10-2</option><option value=\"10-4\">10-4</option><option value=\"10-5\">10-5</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "type_object",
+    "typeField"  : "input",
+    "nameText"   : "Тип объекта",
+    "nameAttr"   : "pl[type_object]",
+    "description": "Текстовое поле инпут \"Тип объекта\"",
+    "idAttr"     : "inputType_object",
+    "sql_column" : "type_object"
+  },
+  {
+    "name"       : "rightholder",
+    "typeField"  : "input",
+    "nameText"   : "Правообладатель",
+    "nameAttr"   : "pl[rightholder]",
+    "description": "Текстовое поле инпут \"Правообладатель\"",
+    "idAttr"     : "inputRightholder",
+    "sql_column" : "rightholder"
+  },
+  {
+    "name"       : "contractor_type",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Тип лица",
+    "nameAttr"   : "pl[contractor_type]",
+    "description": "Select \"Тип лица\"",
+    "idAttr"     : "selectContractor_type",
+    "sql_column" : "contractor_type",
+    "body"       : {
+      "text": "<option value=\"0\">Физлицо</option><option value=\"1\">Юрлицо</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "contractor_name",
+    "typeField"  : "input",
+    "nameText"   : "Контрагент (имя)",
+    "nameAttr"   : "pl[contractor_name]",
+    "description": "Текстовое поле инпут \"Контрагент (имя)\"",
+    "idAttr"     : "inputContractor_name",
+    "sql_column" : "contractor_name"
+  },
+  {
+    "name"       : "contractor_lastname",
+    "typeField"  : "input",
+    "nameText"   : "Контрагент (фамилия)",
+    "nameAttr"   : "pl[contractor_lastname]",
+    "description": "Текстовое поле инпут \"Контрагент (фамилия)\"",
+    "idAttr"     : "inputContractor_lastname",
+    "sql_column" : "contractor_lastname"
+  },
+  {
+    "name"       : "contractor_patronymic",
+    "typeField"  : "input",
+    "nameText"   : "Контрагент (отчество)",
+    "nameAttr"   : "pl[contractor_patronymic]",
+    "description": "Текстовое поле инпут \"Контрагент (отчество)\"",
+    "idAttr"     : "inputContractor_patronymic",
+    "sql_column" : "contractor_patronymic"
+  },
+  {
+    "name"       : "contractor_saleday",
+    "typeField"  : "input",
+    "nameText"   : "Дата продажи",
+    "nameAttr"   : "pl[contractor_saleday]",
+    "description": "Текстовое поле инпут \"Дата продажи\"",
+    "idAttr"     : "inputContractor_saleday",
+    "sql_column" : "contractor_saleday"
+  },
+  {
+    "name"       : "loggia1_space",
+    "typeField"  : "input",
+    "nameText"   : "Площадь лоджии 1",
+    "nameAttr"   : "pl[loggia1_space]",
+    "description": "Текстовое поле инпут \"Площадь лоджии 1\"",
+    "idAttr"     : "inputLoggia1_space",
+    "sql_column" : "loggia1_space"
+  },
+  {
+    "name"       : "loggia2_space",
+    "typeField"  : "input",
+    "nameText"   : "Площадь лоджии 2",
+    "nameAttr"   : "pl[loggia2_space]",
+    "description": "Текстовое поле инпут \"Площадь лоджии 2\"",
+    "idAttr"     : "inputLoggia2_space",
+    "sql_column" : "loggia2_space"
+  },
+  {
+    "name"       : "from_north",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Расселение с севера",
+    "nameAttr"   : "pl[from_north]",
+    "description": "Select \"Расселение с севера\"",
+    "idAttr"     : "selectFrom_north",
+    "sql_column" : "from_north",
+    "body"       : {
+      "text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "seasonal_goods",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Сезонный товар",
+    "nameAttr"   : "pl[seasonal_goods]",
+    "description": "Select \"Сезонный товар\"",
+    "idAttr"     : "selectSeasonal_goods",
+    "sql_column" : "seasonal_goods",
+    "body"       : {
+      "text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "popular_product",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Популярный продукт",
+    "nameAttr"   : "pl[popular_product]",
+    "description": "Select \"Популярный продукт\"",
+    "idAttr"     : "selectPopular_product",
+    "sql_column" : "popular_product",
+    "body"       : {
+      "text": "<option value=\"0\">Нет</option><option value=\"1\">Да</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "weight",
+    "typeField"  : "input",
+    "nameText"   : "Вес (число в граммах)",
+    "nameAttr"   : "pl[weight]",
+    "description": "Текстовое поле инпут \"Вес\"",
+    "idAttr"     : "inputWeight",
+    "sql_column" : "weight"
+  },
+  {
+    "name"       : "path",
+    "typeField"  : "input",
+    "nameText"   : "Путь",
+    "nameAttr"   : "pl[path]",
+    "description": "Текстовое поле инпут \"Путь\"",
+    "idAttr"     : "inputPath",
+    "sql_column" : "path"
+  },
+  {
+    "name"       : "type_measure",
+    "typeField"  : "select",
+    "classAttr"  : "select2",
+    "nameText"   : "Тип измерения",
+    "nameAttr"   : "pl[type_measure]",
+    "description": "Select \"Тип измерения\"",
+    "idAttr"     : "selectType_measure",
+    "sql_column" : "type_measure",
+    "body"       : {
+      "text": "<option value=\"0\">Шт</option><option value=\"1\">Грамм</option><option value=\"2\">Мл</option><option value=\"3\">Шт/грамм</option><option value=\"4\">Шт/мл</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"       : "time_cooking",
+    "typeField"  : "input",
+    "nameText"   : "Время приготовления",
+    "nameAttr"   : "pl[time_cooking]",
+    "description": "Текстовое поле инпут \"Время приготовления\"",
+    "idAttr"     : "inputTime_cooking",
+    "sql_column" : "time_cooking"
+  },
+  {
+    "name"       : "type_cooking",
+    "typeField"  : "input",
+    "nameText"   : "Способ приготовления",
+    "nameAttr"   : "pl[type_cooking]",
+    "description": "Input \"Способ приготовления\"",
+    "idAttr"     : "inputType_cooking",
+    "sql_column" : "type_cooking"
+  },
+  {
+    "name"       : "simple_recipe",
+    "typeField"  : "input",
+    "nameText"   : "Сложность рецепта",
+    "nameAttr"   : "pl[simple_recipe]",
+    "description": "Текстовое поле инпут \"Сложность рецепта\"",
+    "idAttr"     : "inputSimple_recipe",
+    "sql_column" : "simple_recipe"
+  },
+  {
+    "name"       : "rating",
+    "typeField"  : "input",
+    "nameText"   : "Рейтинг",
+    "nameAttr"   : "pl[rating]",
+    "description": "Текстовое поле инпут \"Рейтинг\"",
+    "idAttr"     : "inputRating",
+    "sql_column" : "rating"
+  },
+  {
+    "name"            : "tags",
+    "typeField"       : "functions",
+    "classAttr"       : "select2-tag",
+    "functionsBefore" : "insertTags",
+    "nameText"        : "Теги",
+    "nameAttr"        : "pl[tags]",
+    "description"     : "Текстовое поле селект \"tags (Теги)\"",
+    "idAttr"          : "selectTags",
+    "sql_column"      : "tags",
+    "js_init_function": "tagsInit",
+    "translateKey"    : "tags",
+    "body"            : {
+      "text"    : "",
+      "type"    : "insert",
+      "multiple": "multiple"
+    }
+  },
+  {
+    "name"            : "booking_calendar",
+    "typeField"       : "functions",
+    "classAttr"       : "booking-calendar",
+    "nameText"        : "Календарь бронирования",
+    "nameAttr"        : "pl[booking_calendar]",
+    "description"     : "Текстовое поле селект \"booking_calendar\"",
+    "idAttr"          : "selectBooking_calendar",
+    "sql_column"      : "booking_calendar",
+    "js_init_function": "bookingCalendarInit",
+    "tabs"            : "calendar",
+    "body"            : {
+      "text": "<div id=\"booking_calendar\"></div>"
+    }
+  },
+  {
+    "name"            : "location",
+    "typeField"       : "functions",
+    "classAttr"       : "location",
+    "nameText"        : "Название локации",
+    "nameAttr"        : "pl[location]",
+    "description"     : "Поле выбора и поиска локации \"location\"",
+    "idAttr"          : "inputLocation",
+    "sql_column"      : "location",
+    "js_init_function": "locationInit",
+    "latitude"        : 51.51111800,
+    "longitude"       : -0.08570800000,
+    "body"            : {
+      "text": "<div id=\"location\"></div>"
+    }
+  },
+  {
+    "name"        : "location_name",
+    "typeField"   : "input",
+    "classAttr"   : "location_name",
+    "nameText"    : "Название локации",
+    "nameAttr"    : "pl[location_name]",
+    "description" : "Поле выбора и поиска локации \"location_name\"",
+    "idAttr"      : "inputLocation_name",
+    "sql_column"  : "location_name",
+    "translateKey": "location_name"
+  },
+  {
+    "name"        : "name_p",
+    "typeField"   : "input",
+    "classAttr"   : "name_p",
+    "nameText"    : "Название в предложном падеже",
+    "nameAttr"    : "pl[name_p]",
+    "description" : "Поле для падежа \"name_p\"",
+    "idAttr"      : "inputName_p",
+    "sql_column"  : "name_p",
+    "translateKey": "title_prepositional"
+  },
+  {
+    "name"        : "location_description",
+    "typeField"   : "textarea",
+    "classAttr"   : "location_description",
+    "nameText"    : "Описание локации",
+    "nameAttr"    : "pl[location_description]",
+    "description" : "Поле выбора и поиска локации \"location_description\"",
+    "idAttr"      : "inputLocation_description",
+    "sql_column"  : "location_description",
+    "translateKey": "location_description"
+  },
+  {
+    "name"        : "description_param",
+    "typeField"   : "textarea",
+    "classAttr"   : "description_param",
+    "nameText"    : "Описание параметра",
+    "nameAttr"    : "pl[description_param]",
+    "description" : "Поле выбора и поиска локации \"description_param\"",
+    "idAttr"      : "inputВescription_param",
+    "sql_column"  : "description_param",
+    "translateKey": "description_param"
+  },
+  {
+    "name"        : "specialist_comment",
+    "typeField"   : "textarea",
+    "classAttr"   : "specialist_comment border-green",
+    "nameText"    : "Комментарий специалиста",
+    "nameAttr"    : "pl[specialist_comment]",
+    "description" : "Текстовое поле \"specialist_comment\"",
+    "idAttr"      : "inputSpecialist_comment",
+    "sql_column"  : "specialist_comment",
+    "translateKey": "specialist_comment"
+  },
+  {
+    "name"        : "author_id",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Автор из пользователей",
+    "nameAttr"    : "pl[author_id]",
+    "description" : "Селект \"author_id\"",
+    "idAttr"      : "selectAuthor_id",
+    "sql_column"  : "author_id",
+    "translateKey": "author_of_users",
+    "body"        : {
+      "text": "<option value=\"0\">-</option>{-option-}",
+      "type": "replace"
+    }
+  },
+  {
+    "name"           : "is_hot",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat border-green",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "Горячее предложение",
+    "nameAttr"       : "pl[is_hot]",
+    "description"    : "Селект \"is_hot\"",
+    "idAttr"         : "checkboxIs_hot",
+    "functionsBefore": "checkboxCheck",
+    "sql_column"     : "is_hot",
+    "translateKey"   : "is_hot_offer"
+  },
+  {
+    "name"           : "villas_by_the_sea",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat border-green",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "Виллы на берегу моря",
+    "nameAttr"       : "pl[villas_by_the_sea]",
+    "description"    : "Селект \"villas_by_the_sea\"",
+    "idAttr"         : "checkboxVillas_by_the_seat",
+    "functionsBefore": "checkboxCheck",
+    "sql_column"     : "villas_by_the_sea",
+    "translateKey"   : "villas_by_the_sea"
+  },
+  {
+    "name"           : "villas_with_private_service",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat border-green",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "Виллы c отельным обслуживанием",
+    "nameAttr"       : "pl[villas_with_private_service]",
+    "description"    : "Селект \"villas_with_private_service\"",
+    "idAttr"         : "checkboxVillas_with_private_service",
+    "functionsBefore": "checkboxCheck",
+    "sql_column"     : "villas_with_private_service",
+    "translateKey"   : "villas_with_private_service"
+  },
+  {
+    "name"           : "vacation_together",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat border-green",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "Отдых вдвоем",
+    "nameAttr"       : "pl[vacation_together]",
+    "description"    : "Селект \"vacation_together\"",
+    "idAttr"         : "checkboxVacation_together",
+    "functionsBefore": "checkboxCheck",
+    "sql_column"     : "vacation_together",
+    "translateKey"   : "vacation_together"
+  },
+  {
+    "name"           : "usefull",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat border-green",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "Полезное",
+    "nameAttr"       : "pl[usefull]",
+    "description"    : "Селект \"usefull\"",
+    "idAttr"         : "checkboxUsefull",
+    "functionsBefore": "checkboxCheck",
+    "sql_column"     : "usefull",
+    "translateKey"   : "usefull"
+  },
+  {
+    "name"            : "what_is_next",
+    "typeField"       : "functions",
+    "nameText"        : "Что есть рядом",
+    "nameAttr"        : "pl[what_is_next]",
+    "description"     : "Плагин \"what_is_next\" сделанный из album",
+    "idAttr"          : "inputWhat_is_next",
+    "sql_column"      : "what_is_next",
+    "noSaveInDatabase": true,
+    "translateKey"    : "what_is_next"
+  },
+  {
+    "name"        : "working_conditions",
+    "typeField"   : "functions",
+    "nameText"    : "Условия труда",
+    "nameAttr"    : "pl[working_conditions]",
+    "description" : "Плагин \"working_conditions\" сделанный из album",
+    "idAttr"      : "inputWorking_conditions",
+    "sql_column"  : "working_conditions",
+    "translateKey": "working_conditions"
+  },
+  {
+    "name"        : "benefits",
+    "typeField"   : "functions",
+    "nameText"    : "Benefits",
+    "nameAttr"    : "pl[benefits]",
+    "description" : "Плагин \"benefits\" сделанный из album",
+    "idAttr"      : "inputBenefits",
+    "sql_column"  : "benefits",
+    "translateKey": "benefits"
+  },
+  {
+    "name"        : "benefits_accommodation",
+    "typeField"   : "functions",
+    "nameText"    : "Benefits",
+    "nameAttr"    : "pl[benefits_accommodation]",
+    "description" : "Плагин \"benefits_accommodation\" сделанный из album",
+    "idAttr"      : "inputBenefits_accommodation",
+    "sql_column"  : "benefits_accommodation",
+    "translateKey": "benefits_accommodation"
+  },
+  {
+    "name"        : "collections",
+    "typeField"   : "functions",
+    "nameText"    : "Collections",
+    "nameAttr"    : "pl[collections]",
+    "description" : "Плагин \"collections\" сделанный из album",
+    "idAttr"      : "inputCollections",
+    "sql_column"  : "collections",
+    "translateKey": "collections"
+  },
+  {
+    "name"        : "main_img_small",
+    "typeField"   : "functions",
+    "nameText"    : "Первый экран(mobile)",
+    "nameAttr"    : "pl[main_img_small]",
+    "description" : "Плагин \"main_img_small\" сделанный из album",
+    "idAttr"      : "inputMain_img_small",
+    "sql_column"  : "main_img_small",
+    "translateKey": "main_img_small"
+  },
+  {
+    "name"            : "how_working",
+    "typeField"       : "functions",
+    "functionsBefore" : "insertHow_working",
+    "js_init_function": "how_workingInit",
+    "nameText"        : "Расстояния",
+    "nameAttr"        : "pl[how_working]",
+    "description"     : "Плагин \"how_working\"",
+    "idAttr"          : "inputHow_working",
+    "sql_column"      : "how_working",
+    "translateKey"    : "how_we_are_working",
+    "body"            : {
+      "text": "<button data-n=\"0\" type=\"button\" class=\"add-how_working-]-options-[- btn btn-success btn-icon\"><i class=\"fa fa-plus\"></i></button><div id=\"how_working-]-options-[-\" class=\"form-group\"></div>"
+    }
+  },
+  {
+    "name"            : "booking_is_easy",
+    "typeField"       : "functions",
+    "functionsBefore" : "insertBooking_is_easy",
+    "js_init_function": "booking_is_easyInit",
+    "nameText"        : "Бронирование легко",
+    "nameAttr"        : "pl[booking_is_easy]",
+    "description"     : "Плагин \"booking_is_easy\"",
+    "idAttr"          : "inputBooking_is_easy",
+    "sql_column"      : "booking_is_easy",
+    "translateKey"    : "booking_is_easy",
+    "body"            : {
+      "text": "<button data-n=\"0\" type=\"button\" class=\"add-booking_is_easy-]-options-[- btn btn-success btn-icon\"><i class=\"fa fa-plus\"></i></button><div id=\"booking_is_easy-]-options-[-\" class=\"form-group\"></div>"
+    }
+  },
+  {
+    "name"        : "convenience",
+    "typeField"   : "textarea",
+    "nameText"    : "Удобства",
+    "nameAttr"    : "pl[convenience]",
+    "description" : "Плагин \"convenience\"",
+    "idAttr"      : "inputConvenience",
+    "sql_column"  : "convenience",
+    "translateKey": "convenience",
+    "rows"        : "10"
+  },
+  {
+    "name"        : "services",
+    "typeField"   : "textarea",
+    "nameText"    : "Услуги",
+    "nameAttr"    : "pl[services]",
+    "description" : "Плагин \"services\"",
+    "idAttr"      : "inputServices",
+    "sql_column"  : "services",
+    "translateKey": "services",
+    "rows"        : "10"
+  },
+  {
+    "name"        : "bedrooms",
+    "typeField"   : "input",
+    "classAttr"   : "bedrooms",
+    "nameText"    : "Спальни",
+    "nameAttr"    : "pl[bedrooms]",
+    "description" : "Селект \"Спальни\"",
+    "idAttr"      : "selectBedrooms",
+    "sql_column"  : "bedrooms",
+    "translateKey": "bedrooms"
+  },
+  {
+    "name"        : "guests_person",
+    "typeField"   : "input",
+    "classAttr"   : "guests_person",
+    "nameText"    : "Кол-во гостей/человек",
+    "nameAttr"    : "pl[guests_person]",
+    "description" : "Селект \"Кол-во гостей/человек\"",
+    "idAttr"      : "selectGuests_person",
+    "sql_column"  : "guests_person",
+    "translateKey": "guests_person"
+  },
+  {
+    "name"           : "to_main",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "На главную",
+    "nameAttr"       : "pl[to_main]",
+    "description"    : "Селект \"На главную\"",
+    "idAttr"         : "checkboxTo_main",
+    "sql_column"     : "to_main",
+    "functionsBefore": "checkboxCheck",
+    "translateKey"   : "to_main"
+  },
+  {
+    "name"           : "in_portfolio",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "В портфолио",
+    "nameAttr"       : "pl[in_portfolio]",
+    "description"    : "Селект \"В портфолио\"",
+    "idAttr"         : "checkboxIn_portfolio",
+    "sql_column"     : "in_portfolio",
+    "functionsBefore": "checkboxCheck",
+    "translateKey"   : "in_portfolio"
+  },
+  {
+    "name"        : "bathroom",
+    "typeField"   : "input",
+    "classAttr"   : "bathroom",
+    "nameText"    : "Спальни",
+    "nameAttr"    : "pl[bathroom]",
+    "description" : "Селект \"Ванные комнаты\"",
+    "idAttr"      : "selectBathroom",
+    "sql_column"  : "bathroom",
+    "translateKey": "bathrooms"
+  },
+  {
+    "name"        : "sea",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Море",
+    "nameAttr"    : "pl[sea]",
+    "description" : "Селект \"Море\"",
+    "idAttr"      : "selectSea",
+    "sql_column"  : "sea",
+    "translateKey": "sea",
+    "body"        : {
+      "text": "<option value=\"0\"></option><option value=\"1\">With access to the beach</option><option value=\"2\">500 meters</option><option value=\"3\">1km</option><option value=\"4\">More than 1km</option>",
+      "type": "insert"
+    }
+  },
+  {
+    "name"        : "block_1",
+    "typeField"   : "textarea",
+    "nameText"    : "Блок 1",
+    "nameAttr"    : "pl[block_1]",
+    "description" : "Текстовое поле \"block_1\"",
+    "idAttr"      : "textareaBlock_1",
+    "maxlength"   : "12000",
+    "translateKey": "block_1",
+    "sql_column"  : "block_1"
+  },
+  {
+    "name"        : "block_2",
+    "typeField"   : "textarea",
+    "nameText"    : "Блок 2",
+    "nameAttr"    : "pl[block_2]",
+    "description" : "Текстовое поле \"block_2\"",
+    "idAttr"      : "textareaBlock_2",
+    "maxlength"   : "12000",
+    "translateKey": "block_2",
+    "sql_column"  : "block_2"
+  },
+  {
+    "name"        : "block_3",
+    "typeField"   : "textarea",
+    "nameText"    : "Блок 3",
+    "nameAttr"    : "pl[block_3]",
+    "description" : "Текстовое поле \"block_3\"",
+    "idAttr"      : "textareaBlock_3",
+    "maxlength"   : "12000",
+    "translateKey": "block_3",
+    "sql_column"  : "block_3"
+  },
+  {
+    "name"        : "block_4",
+    "typeField"   : "textarea",
+    "nameText"    : "Блок 4",
+    "nameAttr"    : "pl[block_4]",
+    "description" : "Текстовое поле \"block_4\"",
+    "idAttr"      : "textareaBlock_4",
+    "maxlength"   : "12000",
+    "translateKey": "block_4",
+    "sql_column"  : "block_4"
+  },
+  {
+    "name"        : "quote_main_block_1_1",
+    "typeField"   : "textarea",
+    "nameText"    : "Блок цитаты для главной страцы 1, 1",
+    "nameAttr"    : "pl[quote_main_block_1_1]",
+    "description" : "Текстовое поле \"quote_main_block_1_1\"",
+    "idAttr"      : "textareaQuote_main_block_1_1",
+    "maxlength"   : "12000",
+    "translateKey": "quote_main_block_1_1",
+    "sql_column"  : "quote_main_block_1_1"
+  },
+  {
+    "name"        : "quote_main_block_1_2",
+    "typeField"   : "textarea",
+    "nameText"    : "Блок цитаты для главной страцы 1, 2",
+    "nameAttr"    : "pl[quote_main_block_1_2]",
+    "description" : "Текстовое поле \"quote_main_block_1_2\"",
+    "idAttr"      : "textareaQuote_main_block_1_2",
+    "maxlength"   : "12000",
+    "translateKey": "quote_main_block_1_2",
+    "sql_column"  : "quote_main_block_1_2"
+  },
+  {
+    "name"            : "slider_1",
+    "typeField"       : "functions",
+    "nameText"        : "Изображение",
+    "nameAttr"        : "pl[slider_1]",
+    "description"     : "Плагин \"slider_1\"",
+    "idAttr"          : "inputSlider_1",
+    "sql_column"      : "slider_1",
+    "noSaveInDatabase": true,
+    "translateKey"    : "slider_1"
+  },
+  {
+    "name"            : "slider_2",
+    "typeField"       : "functions",
+    "nameText"        : "Изображение",
+    "nameAttr"        : "pl[slider_2]",
+    "description"     : "Плагин \"slider_2\"",
+    "idAttr"          : "inputSlider_2",
+    "sql_column"      : "slider_2",
+    "noSaveInDatabase": true,
+    "translateKey"    : "slider_2"
+  },
+  {
+    "name"        : "block_1_1",
+    "typeField"   : "input",
+    "nameText"    : "Название",
+    "nameAttr"    : "pl[block_1_1]",
+    "description" : "Текстовое поле инпут block_1_1",
+    "idAttr"      : "inputBlock_1_1",
+    "sql_column"  : "block_1_1",
+    "translateKey": "block_1_1"
+  },
+  {
+    "name"        : "block_1_2",
+    "typeField"   : "input",
+    "nameText"    : "Название",
+    "nameAttr"    : "pl[block_1_2]",
+    "description" : "Текстовое поле инпут block_1_2",
+    "idAttr"      : "inputBlock_1_2",
+    "sql_column"  : "block_1_2",
+    "translateKey": "block_1_2"
+  },
+  {
+    "name"        : "block_3_1",
+    "typeField"   : "input",
+    "nameText"    : "Название",
+    "nameAttr"    : "pl[block_3_1]",
+    "description" : "Текстовое поле инпут block_3_1",
+    "idAttr"      : "inputBlock_3_1",
+    "sql_column"  : "block_3_1",
+    "translateKey": "block_3_1"
+  },
+  {
+    "name"        : "link_how_working",
+    "typeField"   : "input",
+    "nameText"    : "Ссылка на видео \"Как мы работаем\"",
+    "nameAttr"    : "pl[link_how_working]",
+    "description" : "Текстовое поле инпут link_how_working",
+    "idAttr"      : "inputLink_how_working",
+    "sql_column"  : "link_how_working",
+    "translateKey": "link_how_working"
+  },
+  {
+    "name"        : "distance_from_the_center",
+    "typeField"   : "input",
+    "nameText"    : "Ссылка на видео \"Удаленность от центра(в милях)\"",
+    "nameAttr"    : "pl[distance_from_the_center]",
+    "description" : "Текстовое поле инпут distance_from_the_center",
+    "idAttr"      : "inputDistance_from_the_center",
+    "sql_column"  : "distance_from_the_center",
+    "translateKey": "distance_from_the_center"
+  },
+  {
+    "name"        : "price_money_from",
+    "typeField"   : "input",
+    "nameText"    : "Стоимость, от",
+    "nameAttr"    : "pl[price_money_from]",
+    "description" : "Текстовое поле инпут \"price_money_from Стоимость, от\"",
+    "idAttr"      : "inputPrice_money_from",
+    "sql_column"  : "price_money_from",
+    "translateKey": "price_money_from"
+  },
+  {
+    "name"        : "price_money_to",
+    "typeField"   : "input",
+    "nameText"    : "Стоимость, до",
+    "nameAttr"    : "pl[price_money_to]",
+    "description" : "Текстовое поле инпут \"price_money_to Стоимость, до\"",
+    "idAttr"      : "inputPrice_money_to",
+    "sql_column"  : "price_money_to",
+    "translateKey": "price_money_to"
+  },
+  {
+    "name"        : "area_from",
+    "typeField"   : "input",
+    "nameText"    : "Площадь, от",
+    "nameAttr"    : "pl[area_from]",
+    "description" : "Текстовое поле инпут \"area_from Площадь, от\"",
+    "idAttr"      : "inputArea_from",
+    "sql_column"  : "area_from",
+    "translateKey": "area_from"
+  },
+  {
+    "name"        : "area_to",
+    "typeField"   : "input",
+    "nameText"    : "Площадь, до",
+    "nameAttr"    : "pl[area_to]",
+    "description" : "Текстовое поле инпут \"area_to\"",
+    "idAttr"      : "inputArea_to",
+    "sql_column"  : "area_to",
+    "translateKey": "area_to"
+  },
+  {
+    "name"        : "bedrooms_from",
+    "typeField"   : "input",
+    "classAttr"   : "bedrooms_from",
+    "nameText"    : "Спальни, от",
+    "nameAttr"    : "pl[bedrooms_from]",
+    "description" : "Селект \"Спальни, от\"",
+    "idAttr"      : "selectBedrooms_from",
+    "sql_column"  : "bedrooms_from",
+    "translateKey": "bedrooms_from"
+  },
+  {
+    "name"        : "bedrooms_to",
+    "typeField"   : "input",
+    "classAttr"   : "bedrooms_to",
+    "nameText"    : "Спальни, до",
+    "nameAttr"    : "pl[bedrooms_to]",
+    "description" : "Селект \"Спальни, до\"",
+    "idAttr"      : "selectBedrooms_to",
+    "sql_column"  : "bedrooms_to",
+    "translateKey": "bedrooms_to"
+  },
+  {
+    "name"        : "post_code",
+    "typeField"   : "input",
+    "classAttr"   : "post_code",
+    "nameText"    : "Почтовый индекс",
+    "nameAttr"    : "pl[post_code]",
+    "description" : "Селект \"Почтовый индекс\"",
+    "idAttr"      : "selectPost_code",
+    "sql_column"  : "post_code",
+    "translateKey": "post_code"
+  },
+  {
+    "name"        : "developer",
+    "typeField"   : "input",
+    "classAttr"   : "developer",
+    "nameText"    : "Разработчик",
+    "nameAttr"    : "pl[developer]",
+    "description" : "Селект \"Разработчик\"",
+    "idAttr"      : "selectDeveloper",
+    "sql_column"  : "developer",
+    "translateKey": "developer"
+  },
+  {
+    "name"       : "number_object",
+    "typeField"  : "input",
+    "nameText"   : "Номер объекта",
+    "nameAttr"   : "pl[number_object]",
+    "description": "Текстовое поле инпут \"number_object (Номер объекта)\"",
+    "idAttr"     : "inputNumber_object",
+    "sql_column" : "number_object"
+  },
+  {
+    "name"        : "type_object",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Тип объекта",
+    "nameAttr"    : "pl[type_object]",
+    "description" : "Текстовое поле селект \"type_object\" для выбора Типа объекта",
+    "idAttr"      : "selectType_object",
+    "sql_column"  : "type_object",
+    "accurate"    : true,
+    "recursive"   : true,
+    "parent_table": "menu",
+    "translateKey": "type_object",
+    "body"        : {
+      "text": "<option value=\"0\">(Без категории)</option>{-option-}",
+      "type": "replace"
+    }
+  },
+  {
+    "name"        : "development_facilities",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Инфраструктура",
+    "nameAttr"    : "pl[development_facilities]",
+    "description" : "Текстовое поле селект \"development_facilities\" для выбора Инфраструктуры",
+    "idAttr"      : "selectDevelopment_facilities",
+    "sql_column"  : "development_facilities",
+    "accurate"    : true,
+    "recursive"   : true,
+    "parent_table": "menu",
+    "translateKey": "development_facilities",
+    "body"        : {
+      "text": "<option value=\"0\">(Без категории)</option>{-option-}",
+      "type": "replace"
+    }
+  },
+  {
+    "name"        : "estimated_completion",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Ожидаемый срок",
+    "nameAttr"    : "pl[estimated_completion]",
+    "description" : "Текстовое поле селект \"estimated_completion\" для выбора Ожидаемого срока",
+    "idAttr"      : "selectEstimated_completion",
+    "sql_column"  : "estimated_completion",
+    "accurate"    : true,
+    "recursive"   : true,
+    "parent_table": "menu",
+    "translateKey": "estimated_completion",
+    "body"        : {
+      "text": "<option value=\"0\">(Без категории)</option>{-option-}",
+      "type": "replace"
+    }
+  }
 ]

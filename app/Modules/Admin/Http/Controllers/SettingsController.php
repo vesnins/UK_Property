@@ -13,202 +13,203 @@ use Illuminate\Support\Facades\Mail;
 
 class SettingsController extends Controller
 {
-	/**
-	 * @var
-	 */
-	public static $dynamic_static;
-	/**
-	 * @var Modules
-	 */
-	protected $modules;
-	/**
-	 * @var Base
-	 */
-	protected $base;
-	/**
-	 * @var DynamicModel
-	 */
-	protected $dynamic;
+  /**
+   * @var
+   */
+  public static $dynamic_static;
 
-	/**
-	 * @var array
-	 */
-	protected $request;
+  /**
+   * @var Modules
+   */
+  protected $modules;
 
-	public function __construct(Request $request)
-	{
-		parent::__construct();
+  /**
+   * @var Base
+   */
+  protected $base;
 
-		$this->modules        = new Modules();
-		$this->base           = new Base($request);
-		$this->request        = $request->all();
-		self::$dynamic_static = $this->dynamic = new DynamicModel();
-	}
+  /**
+   * @var DynamicModel
+   */
+  protected $dynamic;
 
-	public static function addingLogActions(array $data)
-	{
-		$data['created_at'] = Carbon::now();
-		$t                  = 'actions_log';
-		$data['id']         = (new DynamicModel())->t($t)->insertGetId($data);
-		$data['plugins']    = config('admin.plugins');
+  /**
+   * @var array
+   */
+  protected $request;
 
-		$data[$t] = (new DynamicModel())
-			->t($t)
-			->where([[$t . '.id', $data['id']]])
+  public function __construct(Request $request)
+  {
+    parent::__construct();
 
-			->join(
-				'users',
+    $this->modules        = new Modules();
+    $this->base           = new Base($request);
+    $this->request        = $request->all();
+    self::$dynamic_static = $this->dynamic = new DynamicModel();
+  }
 
-				function($join) use ($t) {
-					$join->type = 'LEFT OUTER';
-					$join->on($t . '.users_id', '=', 'users.id');
-				}
-			)
+  public static function addingLogActions(array $data)
+  {
+    $data['created_at'] = Carbon::now();
+    $t                  = 'actions_log';
+    $data['id']         = (new DynamicModel())->t($t)->insertGetId($data);
+    $data['plugins']    = config('admin.plugins');
 
-			->select("$t.*", 'users.name as users_name', 'users.usertype')
-			->get()
-			->toArray();
+    $data[$t] = (new DynamicModel())
+      ->t($t)
+      ->where([[$t . '.id', $data['id']]])
+      ->join(
+        'users',
 
-		$send_notifications = (new DynamicModel())
-			->t('params')
-			->select('params.*', 'little_description as key')
-			->where('name', 'send_notifications')
-			->first();
+        function($join) use ($t) {
+          $join->type = 'LEFT OUTER';
+          $join->on($t . '.users_id', '=', 'users.id');
+        }
+      )
+      ->select("$t.*", 'users.name as users_name', 'users.usertype')
+      ->get()
+      ->toArray();
 
-		$lang_s = (new DynamicModel())
-			->t('params_lang')
-			->select('params_lang.*', 'little_description as key')
-			->where('active', 1)
-			->get()
-			->toArray();
+    $send_notifications = (new DynamicModel())
+      ->t('params')
+      ->select('params.*', 'little_description as key')
+      ->where('name', 'send_notifications')
+      ->first();
 
-		if($send_notifications['active'] && ($data[$t][0]['usertype'] ?? '') !== 'admin') {
-			$from = 'no-realy@greecobooking.niws.ru';
+    $lang_s = (new DynamicModel())
+      ->t('params_lang')
+      ->select('params_lang.*', 'little_description as key')
+      ->where('active', 1)
+      ->get()
+      ->toArray();
 
-			$param = (new DynamicModel())
-				->t('params')
-				->select('params.*', 'little_description as key')
-				->where('name', 'email_alerts')
-				->first();
+    if($send_notifications['active'] && ($data[$t][0]['usertype'] ?? '') !== 'admin') {
+      $from = 'no-realy@greecobooking.niws.ru';
 
-			$params = [];
+      $param = (new DynamicModel())
+        ->t('params')
+        ->select('params.*', 'little_description as key')
+        ->where('name', 'email_alerts')
+        ->first();
 
-			$params['langSt'] = function($t, $l = '') {
-				return Base::langSt($t, $l);
-			};
+      $params = [];
 
-//			foreach($param as $key => $p)
-//				$params['params'][$p->name] = $p->toArray();
+      $params['langSt'] = function($t, $l = '') {
+        return Base::langSt($t, $l);
+      };
 
-			$data['type_actions'] = [
-				'insert_table_row' => 'Create table row',
-				'update_table_row' => 'Update table row',
-			];
+      //			foreach($param as $key => $p)
+      //				$params['params'][$p->name] = $p->toArray();
 
-			foreach(explode(',', $params['langSt']($param['little_description'])) as $email) {
-				Mail::send(
-					'admin::emails.notifications',
+      $data['type_actions'] = [
+        'insert_table_row' => 'Create table row',
+        'update_table_row' => 'Update table row',
+      ];
 
-					array_merge(
-						[
-							'lang_s' => $lang_s,
-						],
+      foreach(explode(',', $params['langSt']($param['little_description'])) as $email) {
+        Mail::send(
+          'admin::emails.notifications',
 
-						array_merge($data, $params)
-					),
+          array_merge(
+            [
+              'lang_s' => $lang_s,
+            ],
 
-					function($m) use ($param, $from, $params, $email) {
-						$m->from($from, 'Notification From Grecobooking');
-						$m->to($email, 'no-realy')->subject('Notification From Grecobooking');
-					}
-				);
-			}
-		}
+            array_merge($data, $params)
+          ),
 
-		return $data['id'];
-	}
+          function($m) use ($param, $from, $params, $email) {
+            $m->from($from, 'Notification From Grecobooking');
+            $m->to($email, 'no-realy')->subject('Notification From Grecobooking');
+          }
+        );
+      }
+    }
 
-	/**
-	 * @return \Illuminate\View\View
-	 */
-	public function getIndex()
-	{
-		try {
-			$data = [];
-			$t    = 'actions_log';
+    return $data['id'];
+  }
 
-			$data['type_actions'] = [
-				'insert_table_row' => 'Create table row',
-				'update_table_row' => 'Update table row',
-			];
+  /**
+   * @return \Illuminate\View\View
+   */
+  public function getIndex()
+  {
+    try {
+      $data = [];
+      $t    = 'actions_log';
 
-			$data['actions_log'] = $this->dynamic
-				->t('actions_log')
-				->join(
-					'users',
+      $data['type_actions'] = [
+        'insert_table_row' => 'Create table row',
+        'update_table_row' => 'Update table row',
+      ];
 
-					function($join) use ($t) {
-						$join->type = 'LEFT OUTER';
-						$join->on($t . '.users_id', '=', 'users.id');
-					}
-				)
-				->select("$t.*", 'users.name as users_name')
-				->orderBy("$t.id", 'DESC')
-				->paginate(100);
+      $data['actions_log'] = $this->dynamic
+        ->t('actions_log')
+        ->join(
+          'users',
 
-			$data['send_notifications'] = $this
-				->dynamic
-				->t('params')
-				->select('params.*', 'little_description as key')
-				->where('name', 'send_notifications')
-				->first();
+          function($join) use ($t) {
+            $join->type = 'LEFT OUTER';
+            $join->on($t . '.users_id', '=', 'users.id');
+          }
+        )
+        ->select("$t.*", 'users.name as users_name')
+        ->orderBy("$t.id", 'DESC')
+        ->paginate(100);
 
-			$data['lang_s'] = $this
-				->dynamic
-				->t('params_lang')
-				->select('params_lang.*', 'little_description as key')
-				->where('active', 1)
-				->get()
-				->toArray();
+      $data['send_notifications'] = $this
+        ->dynamic
+        ->t('params')
+        ->select('params.*', 'little_description as key')
+        ->where('name', 'send_notifications')
+        ->first();
 
-			return Base::view("admin::settings.index", $data);
-		} catch(\Exception $err) {
-			return Base::errorPage($err);
-		}
-	}
+      $data['lang_s'] = $this
+        ->dynamic
+        ->t('params_lang')
+        ->select('params_lang.*', 'little_description as key')
+        ->where('active', 1)
+        ->get()
+        ->toArray();
 
-	/**
-	 * Change param.
-	 *
-	 * @param array $data
-	 */
-	public function change_param($data = [])
-	{
-		if(!empty($data)) {
-			$table  = $data['table'];
-			$active = $data['active'];
-			$name   = $data['name'];
-		} else {
-			$table  = $this->request['table'];
-			$active = $this->request['active'];
-			$name   = $this->request['name'];
-		}
+      return Base::view("admin::settings.index", $data);
+    } catch(\Exception $err) {
+      return Base::errorPage($err);
+    }
+  }
 
-		$params = $this
-			->dynamic
-			->t($table)
-			->select('params.*', 'little_description as key')
-			->where('name', $name)
-			->first();
+  /**
+   * Change param.
+   *
+   * @param array $data
+   */
+  public function change_param($data = [])
+  {
+    if(!empty($data)) {
+      $table  = $data['table'];
+      $active = $data['active'];
+      $name   = $data['name'];
+    } else {
+      $table  = $this->request['table'];
+      $active = $this->request['active'];
+      $name   = $this->request['name'];
+    }
 
-		$params->active = $active === 'true' ? 1 : 0;
-		$result = $params->save();
+    $params = $this
+      ->dynamic
+      ->t($table)
+      ->select('params.*', 'little_description as key')
+      ->where('name', $name)
+      ->first();
 
-		if($result)
-			$ret['result'] = 'ok';
-		else
-			$ret['result'] = 'error';
+    $params->active = $active === 'true' ? 1 : 0;
+    $result         = $params->save();
 
-		echo json_encode($ret);
-	}
+    if($result)
+      $ret['result'] = 'ok';
+    else
+      $ret['result'] = 'error';
+
+    echo json_encode($ret);
+  }
 }

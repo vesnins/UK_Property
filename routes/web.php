@@ -10,7 +10,7 @@ Route::group(
 		Route::get('/services/{id?}', 'MainController@services');
 
 		Route::get('/selection-request', 'MainController@selection_request');
-		Route::get('/villas/{id?}', 'MainController@villas');
+		Route::get('/catalog/{name?}/{id?}', 'MainController@catalog');
 		Route::get('/blog/{id?}', 'MainController@blog');
 		Route::get('/about-us', 'MainController@about_us');
 		Route::get('/about-company', 'MainController@about_company');

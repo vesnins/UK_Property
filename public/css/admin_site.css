@@ -1,4 +1,7 @@
 /* style format */
+.menu_section {
+	overflow: auto;
+}
 .cookIN {
 	padding: 0;
 	overflow: hidden;

@@ -292,15 +292,17 @@
 <script>
   if(!window.jQuery) document.write('<script src="/js/jquery-1.12.4.min.js"><\/script>');
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/svg4everybody/2.1.9/svg4everybody.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/svg4everybody/2.1.9/svg4everybody.legacy.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-js/1.2.0/sticky.compile.js"></script>
+<script src="/js/mirror/svg4everybody.min.js"></script>
+<script src="/js/mirror/svg4everybody.legacy.min.js"></script>
+<script src="/js/mirror/jquery.validate.min.js"></script>
+<script src="/js/mirror/jquery.mask.min.js"></script>
+<script src="/js/mirror/slick.min.js"></script>
+<script src="/js/mirror/bootstrap-slider.min.js"></script>
+<script src="/js/mirror/sticky.compile.js"></script>
 <script src="/js/bootstrap-components/bootstrap-modal.min.js"></script>
 <script src="/js/parallax-js/jquery.parallax-scroll.js"></script>
 <script src="/js/libs/venobox.min.js"></script>
+<script src="/js/libs/sticky.min.js"></script>
 <script src="/js/main.js"></script>
 @stack('footer')
 </body>

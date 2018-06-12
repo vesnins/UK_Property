@@ -154,7 +154,6 @@ class HelperController extends Controller
       ->dynamic
       ->t('services')
       ->where('services.active', 1)
-
       ->join(
         'files',
 
@@ -165,7 +164,6 @@ class HelperController extends Controller
             ->where('files.main', '=', 1);
         }
       )
-
       ->join(
         'files AS collections_files',
 
@@ -176,7 +174,6 @@ class HelperController extends Controller
             ->where('collections_files.main', '=', 1);
         }
       )
-
       ->join(
         'files AS collections_files_2',
 
@@ -187,7 +184,6 @@ class HelperController extends Controller
             ->where('collections_files_2.main', '!=', 1);
         }
       )
-
       ->select(
         'services.*',
         'files.file',
@@ -197,7 +193,6 @@ class HelperController extends Controller
         'collections_files_2.file AS collections_files_2',
         'collections_files_2.crop AS collections_crop_2'
       )
-
       ->orderBy('services.sort', 'ASC')
       ->get()
       ->toArray();

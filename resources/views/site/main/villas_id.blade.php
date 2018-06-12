@@ -528,7 +528,7 @@
 
           <div class="grid">
             <ul class="grid-list">
-              @include('site.block.villas_main_list_grid', ['villas' => $recommended_villas])
+              @include('site.block.catalog_list', ['villas' => $recommended_villas])
             </ul>
           </div>
         </div>
