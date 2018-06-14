@@ -664,6 +664,8 @@
       "distance_from_the_center",
       "price_money_from",
       "price_money_to",
+      "area_from",
+      "area_to",
       "bedrooms_from",
       "bedrooms_to",
       "type_object",
@@ -723,7 +725,8 @@
     "parent"          : "10",
     "plugins"         : [
       "name",
-      "little_description"
+      "little_description",
+      "active"
     ],
     "small_width"     : "500",
     "small_height"    : "350",
@@ -757,7 +760,8 @@
     "parent"          : "10",
     "plugins"         : [
       "name",
-      "little_description"
+      "little_description",
+      "active"
     ],
     "small_width"     : "500",
     "small_height"    : "350",
@@ -791,7 +795,8 @@
     "parent"          : "10",
     "plugins"         : [
       "name",
-      "little_description"
+      "little_description",
+      "active"
     ],
     "small_width"     : "500",
     "small_height"    : "350",
@@ -825,7 +830,8 @@
     "parent"          : "10",
     "plugins"         : [
       "name",
-      "little_description"
+      "little_description",
+      "active"
     ],
     "small_width"     : "500",
     "small_height"    : "350",

@@ -1188,7 +1188,8 @@ class MainController extends Controller
 
     $filters = [
       'invest-in-development-projects' => [
-        'name' => 'invest_in_development_projects',
+        'name'  => 'invest_in_development_projects',
+        'table' => 'catalog_development',
 
         'filters' => [
           // Район(Расположение)
@@ -1209,15 +1210,18 @@ class MainController extends Controller
           // Стоимость, млн евро(Стоимость)
           'price'                  => [
             'type' => 'slider_select',
+            'step' => 500,
 
             'fields' => [
-              'price_from' => [
-                'name'  => 'price_from',
+              'price_money_from' => [
+                'mode'  => 'min',
+                'name'  => 'price_money_from',
                 'title' => __('main.cost_€_million'),
               ],
 
-              'price_to' => [
-                'name'  => 'price_from',
+              'price_money_to' => [
+                'mode'  => 'max',
+                'name'  => 'price_money_to',
                 'title' => '',
               ],
             ],
@@ -1228,15 +1232,18 @@ class MainController extends Controller
           // Площадь
           'area'                   => [
             'type' => 'slider_select_area',
+            'step' => 5,
 
             'fields' => [
               'area_from' => [
+                'mode'  => 'min',
                 'name'  => 'area_from',
                 'title' => __('main.area'),
               ],
 
-              'price_to' => [
-                'name'  => 'area_from',
+              'area_to' => [
+                'mode'  => 'max',
+                'name'  => 'area_to',
                 'title' => '',
               ],
             ],
@@ -1247,14 +1254,17 @@ class MainController extends Controller
           // Спальни
           'bedrooms'               => [
             'type' => 'slider_select',
+            'step'  => 1,
 
             'fields' => [
               'area_from' => [
+                'mode'  => 'min',
                 'name'  => 'bedrooms_from',
                 'title' => __('main.bedrooms'),
               ],
 
               'price_to' => [
+                'mode'  => 'max',
                 'name'  => 'bedrooms_to',
                 'title' => '',
               ],
@@ -1303,6 +1313,7 @@ class MainController extends Controller
       ],
     ];
 
+
     if(!($filters[$name] ?? false))
       return $this->helper->_errors_404();
 
@@ -1310,7 +1321,26 @@ class MainController extends Controller
     $data['service']  = [];
     $data['filters']  = $filters[$name];
 
-    // print_r($data['filters'] );
+    foreach($data['filters']['filters'] as $key => $filter) {
+      if($filter['type'] === 'multi_checkbox') {
+        $data['filters']['filters'][$key]['data'] = $this->dynamic
+          ->t($filter['table'])
+          ->where([['active', '=', 1]])
+          ->get()
+          ->toArray();
+      }
+
+      if($filter['type'] === 'slider_select' || $filter['type'] === 'slider_select_area') {
+        foreach($filter['fields'] as $key_field => $field) {
+          $data['filters']['filters'][$key]['fields'][$key_field]['data'] = $this->dynamic
+            ->t($data['filters']['table'])
+            ->{$field['mode']}("{$field['name']}");
+        }
+      }
+    }
+
+//    print_r($data['filters'] );
+//    exit;
 
     foreach($data['services'] as $service)
       if($service['translation']["services/$name"])

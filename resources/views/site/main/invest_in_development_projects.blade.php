@@ -43,33 +43,58 @@
 
                     <div class="item-info">
                       @if($filter['type'] === 'multi_checkbox')
-                        <label class="checkbox-label">
-                          <input type="checkbox" name="group-1" />
-                          <span>Лондонский Сити</span>
-                        </label>
+                        @foreach($filter['data'] ?? [] as $d)
+                          <label class="checkbox-label">
+                            <input
+                              type="checkbox"
+                              name="{{ current($filter['fields'])['name'] ?? '' }}[]"
+                              value="{{ $d['id'] }}"
+                            />
+
+                            <span>{{ $langSt($d['name']) }}</span>
+                          </label>
+                        @endforeach
                       @endif
 
                       @if($filter['type'] === 'slider_select')
+                        @php($f = [])
+                        @php($i = 0)
+
+                        @foreach($filter['fields'] as $field)
+                          @php($f[$i]['data'] = $field['data'])
+                          @php($f[$i]['name'] = $field['name'])
+                          @php($i++)
+                        @endforeach
+
                         <div class="range-slider">
                           <input
                             class="slider"
                             type="text"
-                            data-slider-min="0"
-                            data-slider-max="1000"
-                            data-slider-step="5"
-                            data-slider-value="[0,1000]"
-                            placeholder=""
+                            data-slider-min="{{ $f[0]['data'] }}"
+                            data-slider-max="{{ $f[1]['data'] }}"
+                            data-slider-step="{{ $filter['step'] ?? 5 }}"
+                            data-slider-value="[{{ $f[0]['data'] }},{{ $f[1]['data'] }}]"
                           />
 
                           <div class="input-group">
                             <label>
                               @lang('main.from_')
-                              <input type="text" class="range-value min" placeholder="" />
+                              <input
+                                type="text"
+                                name="{{ $f[0]['name'] }}"
+                                class="range-value min"
+                                placeholder="{{ $f[1]['title'] }}"
+                              />
                             </label>
 
                             <label>
                               @lang('main.to_')
-                              <input type="text" class="range-value max" placeholder="" />
+                              <input
+                                type="text"
+                                name="{{ $f[1]['name'] }}"
+                                class="range-value max"
+                                placeholder="{{ $f[1]['title'] }}"
+                              />
                             </label>
                           </div>
                         </div>
@@ -87,22 +112,34 @@
                           <input
                             class="slider"
                             type="text"
-                            data-slider-min="40"
-                            data-slider-max="300"
+                            data-slider-min="{{ $filter['fields']['area_from']['data'] }}"
+                            data-slider-max="{{ $filter['fields']['area_to']['data'] }}"
                             data-slider-step="5"
-                            data-slider-value="[50,150]"
-                            placeholder=""
+
+                            data-slider-value="[
+                              {{ $filter['fields']['area_from']['data'] }},
+                              {{ $filter['fields']['area_to']['data'] }}
+                              ]"
                           />
 
                           <div class="input-group">
                             <label>
                               @lang('main.from_')
-                              <input type="text" class="range-value min" placeholder="" />
+
+                              <input
+                                type="text"
+                                name="{{ $filter['fields']['area_from']['name'] }}"
+                                class="range-value min"
+                              />
                             </label>
 
                             <label>
                               @lang('main.to_')
-                              <input type="text" class="range-value max" placeholder="" />
+                              <input
+                                type="text"
+                                class="range-value max"
+                                name="{{ $filter['fields']['area_to']['name'] }}"
+                              />
                             </label>
                           </div>
                         </div>
