@@ -200,22 +200,6 @@ class MainController extends Controller
   }
 
   /**
-   * Request for accommodation.
-   *
-   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-   */
-  public function request_for_accommodation()
-  {
-    $data['benefits_accommodation'] = $this->dynamic->t('files')
-      ->where('files.name_table', '=', 'mainbenefits_accommodation')
-      ->select('files.*', 'files.file', 'files.crop')
-      ->get()
-      ->toArray();
-
-    return $this->base->view_s("site.main.request_for_accommodation", $data);
-  }
-
-  /**
    * Favorite.
    *
    * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -593,74 +577,6 @@ class MainController extends Controller
   }
 
   /**
-   * Vacancies.
-   *
-   * @param null $id
-   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-   */
-  public function vacancies($id = null)
-  {
-    $data = [];
-
-    if($id) {
-      $data['vacancy'] = $this
-        ->dynamic
-        ->t('vacancies')
-        ->join(
-          'files',
-
-          function($join) {
-            $join->type = 'LEFT OUTER';
-            $join->on('vacancies.id', '=', 'files.id_album')
-              ->where('files.name_table', '=', 'vacanciesalbum')
-              ->where('files.main', '=', 1);
-          }
-        )
-        ->select('vacancies.*', 'files.file', 'files.crop')
-        ->where([['vacancies.active', 1], ['vacancies.id', $id]])
-        ->first();
-
-      $data['vacancies'] = $this->dynamic->t('vacancies')
-        ->where('vacancies.active', 1)
-        ->whereNotIn('vacancies.id', [$id])
-        ->select('vacancies.*')
-        ->groupBy('vacancies.id')
-        ->orderBy('vacancies.id', 'DESC')
-        ->get()
-        ->toArray();
-
-      $data['meta_c'] = $this->base->getMeta($data, 'vacancy');
-
-      return $this->base->view_s("site.main.vacancies_id", $data);
-    } else {
-      $data['vacancies'] = $this->dynamic->t('vacancies')
-        ->where('vacancies.active', 1)
-        ->select('vacancies.*')
-        ->groupBy('vacancies.id')
-        ->orderBy('vacancies.id', 'DESC')
-        ->get()
-        ->toArray();
-
-      $data['main_page'] = $this->dynamic->t('main_page')->where('table', 'vacancies')->first()->toArray();
-      $data['meta_c']    = $this->base->getMeta($data['main_page']);
-
-      $data['working_conditions'] = $this->dynamic->t('files')
-        ->where('files.name_table', '=', 'vacanciesworking_conditions')
-        ->select('files.*', 'files.file', 'files.crop')
-        ->get()
-        ->toArray();
-
-      $data['benefits'] = $this->dynamic->t('files')
-        ->where('files.name_table', '=', 'vacanciesbenefits')
-        ->select('files.*', 'files.file', 'files.crop')
-        ->get()
-        ->toArray();
-
-      return $this->base->view_s("site.main.vacancies", $data);
-    }
-  }
-
-  /**
    * Search.
    *
    * @param $page
@@ -785,127 +701,6 @@ class MainController extends Controller
     $data['count']  = count(array_values($this->requests->session()->get('cart') ?? []));
 
     return json_encode($data);
-  }
-
-  public function search_render_villas($params = [])
-  {
-    $data      = [];
-    $where[]   = ['villas.active', 1];
-    $count_box = 10;
-    $group     = 'id';
-    $cart      = array_values($this->requests->session()->get('cart') ?? []);
-    $cart_id   = [];
-    $session   = $this->request['session'] ?? true;
-
-    if(!isset($params['id']) && $session) {
-      for($i = 0; count($cart ?? []) > $i; $i++)
-        $cart_id[] = $cart[$i]['id'] ?? 0;
-
-      $params['id'] = $cart_id;
-    }
-
-    $way                         = (int) ($this->request['way'] ?? -1);
-    $date_to                     = $this->request['date_to'] ?? -1;
-    $date_from                   = $this->request['date_from'] ?? -1;
-    $guests_person               = (int) ($this->request['guests_person'] ?? -1);
-    $hot                         = (int) ($this->request['hot'] ?? -1);
-    $villas_by_the_sea           = (int) ($this->request['villas_by_the_sea'] ?? -1);
-    $villas_with_private_service = (int) ($this->request['villas_with_private_service'] ?? -1);
-    $vacation_together           = (int) ($this->request['vacation_together'] ?? -1);
-    $dates                       = '';
-
-    if($way !== -1 && !empty($way))
-      $where[] = ['villas.cat_location', $way];
-
-    if($guests_person !== -1)
-      if($guests_person === 7)
-        $where[] = ['villas.guests_person', '>=', $guests_person];
-      else
-        $where[] = ['villas.guests_person', $guests_person];
-
-    if($hot !== -1)
-      $where[] = ['villas.is_hot', 1];
-
-    if($villas_by_the_sea !== -1)
-      $where[] = ['villas.villas_by_the_sea', 1];
-
-    if($villas_with_private_service !== -1)
-      $where[] = ['villas.villas_with_private_service', 1];
-
-    if($vacation_together !== -1)
-      $where[] = ['villas.vacation_together', 1];
-
-    if((int) $date_to !== -1) {
-      $tomorrow = Carbon::createFromFormat('Y-m-d', substr($date_from, 0, 10))->addDay(1)->toDateString();
-      $dates    = $this->base->getDatesFromRange($tomorrow, $date_to);
-    }
-
-    if($dates)
-      $order_villas = $this
-        ->dynamic
-        ->t('booking_calendar')
-        ->whereIn('start', $dates)
-        ->orWhereIn('end', $dates)
-        ->select('villas_id')
-        ->groupBy('villas_id')
-        ->get()
-        ->toArray();
-    else
-      $order_villas = $this
-        ->dynamic
-        ->t('booking_calendar')
-        ->select('villas_id')
-        ->groupBy('villas_id')
-        ->get()
-        ->toArray();
-
-    // clear where params for Favorite query
-    if(!$dates && !$this->requests['return'])
-      $where = [['villas.active', 1]];
-
-    $villas_query = $this->dynamic->t('villas')
-      ->where($where)
-      ->join(
-        'files',
-        function($join) {
-          $join->type = 'LEFT OUTER';
-          $join->on('villas.id', '=', 'files.id_album')
-            ->where('files.name_table', '=', 'villasalbum')
-            ->where('files.main', '=', 1);
-        }
-      )
-      ->join(
-        'menu',
-
-        function($join) {
-          $join->type = 'LEFT OUTER';
-          $join->on('villas.cat_location', '=', 'menu.id');
-        }
-      );
-
-    if(isset($params['id']))
-      $villas_query = $villas_query->whereIn('villas.id', $params['id']);
-
-    $villas_query = $villas_query
-      //			->whereNotIn('villas.id', $id_ignoring)
-      ->select('villas.*', 'files.file', 'files.crop', 'menu.name AS place')
-      ->groupBy('villas.id')
-      ->orderBy('villas.sort', 'DESC')
-      ->orderBy('villas.' . $group, 'DESC')
-      ->paginate($count_box);
-
-    $cart         = array_values($this->requests->session()->get('cart') ?? []);
-    $favorites_id = [];
-
-    for($i = 0; count($cart ?? []) > $i; $i++)
-      $favorites_id[] = $cart[$i]['id'] ?? 0;
-
-    $data['full_url']     = $this->getUrlVilla();
-    $data['villas']       = $villas_query;
-    $data['favorites_id'] = $favorites_id;
-    $data['paginate']     = true;
-
-    return $this->base->view_s("site.block.villas_main_list", $data);
   }
 
   /**
@@ -1184,12 +979,66 @@ class MainController extends Controller
    */
   public function catalog($name, $id = null)
   {
-    $data = [];
+    $data    = [];
+    $filters = $this->_catalog_array($name);
 
+    if(empty($filters))
+      return $this->helper->_errors_404();
+
+    $data['services'] = $this->helper->_services();
+    $data['service']  = [];
+    $data['filters']  = $filters;
+
+    foreach($data['filters']['filters'] as $key => $filter) {
+      if($filter['type'] === 'multi_checkbox') {
+        $data['filters']['filters'][$key]['data'] = $this->dynamic
+          ->t($filter['table'])
+          ->where([['active', '=', 1]])
+          ->get()
+          ->toArray();
+      }
+
+      if($filter['type'] === 'slider_select' || $filter['type'] === 'slider_select_area') {
+        foreach($filter['fields'] as $key_field => $field) {
+          $data['filters']['filters'][$key]['fields'][$key_field]['data'] = $this->dynamic
+            ->t($data['filters']['table'])
+            ->{$field['mode']}(
+              "{$field['name']}"
+            );
+        }
+      }
+    }
+
+    foreach($data['services'] as $service)
+      if($service['translation']["services/$name"])
+        $data['service'] = $service;
+
+    $data['meta_c'] = $this->base->getMeta($data, 'service');
+    $data['name']   = $name;
+
+    return $this->base->view_s("site.main.{$filters['name']}", $data);
+  }
+
+  /**
+   * Array Catalog filters.
+   *
+   * @param $name
+   * @return array|mixed
+   */
+  private function _catalog_array($name)
+  {
     $filters = [
       'invest-in-development-projects' => [
         'name'  => 'invest_in_development_projects',
         'table' => 'catalog_development',
+
+        'group' => [
+          'group_1_ASC'  => 'price_money_from',
+          'group_1_DESC' => 'price_money_to',
+
+          'group_4_ASC'  => 'area_from',
+          'group_4_DESC' => 'area_to',
+        ],
 
         'filters' => [
           // Район(Расположение)
@@ -1254,7 +1103,7 @@ class MainController extends Controller
           // Спальни
           'bedrooms'               => [
             'type' => 'slider_select',
-            'step'  => 1,
+            'step' => 1,
 
             'fields' => [
               'area_from' => [
@@ -1313,41 +1162,27 @@ class MainController extends Controller
       ],
     ];
 
+    return $filters[$name] ?? [];
+  }
 
-    if(!($filters[$name] ?? false))
-      return $this->helper->_errors_404();
+  public function search_render_catalog()
+  {
+    $form = $this->base->decode_serialize($this->request);
+    $data = [];
 
-    $data['services'] = $this->helper->_services();
-    $data['service']  = [];
-    $data['filters']  = $filters[$name];
+    if($form['table']) {
+      $filters = $this->_catalog_array($form['table']);
 
-    foreach($data['filters']['filters'] as $key => $filter) {
-      if($filter['type'] === 'multi_checkbox') {
-        $data['filters']['filters'][$key]['data'] = $this->dynamic
-          ->t($filter['table'])
-          ->where([['active', '=', 1]])
-          ->get()
-          ->toArray();
-      }
-
-      if($filter['type'] === 'slider_select' || $filter['type'] === 'slider_select_area') {
-        foreach($filter['fields'] as $key_field => $field) {
-          $data['filters']['filters'][$key]['fields'][$key_field]['data'] = $this->dynamic
-            ->t($data['filters']['table'])
-            ->{$field['mode']}("{$field['name']}");
-        }
-      }
+      $data['catalog'] = $this->dynamic->t($filters['table'])
+        ->groupBy($filters['table'] . '.id')
+        ->orderBy(
+          $filters['table'] . '.' . $filters['group']["group_{$form['group']}_{$form['sort_by']}"],
+          $form['sort_by']
+        )
+        ->get()
+        ->toArray();
     }
 
-//    print_r($data['filters'] );
-//    exit;
-
-    foreach($data['services'] as $service)
-      if($service['translation']["services/$name"])
-        $data['service'] = $service;
-
-    $data['meta_c'] = $this->base->getMeta($data, 'service');
-
-    return $this->base->view_s("site.main.{$filters[$name]['name']}", $data);
+    return $this->base->view_s("site.block.catalog_list", $data);
   }
 }

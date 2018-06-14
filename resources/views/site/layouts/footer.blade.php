@@ -304,6 +304,8 @@
 <script src="/js/libs/venobox.min.js"></script>
 <script src="/js/libs/sticky.min.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/lodash.min.js"></script>
+<script src="/js/ctalog.js"></script>
 @stack('footer')
 </body>
 </html>
