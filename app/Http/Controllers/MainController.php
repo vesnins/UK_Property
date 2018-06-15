@@ -634,6 +634,7 @@ class MainController extends Controller
     $id       = $this->request['id'];
     $get_data = $this->request['get_data'];
     $type     = $this->request['type'];
+    $name_url = $this->request['name_url'];
     $cart     = array_values($this->requests->session()->get('cart') ?? []);
 
     if($type === 'add') {
@@ -646,7 +647,7 @@ class MainController extends Controller
       if(!$idd)
         $this->requests->session()->put(
           'cart',
-          array_merge($cart, [$id => ['id' => $id]])
+          array_merge($cart, [$id => ['id' => $id, 'name_url' => $name_url]])
         );
     }
 
@@ -662,36 +663,36 @@ class MainController extends Controller
     }
 
     if($get_data) {
-      $where[]   = ['villas.active', 1];
-      $group     = 'id';
-      $count_box = 24;
-      $cart_0    = array_values($this->requests->session()->get('cart') ?? []);
-
-      for($i = 0; count($cart_0 ?? []) > $i; $i++)
-        $cart_id[] = $cart_0[$i]['id'] ?? 0;
-
-      $data['villas'] = $this->dynamic->t('villas')
-        ->where($where)
-        ->whereIn('villas.id', $cart_id ?? [])
-        ->where('villas.text', 'like', '%' . trim($this->requests['input_search'] ?? '') . '%')
-        ->join(
-          'files', function($join) {
-          $join->type = 'LEFT OUTER';
-          $join->on('villas.id', '=', 'files.id_album')
-            ->where('files.name_table', '=', 'villas')
-            ->where('files.main', '=', 1);
-        }
-        )
-        ->join(
-          'menu', function($join) {
-          $join->type = 'LEFT OUTER';
-          $join->on('villas.cat_location', '=', 'menu.id');
-        }
-        )
-        ->select('villas.*', 'files.file', 'files.crop', 'menu.name as cat_parent')
-        ->groupBy('villas.id')
-        ->orderBy('villas.' . $group, 'DESC')
-        ->paginate($count_box);
+      //      $where[]   = ['villas.active', 1];
+      //      $group     = 'id';
+      //      $count_box = 24;
+      //      $cart_0    = array_values($this->requests->session()->get('cart') ?? []);
+      //
+      //      for($i = 0; count($cart_0 ?? []) > $i; $i++)
+      //        $cart_id[] = $cart_0[$i]['id'] ?? 0;
+      //
+      //      $data['villas'] = $this->dynamic->t('villas')
+      //        ->where($where)
+      //        ->whereIn('villas.id', $cart_id ?? [])
+      //        ->where('villas.text', 'like', '%' . trim($this->requests['input_search'] ?? '') . '%')
+      //        ->join(
+      //          'files', function($join) {
+      //          $join->type = 'LEFT OUTER';
+      //          $join->on('villas.id', '=', 'files.id_album')
+      //            ->where('files.name_table', '=', 'villas')
+      //            ->where('files.main', '=', 1);
+      //        }
+      //        )
+      //        ->join(
+      //          'menu', function($join) {
+      //          $join->type = 'LEFT OUTER';
+      //          $join->on('villas.cat_location', '=', 'menu.id');
+      //        }
+      //        )
+      //        ->select('villas.*', 'files.file', 'files.crop', 'menu.name as cat_parent')
+      //        ->groupBy('villas.id')
+      //        ->orderBy('villas.' . $group, 'DESC')
+      //        ->paginate($count_box);
     }
 
     foreach($this->requests->session()->get('cart') ?? [] as $v)
@@ -1167,11 +1168,14 @@ class MainController extends Controller
 
   public function search_render_catalog()
   {
-    $form = $this->base->decode_serialize($this->request);
-    $data = [];
+    $form         = $this->base->decode_serialize($this->request);
+    $data         = [];
+    $cart         = array_values($this->requests->session()->get('cart') ?? []);
+    $favorites_id = [];
+    $session      = $this->request['session'] ?? false;
 
-    if($form['table']) {
-      $filters = $this->_catalog_array($form['table']);
+    if($form['name_url'] && !$session) {
+      $filters = $this->_catalog_array($form['name_url']);
 
       $data['catalog'] = $this->dynamic->t($filters['table'])
         ->groupBy($filters['table'] . '.id')
@@ -1182,6 +1186,31 @@ class MainController extends Controller
         ->get()
         ->toArray();
     }
+
+    // For Favorite
+    if($session) {
+      $cart_data = [];
+
+      for($i = 0; count($cart ?? []) > $i; $i++)
+        $cart_data[$cart[$i]['name_url']][] = $cart[$i]['id'] ?? 0;
+
+      foreach($cart_data as $k => $v) {
+        $filters = $this->_catalog_array($k);
+        $query   = $this->dynamic->t($filters['table']);
+
+        if(isset($params))
+          $query = $query->whereIn("{$filters['table']}.id", $params['id']);
+
+        $catalog = $query
+          ->get()
+          ->toArray();
+
+        $data['catalog'] = ($data['catalog'] ?? []) + $catalog;
+      }
+    }
+
+    $data['name_url']     = $form['name_url'];
+    $data['favorites_id'] = $favorites_id;
 
     return $this->base->view_s("site.block.catalog_list", $data);
   }

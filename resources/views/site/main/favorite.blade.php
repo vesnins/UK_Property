@@ -9,6 +9,7 @@
         <header class="sort-form-holder">
           <a href="#" class="send-btn" data-toggle="modal" data-target=".selection-modal">
             Отправить подборку
+
             <svg>
               <use xlink:href="/images/svg/sprite.svg#airplain"></use>
             </svg>
@@ -17,233 +18,7 @@
 
         <div class="product-section alt" data-sticky-container>
           <div class="product-listing">
-            <div class="products">
-              <div class="product-item">
-                <a href="#" class="del-btn">
-                  <svg>
-                    <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-                  </svg>
-                </a>
-                <a href="#" class="product-link">
-                  <div class="image-box" style="background-image: url('/images/content/img_5.jpg')">
-                    <div class="product-details">
-                      <div class="cell">S = 450 м²</div>
-                      <div class="cell">4 спальни</div>
-                    </div>
-                  </div>
-                  <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине
-                    Темзы</p>
-                  <div class="row flex-row align-row">
-                    <div class="col-xs-6">
-                      <span class="price">от 155 млн руб</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                      <span class="pseudo-btn">Выбрать</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="product-item">
-                <a href="#" class="del-btn">
-                  <svg>
-                    <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-                  </svg>
-                </a>
-                <a href="#" class="product-link">
-                  <div class="image-box" style="background-image: url('/images/content/img_11.jpg')">
-                    <div class="product-details">
-                      <div class="cell">S = 450 м²</div>
-                      <div class="cell">4 спальни</div>
-                    </div>
-                  </div>
-                  <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине
-                    Темзы</p>
-                  <div class="row flex-row align-row">
-                    <div class="col-xs-6">
-                      <span class="price">от 155 млн руб</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                      <span class="pseudo-btn">Выбрать</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="product-item">
-                <a href="#" class="del-btn">
-                  <svg>
-                    <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-                  </svg>
-                </a>
-                <a href="#" class="product-link">
-                  <div class="image-box" style="background-image: url('/images/content/img_3.jpg')">
-                    <div class="product-details">
-                      <div class="cell">S = 450 м²</div>
-                      <div class="cell">4 спальни</div>
-                    </div>
-                  </div>
-                  <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине
-                    Темзы</p>
-                  <div class="row flex-row align-row">
-                    <div class="col-xs-6">
-                      <span class="price">от 155 млн руб</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                      <span class="pseudo-btn">Выбрать</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="product-item">
-                <a href="#" class="del-btn">
-                  <svg>
-                    <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-                  </svg>
-                </a>
-                <a href="#" class="product-link">
-                  <div class="image-box" style="background-image: url('/images/content/img_4.jpg')">
-                    <div class="product-details">
-                      <div class="cell">S = 450 м²</div>
-                      <div class="cell">4 спальни</div>
-                    </div>
-                  </div>
-                  <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине
-                    Темзы</p>
-                  <div class="row flex-row align-row">
-                    <div class="col-xs-6">
-                      <span class="price">от 155 млн руб</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                      <span class="pseudo-btn">Выбрать</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="product-item">
-                <a href="#" class="del-btn">
-                  <svg>
-                    <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-                  </svg>
-                </a>
-                <a href="#" class="product-link">
-                  <div class="image-box" style="background-image: url('/images/content/img_5.jpg')">
-                    <div class="product-details">
-                      <div class="cell">S = 450 м²</div>
-                      <div class="cell">4 спальни</div>
-                    </div>
-                  </div>
-                  <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине
-                    Темзы</p>
-                  <div class="row flex-row align-row">
-                    <div class="col-xs-6">
-                      <span class="price">от 155 млн руб</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                      <span class="pseudo-btn">Выбрать</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="product-item">
-                <a href="#" class="del-btn">
-                  <svg>
-                    <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-                  </svg>
-                </a>
-                <a href="#" class="product-link">
-                  <div class="image-box" style="background-image: url('/images/content/img_9.jpg')">
-                    <div class="product-details">
-                      <div class="cell">S = 450 м²</div>
-                      <div class="cell">4 спальни</div>
-                    </div>
-                  </div>
-                  <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине
-                    Темзы</p>
-                  <div class="row flex-row align-row">
-                    <div class="col-xs-6">
-                      <span class="price">от 155 млн руб</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                      <span class="pseudo-btn">Выбрать</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="product-item">
-                <a href="#" class="del-btn">
-                  <svg>
-                    <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-                  </svg>
-                </a>
-                <a href="#" class="product-link">
-                  <div class="image-box" style="background-image: url('/images/content/img_3.jpg')">
-                    <div class="product-details">
-                      <div class="cell">S = 450 м²</div>
-                      <div class="cell">4 спальни</div>
-                    </div>
-                  </div>
-                  <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине
-                    Темзы</p>
-                  <div class="row flex-row align-row">
-                    <div class="col-xs-6">
-                      <span class="price">от 155 млн руб</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                      <span class="pseudo-btn">Выбрать</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="product-item">
-                <a href="#" class="del-btn">
-                  <svg>
-                    <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-                  </svg>
-                </a>
-                <a href="#" class="product-link">
-                  <div class="image-box" style="background-image: url('/images/content/img_4.jpg')">
-                    <div class="product-details">
-                      <div class="cell">S = 450 м²</div>
-                      <div class="cell">4 спальни</div>
-                    </div>
-                  </div>
-                  <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине
-                    Темзы</p>
-                  <div class="row flex-row align-row">
-                    <div class="col-xs-6">
-                      <span class="price">от 155 млн руб</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                      <span class="pseudo-btn">Выбрать</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="product-item">
-                <a href="#" class="del-btn">
-                  <svg>
-                    <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-                  </svg>
-                </a>
-                <a href="#" class="product-link">
-                  <div class="image-box" style="background-image: url('/images/content/img_5.jpg')">
-                    <div class="product-details">
-                      <div class="cell">S = 450 м²</div>
-                      <div class="cell">4 спальни</div>
-                    </div>
-                  </div>
-                  <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине
-                    Темзы</p>
-                  <div class="row flex-row align-row">
-                    <div class="col-xs-6">
-                      <span class="price">от 155 млн руб</span>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                      <span class="pseudo-btn">Выбрать</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
+            <div class="sys-sel-catalog"></div>
           </div>
 
           @include('site.block.contacts-form')
@@ -317,5 +92,19 @@
         </div>
       </div>
     </div>
+
+    <script>
+      $(document).ready(function() {
+        catAll.initialize({
+          container : '.sys-sel-catalog',
+          num       : '.selReN > .i',
+          pagination: true,
+          isLoad    : false,
+          url_req   : '/',
+        });
+      });
+
+      $('#header').addClass('static');
+    </script>
   @endpush
 @endsection

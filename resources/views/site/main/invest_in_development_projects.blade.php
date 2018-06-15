@@ -43,7 +43,7 @@
                   Update Force
                 </button>
 
-                <input type="hidden" name="table" value="{{ $name }}" />
+                <input type="hidden" name="name_url" value="{{ $name }}" />
                 <input name="pagination" value="1" type="hidden" autocomplete="off" />
 
                 @foreach($filters['filters'] as $filter)

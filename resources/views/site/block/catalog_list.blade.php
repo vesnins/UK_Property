@@ -7,25 +7,41 @@
       : '/images/files/no-image.jpg'
     )
 
-    <div class="product-item">
-      <a href="#" class="add-to-wishList">
-        <svg>
-          <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-        </svg>
-      </a>
+    @php($is_favorite = array_search($val['id'], $favorites_id ?? []) !== false ? true : false)
 
-      <a href="#" class="product-link">
+    <div class="product-item">
+      @if($name_url)
+        <a href="javascript:void(0)"
+          class="add-to-wishList like-button {!! $is_favorite ? 'active' : '' !!} like-button-{{ $val['id'] }}"
+          onclick="catAll.addCart('{{ $val['id'] }}', '{!! $is_favorite ? 'remove' : 'add' !!}', '{{ $name_url }}')"
+        >
+          <svg>
+            <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
+          </svg>
+        </a>
+      @else
+        <a href="javascript:void(0)"
+          class="del-btn like-button {!! $is_favorite ? 'active' : '' !!} like-button-{{ $val['id'] }}"
+          onclick="catAll.addCart('{{ $val['id'] }}', 'remove', '')"
+        >
+          <svg>
+            <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
+          </svg>
+        </a>
+      @endif
+
+      <a href="/catalog/{{ $name_url }}/{{ $val['id'] }}" class="product-link">
         <div class="image-box" style="background-image: url('{{ $img }}')">
           <div class="product-details">
-            <div class="cell">S = 450 м²</div>
-            <div class="cell">4 спальни</div>
+            <div class="cell">S = {{ $val['area_from'] }} м²</div>
+            <div class="cell">{{ $val['bedrooms_from'] }} спальни</div>
           </div>
         </div>
 
-        <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
+        <p>{{ $langSt($val['name']) }}</p>
 
         <div class="row flex-row align-row">
-          <div class="col-xs-6"><span class="price">от 155 млн руб</span></div>
+          <div class="col-xs-6"><span class="price">от {{ $val['price_money_from'] }} млн руб</span></div>
           <div class="col-xs-6 text-right"><span class="pseudo-btn">Выбрать</span></div>
         </div>
       </a>

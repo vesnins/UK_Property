@@ -3,12 +3,17 @@ var
     initialize: function initialize(data) {
       this.conf      = data || {};
       this.container = this.conf.container;
+      this.isLoad    = this.conf.isLoad == undefined ? true : this.conf.isLoad;
       catAll.loadOnclick();
     },
 
-    loadOnclick: function loadOnclick(e) {
+    loadOnclick: function loadOnclick() {
       setTimeout(function() {
-        catAll.generateUrlCatalog();
+        if(catAll.isLoad)
+          catAll.generateUrlCatalog();
+
+        // init cart min
+        catAll.addCart(0, 'init', false);
       });
     },
 
@@ -56,5 +61,52 @@ var
           }, 200)
         }
       });
-    }
+    },
+
+    addCart: function(id, type, nameUrl) {
+      $.ajax
+       ({
+         type: "post",
+         url : "/_tools/add_favorite",
+
+         data: {
+           get_data: true,
+           id      : id,
+           type    : type,
+           name_url: nameUrl,
+         },
+
+         cache: false,
+         dataType: "JSON",
+
+         success : function(data) {
+           if(data.result === 'ok') {
+             var
+               fav          = $('.wish-list'),
+               selectorLice = $('.like-button');
+
+             fav.find('.qty').html('(' + data.count + ')');
+
+             if(data.count)
+               fav.show();
+             else
+               fav.hide();
+
+             if(window.location.pathname.split('/').indexOf('favorite') !== -1) {
+               if(selectorLice.hasClass('like-button-' + id))
+                 selectorLice = $('.like-button-' + id);
+
+               if(type === 'add') {
+                 selectorLice.addClass('active');
+                 selectorLice.attr('onclick', 'catAll.addCart(' + id + ', \'remove\', \'' + nameUrl + '\')');
+               } else {
+                 selectorLice.removeClass('active');
+                 selectorLice.attr('onclick', 'catAll.addCart(' + id + ', \'add\', \'' + nameUrl + '\')');
+                 catAll.selectCatalog({session: 1});
+               }
+             }
+           }
+         }
+       })
+    },
   };

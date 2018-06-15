@@ -161,11 +161,12 @@
       <div class="position-box">
         <a href="/selection-request" class="button light">@lang('main.selection_request')</a>
 
-        <a href="/favorite" class="wish-list">
+        <a href="/favorite" class="wish-list" style="display: none">
           <svg>
             <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
           </svg>
-          <span class="qty">(12)</span>
+
+          <span class="qty"></span>
         </a>
 
         <button class="menu-btn"><span></span></button>
