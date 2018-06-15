@@ -178,4 +178,5 @@ We will contact you shortly!',
   'estimated_completion'                     => 'Estimated completion',
   'from_'                                    => 'from',
   'to_'                                      => 'to',
+  'empty_result'                             => 'Nothing found..',
 ];

@@ -1,5 +1,5 @@
 <div class="products">
-  @foreach($catalog as $val)
+  @forelse($catalog as $val)
     @php($path = '/images/files/small/')
 
     @php($img = $val['file']
@@ -46,7 +46,11 @@
         </div>
       </a>
     </div>
-  @endforeach
+  @empty
+    <p style="border-radius: 3px; text-align: center; border: solid 1px #eeeeee; padding: 15px; margin: 15px; width: 100%">
+      @lang('main.empty_result')
+    </p>
+  @endforelse
 </div>
 
 @if($paginate ?? false)

@@ -59,7 +59,7 @@
         <h4>@lang('main.services')</h4>
         <ul class="menu">
           @foreach($services as $service)
-            <li><a href="/{{ $service['translation'] }}">{{ $langSt($service['name']) }}</a></li>
+            <li><a href="/services/{{ $service['translation'] }}">{{ $langSt($service['name']) }}</a></li>
           @endforeach
         </ul>
       </div>

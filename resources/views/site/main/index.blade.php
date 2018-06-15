@@ -29,7 +29,8 @@
                   </p>
                 </div>
               </div>
-              <a href="#" class="button">Подобрать Недвижимость</a>
+
+              <a href="/selection-request" class="button">Подобрать Недвижимость</a>
             </div>
           </div>
         </div>
@@ -181,7 +182,7 @@
 
         <div class="text-center">
           <a
-            href="/../catalog/{{ $langSt($services['invest-in-a-new-building']['translation']) }}"
+            href="/catalog/{{ explode('/', $services['invest-in-a-new-building']['translation'])[count(explode('/', $services['invest-in-a-new-building']['translation'])) - 1] }}"
             class="button"
           >
             @lang('main.other_options')
@@ -225,8 +226,8 @@
               <img class="small-img" src="{{ $collections_crop_2 }}" data-parallax='{"y": -80, "smoothness": 10}' />
             @endif
 
-            <img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' />
-            <img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' />
+            <img class="decor-top" src="/images/decor/img_3.png" data-parallax='{"y": -40, "smoothness": 20}' />
+            <img class="decor-bottom" src="/images/decor/img_4.png" data-parallax='{"y": -120, "smoothness": 30}' />
           </div>
         </div>
 
@@ -331,7 +332,7 @@
 
         <div class="text-center">
           <a
-            href="/../catalog/{{ $langSt($services['invest-in-development-projects']['translation']) }}"
+            href="/catalog/{{ explode('/', $services['invest-in-development-projects']['translation'])[count(explode('/', $services['invest-in-development-projects']['translation'])) - 1] }}"
             class="button"
           >
             @lang('main.other_options')
@@ -375,8 +376,8 @@
               <img class="small-img" src="{{ $collections_crop_2 }}" data-parallax='{"y": -80, "smoothness": 10}' />
             @endif
 
-            <img class="decor-top" src="/images/decor/img_1.png" data-parallax='{"y": -40, "smoothness": 20}' />
-            <img class="decor-bottom" src="/images/decor/img_2.png" data-parallax='{"y": -120, "smoothness": 30}' />
+            <img class="decor-top" src="/images/decor/img_2.png" data-parallax='{"y": -40, "smoothness": 20}' />
+            <img class="decor-bottom" src="/images/decor/img_1.png" data-parallax='{"y": -120, "smoothness": 30}' />
           </div>
         </div>
 
@@ -481,7 +482,7 @@
 
         <div class="text-center">
           <a
-            href="/../catalog/{{ $langSt($services['buy']['translation']) }}"
+            href="/catalog/{{ explode('/', $services['buy']['translation'])[count(explode('/', $services['buy']['translation'])) - 1] }}"
             class="button"
           >
             @lang('main.other_options')
@@ -495,10 +496,7 @@
             <div class="limit-box">
               <h3>{{ $langSt($services['rent']['name']) }}</h3>
               <p>{{ $langSt($services['rent']['little_description']) }}</p>
-
-              <a href="/{{ $langSt($services['rent']['translation']) }}" class="more-link">
-                @lang('main.more')
-              </a>
+              <a href="/{{ $langSt($services['rent']['translation']) }}" class="more-link">@lang('main.more')</a>
             </div>
           </div>
 
@@ -630,7 +628,10 @@
         </div>
 
         <div class="text-center">
-          <a href="/../catalog/{{ $langSt($services['rent']['translation']) }}" class="button">
+          <a
+            href="/catalog/{{ explode('/', $services['rent']['translation'])[count(explode('/', $services['rent']['translation'])) - 1] }}"
+            class="button"
+          >
             @lang('main.other_options')
           </a>
         </div>

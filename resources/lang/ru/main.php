@@ -177,4 +177,5 @@ return [
   'estimated_completion'                     => 'Ожидаемый срок',
   'from_'                                    => 'от',
   'to'                                       => 'до',
+  'empty_result'                             => 'Ничего не найдено..',
 ];

@@ -170,7 +170,7 @@
     "description" : "Текстовое поле \"Little_description_catalog\"",
     "idAttr"      : "textareaLittle_description_catalog",
     "maxlength"   : "12000",
-    "translateKey": "little_description",
+    "translateKey": "little_description_catalog",
     "sql_column"  : "little_description_catalog"
   },
   {
@@ -1584,6 +1584,26 @@
     "translateKey": "block_3_1"
   },
   {
+    "name"        : "block_4_1",
+    "typeField"   : "input",
+    "nameText"    : "Название",
+    "nameAttr"    : "pl[block_4_1]",
+    "description" : "Текстовое поле инпут block_4_1",
+    "idAttr"      : "inputBlock_4_1",
+    "sql_column"  : "block_4_1",
+    "translateKey": "block_4_1"
+  },
+  {
+    "name"        : "block_4_2",
+    "typeField"   : "input",
+    "nameText"    : "Название",
+    "nameAttr"    : "pl[block_4_2]",
+    "description" : "Текстовое поле инпут block_4_2",
+    "idAttr"      : "inputBlock_4_2",
+    "sql_column"  : "block_4_2",
+    "translateKey": "block_4_2"
+  },
+  {
     "name"        : "link_how_working",
     "typeField"   : "input",
     "nameText"    : "Ссылка на видео \"Как мы работаем\"",
@@ -1728,8 +1748,9 @@
     "parent_table": "menu",
     "translateKey": "development_facilities",
     "body"        : {
-      "text": "<option value=\"0\">(Без категории)</option>{-option-}",
-      "type": "replace"
+      "text"    : "<option value=\"0\">(Без категории)</option>{-option-}",
+      "type"    : "replace",
+      "multiple": "multiple"
     }
   },
   {

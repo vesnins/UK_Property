@@ -1,4 +1,4 @@
-@php($i = 0)
+@php($i = 1)
 @php($how_working = $langSt($how_working))
 
 @foreach($how_working['how_working_name'] ?? [] as $key => $how_work)

@@ -134,7 +134,7 @@
                       @foreach($menu[$v['id']] as $vSub)
                         <li>
                           <a
-                            href="/{{ $v['translation'] ?? $vSub['id'] }}/{{ $vSub['translation'] ?? $vSub['id'] }}"
+                            href="/{{ $vSub['controller'] ? $vSub['controller'] : ($v['translation'] ?? $v['id']) }}/{{ $vSub['translation'] ?? $vSub['id'] }}"
                             class="@if(($vSub['translation'] ?? $vSub['id']) === $segment1) active @endif"
                           >
                             {{ $langSt($vSub['name']) }}
@@ -146,7 +146,7 @@
                 @else
                   <li>
                     <a
-                      href="/{{ $v['translation'] ?? $v['id'] }}"
+                      href="/{{ $v['controller'] ? $v['controller'] . '/' : '' }}{{ $v['translation'] ?? $v['id'] }}"
                       class="@if(($v['translation'] ?? $v['id']) === $segment1) active @endif"
                     >
                       {{ $langSt($v['name']) }}

@@ -64,7 +64,7 @@ class MainController extends Controller
     );
 
     foreach($this->helper->_services() as $k => $serv)
-      $data['services'][str_replace('services/', '', $serv['translation']) ?? $k] = $serv;
+      $data['services'][$serv['translation'] ?? $k] = $serv;
 
     $data['preview'] = $this
       ->dynamic
@@ -132,7 +132,7 @@ class MainController extends Controller
   public function services($id = null)
   {
     $data['services'] = $this->helper->_services();
-    return $this->helper->_page("services/$id", 'site.main.service_id', 'services', $data);
+    return $this->helper->_page($id, 'site.main.service_id', 'services', $data);
   }
 
   /**
@@ -1011,8 +1011,11 @@ class MainController extends Controller
     }
 
     foreach($data['services'] as $service)
-      if($service['translation']["services/$name"])
+      if($service['translation'] === $name)
         $data['service'] = $service;
+
+//    var_dump( $name);
+//    var_dump(  $data['services']);
 
     $data['meta_c'] = $this->base->getMeta($data, 'service');
     $data['name']   = $name;
@@ -1183,6 +1186,19 @@ class MainController extends Controller
           $filters['table'] . '.' . $filters['group']["group_{$form['group']}_{$form['sort_by']}"],
           $form['sort_by']
         )
+
+        ->join(
+          'files',
+
+          function($join) use($filters) {
+            $join->type = 'LEFT OUTER';
+            $join->on("{$filters['table']}.id", '=', 'files.id_album')
+              ->where('files.name_table', '=', "{$filters['table']}album")
+              ->where('files.main', '=', 1);
+          }
+        )
+
+        ->select("{$filters['table']}.*", 'files.file', 'files.crop')
         ->get()
         ->toArray();
     }
@@ -1194,18 +1210,33 @@ class MainController extends Controller
       for($i = 0; count($cart ?? []) > $i; $i++)
         $cart_data[$cart[$i]['name_url']][] = $cart[$i]['id'] ?? 0;
 
-      foreach($cart_data as $k => $v) {
+      foreach($cart_data as $k => $ids) {
         $filters = $this->_catalog_array($k);
-        $query   = $this->dynamic->t($filters['table']);
 
-        if(isset($params))
-          $query = $query->whereIn("{$filters['table']}.id", $params['id']);
+        if($filters) {
+          $query   = $this->dynamic->t($filters['table']);
 
-        $catalog = $query
-          ->get()
-          ->toArray();
+          if(!empty($ids))
+            $query = $query->whereIn("{$filters['table']}.id", $ids);
 
-        $data['catalog'] = ($data['catalog'] ?? []) + $catalog;
+          $catalog = $query
+            ->join(
+              'files',
+
+              function($join) use($filters) {
+                $join->type = 'LEFT OUTER';
+                $join->on("{$filters['table']}.id", '=', 'files.id_album')
+                  ->where('files.name_table', '=', "{$filters['table']}album")
+                  ->where('files.main', '=', 1);
+              }
+            )
+
+            ->select("{$filters['table']}.*", 'files.file', 'files.crop')
+            ->get()
+            ->toArray();
+
+          $data['catalog'] = ($data['catalog'] ?? []) + $catalog;
+        }
       }
     }
 

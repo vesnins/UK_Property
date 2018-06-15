@@ -760,7 +760,7 @@ class Base
    * @param string $sort
    * @return array|null
    */
-  public function get_cat($table = null, $where = [], $order = 'order', $sort = 'ASC')
+  public function get_cat($table = null, $where = [], $order = 'sort', $sort = 'ASC')
   {
     if(!$table) {
       $table = 'menu';
