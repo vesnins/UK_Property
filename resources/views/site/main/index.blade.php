@@ -182,7 +182,7 @@
 
         <div class="text-center">
           <a
-            href="/catalog/{{ explode('/', $services['invest-in-a-new-building']['translation'])[count(explode('/', $services['invest-in-a-new-building']['translation'])) - 1] }}"
+            href="/catalog/{{ $services['invest-in-a-new-building']['translation'] }}"
             class="button"
           >
             @lang('main.other_options')
@@ -332,7 +332,7 @@
 
         <div class="text-center">
           <a
-            href="/catalog/{{ explode('/', $services['invest-in-development-projects']['translation'])[count(explode('/', $services['invest-in-development-projects']['translation'])) - 1] }}"
+            href="/catalog/{{ $services['invest-in-development-projects']['translation'] }}"
             class="button"
           >
             @lang('main.other_options')
@@ -482,7 +482,7 @@
 
         <div class="text-center">
           <a
-            href="/catalog/{{ explode('/', $services['buy']['translation'])[count(explode('/', $services['buy']['translation'])) - 1] }}"
+            href="/catalog/{{ $services['buy']['translation'] }}"
             class="button"
           >
             @lang('main.other_options')
@@ -629,7 +629,7 @@
 
         <div class="text-center">
           <a
-            href="/catalog/{{ explode('/', $services['rent']['translation'])[count(explode('/', $services['rent']['translation'])) - 1] }}"
+            href="/catalog/{{ $services['rent']['translation'] }}"
             class="button"
           >
             @lang('main.other_options')
