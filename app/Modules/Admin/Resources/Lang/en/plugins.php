@@ -83,4 +83,5 @@ return [
   'in_portfolio'                => 'In portfolio',
   'sorting'                     => 'Sorting',
   'tags'                        => 'Tags',
+  'full_address'                => 'Аull address',
 ];

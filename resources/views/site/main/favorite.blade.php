@@ -8,7 +8,7 @@
 
         <header class="sort-form-holder">
           <a href="#" class="send-btn" data-toggle="modal" data-target=".selection-modal">
-            Отправить подборку
+            @lang('main.send_compilation')
 
             <svg>
               <use xlink:href="/images/svg/sprite.svg#airplain"></use>
@@ -43,12 +43,14 @@
             <form action="#" class="validate-form">
               <div class="custom-fields-group">
                 <div class="input-holder">
-                  <input type="email" name="email" placeholder="Your friend Email *">
+                  <input type="email" name="email" placeholder="Your friend Email *" />
+
                   <a href="#" class="del-field-btn">
                     <svg>
                       <use xlink:href="images/svg/sprite.svg#close-icon"></use>
                     </svg>
                   </a>
+
                   <a href="#" class="add-field-btn">
                     <svg>
                       <use xlink:href="images/svg/sprite.svg#plus"></use>
@@ -56,36 +58,54 @@
                   </a>
                 </div>
               </div>
+
               <div class="input-holder">
-                <input type="email" name="email" placeholder="Your Email *">
+                <input type="email" name="email" placeholder="@lang('main.your_email') *" />
               </div>
               <div class="input-holder">
-                <label class="checkbox-label switcher-checkbox"><input type="checkbox"><span>Отправить агенту для
-                    запроса</span></label>
+                <label class="checkbox-label switcher-checkbox">
+                  <input type="checkbox" />
+                  <span>@lang('main.send_agent_for_request')</span>
+                </label>
               </div>
+              
               <div class="collapse-input-group">
                 <div class="input-holder">
-                  <input type="text" name="name" placeholder="Your Name *">
+                  <input type="text" name="name" placeholder="@lang('main.your_surname') *" />
                 </div>
                 <div class="input-holder">
-                  <input type="text" name="surname" placeholder="Your Surname *">
+                  <input type="text" name="surname" placeholder="@lang('main.your_surname') *" />
                 </div>
+                
                 <div class="input-holder">
-                  <input type="tel" name="phone" placeholder="Your Phone *">
+                  <input type="tel" name="phone" placeholder="@lang('main.your_phone') *" />
                 </div>
               </div>
+              
               <div class="input-holder">
-                <textarea placeholder="Comment"></textarea>
+                <textarea placeholder="@lang('main.comment')"></textarea>
               </div>
+              
               <div class="input-holder">
-                <label class="checkbox-label"><input type="checkbox" name="checkbox" checked><span>I have read and agree
-                    to the <a href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">Privacy
-                      policy</a>.</span></label>
-                <label class="checkbox-label"><input type="checkbox" checked><span>I agree to receive property updates
-                    and latest news via email.</span></label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="checkbox" checked />
+
+                  <span>
+                    @lang('main.i_have_read_and_agree_to_the')
+                    <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
+                    @lang('main._and')
+                    <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
+                  </span>
+                </label>
+
+                <label class="checkbox-label">
+                  <input type="checkbox" checked />
+                  <span>@lang('main.text_mail_sending')</span>
+                </label>
               </div>
+              
               <div class="text-center">
-                <input class="button" type="submit" value="send">
+                <input class="button" type="submit" value="@lang('main.send')" />
               </div>
             </form>
           </div>

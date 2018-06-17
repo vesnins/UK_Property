@@ -81,104 +81,8 @@
           </div>
         </div>
 
-        <div class="products">
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_3.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_4.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_5.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_6.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
+        @include('site.block.catalog_list', ['catalog' => $services['invest-in-a-new-building']['data'],
+         'name_url' => 'invest-in-a-new-building'])
 
         <div class="text-center">
           <a
@@ -231,104 +135,8 @@
           </div>
         </div>
 
-        <div class="products">
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_9.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_10.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_11.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_12.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
+        @include('site.block.catalog_list', ['catalog' => $services['invest-in-development-projects']['data'],
+         'name_url' => 'invest-in-development-projects'])
 
         <div class="text-center">
           <a
@@ -381,104 +189,7 @@
           </div>
         </div>
 
-        <div class="products">
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_15.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_9.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_16.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_17.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
+        @include('site.block.catalog_list', ['catalog' => $services['buy']['data'], 'name_url' => 'buy'])
 
         <div class="text-center">
           <a
@@ -528,104 +239,7 @@
           </div>
         </div>
 
-        <div class="products">
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_3.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_4.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_5.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="product-item">
-            <a href="#" class="add-to-wishList">
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
-              </svg>
-            </a>
-            <a href="#" class="product-link">
-              <div class="image-box" style="background-image: url('/images/content/img_6.jpg')">
-                <div class="product-details">
-                  <div class="cell">S = 450 м²</div>
-                  <div class="cell">4 спальни</div>
-                </div>
-              </div>
-              <p>Новый пентхаус в Вестминстере это уникальный новый девелопмент в историческом центре излучине Темзы</p>
-              <div class="row flex-row align-row">
-                <div class="col-xs-6">
-                  <span class="price">от 155 млн руб</span>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <span class="pseudo-btn">Выбрать</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
+        @include('site.block.catalog_list', ['catalog' => $services['rent']['data'], 'name_url' => 'rent'])
 
         <div class="text-center">
           <a
@@ -672,28 +286,10 @@
 
     <section class="subscribe-section" style="background-image: url('/images/banners/img_2.jpg')">
       <div class="container">
-        <h3 class="text-center">Подпишитесь на рассылку!</h3>
+        <h3 class="text-center">@lang('main.subscribe_to_our_newsletter')</h3>
+
         <form action="#" class="subscribe-form validate-form">
-          <div class="flex-group">
-            <div class="input-holder email-field">
-              <input type="email" name="email" placeholder="Email">
-            </div>
-            <div class="input-holder select">
-              <select title="">
-                <option value="1" selected>1 раз в неделю</option>
-                <option value="2">1 раз в месяц</option>
-                <option value="3">каждый день</option>
-              </select>
-            </div>
-            <div class="input-holder select">
-              <select title="">
-                <option value="1" selected>Объекты</option>
-                <option value="2">Статьи блога</option>
-                <option value="3">Объекты и статьи блога</option>
-              </select>
-            </div>
-            <input type="submit" class="button" value="Отправить">
-          </div>
+          @include('site.block.subscribe_form', ['send' =>__('main.send')])
 
           <label class="checkbox-label">
             <input type="checkbox" name="checkbox" checked />
@@ -708,6 +304,7 @@
         </form>
       </div>
     </section>
+
     <section class="indent-block">
       <h2 class="text-center">@lang('main.how_we_are_working')</h2>
 

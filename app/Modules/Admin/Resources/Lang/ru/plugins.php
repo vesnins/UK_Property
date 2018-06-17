@@ -83,4 +83,5 @@ return [
   'in_portfolio'                => 'В портфолио',
   'sorting'                     => 'Сортировка',
   'tags'                        => 'Теги',
+  'full_address'                => 'Полный адрес',
 ];

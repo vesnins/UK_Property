@@ -1,34 +1,55 @@
 <div class="contact-section" data-sticky data-sticky-class="sticky" data-sticky-for="991" data-margin-top="82">
-  <h4>Call Local Expert</h4>
+  <h4>@lang('main.call_local_expert')</h4>
+
   <address>
     <span class="address-info">
       <svg>
-        <use xlink:href="images/svg/sprite.svg#phone"></use>
+        <use xlink:href="/images/svg/sprite.svg#phone"></use>
       </svg>
-      <a href="tel:+80-234-234-563">+80 234 234 563</a>
+
+      <a href="tel:{!! $langSt($params['phone_favorite']['key']) !!}">
+        {!! $langSt($params['phone_favorite']['key']) !!}
+      </a>
     </span>
   </address>
-  <p>Our consultant will help you!</p>
+
+  <p>@lang('main.our_consultant_will_help_you')</p>
+
   <form action="#" class="validate-form">
     <div class="input-holder">
-      <input type="text" name="fullName" placeholder="Full Name">
+      <input type="text" name="fullName" placeholder="@lang('main.full_name')" />
     </div>
+
     <div class="input-holder">
-      <input type="email" name="email" placeholder="Email">
+      <input type="email" name="email" placeholder="Email" />
     </div>
+
     <div class="input-holder">
-      <input type="tel" name="phone" placeholder="Phone Number">
+      <input type="tel" name="phone" placeholder="@lang('main.phone_number')" />
     </div>
+
     <div class="input-holder">
-      <textarea placeholder="Write here" name="message"></textarea>
+      <textarea placeholder="@lang('main.write_here')" name="message"></textarea>
     </div>
-    <label class="checkbox-label"><input type="checkbox" name="checkbox" checked><span>I have read and agree to the <a
-          href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">Privacy
-          policy</a>.</span></label>
-    <label class="checkbox-label"><input type="checkbox" checked><span>I agree to receive property updates and latest
-        news via email.</span></label>
+
+    <label class="checkbox-label">
+      <input type="checkbox" name="checkbox" checked />
+
+      <span>
+        @lang('main.i_have_read_and_agree_to_the')
+        <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
+        @lang('main._and')
+        <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
+      </span>
+    </label>
+
+    <label class="checkbox-label">
+      <input type="checkbox" checked />
+      <span>@lang('main.text_mail_sending')</span>
+    </label>
+
     <div class="text-center">
-      <input type="submit" class="button" value="send">
+      <input type="submit" class="button" value="@lang('main.send')" />
     </div>
   </form>
 </div>

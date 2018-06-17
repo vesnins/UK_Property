@@ -66,6 +66,32 @@ class MainController extends Controller
     foreach($this->helper->_services() as $k => $serv)
       $data['services'][$serv['translation'] ?? $k] = $serv;
 
+    $services_key = array_keys($data['services']);
+
+    for($i = 0; 3 > $i; $i++) {
+      $filters = $this->_catalog_array($services_key[$i]);
+
+      if($filters) {
+        $query = $this->dynamic->t($filters['table']);
+
+        $data['services'][$services_key[$i]]['data'] = $query
+          ->where([["{$filters['table']}.to_main", '=', 1]])
+          ->join(
+            'files',
+
+            function($join) use ($filters) {
+              $join->type = 'LEFT OUTER';
+              $join->on("{$filters['table']}.id", '=', 'files.id_album')
+                ->where('files.name_table', '=', "{$filters['table']}album")
+                ->where('files.main', '=', 1);
+            }
+          )
+          ->select("{$filters['table']}.*", 'files.file', 'files.crop')
+          ->get(4)
+          ->toArray();
+      }
+    }
+
     $data['preview'] = $this
       ->dynamic
       ->t('files')
@@ -121,6 +147,152 @@ class MainController extends Controller
     $data['meta_c'] = $this->base->getMeta($data['main_page']);
 
     return $this->base->view_s("site.main.index", $data);
+  }
+
+  /**
+   * Array Catalog filters.
+   *
+   * @param $name
+   * @return array|mixed
+   */
+  private function _catalog_array($name)
+  {
+    $filters = [
+      'invest-in-development-projects' => [
+        'name'  => 'invest_in_development_projects',
+        'table' => 'catalog_development',
+
+        'group' => [
+          'group_1_ASC'  => 'price_money_from',
+          'group_1_DESC' => 'price_money_to',
+
+          'group_4_ASC'  => 'area_from',
+          'group_4_DESC' => 'area_to',
+        ],
+
+        'filters' => [
+          // Район(Расположение)
+          'cat_location'           => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_cat_location',
+
+            'fields' => [
+              'cat_location' => [
+                'name'  => 'cat_location',
+                'title' => __('main.cat_location'),
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Стоимость, млн евро(Стоимость)
+          'price'                  => [
+            'type' => 'slider_select',
+            'step' => 500,
+
+            'fields' => [
+              'price_money_from' => [
+                'mode'  => 'min',
+                'name'  => 'price_money_from',
+                'title' => __('main.cost_€_million'),
+              ],
+
+              'price_money_to' => [
+                'mode'  => 'max',
+                'name'  => 'price_money_to',
+                'title' => '',
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Площадь
+          'area'                   => [
+            'type' => 'slider_select_area',
+            'step' => 5,
+
+            'fields' => [
+              'area_from' => [
+                'mode'  => 'min',
+                'name'  => 'area_from',
+                'title' => __('main.area'),
+              ],
+
+              'area_to' => [
+                'mode'  => 'max',
+                'name'  => 'area_to',
+                'title' => '',
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Спальни
+          'bedrooms'               => [
+            'type' => 'slider_select',
+            'step' => 1,
+
+            'fields' => [
+              'bedrooms_from' => [
+                'mode'  => 'min',
+                'name'  => 'bedrooms_from',
+                'title' => __('main.bedrooms'),
+              ],
+
+              'bedrooms_to' => [
+                'mode'  => 'max',
+                'name'  => 'bedrooms_to',
+                'title' => '',
+              ],
+            ],
+          ],
+
+          // Тип объекта
+          'type_object'            => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_type_object',
+
+            'fields' => [
+              'type_object' => [
+                'name'  => 'type_object',
+                'title' => __('main.type_object'),
+              ],
+            ],
+          ],
+
+          // Инфраструктура
+          'development_facilities' => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_development_facilities',
+
+            'fields' => [
+              'development_facilities' => [
+                'name'  => 'development_facilities',
+                'title' => __('main.development_facilities'),
+              ],
+            ],
+          ],
+
+          // Ожидаемый срок
+          'estimated_completion'   => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_estimated_completion',
+
+            'fields' => [
+              'estimated_completion' => [
+                'name'  => 'estimated_completion',
+                'title' => __('main.estimated_completion'),
+              ],
+            ],
+          ],
+        ],
+      ],
+    ];
+
+    return $filters[$name] ?? [];
   }
 
   /**
@@ -990,183 +1162,124 @@ class MainController extends Controller
     $data['service']  = [];
     $data['filters']  = $filters;
 
-    foreach($data['filters']['filters'] as $key => $filter) {
-      if($filter['type'] === 'multi_checkbox') {
-        $data['filters']['filters'][$key]['data'] = $this->dynamic
-          ->t($filter['table'])
-          ->where([['active', '=', 1]])
-          ->get()
-          ->toArray();
-      }
+    if($id) {
 
-      if($filter['type'] === 'slider_select' || $filter['type'] === 'slider_select_area') {
-        foreach($filter['fields'] as $key_field => $field) {
-          $data['filters']['filters'][$key]['fields'][$key_field]['data'] = $this->dynamic
-            ->t($data['filters']['table'])
-            ->{$field['mode']}(
-              "{$field['name']}"
-            );
+      $data['page']   = $this->helper->_page($id, 'site.main.catalog_id', $filters['table'], $data, true);
+      $data['name']   = $name;
+      $data['meta_c'] = $this->base->getMeta($data, 'page');
+
+      $data['similar_objects'] = $this->dynamic->t($filters['table'])
+        ->where([["{$filters['table']}.active", '=', 1]])
+        ->whereNotIn("{$filters['table']}.id", [$data['page']['id']])
+        ->join(
+          'files',
+
+          function($join) use ($filters) {
+            $join->type = 'LEFT OUTER';
+            $join->on("{$filters['table']}.id", '=', 'files.id_album')
+              ->where('files.name_table', '=', "{$filters['table']}album")
+              ->where('files.main', '=', 1);
+          }
+        )
+        ->select("{$filters['table']}.*", 'files.file', 'files.crop')
+        ->inRandomOrder(4)
+        ->get()
+        ->toArray();
+
+      $data['photos'] = $this
+        ->dynamic
+        ->t('files')
+        ->where('files.name_table', '=', "{$filters['table']}album")
+        ->select('files.file', 'files.crop')
+        ->get()
+        ->toArray();
+
+      $data['plan'] = $this
+        ->dynamic
+        ->t('files')
+        ->where('files.name_table', '=', "{$filters['table']}plan")
+        ->select('files.file', 'files.crop')
+        ->get()
+        ->toArray();
+
+      $data['params_cat_location'] = $this
+        ->dynamic
+        ->t('params_cat_location')
+        ->where(
+          [
+            ['active', '=', 1],
+            ['id', '=', $data['page']['cat_location']],
+          ]
+        )
+        ->first()
+        ->toArray();
+
+      $data['params_type_object'] = $this
+        ->dynamic
+        ->t('params_type_object')
+        ->where(
+          [
+            ['active', '=', 1],
+            ['id', '=', $data['page']['type_object']],
+          ]
+        )
+        ->first()
+        ->toArray();
+
+      $data['development_facilities'] = $this
+        ->dynamic
+        ->t('params_development_facilities')
+        ->where('active', '=', 1)
+        ->whereIn('id', json_decode($data['page']['development_facilities'], true) ?? [])
+        ->get()
+        ->toArray();
+
+      $data['params_estimated_completion'] = $this
+        ->dynamic
+        ->t('params_estimated_completion')
+        ->where(
+          [
+            ['active', '=', 1],
+            ['id', '=', $data['page']['estimated_completion']],
+          ]
+        )
+        ->first()
+        ->toArray();
+
+      return $this->base->view_s('site.main.catalog_id', $data);
+    } else {
+      foreach($data['filters']['filters'] as $key => $filter) {
+        if($filter['type'] === 'multi_checkbox') {
+          $data['filters']['filters'][$key]['data'] = $this->dynamic
+            ->t($filter['table'])
+            ->where([['active', '=', 1]])
+            ->get()
+            ->toArray();
+        }
+
+        if($filter['type'] === 'slider_select' || $filter['type'] === 'slider_select_area') {
+          foreach($filter['fields'] as $key_field => $field) {
+            $data['filters']['filters'][$key]['fields'][$key_field]['data'] = $this->dynamic
+              ->t($data['filters']['table'])
+              ->{$field['mode']}(
+                "{$field['name']}"
+              );
+          }
         }
       }
+
+      foreach($data['services'] as $service)
+        if($service['translation'] === $name)
+          $data['service'] = $service;
+
+      //    var_dump( $name);
+      //    var_dump(  $data['services']);
+
+      $data['meta_c'] = $this->base->getMeta($data, 'service');
+      $data['name']   = $name;
+
+      return $this->base->view_s("site.main.{$filters['name']}", $data);
     }
-
-    foreach($data['services'] as $service)
-      if($service['translation'] === $name)
-        $data['service'] = $service;
-
-//    var_dump( $name);
-//    var_dump(  $data['services']);
-
-    $data['meta_c'] = $this->base->getMeta($data, 'service');
-    $data['name']   = $name;
-
-    return $this->base->view_s("site.main.{$filters['name']}", $data);
-  }
-
-  /**
-   * Array Catalog filters.
-   *
-   * @param $name
-   * @return array|mixed
-   */
-  private function _catalog_array($name)
-  {
-    $filters = [
-      'invest-in-development-projects' => [
-        'name'  => 'invest_in_development_projects',
-        'table' => 'catalog_development',
-
-        'group' => [
-          'group_1_ASC'  => 'price_money_from',
-          'group_1_DESC' => 'price_money_to',
-
-          'group_4_ASC'  => 'area_from',
-          'group_4_DESC' => 'area_to',
-        ],
-
-        'filters' => [
-          // Район(Расположение)
-          'cat_location'           => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_cat_location',
-
-            'fields' => [
-              'cat_location' => [
-                'name'  => 'cat_location',
-                'title' => __('main.cat_location'),
-              ],
-            ],
-
-            'class' => 'active',
-          ],
-
-          // Стоимость, млн евро(Стоимость)
-          'price'                  => [
-            'type' => 'slider_select',
-            'step' => 500,
-
-            'fields' => [
-              'price_money_from' => [
-                'mode'  => 'min',
-                'name'  => 'price_money_from',
-                'title' => __('main.cost_€_million'),
-              ],
-
-              'price_money_to' => [
-                'mode'  => 'max',
-                'name'  => 'price_money_to',
-                'title' => '',
-              ],
-            ],
-
-            'class' => 'active',
-          ],
-
-          // Площадь
-          'area'                   => [
-            'type' => 'slider_select_area',
-            'step' => 5,
-
-            'fields' => [
-              'area_from' => [
-                'mode'  => 'min',
-                'name'  => 'area_from',
-                'title' => __('main.area'),
-              ],
-
-              'area_to' => [
-                'mode'  => 'max',
-                'name'  => 'area_to',
-                'title' => '',
-              ],
-            ],
-
-            'class' => 'active',
-          ],
-
-          // Спальни
-          'bedrooms'               => [
-            'type' => 'slider_select',
-            'step' => 1,
-
-            'fields' => [
-              'area_from' => [
-                'mode'  => 'min',
-                'name'  => 'bedrooms_from',
-                'title' => __('main.bedrooms'),
-              ],
-
-              'price_to' => [
-                'mode'  => 'max',
-                'name'  => 'bedrooms_to',
-                'title' => '',
-              ],
-            ],
-          ],
-
-          // Тип объекта
-          'type_object'            => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_type_object',
-
-            'fields' => [
-              'type_object' => [
-                'name'  => 'type_object',
-                'title' => __('main.type_object'),
-              ],
-            ],
-          ],
-
-          // Инфраструктура
-          'development_facilities' => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_development_facilities',
-
-            'fields' => [
-              'development_facilities' => [
-                'name'  => 'development_facilities',
-                'title' => __('main.development_facilities'),
-              ],
-            ],
-          ],
-
-          // Ожидаемый срок
-          'estimated_completion'   => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_estimated_completion',
-
-            'fields' => [
-              'estimated_completion' => [
-                'name'  => 'estimated_completion',
-                'title' => __('main.estimated_completion'),
-              ],
-            ],
-          ],
-        ],
-      ],
-    ];
-
-    return $filters[$name] ?? [];
   }
 
   public function search_render_catalog()
@@ -1186,18 +1299,16 @@ class MainController extends Controller
           $filters['table'] . '.' . $filters['group']["group_{$form['group']}_{$form['sort_by']}"],
           $form['sort_by']
         )
-
         ->join(
           'files',
 
-          function($join) use($filters) {
+          function($join) use ($filters) {
             $join->type = 'LEFT OUTER';
             $join->on("{$filters['table']}.id", '=', 'files.id_album')
               ->where('files.name_table', '=', "{$filters['table']}album")
               ->where('files.main', '=', 1);
           }
         )
-
         ->select("{$filters['table']}.*", 'files.file', 'files.crop')
         ->get()
         ->toArray();
@@ -1214,7 +1325,7 @@ class MainController extends Controller
         $filters = $this->_catalog_array($k);
 
         if($filters) {
-          $query   = $this->dynamic->t($filters['table']);
+          $query = $this->dynamic->t($filters['table']);
 
           if(!empty($ids))
             $query = $query->whereIn("{$filters['table']}.id", $ids);
@@ -1223,19 +1334,23 @@ class MainController extends Controller
             ->join(
               'files',
 
-              function($join) use($filters) {
+              function($join) use ($filters) {
                 $join->type = 'LEFT OUTER';
                 $join->on("{$filters['table']}.id", '=', 'files.id_album')
                   ->where('files.name_table', '=', "{$filters['table']}album")
                   ->where('files.main', '=', 1);
               }
             )
-
             ->select("{$filters['table']}.*", 'files.file', 'files.crop')
             ->get()
             ->toArray();
 
-          $data['catalog'] = ($data['catalog'] ?? []) + $catalog;
+          $data['catalog'] = ($data['catalog'] ?? []) +
+            array_map(
+              function($v) use ($k) {
+                return array_merge($v, ['name_url' => $k]);
+              }, $catalog
+            );
         }
       }
     }

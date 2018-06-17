@@ -65,34 +65,26 @@
       </div>
 
       <div class="foo-col foo-request">
-        <h4>Получай самые последние новости!</h4>
+        <h4>@lang('main.get_the_latest_news')</h4>
+
         <form action="#" class="subscribe-form validate-form">
-          <div class="flex-group">
-            <div class="input-holder email-field">
-              <input type="email" name="email" placeholder="Email">
-            </div>
-            <div class="input-holder select">
-              <select title="">
-                <option value="1" selected>1 раз в неделю</option>
-                <option value="2">1 раз в месяц</option>
-                <option value="3">каждый день</option>
-              </select>
-            </div>
-            <div class="input-holder select">
-              <select title="">
-                <option value="1" selected>Объекты</option>
-                <option value="2">Квартиры</option>
-                <option value="3">Офисы</option>
-              </select>
-            </div>
-            <input type="submit" class="button" value="Ок">
-          </div>
-          <label class="checkbox-label"><input type="checkbox" name="checkbox" checked><span>I have read and agree to
-              the <a href="#" target="_blank">Terms&Conditions</a> and <a href="#" target="_blank">Privacy
-                policy</a>.</span></label>
-          <label class="checkbox-label"><input type="checkbox" checked><span>I agree to receive property updates and
-              latest news via email.</span></label>
+          @include('site.block.subscribe_form', ['send' => 'Ok'])
+
+          <label class="checkbox-label"><input type="checkbox" name="checkbox" checked />
+            <span>
+              @lang('main.i_have_read_and_agree_to_the')
+              <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
+              @lang('main._and')
+              <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
+            </span>
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" checked />
+            <span>@lang('main.text_mail_sending')</span>
+          </label>
         </form>
+
         <ul class="additional-links">
           <li><a href="#">Terms&Conditions</a></li>
           <li><a href="#">Privacy&Cookies</a></li>

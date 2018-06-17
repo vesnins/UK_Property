@@ -641,6 +641,7 @@
     "lang"            : [
       "name",
       "text",
+      "full_address",
       "title",
       "keywords",
       "description"
@@ -675,6 +676,7 @@
       "developer",
       "post_code",
       "number_object",
+      "full_address",
       "title",
       "keywords",
       "description"

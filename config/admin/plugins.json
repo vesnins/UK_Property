@@ -430,6 +430,16 @@
     "sql_column" : "address"
   },
   {
+    "name"        : "full_address",
+    "typeField"   : "input",
+    "nameText"    : "Адрес",
+    "nameAttr"    : "pl[full_address]",
+    "description" : "Текстовое поле инпут \"Полный адрес\"",
+    "idAttr"      : "inputFull_address",
+    "sql_column"  : "full_address",
+    "translateKey": "full_address"
+  },
+  {
     "name"       : "apartment",
     "typeField"  : "input",
     "nameText"   : "Квартира или офис",

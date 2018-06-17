@@ -13,7 +13,12 @@
       @if($name_url)
         <a href="javascript:void(0)"
           class="add-to-wishList like-button {!! $is_favorite ? 'active' : '' !!} like-button-{{ $val['id'] }}"
-          onclick="catAll.addCart('{{ $val['id'] }}', '{!! $is_favorite ? 'remove' : 'add' !!}', '{{ $name_url }}')"
+
+          onclick="catAll.addCart(
+            '{{ $val['id'] }}',
+            '{!! $is_favorite ? 'remove' : 'add' !!}',
+            '{{ $name_url ?? $val['name_url'] }}'
+            )"
         >
           <svg>
             <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
@@ -30,7 +35,7 @@
         </a>
       @endif
 
-      <a href="/catalog/{{ $name_url }}/{{ $val['id'] }}" class="product-link">
+      <a href="/catalog/{{ $name_url ?? $val['name_url'] }}/{{ $val['translation'] ?? $val['id'] }}" class="product-link">
         <div class="image-box" style="background-image: url('{{ $img }}')">
           <div class="product-details">
             <div class="cell">S = {{ $val['area_from'] }} м²</div>

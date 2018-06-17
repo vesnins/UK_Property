@@ -205,9 +205,10 @@ class HelperController extends Controller
    * @param string $view - путь до шаблона
    * @param string $name_table - имя таблицы
    * @param array  $data - массив которй надо передать в шаблон
-   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+   * @param bool  $return_data - вернуть объект даты вместо вывода в шаблон
+   * @return DynamicModel|\Illuminate\Contracts\View\Factory|\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Query\Builder|\Illuminate\View\View|null
    */
-  public function _page($id = null, $view = 'page_id', $name_table = 'str', $data = [])
+  public function _page($id = null, $view = 'page_id', $name_table = 'str', $data = [], $return_data = false)
   {
     if(!$id)
       return $this->_errors_404();
@@ -250,7 +251,10 @@ class HelperController extends Controller
       $data['files'] = [];
     }
 
-    return $this->base->view_s("{$view}", $data);
+    if(!$return_data)
+      return $this->base->view_s("{$view}", $data);
+    else
+      return $data['page'];
   }
 
   /**
