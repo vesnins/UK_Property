@@ -1189,7 +1189,12 @@ class MainController extends Controller
       $data['photos'] = $this
         ->dynamic
         ->t('files')
-        ->where('files.name_table', '=', "{$filters['table']}album")
+        ->where(
+          [
+            ['files.name_table', '=', "{$filters['table']}album"],
+            ['files.id_album', '=', $data['page']['id']],
+          ]
+        )
         ->select('files.file', 'files.crop')
         ->get()
         ->toArray();
@@ -1197,7 +1202,12 @@ class MainController extends Controller
       $data['plan'] = $this
         ->dynamic
         ->t('files')
-        ->where('files.name_table', '=', "{$filters['table']}plan")
+        ->where(
+          [
+            ['files.name_table', '=', "{$filters['table']}plan"],
+            ['files.id_album', '=', $data['page']['id']],
+          ]
+        )
         ->select('files.file', 'files.crop')
         ->get()
         ->toArray();

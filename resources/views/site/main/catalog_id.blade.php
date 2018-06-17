@@ -28,7 +28,9 @@
           <li data-class="tab_1" data-type="gallery" class="active"><a href="#">@lang('main.photos')</a></li>
         @endif
 
-        <li data-class="tab_2" data-type="map"><a href="#">@lang('main.map')</a></li>
+        <li data-class="tab_2" data-type="map" class="{{empty($photos) ? 'active' : '' }}">
+          <a href="#">@lang('main.map')</a>
+        </li>
 
         @if(!empty($plan))
           <li data-class="tab_3" data-type="plan"><a href="#">@lang('main.plan')</a></li>
@@ -77,7 +79,7 @@
             </div>
           @endif
 
-          <div class="tab-item tab-item-tab_2">
+          <div class="tab-item tab-item-tab_2 {{empty($photos) ? 'active' : '' }}">
             <div id="map">
               <img src="/images/content/img_23-1.jpg" alt="">
             </div>
