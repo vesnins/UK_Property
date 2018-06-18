@@ -1212,29 +1212,35 @@ class MainController extends Controller
         ->get()
         ->toArray();
 
-      $data['params_cat_location'] = $this
-        ->dynamic
-        ->t('params_cat_location')
-        ->where(
-          [
-            ['active', '=', 1],
-            ['id', '=', $data['page']['cat_location']],
-          ]
-        )
-        ->first()
-        ->toArray();
+      if($data['page']['cat_location'])
+        $data['params_cat_location'] = $this
+          ->dynamic
+          ->t('params_cat_location')
+          ->where(
+            [
+              ['active', '=', 1],
+              ['id', '=', $data['page']['cat_location']],
+            ]
+          )
+          ->first()
+          ->toArray();
+      else
+        $data['params_cat_location'] = [];
 
-      $data['params_type_object'] = $this
-        ->dynamic
-        ->t('params_type_object')
-        ->where(
-          [
-            ['active', '=', 1],
-            ['id', '=', $data['page']['type_object']],
-          ]
-        )
-        ->first()
-        ->toArray();
+      if($data['page']['type_object'])
+        $data['params_type_object'] = $this
+          ->dynamic
+          ->t('params_type_object')
+          ->where(
+            [
+              ['active', '=', 1],
+              ['id', '=', $data['page']['type_object']],
+            ]
+          )
+          ->first()
+          ->toArray();
+      else
+        $data['params_type_object'] = [];
 
       $data['development_facilities'] = $this
         ->dynamic
@@ -1244,17 +1250,20 @@ class MainController extends Controller
         ->get()
         ->toArray();
 
-      $data['params_estimated_completion'] = $this
-        ->dynamic
-        ->t('params_estimated_completion')
-        ->where(
-          [
-            ['active', '=', 1],
-            ['id', '=', $data['page']['estimated_completion']],
-          ]
-        )
-        ->first()
-        ->toArray();
+      if($data['page']['estimated_completion'])
+        $data['params_estimated_completion'] = $this
+          ->dynamic
+          ->t('params_estimated_completion')
+          ->where(
+            [
+              ['active', '=', 1],
+              ['id', '=', $data['page']['estimated_completion']],
+            ]
+          )
+          ->first()
+          ->toArray();
+      else
+        $data['params_estimated_completion'] = [];
 
       return $this->base->view_s('site.main.catalog_id', $data);
     } else {
