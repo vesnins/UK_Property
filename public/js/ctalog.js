@@ -14,7 +14,27 @@ var
       setTimeout(function() {
         if(catAll.isLoad)
           catAll.generateUrlCatalog();
+          catAll.reversFtM2();
       }, 100);
+    },
+
+    reversFtM2: function() {
+      $('[name="type_ft_m2"]').click(function() {
+        var
+          val = $(this).val();
+
+        $(this).val(val === 'ft' ? 'm2' : 'ft');
+
+        if(val === 'ft')
+          $('.s-pl').map(function(k, v) {
+            console.log($(v).html())
+            $(this).html(Math.round(parseFloat($(v).html()) / 3.28))
+          });
+        else
+          $('.s-pl').map(function(k, v) {
+            $(this).html(Math.round(parseFloat($(v).html()) * 3.28))
+          });
+      })
     },
 
     generateUrlCatalog: function() {
@@ -25,7 +45,7 @@ var
       _.assign(data, {page: page});
       _.assign(data, $('.product-filter-form').serializeArray());
 
-      console.log(data)
+     // console.log(data)
       this.selectCatalog(data);
     },
 

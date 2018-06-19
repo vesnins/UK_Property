@@ -35,19 +35,54 @@
         </a>
       @endif
 
+      <style>
+        .s-pl {
+          display: inline;
+        }
+      </style>
       <a href="/catalog/{{ $name_url ?? $val['name_url'] }}/{{ $val['translation'] ?? $val['id'] }}" class="product-link">
         <div class="image-box" style="background-image: url('{{ $img }}')">
           <div class="product-details">
-            <div class="cell">S = {{ $val['area_from'] }} м²</div>
-            <div class="cell">{{ $val['bedrooms_from'] }} спальни</div>
+            <div class="cell">
+              @if($val['area_from'] ?? false)
+                S =
+                <div class="s-pl">{{ $val['area_from'] }}</div>
+                -
+                <div class="s-pl">{{ $val['area_to'] }}</div>
+                @lang('main.м_2')
+              @else
+                S = <div class="s-pl">{{ $val['area'] }}</div> @lang('main.м_2')
+              @endif
+            </div>
+
+            <div class="cell">
+              @if($val['bedrooms_from'] ?? false)
+                {{ $val['bedrooms_from'] }} - {{ $val['bedrooms_to'] }}
+              @else
+                {{ $val['bedrooms'] }}
+              @endif
+
+                @lang('main.bedrooms')
+            </div>
           </div>
         </div>
 
         <p>{{ $langSt($val['name']) }}</p>
 
         <div class="row flex-row align-row">
-          <div class="col-xs-6"><span class="price">от {{ $val['price_money_from'] }} млн руб</span></div>
-          <div class="col-xs-6 text-right"><span class="pseudo-btn">Выбрать</span></div>
+          <div class="col-xs-6">
+            <span class="price">
+              @if($val['price_money_from'] ?? false)
+                {{ $val['price_money_from'] }}
+                -
+                {{ $val['price_money_to'] }} @lang('main.million_').$
+              @else
+                {{ $val['price_money'] }} @lang('main.million_').$
+              @endif
+            </span>
+          </div>
+
+          <div class="col-xs-6 text-right"><span class="pseudo-btn">@lang('main.choose')</span></div>
         </div>
       </a>
     </div>

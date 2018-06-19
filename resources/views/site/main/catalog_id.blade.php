@@ -139,7 +139,7 @@
               <td>
                 <span class="caption">@lang('main.asking_price')</span>
 
-                <span class="value price-value">
+                <span class="value {{ $page['in_portfolio'] ? 'price-value' : '' }}">
                   @if($page['price_money_from'] ?? false)
                     ${{ number_format($page['price_money_from'] * 1000000, 0, ',', ' ') }}
                     -

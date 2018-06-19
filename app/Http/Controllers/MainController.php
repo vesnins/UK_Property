@@ -158,9 +158,9 @@ class MainController extends Controller
   private function _catalog_array($name)
   {
     $filters = [
-      'invest-in-development-projects' => [
-        'name'  => 'invest_in_development_projects',
-        'table' => 'catalog_development',
+      'invest-in-a-new-building' => [
+        'name'  => 'invest_in_a_new_building',
+        'table' => 'catalog_new_building',
 
         'group' => [
           'group_1_ASC'  => 'price_money_from',
@@ -1297,7 +1297,7 @@ class MainController extends Controller
       $data['meta_c'] = $this->base->getMeta($data, 'service');
       $data['name']   = $name;
 
-      return $this->base->view_s("site.main.{$filters['name']}", $data);
+      return $this->base->view_s('site.main.catalog', $data);
     }
   }
 

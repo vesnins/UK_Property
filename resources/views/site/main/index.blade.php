@@ -84,14 +84,16 @@
         @include('site.block.catalog_list', ['catalog' => $services['invest-in-a-new-building']['data'],
          'name_url' => 'invest-in-a-new-building'])
 
-        <div class="text-center">
-          <a
-            href="/catalog/{{ $services['invest-in-a-new-building']['translation'] }}"
-            class="button"
-          >
-            @lang('main.other_options')
-          </a>
-        </div>
+        @if(!empty($services['invest-in-a-new-building']['data']))
+          <div class="text-center">
+            <a
+              href="/catalog/{{ $services['invest-in-a-new-building']['translation'] }}"
+              class="button"
+            >
+              @lang('main.other_options')
+            </a>
+          </div>
+        @endif
       </div>
 
       <div class="container-fluid mb-lg">
@@ -138,14 +140,16 @@
         @include('site.block.catalog_list', ['catalog' => $services['invest-in-development-projects']['data'],
          'name_url' => 'invest-in-development-projects'])
 
-        <div class="text-center">
-          <a
-            href="/catalog/{{ $services['invest-in-development-projects']['translation'] }}"
-            class="button"
-          >
-            @lang('main.other_options')
-          </a>
-        </div>
+        @if(!empty($services['invest-in-development-projects']['data']))
+          <div class="text-center">
+            <a
+              href="/catalog/{{ $services['invest-in-development-projects']['translation'] }}"
+              class="button"
+            >
+              @lang('main.other_options')
+            </a>
+          </div>
+        @endif
       </div>
 
       <div class="container-fluid mb-lg">
@@ -191,14 +195,16 @@
 
         @include('site.block.catalog_list', ['catalog' => $services['buy']['data'], 'name_url' => 'buy'])
 
-        <div class="text-center">
-          <a
-            href="/catalog/{{ $services['buy']['translation'] }}"
-            class="button"
-          >
-            @lang('main.other_options')
-          </a>
-        </div>
+        @if(!empty($services['buy']['data']))
+          <div class="text-center">
+            <a
+              href="/catalog/{{ $services['buy']['translation'] }}"
+              class="button"
+            >
+              @lang('main.other_options')
+            </a>
+          </div>
+        @endif
       </div>
 
       <div class="container-fluid mb-lg">
@@ -241,14 +247,16 @@
 
         @include('site.block.catalog_list', ['catalog' => $services['rent']['data'], 'name_url' => 'rent'])
 
-        <div class="text-center">
-          <a
-            href="/catalog/{{ $services['rent']['translation'] }}"
-            class="button"
-          >
-            @lang('main.other_options')
-          </a>
-        </div>
+        @if(!empty($services['rent']['data']))
+          <div class="text-center">
+            <a
+              href="/catalog/{{ $services['rent']['translation'] }}"
+              class="button"
+            >
+              @lang('main.other_options')
+            </a>
+          </div>
+        @endif
       </div>
 
       <div class="container">
