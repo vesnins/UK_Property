@@ -27,7 +27,6 @@ var
 
         if(val === 'ft')
           $('.s-pl').map(function(k, v) {
-            console.log($(v).html())
             $(this).html(Math.round(parseFloat($(v).html()) / 3.28))
           });
         else
