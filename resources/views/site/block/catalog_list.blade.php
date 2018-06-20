@@ -87,7 +87,7 @@
       </a>
     </div>
   @empty
-    @if($no_empty_message ?? false)
+    @if(!isset($no_empty_message))
       <p style="border-radius: 3px; text-align: center; border: solid 1px #eeeeee; padding: 15px; margin: 15px; width: 100%">
         @lang('main.empty_result')
       </p>
