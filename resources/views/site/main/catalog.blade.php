@@ -38,11 +38,6 @@
                   </svg>
                 </span>
 
-
-                <button type="button" onclick="catAll.generateUrlCatalog()" style="width: 100%">
-                  Update Force
-                </button>
-
                 <input type="hidden" name="name_url" value="{{ $name }}" />
                 <input name="pagination" value="1" type="hidden" autocomplete="off" />
 
