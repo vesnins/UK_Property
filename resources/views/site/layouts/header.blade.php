@@ -161,7 +161,7 @@
       <div class="position-box">
         <a href="/selection-request" class="button light">@lang('main.selection_request')</a>
 
-        <a href="/favorite" class="wish-list" style="display: none">
+        <a href="/favorite" class="wish-list">
           <svg>
             <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
           </svg>
