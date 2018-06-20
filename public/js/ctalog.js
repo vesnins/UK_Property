@@ -137,10 +137,10 @@ var
 
              fav.find('.qty').html('(' + data.count + ')');
 
-             if(data.count)
-               fav.show();
-             else
-               fav.hide();
+//             if(data.count)
+//               fav.show();
+//             else
+//               fav.hide();
 
              if(selectorLice.hasClass('like-button-' + id))
                selectorLice = $('.like-button-' + id);

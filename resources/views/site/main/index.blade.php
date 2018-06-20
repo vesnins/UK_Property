@@ -82,7 +82,7 @@
         </div>
 
         @include('site.block.catalog_list', ['catalog' => $services['invest-in-a-new-building']['data'],
-         'name_url' => 'invest-in-a-new-building'])
+         'name_url' => 'invest-in-a-new-building', 'no_empty_message' => true])
 
         @if(!empty($services['invest-in-a-new-building']['data']))
           <div class="text-center">
@@ -138,7 +138,7 @@
         </div>
 
         @include('site.block.catalog_list', ['catalog' => $services['invest-in-development-projects']['data'],
-         'name_url' => 'invest-in-development-projects'])
+         'name_url' => 'invest-in-development-projects', 'no_empty_message' => true])
 
         @if(!empty($services['invest-in-development-projects']['data']))
           <div class="text-center">
@@ -193,7 +193,8 @@
           </div>
         </div>
 
-        @include('site.block.catalog_list', ['catalog' => $services['buy']['data'], 'name_url' => 'buy'])
+        @include('site.block.catalog_list',
+         ['catalog' => $services['buy']['data'], 'name_url' => 'buy' , 'no_empty_message' => true])
 
         @if(!empty($services['buy']['data']))
           <div class="text-center">
@@ -245,7 +246,8 @@
           </div>
         </div>
 
-        @include('site.block.catalog_list', ['catalog' => $services['rent']['data'], 'name_url' => 'rent'])
+        @include('site.block.catalog_list',
+         ['catalog' => $services['rent']['data'], 'name_url' => 'rent', 'no_empty_message' => true])
 
         @if(!empty($services['rent']['data']))
           <div class="text-center">

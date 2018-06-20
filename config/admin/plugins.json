@@ -1741,7 +1741,8 @@
     "translateKey": "type_object",
     "body"        : {
       "text": "<option value=\"0\">(Без категории)</option>{-option-}",
-      "type": "replace"
+      "type": "replace",
+      "multiple": "multiple"
     }
   },
   {

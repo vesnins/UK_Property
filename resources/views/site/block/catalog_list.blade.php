@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <p>{{ $langSt($val['name']) }}</p>
+        <p>{{ $langSt($val['little_description']) }}</p>
 
         <div class="row flex-row align-row">
           <div class="col-xs-6">
@@ -75,9 +75,9 @@
               @if($val['price_money_from'] ?? false)
                 {{ $val['price_money_from'] }}
                 -
-                {{ $val['price_money_to'] }} @lang('main.million_').$
+                {{ $val['price_money_to'] }} @lang('main.million_').€
               @else
-                {{ $val['price_money'] }} @lang('main.million_').$
+                {{ $val['price_money'] }} @lang('main.million_').€
               @endif
             </span>
           </div>
@@ -87,9 +87,11 @@
       </a>
     </div>
   @empty
-    <p style="border-radius: 3px; text-align: center; border: solid 1px #eeeeee; padding: 15px; margin: 15px; width: 100%">
-      @lang('main.empty_result')
-    </p>
+    @if($no_empty_message ?? false)
+      <p style="border-radius: 3px; text-align: center; border: solid 1px #eeeeee; padding: 15px; margin: 15px; width: 100%">
+        @lang('main.empty_result')
+      </p>
+    @endif
   @endforelse
 </div>
 

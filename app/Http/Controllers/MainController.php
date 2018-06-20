@@ -1231,12 +1231,8 @@ class MainController extends Controller
         $data['params_type_object'] = $this
           ->dynamic
           ->t('params_type_object')
-          ->where(
-            [
-              ['active', '=', 1],
-              ['id', '=', $data['page']['type_object']],
-            ]
-          )
+          ->where([['active', '=', 1]])
+          ->whereIn('id', json_decode($data['page']['type_object'], true) ?? [])
           ->first()
           ->toArray();
       else
@@ -1354,7 +1350,18 @@ class MainController extends Controller
         $catalog_sql = $catalog_sql->whereIn("{$filters['table']}.cat_location", $form['cat_location']);
 
       if(isset($form['type_object']))
-        $catalog_sql = $catalog_sql->whereIn("{$filters['table']}.type_object", $form['type_object']);
+        $catalog_sql = $catalog_sql->where(
+
+          function($query) use ($form, $filters) {
+            for($i = 0; $i < count($form['type_object']); $i++) {
+              $query->orwhere(
+                "{$filters['table']}.type_object",
+                'like',
+                '%"' . $form['type_object'][$i] . '"%'
+              );
+            }
+          }
+        );
 
       if(isset($form['development_facilities']))
         $catalog_sql = $catalog_sql->where(

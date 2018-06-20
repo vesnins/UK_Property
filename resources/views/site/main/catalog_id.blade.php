@@ -141,11 +141,11 @@
 
                 <span class="value {{ $page['in_portfolio'] ? 'price-value' : '' }}">
                   @if($page['price_money_from'] ?? false)
-                    ${{ number_format($page['price_money_from'] * 1000000, 0, ',', ' ') }}
+                    €{{ number_format($page['price_money_from'] * 1000000, 0, ',', ' ') }}
                     -
-                    ${{ number_format($page['price_money_to'] * 1000000, 0, ',', ' ') }}
+                    €{{ number_format($page['price_money_to'] * 1000000, 0, ',', ' ') }}
                   @else
-                    ${{ number_format($page['price_money'] * 1000000, 0, ',', ' ') }}
+                    €{{ number_format($page['price_money'] * 1000000, 0, ',', ' ') }}
                   @endif
                 </span>
               </td>
