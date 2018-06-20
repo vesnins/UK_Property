@@ -14,37 +14,58 @@ var
       setTimeout(function() {
         if(catAll.isLoad)
           catAll.generateUrlCatalog();
-          catAll.reversFtM2();
+        catAll.reversFtM2();
       }, 100);
     },
 
     reversFtM2: function() {
       $('[name="type_ft_m2"]').click(function() {
         var
-          val = $(this).val();
+          val = $(this).val(),
+          r   = $('[name="slider_area"]'),
+          min,
+          max;
 
         $(this).val(val === 'ft' ? 'm2' : 'ft');
 
-        if(val === 'ft')
+        if(val === 'ft') {
           $('.s-pl').map(function(k, v) {
             $(this).html(Math.round(parseFloat($(v).html()) / 3.28))
           });
-        else
+
+          min = Math.round(parseFloat(r.attr('data-slider-min') / 3.28));
+          max = Math.round(parseFloat(r.attr('data-slider-max') / 3.28));
+        } else {
           $('.s-pl').map(function(k, v) {
             $(this).html(Math.round(parseFloat($(v).html()) * 3.28))
           });
+
+          min = Math.round(parseFloat(r.attr('data-slider-min') * 3.28));
+          max = Math.round(parseFloat(r.attr('data-slider-max') * 3.28) + 1);
+        }
+
+        r.attr('data-slider-min', min);
+        r.attr('data-slider-max', max);
+        r.attr('data-value', min + ',' + max);
+        r.attr('value', min + ',' + max);
+        r.attr('data-slider-value', '[' + min + ',' + max + ']');
+        window['slider_area'].destroy();
+
+        setTimeout(function() {
+          if(window.customRangeSlider)
+            window.customRangeSlider($('.slider-area'));
+        }, 0);
       })
     },
 
     generateUrlCatalog: function() {
       var
         data = {},
-        page    = $('[name="pagination"]').val();
+        page = $('[name="pagination"]').val();
 
       _.assign(data, {page: page});
       _.assign(data, $('.product-filter-form').serializeArray());
 
-     // console.log(data)
       this.selectCatalog(data);
     },
 
@@ -96,10 +117,10 @@ var
            name_url: nameUrl,
          },
 
-         cache: false,
+         cache   : false,
          dataType: "JSON",
 
-         success : function(data) {
+         success: function(data) {
            if(data.result === 'ok') {
              var
                fav          = $('.wish-list'),

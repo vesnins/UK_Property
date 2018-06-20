@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <form action="#" class="product-filter-form hidden-box">
+    <form action="#" name="catalog_form" class="product-filter-form hidden-box">
       <div class="scroll-content">
         <div class="indent-block">
           <div class="container">
@@ -117,13 +117,14 @@
                           </div>
                         </div>
 
-                        <div class="range-slider">
+                        <div class="range-slider slider-area">
                           <input
                             class="slider"
                             type="text"
                             data-slider-min="{{ $filter['fields']['area_from']['data'] }}"
                             data-slider-max="{{ $filter['fields']['area_to']['data'] }}"
                             data-slider-step="5"
+                            name="slider_area"
 
                             data-slider-value="[
                               {{ $filter['fields']['area_from']['data'] }},
@@ -158,7 +159,9 @@
                 @endforeach
 
                 <div class="text-center">
-                  <a href="#" class="reset-btn">@lang('main.clear_filter')</a>
+                  <a href="javascript:void(0)" class="reset-btn" onclick="$('[name=\'catalog_form\']')[0].reset();">
+                    @lang('main.clear_filter')
+                  </a>
                 </div>
               </div>
 
@@ -186,7 +189,15 @@
                     class="reverse-btn"
 
                     onclick="
-                      if($(this).hasClass('reverse')) $(this).removeClass('reverse'); else $(this).addClass('reverse');
+                      if($(this).hasClass('reverse'))
+                        $(this).removeClass('reverse');
+                      else
+                        $(this).addClass('reverse');
+
+                      if($(this).hasClass('reverse'))
+                        $('[name=\'sort_by\']').val('DESC');
+                      else
+                        $('[name=\'sort_by\']').val('ASC');
                     "
                   >
                     <svg>

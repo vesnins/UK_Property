@@ -1038,13 +1038,13 @@ class Base
     $data = [];
 
     foreach($array as $v) {
-      if(count(explode('[', $v['name'])) > 1) {
-        $s = explode('[', $v['name']);
+      if(count(explode('[]', $v['name'])) > 1) {
+        $s = explode('[]', $v['name']);
 
         if(!isset($data[$s[0]]))
           $data[$s[0]] = [];
 
-        $data[$s[0]][str_replace(']', '', $s[1])] = $v['value'];
+        $data[$s[0]][] = $v['value'];
       } else
         $data[$v['name']] = $v['value'];
     }

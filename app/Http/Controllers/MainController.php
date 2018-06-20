@@ -189,13 +189,13 @@ class MainController extends Controller
           // Стоимость, млн евро(Стоимость)
           'price'                  => [
             'type' => 'slider_select',
-            'step' => 500,
+            'step' => .1,
 
             'fields' => [
               'price_money_from' => [
                 'mode'  => 'min',
                 'name'  => 'price_money_from',
-                'title' => __('main.cost_€_million'),
+                'title' => __('main.cost_$_million'),
               ],
 
               'price_money_to' => [
@@ -1291,9 +1291,6 @@ class MainController extends Controller
         if($service['translation'] === $name)
           $data['service'] = $service;
 
-      //    var_dump( $name);
-      //    var_dump(  $data['services']);
-
       $data['meta_c'] = $this->base->getMeta($data, 'service');
       $data['name']   = $name;
 
@@ -1312,13 +1309,75 @@ class MainController extends Controller
     if($form['name_url'] && !$session) {
       $filters = $this->_catalog_array($form['name_url']);
 
-      $data['catalog'] = $this->dynamic->t($filters['table'])
-        ->groupBy($filters['table'] . '.id')
-        ->orderBy(
-          $filters['table'] . '.' . $filters['group']["group_{$form['group']}_{$form['sort_by']}"],
-          $form['sort_by']
-        )
-        ->join(
+      $where = [
+        ["{$filters['table']}.active", '=', 1],
+        ["{$filters['table']}.in_portfolio", '=', 0],
+      ];
+
+      if(isset($form['price_money_from'])) {
+        $where = array_merge($where, [["{$filters['table']}.price_money_from", '>=', $form['price_money_from']]]);
+        $where = array_merge($where, [["{$filters['table']}.price_money_to", '<=', $form['price_money_to']]]);
+      } else {
+        if(isset($form['price_money']))
+          $where = array_merge($where, [["{$filters['table']}.price_money", '=', $form['price_money']]]);
+      }
+
+      if(isset($form['bedrooms_from'])) {
+        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '>=', $form['bedrooms_from']]]);
+        $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '<=', $form['bedrooms_to']]]);
+      } else {
+        if(isset($form['bedrooms']))
+          $where = array_merge($where, [["{$filters['table']}.bedrooms", '=', $form['bedrooms']]]);
+      }
+
+      if(isset($form['area_from'])) {
+        if(!($form['type_ft_m2'] ?? false)) {
+          $form['area_from'] = ($form['area_from'] * 3.28) - 1;
+          $form['area_to']   = ($form['area_to'] * 3.28) + 2;
+        }
+
+        $where = array_merge($where, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
+        $where = array_merge($where, [["{$filters['table']}.area_to", '<=', $form['area_to']]]);
+      } else {
+        if(isset($form['area_from'])) {
+          if($form['type_ft_m2'])
+            $form['area_from'] = $form['area'] * 3.28;
+
+          $where = array_merge($where, [["{$filters['table']}.area", '=', $form['area']]]);
+        }
+      }
+
+      $catalog_sql = $this->dynamic->t($filters['table'])
+        ->where($where);
+
+      if(isset($form['cat_location']))
+        $catalog_sql = $catalog_sql->whereIn("{$filters['table']}.cat_location", $form['cat_location']);
+
+      if(isset($form['type_object']))
+        $catalog_sql = $catalog_sql->whereIn("{$filters['table']}.type_object", $form['type_object']);
+
+      if(isset($form['development_facilities']))
+        $catalog_sql = $catalog_sql->where(
+         // "{$filters['table']}.development_facilities",
+
+          function($query) use ($form, $filters) {
+            for($i = 0; $i < count($form['development_facilities']); $i++) {
+              $query->orwhere(
+                "{$filters['table']}.development_facilities",
+                'like',
+                '%"' . $form['development_facilities'][$i] . '"%'
+              );
+            }
+          }
+        );
+
+      if(isset($form['estimated_completion']))
+        $catalog_sql = $catalog_sql->whereIn(
+          "{$filters['table']}.estimated_completion",
+          $form['estimated_completion']
+        );
+
+      $data['catalog'] = $catalog_sql->join(
           'files',
 
           function($join) use ($filters) {
@@ -1328,6 +1387,14 @@ class MainController extends Controller
               ->where('files.main', '=', 1);
           }
         )
+
+        ->groupBy($filters['table'] . '.id')
+
+        ->orderBy(
+          $filters['table'] . '.' . $filters['group']["group_{$form['group']}_{$form['sort_by']}"],
+          $form['sort_by']
+        )
+
         ->select("{$filters['table']}.*", 'files.file', 'files.crop')
         ->get()
         ->toArray();

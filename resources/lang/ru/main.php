@@ -168,6 +168,7 @@ return [
   'company_details'                          => 'Подробнее о компании',
   'how_we_are_working'                       => 'Как мы работаем',
   'cat_location'                             => 'Район',
+  'cost_$_million'                           => 'Стоимость, млн $',
   'area'                                     => 'Площадь',
   'bedrooms'                                 => 'Спальни',
   'type_object'                              => 'Тип объекта',

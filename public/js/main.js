@@ -718,8 +718,14 @@
     });
   }
 
-  function customRangeSlider() {
-    $('.range-slider').each(function() {
+  function customRangeSlider(t) {
+    var
+      sl = $('.range-slider');
+
+    if(t)
+      sl = t ;
+
+    sl.each(function() {
       var
         slider   = $(this).find('.slider'),
         maxValue = $(this).find('.range-value.max'),
@@ -728,7 +734,7 @@
       minValue.mask('0000000000');
       maxValue.mask('0000000000');
 
-      slider.slider({
+      window[slider.attr('name')] = slider.slider({
         tooltip: 'hide'
       }).on('slide', function(slideEvt) {
         minValue.val(slideEvt.value[0]);
@@ -1020,6 +1026,7 @@
 
   if($('.range-slider').length !== 0) {
     customRangeSlider();
+    window.customRangeSlider = customRangeSlider;
   }
 
   if($('.certificate-slider').length !== 0) {

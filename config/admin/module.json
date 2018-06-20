@@ -646,7 +646,7 @@
       "keywords",
       "description"
     ],
-    "link_module"     : "catalog_development",
+    "link_module"     : "catalog_new_building",
     "link_site_module": "/catalog/invest-in-development-projects/",
     "menu_table_name" : "menu",
     "name_module"     : "Инвестировать в Новостройки",
