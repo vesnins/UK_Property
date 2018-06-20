@@ -16,6 +16,10 @@ var
           catAll.generateUrlCatalog();
         catAll.reversFtM2();
       }, 100);
+
+      $('[name="catalog_form"]').click(function() {
+        catAll.generateUrlCatalog();
+      })
     },
 
     reversFtM2: function() {
@@ -70,6 +74,11 @@ var
     },
 
     selectCatalog: function(data) {
+      if(_.isEqual(data, catAll.currentData))
+        return false;
+
+      catAll.currentData = data;
+
       if(!data.session)
         $(catAll.container).animate({opacity: .5}, 150);
 
