@@ -57,21 +57,19 @@
 
                     <div>
                       <div class="inner-box" style="background-image: url('{{ $img }}')"></div>
-                    </div>     <div>
-                      <div class="inner-box" style="background-image: url('{{ $img }}')"></div>
                     </div>
                   @endforeach
                 </div>
 
                 <div class="preview-slider simple-slider">
-                  @foreach($photos as $photo)
-                    @php($img = $photo['file']
-                      ? $photo['crop'] ? $path_small . $photo['crop'] : $path_small . $photo['file']
+                  @foreach($photos as $photo_small)
+                    @php($img_small = $photo['file']
+                      ? $photo_small['crop'] ? $path_small . $photo_small['crop'] : $path_small . $photo_small['file']
                       : '/images/files/no-image.jpg'
                     )
 
                     <div>
-                      <div class="inner-box" style="background-image: url('{{ $img }}')"></div>
+                      <div class="inner-box" style="background-image: url('{{ $img_small }}')"></div>
                     </div>
                   @endforeach
                 </div>
@@ -141,11 +139,11 @@
 
                 <span class="value {{ $page['in_portfolio'] ? 'price-value' : '' }}">
                   @if($page['price_money_from'] ?? false)
-                    €{{ number_format($page['price_money_from'] * 1000000, 0, ',', ' ') }}
+                    £{{ number_format($page['price_money_from'], 0, ',', ',') }}
                     -
-                    €{{ number_format($page['price_money_to'] * 1000000, 0, ',', ' ') }}
+                    £{{ number_format($page['price_money_to'], 0, ',', ',') }}
                   @else
-                    €{{ number_format($page['price_money'] * 1000000, 0, ',', ' ') }}
+                    £{{ number_format($page['price_money'], 0, ',', ',') }}
                   @endif
                 </span>
               </td>
@@ -170,9 +168,9 @@
 
                 <span class="value">
                   @if($page['area_from'] ?? false)
-                    {{ round($page['area_from'] * 3.28, 2) }} - {{ round($page['area_to'] * 3.28, 2) }}
+                    {{ round($page['area_from'] * 3.28, 2) }} - {{ round($page['area_to'] * 3.28, 0) }}
                   @else
-                    {{ round($page['area'] * 3.28, 2) }}
+                    {{ round($page['area'] * 3.28, 0) }}
                   @endif
                 </span>
               </td>
@@ -215,13 +213,22 @@
                 @if(!empty($params_type_object))
                   <tr>
                     <td>@lang('main.object_type')</td>
-                    <td>{{ $langSt($params_type_object['name']) }}</td>
+
+                    <td>
+                      @php($st = [])
+
+                      @foreach($params_type_object as $type_object)
+                        @php($st[] = $langSt($type_object['name']))
+                      @endforeach
+
+                      {{ join($st, ', ') }}
+                    </td>
                   </tr>
                 @endif
 
                 @if(!empty($development_facilities))
                   <tr>
-                    <td>@lang('main.infrastructure')</td>
+                    <td>@lang('main.development_facilities')</td>
 
                     <td>
                       @php($st = [])
@@ -237,7 +244,7 @@
 
                 @if(!empty($params_estimated_completion))
                   <tr>
-                    <td>@lang('main.expected_duration')</td>
+                    <td>@lang('main.expected_completion')</td>
                     <td>{{ $langSt($params_estimated_completion['name']) }}</td>
                   </tr>
                 @endif

@@ -266,4 +266,33 @@ class HelperController extends Controller
   {
     return $this->base->view_s("errors.404", []);
   }
+
+  /**
+   * Duplicated Data.
+   *
+   * @return mixed
+   */
+  public function duplicate_data()
+  {
+    // Музыка на сайт
+    $data['music'] = $this
+      ->dynamic
+      ->t('files')
+      ->where('files.name_table', '=', 'mainmusic')
+      ->first();
+
+    // Для футера "Полезное"
+    $data['blog_useful'] = $this->_blog(
+      null,
+      [
+        'count_box' => 6,
+        'order_by'  => [['blog.useful', 'DESC'], ['blog.id', 'DESC']],
+      ]
+    );
+
+    // Для футера "Услуги"
+    $data['services'] = $this->_services();
+
+    return $data;
+  }
 }

@@ -35,7 +35,15 @@
 										<div class="thumbnail">
 											<div class="image view view-first pointer" onclick="editFile{{ $name }}({{ $v->id }})">
 												@php($ext = explode('.', $v->file)[count(explode('.', $v->file)) - 1])
-												@php($ignore = ['jpg' => 'image', 'jpeg' => 'image', 'png' => 'image', 'webm' => 'video', 'mp4' => 'video'])
+												@php($ignore = [
+													'jpg' => 'image',
+													'jpeg' => 'image',
+													'png' => 'image',
+													'webm' => 'video',
+													'mp4' => 'video',
+													'mp3' => ' fa fa-music',
+													'wav' => 'music'
+												 ])
 
 												@if(isset($ignore[$ext]))
 													@php($ext = $ignore[$ext])
@@ -100,7 +108,9 @@
 								var typeFile = [
 									'application/pdf',
 									'video/webm',
-									'video/mp4',
+									'audio/mp3',
+									'audio/mpeg',
+									'audio/wav',
 									'application/msword',
 									'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 									'image/jpg',
@@ -133,7 +143,7 @@
 											'fileDesc': 'All supported files types (.pdf, .jpeg)',
 											'uploadScript': '/admin/files/upload_files?name_table={{ $name_table }}&name_field={{ $name }}&id_album={{ $id_album }}&timestamp={{ $timestamp }}&token={{ md5('file_upload' . $timestamp) }}',
 											'onProgress': 'total',
-											'fileSizeLimit': '10048KB',
+											'fileSizeLimit': '200048KB',
 
 											'onUploadComplete': function(file, data) {
 												var

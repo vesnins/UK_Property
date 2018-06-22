@@ -189,7 +189,7 @@ class ModuleController extends Controller
           break;
 
           case 'name':
-            $val_name = $this->base->lang($val['name']);
+            $val_name = $this->base->lang($val['name'], '', true);
 
             $name = '<a href="/admin/update/' . $modules['link_module'] . '/' . $val['id'] . '">';
             $name .= (trim($val_name) == "") ? trans('admin::main.reservation') : $val_name;

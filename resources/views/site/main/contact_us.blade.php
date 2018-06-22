@@ -157,9 +157,9 @@
               <label class="checkbox-label"><input type="checkbox" name="checkbox" checked />
                 <span>
                   @lang('main.i_have_read_and_agree_to_the')
-                  <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
-                  @lang('main._and')
-                  <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
+                  <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
+                  @lang('main._and_')
+                  <a href="/privacy-policy" target="_blank">@lang('main._privacy_policy_')</a>.
                 </span>
               </label>
 

@@ -453,6 +453,19 @@ class PluginsController extends Controller
     );
   }
 
+  /**
+   * Function generation field music.
+   *
+   * @param        $field
+   * @param string $table_params
+   * @param array  $params
+   * @return mixed
+   */
+  public function music($field, $table_params = '', $params = [])
+  {
+    return $this->files($field, $table_params, $params);
+  }
+
   public function translation($field, $table_params = '', $params = [])
   {
     $id_album = $params['id'];

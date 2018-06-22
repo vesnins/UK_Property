@@ -506,6 +506,8 @@
     "lang"            : [
       "name",
       "title",
+      "little_description",
+      "offer",
       "keywords",
       "description"
     ],
@@ -517,12 +519,11 @@
     "plugins"         : [
       "name",
       "album",
-      "main_img_small",
-      "collections",
-      "benefits_accommodation",
       "files",
+      "music",
       "title",
-      "author",
+      "little_description",
+      "offer",
       "keywords",
       "description",
       "active"
@@ -532,6 +533,9 @@
         "limit": 2
       },
       "main_img_small": {
+        "limit": 1
+      },
+      "music"     : {
         "limit": 1
       }
     },
@@ -544,8 +548,8 @@
   {
     "id"              : "15",
     "active"          : true,
-    "big_height"      : "1200",
-    "big_width"       : "800",
+    "big_width"       : "1200",
+    "big_height"      : "800",
     "class_module"    : "fa fa-bullhorn",
     "column_index"    : [
       "name",
@@ -576,7 +580,8 @@
       "text",
       "little_description",
       "active",
-      "usefull",
+      "useful",
+      "to_main",
       "author_id",
       "translation",
       "date",
@@ -604,11 +609,12 @@
   {
     "id"              : "21",
     "active"          : true,
-    "big_height"      : "1200",
-    "big_width"       : "800",
+    "big_width"       : "1200",
+    "big_height"      : "800",
     "class_module"    : "fa fa-shopping-cart",
     "column_index"    : [
       "name",
+      "little_description",
       "translation",
       "album",
       "cat_location",
@@ -662,6 +668,7 @@
       "post_code",
       "number_object",
       "full_address",
+      "distance",
       "title",
       "keywords",
       "description"

@@ -53,6 +53,9 @@ var
         r.attr('data-value', min + ',' + max);
         r.attr('value', min + ',' + max);
         r.attr('data-slider-value', '[' + min + ',' + max + ']');
+
+        $('[name="area_from"]').val(min);
+        $('[name="area_to"]').val(max);
         window['slider_area'].destroy();
 
         setTimeout(function() {

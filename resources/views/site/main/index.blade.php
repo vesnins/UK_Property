@@ -4,33 +4,39 @@
   @php($path_small = '/images/files/small/')
   @php($path_big = '/images/files/big/')
 
+  @php($img_big = $main_page['file']
+    ? $main_page['crop']
+      ? $path_big . $main_page['crop']
+      : $path_big . $main_page['file']
+    : ''
+   )
+
   <main class="main">
-    <div class="billboard" style="background-image: url('/images/banners/img_1.jpg')">
+    <div class="billboard" style="background-image: url('{{ $img_big }}')">
       <a href="#section_1" class="go-down-btn"><i class="line"></i></a>
-      <video class="video-poster" poster="/images/banners/img_1.jpg" autoplay muted loop>
-        <source src="/images/video/video.mp4" type="video/mp4">
-        <source src="/images/video/video.webm" type="video/webm">
+      <video class="video-poster" poster="{{ $img_big }}" autoplay muted loop>
+        @foreach($main_page_video as $video)
+          <source
+            src="/images/files/files/{{ $video['file'] }}"
+            type="video/{{ explode('.', $video['file'])[count(explode('.', $video['file'])) - 1] }}"
+          />
+        @endforeach
       </video>
       <div class="align-box">
         <div class="container large">
           <div class="row">
             <div class="col-lg-6 col-md-7 col-sm-9">
-              <h1>эксперты <br> недвижимости</h1>
+              <h1>{!! $langSt($main_page['block_1']) !!}</h1>
+
               <div class="billboard-slider">
-                <div>
-                  <p>Подбор квартир на этапе строительства <br> и сопровождение всего цикла инвестирования</p>
-                </div>
-                <div>
-                  <p>Подбор строительства квартир на этапе строительства <br> и сопровождение всего цикла инвестирования
-                  </p>
-                </div>
-                <div>
-                  <p>Подбор квартир на этапе строительства <br> и сопровождение всего цикла инвестирования сопровождение
-                  </p>
-                </div>
+                @foreach(explode("\r", (string) $langSt($main_page['little_description'])) ?? [] as $description)
+                  <div><p>{!! $description !!}</p></div>
+                @endforeach
               </div>
 
-              <a href="/selection-request" class="button">Подобрать Недвижимость</a>
+              <a href="javascript:void(0)" class="button" data-toggle="modal" data-target=".request-modal">
+                @lang('main.find_real_estate')
+              </a>
             </div>
           </div>
         </div>
@@ -306,9 +312,9 @@
 
             <span>
               @lang('main.i_have_read_and_agree_to_the')
-              <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
-              @lang('main._and')
-              <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
+              <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
+              @lang('main._and_')
+              <a href="/privacy-policy" target="_blank">@lang('main._privacy_policy_')</a>.
             </span>
           </label>
         </form>
@@ -378,7 +384,7 @@
         <div class="limit-box">
           <h4>{!! $langSt($params['text_consultation_main']['key']) !!}</h4>
 
-          <a href="#" class="more-button" data-toggle="modal" data-target=".consultation-modal">
+          <a href="#" class="more-button" data-toggle="modal" data-target=".request-modal">
             @lang('main.to_get_a_consultation')
           </a>
 

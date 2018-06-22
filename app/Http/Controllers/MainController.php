@@ -52,15 +52,18 @@ class MainController extends Controller
    */
   public function main()
   {
-    $whereBlog[] = ['blog.active', 1];
-    $whereBlog[] = ['blog.tags', '!=', '\'\''];
-
+    $whereBlog[]      = ['blog.active', 1];
+    $whereBlog[]      = ['blog.tags', '!=', '\'\''];
+    $data             = $this->helper->duplicate_data();
+    $data['services'] = [];
     $data['blog'] = $this->helper->_blog(
       null,
       [
         'count_box' => 3,
-        'order_by'  => [['blog.usefull', 'DESC'], ['blog.id', 'DESC']],
-      ]
+        'order_by'  => [['blog.useful', 'DESC'], ['blog.id', 'DESC']],
+      ],
+
+      [['blog.active', 1], ['blog.to_main', 1]]
     );
 
     foreach($this->helper->_services() as $k => $serv)
@@ -100,14 +103,6 @@ class MainController extends Controller
       ->get()
       ->toArray();
 
-    $data['collections'] = $this
-      ->dynamic
-      ->t('files')
-      ->where('name_table', 'maincollections')
-      ->orderBy('sort', 'ASC')
-      ->get()
-      ->toArray();
-
     $data['main_page'] = $this
       ->dynamic
       ->t('main')
@@ -140,10 +135,6 @@ class MainController extends Controller
       ->first()
       ->toArray();
 
-    // print_r($data['about']);
-    // exit;
-
-
     $data['meta_c'] = $this->base->getMeta($data['main_page']);
 
     return $this->base->view_s("site.main.index", $data);
@@ -166,8 +157,17 @@ class MainController extends Controller
           'group_1_ASC'  => 'price_money_from',
           'group_1_DESC' => 'price_money_to',
 
+          'group_2_ASC'  => 'popularity',
+          'group_2_DESC' => 'popularity',
+
+          'group_3_ASC'  => 'distance',
+          'group_3_DESC' => 'distance',
+
           'group_4_ASC'  => 'area_from',
           'group_4_DESC' => 'area_to',
+
+          'group_5_ASC'  => 'id',
+          'group_5_DESC' => 'id',
         ],
 
         'filters' => [
@@ -186,10 +186,10 @@ class MainController extends Controller
             'class' => 'active',
           ],
 
-          // Стоимость, млн евро(Стоимость)
+          // Стоимость
           'price'                  => [
             'type' => 'slider_select',
-            'step' => .1,
+            'step' => 500,
 
             'fields' => [
               'price_money_from' => [
@@ -303,7 +303,16 @@ class MainController extends Controller
    */
   public function services($id = null)
   {
-    $data['services'] = $this->helper->_services();
+    $data = $this->helper->duplicate_data();
+
+    $data['blog_useful'] = $this->helper->_blog(
+      null,
+      [
+        'count_box' => 12,
+        'order_by'  => [['blog.useful', 'DESC'], ['blog.id', 'DESC']],
+      ]
+    );
+
     return $this->helper->_page($id, 'site.main.service_id', 'services', $data);
   }
 
@@ -314,6 +323,7 @@ class MainController extends Controller
    */
   public function about_company()
   {
+    $data = $this->helper->duplicate_data();
     $data['reviews'] = $this
       ->dynamic
       ->t('reviews')
@@ -321,7 +331,13 @@ class MainController extends Controller
       ->get()
       ->toArray();
 
-    $data['services'] = $this->helper->_services();
+    $data['blog_useful'] = $this->helper->_blog(
+      null,
+      [
+        'count_box' => 12,
+        'order_by'  => [['blog.useful', 'DESC'], ['blog.id', 'DESC']],
+      ]
+    );
 
     $data['about'] = $this
       ->dynamic
@@ -661,6 +677,7 @@ class MainController extends Controller
    */
   public function blog($id = null)
   {
+    $data    = $this->helper->duplicate_data();
     $blog    = $this->dynamic->t('blog')->select('tags')->get()->toArray();
     $tags_id = [];
 
@@ -669,7 +686,7 @@ class MainController extends Controller
 
     $data['tags'] = $this->dynamic->t('tags')->whereIn('id', $tags_id)->limit(100)->get()->toArray();
     $where[]      = ['blog.active', 1];
-    $count_box    = 4;
+    $count_box    = 12;
     $group        = 'id';
 
     if($id) {
@@ -884,9 +901,11 @@ class MainController extends Controller
    * @param string $name_table
    * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
    */
-  public function page($id = null, $view = 'page_id', $name_table = 'str')
+  public function page($id = null, $view = 'site.main.page_id', $name_table = 'str')
   {
-    return $this->helper->_page($id, $view, $name_table);
+    $data = $this->helper->duplicate_data();
+
+    return $this->helper->_page($id, $view, $name_table, $data);
   }
 
   /**invest-in-development-projects
@@ -1152,13 +1171,12 @@ class MainController extends Controller
    */
   public function catalog($name, $id = null)
   {
-    $data    = [];
+    $data    = $this->helper->duplicate_data();
     $filters = $this->_catalog_array($name);
 
     if(empty($filters))
       return $this->helper->_errors_404();
 
-    $data['services'] = $this->helper->_services();
     $data['service']  = [];
     $data['filters']  = $filters;
 
@@ -1227,24 +1245,27 @@ class MainController extends Controller
       else
         $data['params_cat_location'] = [];
 
-      if($data['page']['type_object'])
+      if($data['page']['type_object'] && !empty(json_decode($data['page']['type_object'], true)))
         $data['params_type_object'] = $this
           ->dynamic
           ->t('params_type_object')
           ->where([['active', '=', 1]])
           ->whereIn('id', json_decode($data['page']['type_object'], true) ?? [])
-          ->first()
+          ->get()
           ->toArray();
       else
         $data['params_type_object'] = [];
 
-      $data['development_facilities'] = $this
-        ->dynamic
-        ->t('params_development_facilities')
-        ->where('active', '=', 1)
-        ->whereIn('id', json_decode($data['page']['development_facilities'], true) ?? [])
-        ->get()
-        ->toArray();
+      if($data['page']['development_facilities'] && !empty(json_decode($data['page']['development_facilities'], true)))
+        $data['development_facilities'] = $this
+          ->dynamic
+          ->t('params_development_facilities')
+          ->where('active', '=', 1)
+          ->whereIn('id', json_decode($data['page']['development_facilities'], true) ?? [])
+          ->get()
+          ->toArray();
+      else
+        $data['development_facilities'] = [];
 
       if($data['page']['estimated_completion'])
         $data['params_estimated_completion'] = $this

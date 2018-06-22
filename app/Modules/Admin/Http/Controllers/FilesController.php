@@ -263,15 +263,17 @@ class FilesController extends Controller
         $valid = true;
       } else {
         if($data['type'] != 'url') {
-          $validator2 = Validator::make(
-            ['file' => $f],
-            ['file' => 'required|max:20000']
-          );
+          if($data['name'] !== 'file') {
+            $validator2 = Validator::make(
+              ['file' => $f],
+              ['file' => 'required|max:20000']
+            );
 
-          if($validator2->fails()) {
-            $valid        = true;
-            $res['error'] = "Не правильный формат файла";
-            break;
+            if($validator2->fails()) {
+              $valid        = true;
+              $res['error'] = "Не правильный формат файла";
+              break;
+            }
           }
         }
 

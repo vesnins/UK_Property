@@ -2,7 +2,8 @@
   <div class="container-fluid">
     <div class="row flex-row">
       <div class="foo-col contact-info">
-        <h4>Контакты</h4>
+        <h4>@lang('main.contacts')</h4>
+
         <address>
           <span class="address-info">
             <svg><use xlink:href="/images/svg/sprite.svg#pin"></use></svg>
@@ -37,16 +38,21 @@
       </div>
 
       <div class="foo-col foo-menu mb-hidden">
-        <h4>Полезное</h4>
+        <h4>@lang('main.useful')</h4>
+
         <ul class="link-list">
-          <li><a href="#">Сравнительный анализ инвестиций в недвижимость Лондона с другими странами</a></li>
-          <li><a href="#">Расчет прибыльности инвестиций</a></li>
-          <li><a href="#">На чем мы зарабатываем</a></li>
-          <li><a href="#">Прозрачность (про отчет)</a></li>
+          @foreach($blog_useful as $useful)
+            @php($translation = ($useful['translation'] !== '0' && $useful['translation'] !== '')
+             ? $useful['translation']
+             : false
+            )
+            <li><a href="/blog/{{ $translation or $useful['id'] }}">{{ $langSt($useful['name']) }}</a></li>
+          @endforeach
         </ul>
       </div>
+
       <div class="foo-col foo-menu mb-hidden">
-        <h4>O нас</h4>
+        <h4>@lang('main.about_us')</h4>
         <ul class="menu">
           <li><a href="#">О компании</a></li>
           <li><a href="#">Портфолио</a></li>
@@ -73,9 +79,9 @@
           <label class="checkbox-label"><input type="checkbox" name="checkbox" checked />
             <span>
               @lang('main.i_have_read_and_agree_to_the')
-              <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
-              @lang('main._and')
-              <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
+              <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
+              @lang('main._and_')
+              <a href="/privacy-policy" target="_blank">@lang('main._privacy_policy_')</a>.
             </span>
           </label>
 
@@ -86,9 +92,9 @@
         </form>
 
         <ul class="additional-links">
-          <li><a href="#">Terms&Conditions</a></li>
-          <li><a href="#">Privacy&Cookies</a></li>
-          <li><a href="#">TDS explained</a></li>
+          <li><a href="/terms-conditions">@lang('main.terms_&_Conditions')</a></li>
+          <li><a href="/privacy-cookies">@lang('main.privacy&cookies')</a></li>
+          <li><a href="/tds-explained">@lang('main.tds_explained')</a></li>
         </ul>
 
         <ul class="social-list">
@@ -114,13 +120,13 @@
         <div class="col-sm-10">
           <p>
             © 2018 - {{ date('Y') != '2018' ? date('Y') : '' }}
-            UK Property Все права защищены
-            <a>Соглашение об обработке персональных данных</a>
+            UK Property @lang('main.all_rights_reserved')
+            <a href="/privacy-policy">@lang('main.agreement_on_processing_personal_data')</a>
           </p>
         </div>
 
         <div class="col-sm-2 text-right">
-          <a href="https://reconcept.ru/">ReConcept</a>
+          <a href="https://reconcept.ru/" target="_blank">ReConcept</a>
         </div>
       </div>
     </div>
@@ -133,14 +139,16 @@
   </div>
 </footer>
 
-<audio
-  class="audio-record"
-  {{ env('AUDIO_AUTOPLAY') ? 'autoplay' : '' }}
-  {{ env('AUDIO_LOOP') ? 'loop' : '' }}
-  {{ env('AUDIO_HIDDEN') ? 'hidden' : '' }}
->
-  <source src="/images/audio/audio-record.mp3">
-</audio>
+@if($music['file'])
+  <audio
+    class="audio-record"
+    {{ env('AUDIO_AUTOPLAY') ? 'autoplay' : '' }}
+    {{ env('AUDIO_LOOP') ? 'loop' : '' }}
+    {{ env('AUDIO_HIDDEN') ? 'hidden' : '' }}
+  >
+    <source src="/images/files/{{ $music['file'] }}">
+  </audio>
+  @endif
 </div>
 
 <div class="modal fade request-modal" tabindex="-1" role="dialog">
@@ -153,7 +161,7 @@
           </svg>
         </button>
 
-        <div class="decor-box" style="background-image: url('images/banners/img_6.jpg')"></div>
+        <div class="decor-box" style="background-image: url('/images/banners/img_6.jpg')"></div>
         <h3 class="text-center">@lang('main.consultation')</h3>
 
         <form action="#" class="validate-form">
@@ -179,9 +187,9 @@
 
               <span>
                 @lang('main.i_have_read_and_agree_to_the')
-                <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
-                @lang('main._and')
-                <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
+                <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
+                @lang('main._and_')
+                <a href="/privacy-policy" target="_blank">@lang('main._privacy_policy_')</a>.
               </span>
             </label>
 
@@ -194,67 +202,6 @@
           <div class="text-center">
             <input class="button" type="submit" value="send" />
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade consultation-modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <svg><use xlink:href="images/svg/sprite.svg#close-icon"></use></svg>
-        </button>
-
-        <div class="decor-box" style="background-image: url('images/banners/img_6.jpg')"></div>
-        <h3 class="text-center">@lang('main.request_a_call')</h3>
-
-        <form action="#" class="validate-form">
-          <div class="input-holder">
-            <input type="text" name="name" placeholder="@lang('main.first_name') *" />
-          </div>
-          <div class="input-holder">
-            <input type="text" name="surname" placeholder="@lang('main.second_name') *" />
-          </div>
-          <div class="input-holder">
-            <input type="tel" name="phone" placeholder="@lang('main.phone_number') *" />
-          </div>
-          <div class="input-holder">
-            <input type="email" placeholder="Email">
-          </div>
-          <div class="input-holder">
-            <select title="" name="enquirySelect">
-              <option value="1" selected>Your Enquiry</option>
-              <option value="2">Your Enquiry</option>
-              <option value="3">Your Enquiry</option>
-            </select>
-          </div>
-
-          <div class="input-holder">
-            <textarea placeholder="@lang('main.message')"></textarea>
-          </div>
-
-          <div class="input-holder">
-            <label class="checkbox-label">
-              <input type="checkbox" name="checkbox" checked />
-
-              <span>
-                @lang('main.i_have_read_and_agree_to_the')
-                <a href="#" target="_blank">@lang('main.terms_&_Conditions')</a>
-                @lang('main._and')
-                <a href="#" target="_blank">@lang('main.privacy_policy')</a>.
-              </span>
-            </label>
-
-            <label class="checkbox-label">
-              <input type="checkbox" checked />
-              <span>@lang('main.text_mail_sending')</span>
-            </label>
-          </div>
-
-          <div class="text-center"><input class="button" type="submit" value="@lang('main.send')" /></div>
         </form>
       </div>
     </div>

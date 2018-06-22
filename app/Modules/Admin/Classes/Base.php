@@ -796,22 +796,27 @@ class Base
   }
 
   /**
-   * Get string to current lang
+   * Get string to current lang.
+   *
    * @param        $t
    * @param string $lang
+   * @param bool   $no_empty
    * @return mixed
    */
-  public function lang($t, $lang = '')
+  public function lang($t, $lang = '', $no_empty = false)
   {
-    $arr  = json_decode($t, true);
+    $arr  = is_array($t) ? $t : json_decode($t, true);
     $lang = empty($lang) ? \App::getLocale() : $lang;
 
     if(is_array($arr))
-      if(json_decode($t, true)[$lang] ?? false || json_decode($t, true)[$lang] === null)
-        $t = json_decode($t, true)[$lang];
-      else
-
-        $t = current(json_decode($t, true)) ?? $t;
+      if($arr[$lang] ?? false || $arr[$lang] === null) {
+        if($no_empty && $arr[$lang] === null)
+          $t = current($arr);
+        else
+          $t = $arr[$lang];
+      } else {
+        $t = current($arr) ?? $t;
+      }
 
     return $t;
   }

@@ -369,7 +369,19 @@
     "description"     : "Плагин \"Files\"",
     "idAttr"          : "inputFiles",
     "noSaveInDatabase": true,
-    "sql_column"      : "files"
+    "sql_column"      : "files",
+    "translateKey"    : "files"
+  },
+  {
+    "name"            : "music",
+    "typeField"       : "functions",
+    "nameText"        : "Аудао файл",
+    "nameAttr"        : "pl[music]",
+    "description"     : "Плагин \"Music\"",
+    "idAttr"          : "inputMusic",
+    "noSaveInDatabase": true,
+    "sql_column"      : "music",
+    "translateKey"    : "music"
   },
   {
     "name"       : "ordering",
@@ -809,13 +821,14 @@
     "sql_column" : "discount"
   },
   {
-    "name"       : "sort",
-    "typeField"  : "input",
-    "nameText"   : "Сортировка",
-    "nameAttr"   : "pl[sort]",
-    "description": "Текстовое поле инпут \"Сортировка(имя сортируемой таблицы)\"",
-    "idAttr"     : "inputSort",
-    "sql_column" : "sort"
+    "name"         : "sort",
+    "typeField"    : "input",
+    "nameText"     : "Сортировка",
+    "nameAttr"     : "pl[sort]",
+    "description"  : "Текстовое поле инпут \"Сортировка(имя сортируемой таблицы)\"",
+    "idAttr"       : "inputSort",
+    "sql_column"   : "sort",
+    "translateKey ": "sorting"
   },
   {
     "name"       : "living_space",
@@ -1276,17 +1289,17 @@
     "translateKey"   : "vacation_together"
   },
   {
-    "name"           : "usefull",
+    "name"           : "useful",
     "typeField"      : "checkbox",
     "classAttr"      : "flat border-green",
     "classAttrDiv"   : "border-green-checkbox",
     "nameText"       : "Полезное",
-    "nameAttr"       : "pl[usefull]",
-    "description"    : "Селект \"usefull\"",
-    "idAttr"         : "checkboxUsefull",
+    "nameAttr"       : "pl[useful]",
+    "description"    : "Селект \"useful\"",
+    "idAttr"         : "checkboxUseful",
     "functionsBefore": "checkboxCheck",
-    "sql_column"     : "usefull",
-    "translateKey"   : "usefull"
+    "sql_column"     : "useful",
+    "translateKey"   : "useful"
   },
   {
     "name"            : "what_is_next",
@@ -1485,6 +1498,26 @@
     "maxlength"   : "12000",
     "translateKey": "block_1",
     "sql_column"  : "block_1"
+  },
+  {
+    "name"        : "offer",
+    "typeField"   : "input",
+    "nameText"    : "Offer",
+    "nameAttr"    : "pl[offer]",
+    "description" : "Текстовое поле \"offer\"",
+    "idAttr"      : "inputOffer",
+    "translateKey": "offer",
+    "sql_column"  : "offer"
+  },
+  {
+    "name"        : "distance",
+    "typeField"   : "input",
+    "nameText"    : "Растояние",
+    "nameAttr"    : "pl[distance]",
+    "description" : "Текстовое поле \"distance\"",
+    "idAttr"      : "inputDistance",
+    "translateKey": "distance",
+    "sql_column"  : "distance"
   },
   {
     "name"        : "block_2",

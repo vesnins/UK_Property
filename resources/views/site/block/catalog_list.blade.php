@@ -70,19 +70,19 @@
         <p>{{ $langSt($val['little_description']) }}</p>
 
         <div class="row flex-row align-row">
-          <div class="col-xs-6">
+          <div class="col-xs-8">
             <span class="price">
               @if($val['price_money_from'] ?? false)
-                {{ $val['price_money_from'] }}
+                £{{ number_format($val['price_money_from'], 0, ',', ',') }}
                 -
-                {{ $val['price_money_to'] }} @lang('main.million_').€
+                £{{ number_format($val['price_money_to'], 0, ',', ',') }}
               @else
-                {{ $val['price_money'] }} @lang('main.million_').€
+                £{{ number_format($val['price_money'], 0, ',', ',') }}
               @endif
             </span>
           </div>
 
-          <div class="col-xs-6 text-right"><span class="pseudo-btn">@lang('main.choose')</span></div>
+          <div class="col-xs-4 text-right"><span class="pseudo-btn">@lang('main.choose')</span></div>
         </div>
       </a>
     </div>

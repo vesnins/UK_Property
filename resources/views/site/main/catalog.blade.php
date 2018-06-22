@@ -108,7 +108,7 @@
                         <div class="mb-xs">
                           <div class="switch-btn">
                             <input type="checkbox" value="ft" checked="" autocomplete="off" name="type_ft_m2"/>
-                            <label><i>м<sup>2</sup></i> <i>ft</i></label>
+                            <label><i>м<sup>2</sup></i> <i>ft<sup>2</sup></i></label>
                           </div>
                         </div>
 
@@ -173,10 +173,11 @@
                   <label for="sort-select">@lang('main.sort_by')</label>
 
                   <select title="" id="sort-select" name="group">
+                    {{--<option value="2">@lang('main.popularity_')</option>--}}
+                    <option value="3">@lang('main.distance_')</option>
                     <option value="1">@lang('main.price_')</option>
-                    {{--<option value="2">популярности</option>--}}
-                    {{--<option value="3">расстоянию</option>--}}
-                    <option value="4">@lang('main.area_')</option>
+{{--                    <option value="4">@lang('main.area_')</option>--}}
+                    <option value="5">@lang('main.latest_')</option>
                   </select>
 
                   <a
