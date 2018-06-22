@@ -1510,16 +1510,6 @@
     "sql_column"  : "offer"
   },
   {
-    "name"        : "distance",
-    "typeField"   : "input",
-    "nameText"    : "Растояние",
-    "nameAttr"    : "pl[distance]",
-    "description" : "Текстовое поле \"distance\"",
-    "idAttr"      : "inputDistance",
-    "translateKey": "distance",
-    "sql_column"  : "distance"
-  },
-  {
     "name"        : "block_2",
     "typeField"   : "textarea",
     "nameText"    : "Блок 2",

@@ -86,6 +86,5 @@ return [
   'full_address'                => 'Почтовый индекс',
   'music'                       => 'Музыка на сайте',
   'offer'                       => 'Offer',
-  'distance'                    => 'Растояние',
   'popularity'                  => 'Популярность',
 ];

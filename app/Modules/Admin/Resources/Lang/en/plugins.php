@@ -86,6 +86,5 @@ return [
   'full_address'                => 'Post Code',
   'music'                       => 'Music',
   'offer'                       => 'Offer',
-  'distance'                    => 'Distance',
   'popularity'                  => 'Popularity',
 ];

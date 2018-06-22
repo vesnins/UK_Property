@@ -160,8 +160,8 @@ class MainController extends Controller
           'group_2_ASC'  => 'popularity',
           'group_2_DESC' => 'popularity',
 
-          'group_3_ASC'  => 'distance',
-          'group_3_DESC' => 'distance',
+          'group_3_ASC'  => 'distance_from_the_center',
+          'group_3_DESC' => 'distance_from_the_center',
 
           'group_4_ASC'  => 'area_from',
           'group_4_DESC' => 'area_to',
