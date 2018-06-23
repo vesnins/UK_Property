@@ -115,7 +115,8 @@ return [
   'services'                       => 'Services',
   'reviews'                        => 'Reviews',
   'about_company'                  => 'About company',
-  'invest_in_development_projects' => 'Invest in development projects',
+  'invest_in_development_projects' => 'Investing in Development Project (1)',
+  'catalog_new_building'           => 'Investing in Off-Plan Property (2)',
   'lang'                           => 'Lang',
   'tags'                           => 'Tags',
   'display_records_per_page'       => 'Display _MENU_ records per page',
@@ -126,4 +127,8 @@ return [
   'sInfoEmpty'                     => 'Empty',
   'sLengthMenu'                    => 'Show _MENU_ entries',
   'sSearch'                        => 'Search',
+  'params_cat_location'            => 'Location',
+  'params_cat_location_dp'         => 'Location D.P.',
+  'params_type_object'             => 'Type object',
+  'params_type_object_dp'          => 'Type object D.P.',
 ];

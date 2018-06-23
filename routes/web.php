@@ -11,6 +11,7 @@ Route::group(
     Route::get('/blog/{id?}', 'MainController@blog');
     Route::get('/contact-us', 'MainController@contact_us');
     Route::get('/about-company', 'MainController@about_company');
+    Route::get('/portfolio/{page?}', 'MainController@portfolio');
 
     // Catalog
     Route::get('/catalog/{name?}/{id?}', 'MainController@catalog');

@@ -270,7 +270,7 @@
       <div class="container">
         <ul class="service-links">
           <li>
-            <a href="/{{ $langSt($services['sell']['translation']) }}" class="item-link">
+            <a href="/{{ ($services['sell']['controller'] ? $services['sell']['controller'] . '/' : '') . $langSt($services['sell']['translation']) }}" class="item-link">
               <div class="icon-box">
                 <svg><use xlink:href="/images/svg/sprite.svg#rent"></use></svg>
               </div>
@@ -284,7 +284,7 @@
           </li>
 
           <li>
-            <a href="/{{ $langSt($services['property-management']['translation']) }}" class="item-link">
+            <a href="/{{ ($services['property-management']['controller'] ? $services['property-management']['controller'] . '/' : '') . $langSt($services['property-management']['translation']) }}" class="item-link">
               <div class="icon-box">
                 <svg><use xlink:href="/images/svg/sprite.svg#manage"></use></svg>
               </div>

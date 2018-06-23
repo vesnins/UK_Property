@@ -56,7 +56,7 @@ class MainController extends Controller
     $whereBlog[]      = ['blog.tags', '!=', '\'\''];
     $data             = $this->helper->duplicate_data();
     $data['services'] = [];
-    $data['blog'] = $this->helper->_blog(
+    $data['blog']     = $this->helper->_blog(
       null,
       [
         'count_box' => 3,
@@ -150,8 +150,9 @@ class MainController extends Controller
   {
     $filters = [
       'invest-in-a-new-building' => [
-        'name'  => 'invest_in_a_new_building',
-        'table' => 'catalog_new_building',
+        'name'       => 'invest_in_a_new_building',
+        'table'      => 'catalog_new_building',
+        'top_filter' => [1, 3, 5],
 
         'group' => [
           'group_1_ASC'  => 'price_money_from',
@@ -290,6 +291,76 @@ class MainController extends Controller
           ],
         ],
       ],
+
+      'invest-in-development-projects' => [
+        'name'       => 'invest_in_development_projects',
+        'table'      => 'catalog_development_projects',
+        'top_filter' => [5],
+
+        'group' => [
+          'group_1_ASC'  => 'price_money_from',
+          'group_1_DESC' => 'price_money_to',
+
+          'group_2_ASC'  => 'popularity',
+          'group_2_DESC' => 'popularity',
+
+          'group_3_ASC'  => 'distance_from_the_center',
+          'group_3_DESC' => 'distance_from_the_center',
+
+          'group_4_ASC'  => 'area_from',
+          'group_4_DESC' => 'area_to',
+
+          'group_5_ASC'  => 'id',
+          'group_5_DESC' => 'id',
+        ],
+
+        'filters' => [
+          // Район(Расположение)
+          'cat_location'           => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_cat_location_dp',
+
+            'fields' => [
+              'cat_location' => [
+                'name'  => 'cat_location',
+                'title' => __('main.cat_location'),
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Тип объекта
+          'type_object'            => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_type_object_dp',
+
+            'fields' => [
+              'type_object' => [
+                'name'  => 'type_object',
+                'title' => __('main.type_object'),
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Ожидаемый срок
+          'estimated_completion'   => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_estimated_completion',
+
+            'fields' => [
+              'estimated_completion' => [
+                'name'  => 'estimated_completion',
+                'title' => __('main.estimated_completion'),
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+        ],
+      ],
     ];
 
     return $filters[$name] ?? [];
@@ -323,7 +394,7 @@ class MainController extends Controller
    */
   public function about_company()
   {
-    $data = $this->helper->duplicate_data();
+    $data            = $this->helper->duplicate_data();
     $data['reviews'] = $this
       ->dynamic
       ->t('reviews')
@@ -908,6 +979,20 @@ class MainController extends Controller
     return $this->helper->_page($id, $view, $name_table, $data);
   }
 
+  /**
+   * Портфолио.
+   *
+   * @param null $page
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+   */
+  public function portfolio($page = null)
+  {
+    $data         = $this->helper->duplicate_data();
+    $data['page'] = $page;
+
+    return $this->base->view_s('site.main.portfolio', $data);
+  }
+
   /**invest-in-development-projects
    * Tools Send mail.
    */
@@ -1177,8 +1262,8 @@ class MainController extends Controller
     if(empty($filters))
       return $this->helper->_errors_404();
 
-    $data['service']  = [];
-    $data['filters']  = $filters;
+    $data['service'] = [];
+    $data['filters'] = $filters;
 
     if($id) {
 
@@ -1321,7 +1406,12 @@ class MainController extends Controller
     $data         = [];
     $cart         = array_values($this->requests->session()->get('cart') ?? []);
     $favorites_id = [];
-    $session      = $this->request['session'] ?? false;
+    $session      = $form['session'] ?? false;
+    $portfolio    = $form['is_portfolio'] ?? false;
+
+//        echo '<pre>';
+//        print_r(json_decode(json_encode($this->request), true));
+//        echo '</pre>';
 
     if($form['name_url'] && !$session) {
       $filters = $this->_catalog_array($form['name_url']);
@@ -1386,7 +1476,7 @@ class MainController extends Controller
 
       if(isset($form['development_facilities']))
         $catalog_sql = $catalog_sql->where(
-         // "{$filters['table']}.development_facilities",
+        // "{$filters['table']}.development_facilities",
 
           function($query) use ($form, $filters) {
             for($i = 0; $i < count($form['development_facilities']); $i++) {
@@ -1406,23 +1496,20 @@ class MainController extends Controller
         );
 
       $data['catalog'] = $catalog_sql->join(
-          'files',
+        'files',
 
-          function($join) use ($filters) {
-            $join->type = 'LEFT OUTER';
-            $join->on("{$filters['table']}.id", '=', 'files.id_album')
-              ->where('files.name_table', '=', "{$filters['table']}album")
-              ->where('files.main', '=', 1);
-          }
-        )
-
+        function($join) use ($filters) {
+          $join->type = 'LEFT OUTER';
+          $join->on("{$filters['table']}.id", '=', 'files.id_album')
+            ->where('files.name_table', '=', "{$filters['table']}album")
+            ->where('files.main', '=', 1);
+        }
+      )
         ->groupBy($filters['table'] . '.id')
-
         ->orderBy(
           $filters['table'] . '.' . $filters['group']["group_{$form['group']}_{$form['sort_by']}"],
           $form['sort_by']
         )
-
         ->select("{$filters['table']}.*", 'files.file', 'files.crop')
         ->get()
         ->toArray();
@@ -1469,7 +1556,83 @@ class MainController extends Controller
       }
     }
 
+    if($portfolio) {
+      $limit = 20;
+      $page  = $form['pagination'];
+      $count = 0;
+
+      $query = function($count) {
+        return '
+      (SELECT
+ ' . ($count ? 'COUNT(catalog_development_projects.id) AS count' : ('catalog_development_projects.id COLLATE utf8_general_ci as id,
+       files.file COLLATE utf8_general_ci as file,
+       files.crop COLLATE utf8_general_ci as crop,
+       catalog_development_projects.price_money_from as price_money_from,
+       catalog_development_projects.price_money_to as price_money_to,
+       catalog_development_projects.name COLLATE utf8_general_ci as name,
+       catalog_development_projects.name_table COLLATE utf8_general_ci as name_table,
+       catalog_development_projects.translation COLLATE utf8_general_ci as translation,
+       catalog_development_projects.area_from COLLATE utf8_general_ci as area_from,
+       catalog_development_projects.area_to COLLATE utf8_general_ci as area_to,
+       catalog_development_projects.bedrooms_from COLLATE utf8_general_ci as bedrooms_from,
+       catalog_development_projects.bedrooms_to COLLATE utf8_general_ci as bedrooms_to,
+       catalog_development_projects.in_portfolio COLLATE utf8_general_ci as in_portfolio,
+       catalog_development_projects.little_description COLLATE utf8_general_ci as little_description')) . '
+      FROM catalog_development_projects
+      LEFT OUTER join `files`
+        on `catalog_development_projects`.`id` = `files`.`id_album` and `files`.`name_table` = \'catalog_development_projectsalbum\' and
+       `files`.`main` = 1
+      WHERE `in_portfolio` = 1)
+
+      UNION ALL
+
+      (SELECT
+     ' . ($count ? 'COUNT(catalog_new_building.id) AS count' : ('catalog_new_building.id COLLATE utf8_general_ci as id,
+       files.file COLLATE utf8_general_ci as file,
+       files.crop COLLATE utf8_general_ci as crop,
+       catalog_new_building.price_money_from as price_money_from,
+       catalog_new_building.price_money_to as price_money_to,
+       catalog_new_building.name COLLATE utf8_general_ci as name,
+       catalog_new_building.name_table COLLATE utf8_general_ci as name_table,
+       catalog_new_building.translation COLLATE utf8_general_ci as translation,
+       catalog_new_building.area_from COLLATE utf8_general_ci as area_from,
+       catalog_new_building.area_to COLLATE utf8_general_ci as area_to,
+       catalog_new_building.bedrooms_from COLLATE utf8_general_ci as bedrooms_from,
+       catalog_new_building.bedrooms_to COLLATE utf8_general_ci as bedrooms_to,
+       catalog_new_building.in_portfolio COLLATE utf8_general_ci as in_portfolio,
+       catalog_new_building.little_description COLLATE utf8_general_ci as little_description')) . '
+      FROM catalog_new_building
+      LEFT OUTER join `files`
+        on `catalog_new_building`.`id` = `files`.`id_album` and `files`.`name_table` = \'catalog_new_buildingalbum\' and
+       `files`.`main` = 1
+      WHERE `in_portfolio` = 1)';
+      };
+
+      $data['catalog'] = json_decode(
+        json_encode(
+          \DB::select(
+            $query(false) . ' ORDER BY `id` DESC LIMIT ' . ($page - 1) . ', ' . ($limit) . ';'
+          )
+        ), true
+      );
+      $data['count']   = \DB::select($query(true));
+
+      foreach($data['count'] as $v)
+        $count = $count + $v->count;
+
+      $data['count']      = $count;
+      $data['page']       = $page ? $page / $limit : 1;
+      $data['limit']      = $limit;
+      $data['pagination'] = $form['pagination'];
+      $data['paginate']   = true;
+    }
+
+    //    echo '<pre>';
+    //    print_r(json_decode(json_encode($data), true));
+    //    echo '</pre>';
+
     $data['name_url']     = $form['name_url'];
+    $data['show_like']    = $form['show_like'] ?? false;
     $data['favorites_id'] = $favorites_id;
 
     return $this->base->view_s("site.block.catalog_list", $data);

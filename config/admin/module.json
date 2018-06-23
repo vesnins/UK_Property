@@ -607,7 +607,7 @@
     "translate_key"   : "blog"
   },
   {
-    "id"              : "21",
+    "id"              : "16",
     "active"          : true,
     "big_width"       : "1200",
     "big_height"      : "800",
@@ -637,7 +637,7 @@
       "description"
     ],
     "link_module"     : "catalog_new_building",
-    "link_site_module": "/catalog/invest-in-development-projects/",
+    "link_site_module": "/catalog/invest-in-a-new-building/",
     "menu_table_name" : "menu",
     "name_module"     : "Инвестировать в Новостройки",
     "order"           : "4",
@@ -676,7 +676,7 @@
     "small_height"    : "350",
     "sort"            : "1",
     "views_module"    : "table",
-    "translate_key"   : "invest_in_development_projects",
+    "translate_key"   : "catalog_new_building",
     "params"          : {
       "cat_location"          : {
         "parent_table": "params_cat_location"
@@ -759,7 +759,7 @@
     "small_height"    : "350",
     "sort"            : "1",
     "views_module"    : "table",
-    "translate_key"   : "",
+    "translate_key"   : "params_type_object",
     "menu_table_name" : "params_type_object"
   },
   {
@@ -829,7 +829,153 @@
     "small_height"    : "350",
     "sort"            : "1",
     "views_module"    : "table",
-    "translate_key"   : "",
+    "translate_key"   : "params_cat_location",
     "menu_table_name" : "params_estimated_completion"
+  },
+  {
+    "id"              : "21",
+    "active"          : true,
+    "big_height"      : "0",
+    "big_width"       : "0",
+    "class_module"    : "fa fa-cog",
+    "column_index"    : [
+      "name",
+      "little_description",
+      "active"
+    ],
+    "count_module"    : "20",
+    "show_count"      : false,
+    "filters"         : [],
+    "lang"            : [
+      "name",
+      "little_description"
+    ],
+    "link_module"     : "params_cat_location_dp",
+    "link_site_module": "",
+    "name_module"     : "Расположение Д.П.",
+    "order"           : "1",
+    "parent"          : "10",
+    "plugins"         : [
+      "name",
+      "little_description",
+      "active"
+    ],
+    "small_width"     : "500",
+    "small_height"    : "350",
+    "sort"            : "1",
+    "views_module"    : "table",
+    "translate_key"   : "params_cat_location_dp",
+    "menu_table_name" : "params_cat_location_dp"
+  },
+  {
+    "id"              : "22",
+    "active"          : true,
+    "big_height"      : "0",
+    "big_width"       : "0",
+    "class_module"    : "fa fa-cog",
+    "column_index"    : [
+      "name",
+      "little_description",
+      "active"
+    ],
+    "count_module"    : "20",
+    "show_count"      : false,
+    "filters"         : [],
+    "lang"            : [
+      "name",
+      "little_description"
+    ],
+    "link_module"     : "params_type_object_dp",
+    "link_site_module": "",
+    "name_module"     : "Тип объектов Д.П.",
+    "order"           : "1",
+    "parent"          : "10",
+    "plugins"         : [
+      "name",
+      "little_description",
+      "active"
+    ],
+    "small_width"     : "500",
+    "small_height"    : "350",
+    "sort"            : "1",
+    "views_module"    : "table",
+    "translate_key"   : "params_type_object_dp",
+    "menu_table_name" : "params_type_object_dp"
+  },
+  {
+    "id"              : "23",
+    "active"          : true,
+    "big_width"       : "1200",
+    "big_height"      : "800",
+    "class_module"    : "fa fa-shopping-cart",
+    "column_index"    : [
+      "name",
+      "little_description",
+      "translation",
+      "album",
+      "cat_location",
+      "distance_from_the_center",
+      "price_money_from",
+      "price_money_to",
+      "bedrooms_from",
+      "bedrooms_to"
+    ],
+    "count_module"    : "20",
+    "show_count"      : true,
+    "filters"         : [],
+    "lang"            : [
+      "name",
+      "little_description",
+      "text",
+      "full_address",
+      "title",
+      "keywords",
+      "description"
+    ],
+    "link_module"     : "catalog_development_projects",
+    "link_site_module": "/catalog/invest-in-development-projects/",
+    "menu_table_name" : "menu",
+    "name_module"     : "Инвестировать в Новостройки",
+    "order"           : "4",
+    "plugins"         : [
+      "to_main",
+      "in_portfolio",
+      "sort",
+      "active",
+      "name",
+      "little_description",
+      "text",
+      "translation",
+      "cat_location",
+      "distance_from_the_center",
+      "type_object",
+      "estimated_completion",
+      "coordinates",
+      "location",
+      "album",
+      "developer",
+      "post_code",
+      "number_object",
+      "full_address",
+      "title",
+      "keywords",
+      "description"
+    ],
+    "small_width"     : "500",
+    "small_height"    : "350",
+    "sort"            : "1",
+    "views_module"    : "table",
+    "translate_key"   : "invest_in_development_projects",
+    "params"          : {
+      "cat_location"          : {
+        "parent_table": "params_cat_location_dp"
+      },
+      "type_object"           : {
+        "parent_table": "params_type_object_dp"
+      },
+      "estimated_completion"  : {
+        "parent_table": "params_estimated_completion"
+      }
+    }
   }
 ]

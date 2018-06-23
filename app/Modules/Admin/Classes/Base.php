@@ -1042,7 +1042,7 @@ class Base
   {
     $data = [];
 
-    foreach($array as $v) {
+    foreach($array as $key => $v) {
       if(count(explode('[]', $v['name'])) > 1) {
         $s = explode('[]', $v['name']);
 
@@ -1050,8 +1050,12 @@ class Base
           $data[$s[0]] = [];
 
         $data[$s[0]][] = $v['value'];
-      } else
-        $data[$v['name']] = $v['value'];
+      } else {
+        if(is_string($key))
+          $data[$key] = $v;
+        else
+          $data[$v['name']] = $v['value'];
+      }
     }
 
     return $data;

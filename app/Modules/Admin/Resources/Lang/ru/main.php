@@ -115,7 +115,8 @@ return [
   'services'                       => 'Услуги',
   'reviews'                        => 'Отзывы',
   'about_company'                  => 'О компании',
-  'invest_in_development_projects' => 'Инвестировать в Новостройки',
+  'invest_in_development_projects' => 'Инвестиции в Девелоперские Проекты (1)',
+  'catalog_new_building'           => 'Инвестиции в Новостройки (2)',
   'lang'                           => 'Языки',
   'tags'                           => 'Теги',
   'display_records_per_page'       => 'Показывать _MENU_ записай',
@@ -126,4 +127,8 @@ return [
   'sInfoEmpty'                     => 'Нет записей',
   'sLengthMenu'                    => 'Показать _MENU_ записей',
   'sSearch'                        => 'Поиск',
+  'params_cat_location'            => 'Расположение',
+  'params_cat_location_dp'         => 'Расположение Д.П.',
+  'params_type_object'             => 'Тип объектов',
+  'params_type_object_dp'          => 'Тип объектов Д.П.',
 ];

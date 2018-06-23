@@ -1,9 +1,10 @@
 var
   catAll = {
     initialize: function initialize(data) {
-      this.conf      = data || {};
-      this.container = this.conf.container;
-      this.isLoad    = this.conf.isLoad == undefined ? true : this.conf.isLoad;
+      this.conf        = data || {};
+      this.container   = this.conf.container;
+      this.isLoad      = this.conf.isLoad == undefined ? true : this.conf.isLoad;
+      this.isPortfolio = this.conf.isPortfolio == undefined ? true : this.conf.isPortfolio;
       catAll.loadOnclick();
     },
 
@@ -71,6 +72,10 @@ var
         page = $('[name="pagination"]').val();
 
       _.assign(data, {page: page});
+
+      catAll.isPortfolio &&
+      _.assign(data, {is_portfolio: 1});
+
       _.assign(data, $('.product-filter-form').serializeArray());
 
       this.selectCatalog(data);

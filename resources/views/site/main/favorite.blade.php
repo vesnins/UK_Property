@@ -116,11 +116,12 @@
     <script>
       $(document).ready(function() {
         catAll.initialize({
-          container : '.sys-sel-catalog',
-          num       : '.selReN > .i',
-          pagination: true,
-          isLoad    : false,
-          url_req   : '/',
+          container  : '.sys-sel-catalog',
+          num        : '.selReN > .i',
+          pagination : true,
+          isLoad     : false,
+          isPortfolio: false,
+          url_req    : '/',
         });
       });
 

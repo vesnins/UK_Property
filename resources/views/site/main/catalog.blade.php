@@ -171,13 +171,26 @@
               <header class="sort-form-holder">
                 <div class="sort-form">
                   <label for="sort-select">@lang('main.sort_by')</label>
-
                   <select title="" id="sort-select" name="group">
                     {{--<option value="2">@lang('main.popularity_')</option>--}}
-                    <option value="3">@lang('main.distance_')</option>
-                    <option value="1">@lang('main.price_')</option>
-{{--                    <option value="4">@lang('main.area_')</option>--}}
-                    <option value="5">@lang('main.latest_')</option>
+
+
+
+                    @if(array_search(3, $filters['top_filter']) !== false)
+                      <option value="3">@lang('main.distance_')</option>
+                    @endif
+
+                    @if(array_search(1, $filters['top_filter']) !== false)
+                      <option value="1">@lang('main.price_')</option>
+                    @endif
+
+                    @if(array_search(4, $filters['top_filter']) !== false)
+                      <option value="4">@lang('main.area_')</option>
+                    @endif
+
+                    @if(array_search(5, $filters['top_filter']) !== false)
+                      <option value="5">@lang('main.latest_')</option>
+                    @endif
                   </select>
 
                   <a
@@ -238,11 +251,12 @@
         <div class="consultation-request" style="background-image: url('/images/banners/img_4.jpg')">
           <div class="container">
             <div class="limit-box">
-              <h4>
-                Проконсультируйтесь по вопросам инвестиций, приобретению и аренде недвижимости или по другим вопросам
-                касаемых недвижимости
-              </h4>
-              <a href="#" class="more-button">Получить консультацию</a>
+              <h4>{!! $langSt($params['text_consultation_catalog']['key']) !!}</h4>
+
+              <a href="#" data-target=".request-modal" data-toggle="modal" class="more-button">
+                @lang('main.to_get_a_consultation')
+              </a>
+
               <ul class="social">
                 <li>
                   <a href="#">
@@ -275,11 +289,12 @@
     <script>
       $(document).ready(function() {
         catAll.initialize({
-          container : '.sys-sel-catalog',
-          isLoad    : true,
-          num       : '.selReN > .i',
-          pagination: true,
-          url_req   : '/',
+          container  : '.sys-sel-catalog',
+          isLoad     : true,
+          num        : '.selReN > .i',
+          pagination : true,
+          isPortfolio: false,
+          url_req    : '/',
         })
       });
     </script>
