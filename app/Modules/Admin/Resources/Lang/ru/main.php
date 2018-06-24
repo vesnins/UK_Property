@@ -117,6 +117,8 @@ return [
   'about_company'                  => 'О компании',
   'invest_in_development_projects' => 'Инвестиции в Девелоперские Проекты (1)',
   'catalog_new_building'           => 'Инвестиции в Новостройки (2)',
+  'catalog_buy'                    => 'Купить (3)',
+  'catalog_rent'                   => 'Арендовать (4)',
   'lang'                           => 'Языки',
   'tags'                           => 'Теги',
   'display_records_per_page'       => 'Показывать _MENU_ записай',

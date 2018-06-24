@@ -226,4 +226,6 @@ We will contact you shortly!',
   'distance_'                                => 'distance',
   'popularity_'                              => 'popularity',
   'latest_'                                  => 'latest',
+  'availability_date_'                       => 'availability date',
+  'cost_per_month'                           => 'Cost per month',
 ];

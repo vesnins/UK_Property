@@ -8,6 +8,7 @@ use App\Modules\Admin\Http\Controllers\FilesController;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
@@ -78,7 +79,12 @@ class MainController extends Controller
         $query = $this->dynamic->t($filters['table']);
 
         $data['services'][$services_key[$i]]['data'] = $query
-          ->where([["{$filters['table']}.to_main", '=', 1]])
+          ->where(
+            [
+              ["{$filters['table']}.to_main", '=', 1],
+              ["{$filters['table']}.in_portfolio", '=', 0],
+            ]
+          )
           ->join(
             'files',
 
@@ -316,7 +322,7 @@ class MainController extends Controller
 
         'filters' => [
           // Район(Расположение)
-          'cat_location'           => [
+          'cat_location'         => [
             'type'  => 'multi_checkbox',
             'table' => 'params_cat_location_dp',
 
@@ -331,7 +337,7 @@ class MainController extends Controller
           ],
 
           // Тип объекта
-          'type_object'            => [
+          'type_object'          => [
             'type'  => 'multi_checkbox',
             'table' => 'params_type_object_dp',
 
@@ -346,7 +352,7 @@ class MainController extends Controller
           ],
 
           // Ожидаемый срок
-          'estimated_completion'   => [
+          'estimated_completion' => [
             'type'  => 'multi_checkbox',
             'table' => 'params_estimated_completion',
 
@@ -358,6 +364,287 @@ class MainController extends Controller
             ],
 
             'class' => 'active',
+          ],
+        ],
+      ],
+
+      'buy' => [
+        'name'       => 'buy',
+        'table'      => 'catalog_buy',
+        'top_filter' => [1, 3, 5],
+
+        'group' => [
+          'group_1_ASC'  => 'price_money_from',
+          'group_1_DESC' => 'price_money_to',
+
+          'group_2_ASC'  => 'popularity',
+          'group_2_DESC' => 'popularity',
+
+          'group_3_ASC'  => 'distance_from_the_center',
+          'group_3_DESC' => 'distance_from_the_center',
+
+          'group_4_ASC'  => 'area_from',
+          'group_4_DESC' => 'area_to',
+
+          'group_5_ASC'  => 'id',
+          'group_5_DESC' => 'id',
+        ],
+
+        'filters' => [
+          // Район(Расположение)
+          'cat_location'           => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_cat_location',
+
+            'fields' => [
+              'cat_location' => [
+                'name'  => 'cat_location',
+                'title' => __('main.cat_location'),
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Стоимость
+          'price'                  => [
+            'type' => 'slider_select',
+            'step' => 500,
+
+            'fields' => [
+              'price_money_from' => [
+                'mode'      => 'min',
+                'real_name' => 'price_money',
+                'name'      => 'price_money_from_fixed',
+                'title'     => __('main.cost_$_million'),
+              ],
+
+              'price_money_to' => [
+                'mode'      => 'max',
+                'real_name' => 'price_money',
+                'name'      => 'price_money_to_fixed',
+                'title'     => '',
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Площадь
+          'area'                   => [
+            'type' => 'slider_select_area',
+            'step' => 5,
+
+            'fields' => [
+              'area_from' => [
+                'mode'      => 'min',
+                'real_name' => 'area',
+                'name'      => 'area_from_fixed',
+                'title'     => __('main.area'),
+              ],
+
+              'area_to' => [
+                'mode'      => 'max',
+                'real_name' => 'area',
+                'name'      => 'area_to_fixed',
+                'title'     => '',
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Спальни
+          'bedrooms'               => [
+            'type' => 'slider_select',
+            'step' => 1,
+
+            'fields' => [
+              'bedrooms_from' => [
+                'mode'      => 'min',
+                'real_name' => 'bedrooms',
+                'name'      => 'bedrooms_from_fixed',
+                'title'     => __('main.bedrooms'),
+              ],
+
+              'bedrooms_to' => [
+                'mode'      => 'max',
+                'real_name' => 'bedrooms',
+                'name'      => 'bedrooms_to_fixed',
+                'title'     => '',
+              ],
+            ],
+          ],
+
+          // Тип объекта
+          'type_object'            => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_type_object',
+
+            'fields' => [
+              'type_object' => [
+                'name'  => 'type_object',
+                'title' => __('main.type_object'),
+              ],
+            ],
+          ],
+
+          // Инфраструктура
+          'development_facilities' => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_development_facilities',
+
+            'fields' => [
+              'development_facilities' => [
+                'name'  => 'development_facilities',
+                'title' => __('main.development_facilities'),
+              ],
+            ],
+          ],
+        ],
+      ],
+
+      'rent' => [
+        'name'       => 'rent',
+        'table'      => 'catalog_rent',
+        'top_filter' => [1, 3, 5, 6],
+
+        'group' => [
+          'group_1_ASC'  => 'price_money_from',
+          'group_1_DESC' => 'price_money_to',
+
+          'group_2_ASC'  => 'popularity',
+          'group_2_DESC' => 'popularity',
+
+          'group_3_ASC'  => 'distance_from_the_center',
+          'group_3_DESC' => 'distance_from_the_center',
+
+          'group_4_ASC'  => 'area_from',
+          'group_4_DESC' => 'area_to',
+
+          'group_5_ASC'  => 'id',
+          'group_5_DESC' => 'id',
+
+          'group_6_ASC'  => [
+            'name' => 'availability_date',
+            'mode' => 'DATE',
+          ],
+          'group_6_DESC' => [
+            'name' => 'availability_date',
+            'mode' => 'DATE',
+          ],
+        ],
+
+        'filters' => [
+          // Район(Расположение)
+          'cat_location'           => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_cat_location',
+
+            'fields' => [
+              'cat_location' => [
+                'name'  => 'cat_location',
+                'title' => __('main.cat_location'),
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Стоимость
+          'price'                  => [
+            'type' => 'slider_select',
+            'step' => 500,
+
+            'fields' => [
+              'price_money_from' => [
+                'mode'      => 'min',
+                'real_name' => 'price_money',
+                'name'      => 'price_money_from_fixed',
+                'title'     => __('main.cost_per_month'),
+              ],
+
+              'price_money_to' => [
+                'mode'      => 'max',
+                'real_name' => 'price_money',
+                'name'      => 'price_money_to_fixed',
+                'title'     => '',
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Площадь
+          'area'                   => [
+            'type' => 'slider_select_area',
+            'step' => 5,
+
+            'fields' => [
+              'area_from' => [
+                'mode'      => 'min',
+                'real_name' => 'area',
+                'name'      => 'area_from_fixed',
+                'title'     => __('main.area'),
+              ],
+
+              'area_to' => [
+                'mode'      => 'max',
+                'real_name' => 'area',
+                'name'      => 'area_to_fixed',
+                'title'     => '',
+              ],
+            ],
+
+            'class' => 'active',
+          ],
+
+          // Спальни
+          'bedrooms'               => [
+            'type' => 'slider_select',
+            'step' => 1,
+
+            'fields' => [
+              'bedrooms_from' => [
+                'mode'      => 'min',
+                'real_name' => 'bedrooms',
+                'name'      => 'bedrooms_from_fixed',
+                'title'     => __('main.bedrooms'),
+              ],
+
+              'bedrooms_to' => [
+                'mode'      => 'max',
+                'real_name' => 'bedrooms',
+                'name'      => 'bedrooms_to_fixed',
+                'title'     => '',
+              ],
+            ],
+          ],
+
+          // Тип объекта
+          'type_object'            => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_type_object',
+
+            'fields' => [
+              'type_object' => [
+                'name'  => 'type_object',
+                'title' => __('main.type_object'),
+              ],
+            ],
+          ],
+
+          // Инфраструктура
+          'development_facilities' => [
+            'type'  => 'multi_checkbox',
+            'table' => 'params_development_facilities',
+
+            'fields' => [
+              'development_facilities' => [
+                'name'  => 'development_facilities',
+                'title' => __('main.development_facilities'),
+              ],
+            ],
           ],
         ],
       ],
@@ -1380,14 +1667,19 @@ class MainController extends Controller
 
         if($filter['type'] === 'slider_select' || $filter['type'] === 'slider_select_area') {
           foreach($filter['fields'] as $key_field => $field) {
+            $name_f                                                         = $field['real_name'] ?? $field['name'];
             $data['filters']['filters'][$key]['fields'][$key_field]['data'] = $this->dynamic
               ->t($data['filters']['table'])
               ->{$field['mode']}(
-                "{$field['name']}"
+                "$name_f"
               );
           }
         }
       }
+
+      // echo '<pre>';
+      // print_r($data['filters']['filters']);
+      // echo '</pre>';
 
       foreach($data['services'] as $service)
         if($service['translation'] === $name)
@@ -1409,10 +1701,6 @@ class MainController extends Controller
     $session      = $form['session'] ?? false;
     $portfolio    = $form['is_portfolio'] ?? false;
 
-//        echo '<pre>';
-//        print_r(json_decode(json_encode($this->request), true));
-//        echo '</pre>';
-
     if($form['name_url'] && !$session) {
       $filters = $this->_catalog_array($form['name_url']);
 
@@ -1424,17 +1712,23 @@ class MainController extends Controller
       if(isset($form['price_money_from'])) {
         $where = array_merge($where, [["{$filters['table']}.price_money_from", '>=', $form['price_money_from']]]);
         $where = array_merge($where, [["{$filters['table']}.price_money_to", '<=', $form['price_money_to']]]);
-      } else {
-        if(isset($form['price_money']))
-          $where = array_merge($where, [["{$filters['table']}.price_money", '=', $form['price_money']]]);
+      }
+
+      //  Для фиксированной цены
+      if(isset($form['price_money_from_fixed'])) {
+        $where = array_merge($where, [["{$filters['table']}.price_money", '>=', $form['price_money_from_fixed']]]);
+        $where = array_merge($where, [["{$filters['table']}.price_money", '<=', $form['price_money_to_fixed']]]);
       }
 
       if(isset($form['bedrooms_from'])) {
         $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '>=', $form['bedrooms_from']]]);
         $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '<=', $form['bedrooms_to']]]);
-      } else {
-        if(isset($form['bedrooms']))
-          $where = array_merge($where, [["{$filters['table']}.bedrooms", '=', $form['bedrooms']]]);
+      }
+
+      //  Для фиксированного кол-ва комнат
+      if(isset($form['bedrooms_from_fixed'])) {
+        $where = array_merge($where, [["{$filters['table']}.bedrooms", '>=', $form['bedrooms_from_fixed']]]);
+        $where = array_merge($where, [["{$filters['table']}.bedrooms", '<=', $form['bedrooms_to_fixed']]]);
       }
 
       if(isset($form['area_from'])) {
@@ -1445,13 +1739,17 @@ class MainController extends Controller
 
         $where = array_merge($where, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
         $where = array_merge($where, [["{$filters['table']}.area_to", '<=', $form['area_to']]]);
-      } else {
-        if(isset($form['area_from'])) {
-          if($form['type_ft_m2'])
-            $form['area_from'] = $form['area'] * 3.28;
+      }
 
-          $where = array_merge($where, [["{$filters['table']}.area", '=', $form['area']]]);
+      // Для фиксированной площади
+      if(isset($form['area_from'])) {
+        if(!($form['type_ft_m2'] ?? false)) {
+          $form['area_from_fixed'] = ($form['area_from_fixed'] * 3.28) - 1;
+          $form['area_to_fixed']   = ($form['area_to_fixed'] * 3.28) + 2;
         }
+
+        $where = array_merge($where, [["{$filters['table']}.area", '>=', $form['area_from_fixed']]]);
+        $where = array_merge($where, [["{$filters['table']}.area", '<=', $form['area_to_fixed']]]);
       }
 
       $catalog_sql = $this->dynamic->t($filters['table'])
@@ -1495,6 +1793,13 @@ class MainController extends Controller
           $form['estimated_completion']
         );
 
+      $order_by = $filters['group']["group_{$form['group']}_{$form['sort_by']}"];
+
+      if(is_array($order_by))
+        $order_by = DB::raw("{$order_by['mode']}({$filters['table']}.{$order_by['name']})");
+      else
+        $order_by = $filters['table'] . '.' . $order_by;
+
       $data['catalog'] = $catalog_sql->join(
         'files',
 
@@ -1506,10 +1811,7 @@ class MainController extends Controller
         }
       )
         ->groupBy($filters['table'] . '.id')
-        ->orderBy(
-          $filters['table'] . '.' . $filters['group']["group_{$form['group']}_{$form['sort_by']}"],
-          $form['sort_by']
-        )
+        ->orderBy($order_by, $form['sort_by'])
         ->select("{$filters['table']}.*", 'files.file', 'files.crop')
         ->get()
         ->toArray();
@@ -1564,18 +1866,22 @@ class MainController extends Controller
       $query = function($count) {
         return '
       (SELECT
- ' . ($count ? 'COUNT(catalog_development_projects.id) AS count' : ('catalog_development_projects.id COLLATE utf8_general_ci as id,
+ ' . ($count ? 'COUNT(catalog_development_projects.id) AS count' : ('
+       catalog_development_projects.id COLLATE utf8_general_ci as id,
        files.file COLLATE utf8_general_ci as file,
        files.crop COLLATE utf8_general_ci as crop,
        catalog_development_projects.price_money_from as price_money_from,
        catalog_development_projects.price_money_to as price_money_to,
+       catalog_development_projects.price_money as price_money,
        catalog_development_projects.name COLLATE utf8_general_ci as name,
        catalog_development_projects.name_table COLLATE utf8_general_ci as name_table,
        catalog_development_projects.translation COLLATE utf8_general_ci as translation,
        catalog_development_projects.area_from COLLATE utf8_general_ci as area_from,
        catalog_development_projects.area_to COLLATE utf8_general_ci as area_to,
+       catalog_development_projects.area COLLATE utf8_general_ci as area,
        catalog_development_projects.bedrooms_from COLLATE utf8_general_ci as bedrooms_from,
        catalog_development_projects.bedrooms_to COLLATE utf8_general_ci as bedrooms_to,
+       catalog_development_projects.bedrooms COLLATE utf8_general_ci as bedrooms,
        catalog_development_projects.in_portfolio COLLATE utf8_general_ci as in_portfolio,
        catalog_development_projects.little_description COLLATE utf8_general_ci as little_description')) . '
       FROM catalog_development_projects
@@ -1587,35 +1893,94 @@ class MainController extends Controller
       UNION ALL
 
       (SELECT
-     ' . ($count ? 'COUNT(catalog_new_building.id) AS count' : ('catalog_new_building.id COLLATE utf8_general_ci as id,
+     ' . ($count ? 'COUNT(catalog_new_building.id) AS count' : ('
+       catalog_new_building.id COLLATE utf8_general_ci as id,
        files.file COLLATE utf8_general_ci as file,
        files.crop COLLATE utf8_general_ci as crop,
        catalog_new_building.price_money_from as price_money_from,
        catalog_new_building.price_money_to as price_money_to,
+       catalog_new_building.price_money as price_money,
        catalog_new_building.name COLLATE utf8_general_ci as name,
        catalog_new_building.name_table COLLATE utf8_general_ci as name_table,
        catalog_new_building.translation COLLATE utf8_general_ci as translation,
        catalog_new_building.area_from COLLATE utf8_general_ci as area_from,
        catalog_new_building.area_to COLLATE utf8_general_ci as area_to,
+       catalog_new_building.area COLLATE utf8_general_ci as area,
        catalog_new_building.bedrooms_from COLLATE utf8_general_ci as bedrooms_from,
        catalog_new_building.bedrooms_to COLLATE utf8_general_ci as bedrooms_to,
+       catalog_new_building.bedrooms COLLATE utf8_general_ci as bedrooms,
        catalog_new_building.in_portfolio COLLATE utf8_general_ci as in_portfolio,
        catalog_new_building.little_description COLLATE utf8_general_ci as little_description')) . '
       FROM catalog_new_building
       LEFT OUTER join `files`
         on `catalog_new_building`.`id` = `files`.`id_album` and `files`.`name_table` = \'catalog_new_buildingalbum\' and
        `files`.`main` = 1
-      WHERE `in_portfolio` = 1)';
+      WHERE `in_portfolio` = 1)
+      
+      UNION ALL
+
+      (SELECT
+     ' . ($count ? 'COUNT(catalog_buy.id) AS count' : ('
+       catalog_buy.id COLLATE utf8_general_ci as id,
+       files.file COLLATE utf8_general_ci as file,
+       files.crop COLLATE utf8_general_ci as crop,
+       catalog_buy.price_money_from as price_money_from,
+       catalog_buy.price_money_to as price_money_to,
+       catalog_buy.price_money as price_money,
+       catalog_buy.name COLLATE utf8_general_ci as name,
+       catalog_buy.name_table COLLATE utf8_general_ci as name_table,
+       catalog_buy.translation COLLATE utf8_general_ci as translation,
+       catalog_buy.area_from COLLATE utf8_general_ci as area_from,
+       catalog_buy.area_to COLLATE utf8_general_ci as area_to,
+       catalog_buy.area COLLATE utf8_general_ci as area,
+       catalog_buy.bedrooms_from COLLATE utf8_general_ci as bedrooms_from,
+       catalog_buy.bedrooms_to COLLATE utf8_general_ci as bedrooms_to,
+       catalog_buy.bedrooms COLLATE utf8_general_ci as bedrooms,
+       catalog_buy.in_portfolio COLLATE utf8_general_ci as in_portfolio,
+       catalog_buy.little_description COLLATE utf8_general_ci as little_description')) . '
+      FROM catalog_buy
+      LEFT OUTER join `files`
+        on `catalog_buy`.`id` = `files`.`id_album` and `files`.`name_table` = \'catalog_buyalbum\' and
+       `files`.`main` = 1
+      WHERE `in_portfolio` = 1)
+      
+      UNION ALL
+
+      (SELECT
+     ' . ($count ? 'COUNT(catalog_rent.id) AS count' : ('
+       catalog_rent.id COLLATE utf8_general_ci as id,
+       files.file COLLATE utf8_general_ci as file,
+       files.crop COLLATE utf8_general_ci as crop,
+       catalog_rent.price_money_from as price_money_from,
+       catalog_rent.price_money_to as price_money_to,
+       catalog_rent.price_money as price_money,
+       catalog_rent.name COLLATE utf8_general_ci as name,
+       catalog_rent.name_table COLLATE utf8_general_ci as name_table,
+       catalog_rent.translation COLLATE utf8_general_ci as translation,
+       catalog_rent.area_from COLLATE utf8_general_ci as area_from,
+       catalog_rent.area_to COLLATE utf8_general_ci as area_to,
+       catalog_rent.area COLLATE utf8_general_ci as area,
+       catalog_rent.bedrooms_from COLLATE utf8_general_ci as bedrooms_from,
+       catalog_rent.bedrooms_to COLLATE utf8_general_ci as bedrooms_to,
+       catalog_rent.bedrooms COLLATE utf8_general_ci as bedrooms,
+       catalog_rent.in_portfolio COLLATE utf8_general_ci as in_portfolio,
+       catalog_rent.little_description COLLATE utf8_general_ci as little_description')) . '
+      FROM catalog_rent
+      LEFT OUTER join `files`
+        on `catalog_rent`.`id` = `files`.`id_album` and `files`.`name_table` = \'catalog_rentalbum\' and
+       `files`.`main` = 1
+      WHERE `in_portfolio` = 1) ';
       };
 
       $data['catalog'] = json_decode(
         json_encode(
-          \DB::select(
-            $query(false) . ' ORDER BY `id` DESC LIMIT ' . ($page - 1) . ', ' . ($limit) . ';'
+          DB::select(
+            $query(false) . ' ORDER BY `id` DESC LIMIT ' . ($page - 1) . ', ' . ($limit) .' ;'
           )
         ), true
       );
-      $data['count']   = \DB::select($query(true));
+
+      $data['count']   = DB::select($query(true));
 
       foreach($data['count'] as $v)
         $count = $count + $v->count;

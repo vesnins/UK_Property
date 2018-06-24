@@ -26,11 +26,13 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="preloader">
-    <div class="inner-box">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  @if(env('PRELOADER'))
+    <div class="preloader">
+      <div class="inner-box">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
     </div>
-  </div>
+  @endif
   <header class="site-header">
     <div class="action-line">
       <div class="container-fluid">

@@ -71,6 +71,7 @@ return [
   'price_money_to'              => 'Price, to',
   'area_from'                   => 'Area, from',
   'area_to'                     => 'Area, to',
+  'area'                        => 'Area',
   'bedrooms_from'               => 'Bedrooms, from',
   'bedrooms_to'                 => 'Bedrooms, to',
   'type_object'                 => 'Type object',
@@ -87,4 +88,5 @@ return [
   'music'                       => 'Music',
   'offer'                       => 'Offer',
   'popularity'                  => 'Popularity',
+  'availability_date'           => 'Availability date',
 ];

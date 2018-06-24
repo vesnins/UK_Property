@@ -226,4 +226,6 @@ return [
   'distance_'                                => 'расстоянию',
   'popularity_'                              => 'популярности',
   'latest_'                                  => 'новинки',
+  'availability_date_'                       => 'дате доступности',
+  'cost_per_month'                           => 'Стоимость в месяц',
 ];

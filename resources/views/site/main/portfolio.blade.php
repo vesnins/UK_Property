@@ -8,37 +8,37 @@
         <h1 class="text-center">{{ $langSt($meta['title']) ?? 'Portfolio' }}</h1>
 
         <header class="sort-form-holder">
-          <div class="sort-form">
-            <label for="sort-select">@lang('main.sort_by')</label>
+          {{--<div class="sort-form">--}}
+            {{--<label for="sort-select">@lang('main.sort_by')</label>--}}
 
-            <select title="" id="sort-select" name="group">
+            {{--<select title="" id="sort-select" name="group">--}}
               {{--<option value="2">@lang('main.popularity_')</option>--}}
-              <option value="3">@lang('main.distance_')</option>
-              <option value="1">@lang('main.price_')</option>
-              <option value="4">@lang('main.area_')</option>
-              <option value="5">@lang('main.latest_')</option>
-            </select>
-            <a
-              href="javascript:void(0)"
-              class="reverse-btn"
+              {{--<option value="distance_from_the_center">@lang('main.distance_')</option>--}}
+{{--              <option value="1">@lang('main.price_')</option>--}}
+{{--              <option value="4">@lang('main.area_')</option>--}}
+              {{--<option value="id">@lang('main.latest_')</option>--}}
+            {{--</select>--}}
+            {{--<a--}}
+              {{--href="javascript:void(0)"--}}
+              {{--class="reverse-btn"--}}
 
-              onclick="
-                      if($(this).hasClass('reverse'))
-                        $(this).removeClass('reverse');
-                      else
-                        $(this).addClass('reverse');
+              {{--onclick="--}}
+                      {{--if($(this).hasClass('reverse'))--}}
+                        {{--$(this).removeClass('reverse');--}}
+                      {{--else--}}
+                        {{--$(this).addClass('reverse');--}}
 
-                      if($(this).hasClass('reverse'))
-                        $('[name=\'sort_by\']').val('DESC');
-                      else
-                        $('[name=\'sort_by\']').val('ASC');
-                    "
-            >
-              <svg>
-                <use xlink:href="/images/svg/sprite.svg#reverse"></use>
-              </svg>
-            </a>
-          </div>
+                      {{--if($(this).hasClass('reverse'))--}}
+                        {{--$('[name=\'sort_by\']').val('DESC');--}}
+                      {{--else--}}
+                        {{--$('[name=\'sort_by\']').val('ASC');--}}
+                    {{--"--}}
+            {{-->--}}
+              {{--<svg>--}}
+                {{--<use xlink:href="/images/svg/sprite.svg#reverse"></use>--}}
+              {{--</svg>--}}
+            {{--</a>--}}
+          {{--</div>--}}
         </header>
 
         <div class="sys-sel-catalog"></div>

@@ -117,6 +117,8 @@ return [
   'about_company'                  => 'About company',
   'invest_in_development_projects' => 'Investing in Development Project (1)',
   'catalog_new_building'           => 'Investing in Off-Plan Property (2)',
+  'catalog_buy'                    => 'Buy (3)',
+  'catalog_rent'                   => 'Rent (4)',
   'lang'                           => 'Lang',
   'tags'                           => 'Tags',
   'display_records_per_page'       => 'Display _MENU_ records per page',

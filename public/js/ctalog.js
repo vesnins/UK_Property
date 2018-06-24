@@ -9,6 +9,8 @@ var
     },
 
     loadOnclick: function loadOnclick() {
+      var
+        selectorForm = $('[name="catalog_form"]');
       // init cart min
       catAll.addCart(0, 'init', false);
 
@@ -18,9 +20,13 @@ var
         catAll.reversFtM2();
       }, 100);
 
-      $('[name="catalog_form"]').click(function() {
+      selectorForm.click(function() {
         catAll.generateUrlCatalog();
-      })
+      });
+
+      selectorForm.mouseup(function() {
+        catAll.generateUrlCatalog();
+      });
     },
 
     reversFtM2: function() {

@@ -71,6 +71,7 @@ return [
   'price_money_to'              => 'Стоимость, до',
   'area_from'                   => 'Площадь, от',
   'area_to'                     => 'Площадь, до',
+  'area'                        => 'Площадь',
   'bedrooms_from'               => 'Спальни, от',
   'bedrooms_to'                 => 'Спальни, до',
   'type_object'                 => 'Тип объекта',
@@ -87,4 +88,5 @@ return [
   'music'                       => 'Музыка на сайте',
   'offer'                       => 'Offer',
   'popularity'                  => 'Популярность',
+  'availability_date'           => 'Дата доступности',
 ];

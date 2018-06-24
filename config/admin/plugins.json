@@ -516,13 +516,13 @@
     "sql_column" : "price_currency"
   },
   {
-    "name"       : "area_space",
+    "name"       : "area",
     "typeField"  : "input",
-    "nameText"   : "Цена(только число)",
-    "nameAttr"   : "pl[area_space]",
-    "description": "Текстовое поле инпут \"area-space (Общая площадь (только число))\"",
-    "idAttr"     : "inputArea_space",
-    "sql_column" : "area_space"
+    "nameText"   : "Площадь",
+    "nameAttr"   : "pl[area]",
+    "description": "Текстовое поле инпут \"Площадь\"",
+    "idAttr"     : "inputArea",
+    "sql_column" : "area"
   },
   {
     "name"       : "area_unit",
@@ -597,14 +597,14 @@
     "sql_column" : "delivery_time_1"
   },
   {
-    "name"       : "delivery_time_2",
+    "name"       : "availability_date",
     "typeField"  : "input",
-    "classAttr"  : "date_time",
-    "nameText"   : "Время доставки (фиксированное курьером)",
-    "nameAttr"   : "pl[delivery_time_2]",
-    "description": "Текстовое поле инпут \"Время доставки (фиксированное курьером)\"",
-    "idAttr"     : "inputDelivery_time_2",
-    "sql_column" : "delivery_time_2"
+    "classAttr"  : "date_time_mysql_format",
+    "nameText"   : "Дата доступности",
+    "nameAttr"   : "pl[availability_date]",
+    "description": "Текстовое поле инпут \"Дата доступности\"",
+    "idAttr"     : "inputAvailability_date",
+    "sql_column" : "availability_date"
   },
   {
     "name"       : "parent_id",

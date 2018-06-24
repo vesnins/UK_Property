@@ -2,8 +2,8 @@
   @forelse($catalog as $val)
     @php($path = '/images/files/small/')
 
-    @php($img = $val['file']
-      ? $val['crop'] ? $path . $val['crop'] : $path . $val['file']
+    @php($img = $val['file'] && $val['file'] !== '1'
+      ? $val['crop'] && $val['crop'] !== '1' ? $path . $val['crop'] : $path . $val['file']
       : '/images/files/no-image.jpg'
     )
 

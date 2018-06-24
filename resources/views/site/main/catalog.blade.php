@@ -113,6 +113,8 @@
                         </div>
 
                         <div class="range-slider slider-area">
+                          {{--@php($min min)--}}
+                          {{--@php(print_r($filter))--}}
                           <input
                             class="slider"
                             type="text"
@@ -190,6 +192,10 @@
 
                     @if(array_search(5, $filters['top_filter']) !== false)
                       <option value="5">@lang('main.latest_')</option>
+                    @endif
+
+                    @if(array_search(6, $filters['top_filter']) !== false)
+                      <option value="6">@lang('main.availability_date_')</option>
                     @endif
                   </select>
 
