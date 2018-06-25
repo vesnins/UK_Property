@@ -290,13 +290,15 @@ function subMenuNavigation() {
 
 var fixedSubHeader = {
     init: function () {
-        this.siteHeader = jQuery('.site-header');
+        this.siteHeaderTopArea = jQuery('.site-header .action-line');
+        this.headerNavigationArea = jQuery('.site-header .navigation-area');
         this.fixedSubheader = jQuery('.fixed-subheader');
         this.scrollContant = jQuery('.scroll-content');
         this.attachEvent();
     },
     updateState: function () {
-        this.siteHeaderHeight = this.siteHeader.outerHeight(true);
+        this.topAreaHeight = this.siteHeaderTopArea.outerHeight(true);
+        this.navigationAreaHeight = this.headerNavigationArea.outerHeight(true);
         this.fixedSubheaderHeight = this.fixedSubheader.outerHeight(false);
     },
     attachEvent: function () {
@@ -306,11 +308,11 @@ var fixedSubHeader = {
             self.updateState();
 
             self.fixedSubheader.css({
-                "margin-top": self.siteHeaderHeight
+                "margin-top": self.navigationAreaHeight
             });
 
             self.scrollContant.css({
-                "margin-top": self.fixedSubheaderHeight
+                "margin-top": self.fixedSubheaderHeight - self.topAreaHeight
             });
         };
         jQuery(window).on('load resize orientationchange resize', this.resizeHandler);
@@ -427,7 +429,6 @@ function audioPlaySwitcher() {
             myAudio.get(0).pause();
             isPlaying = false;
             soundSwitcher.addClass('muted');
-            console.log('pause');
         }
 
         soundSwitcher.on('click', function (e) {
