@@ -63,17 +63,17 @@
 								</div>
 
 								<div class="form-group">
-									<label for="order_img_edit{{ $name }}" class="col-md-3 control-label">
+									<label for="sort_img_edit{{ $name }}" class="col-md-3 control-label">
 										@lang('admin::main.sortingOrder')
 									</label>
 
 									<div class="col-md-9">
 										<input
 											type="number"
-											id="order_img_edit{{ $name }}"
+											id="sort_img_edit{{ $name }}"
 											class="form-control"
-											name="order_img_edit{{ $name . $str_lang }}"
-											value="{{ $file['order'] }}"
+											name="sort_img_edit{{ $name . $str_lang }}"
+											value="{{ $file['sort'] }}"
 										/>
 									</div>
 

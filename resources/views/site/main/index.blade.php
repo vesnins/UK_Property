@@ -26,7 +26,7 @@
         <div class="container large">
           <div class="row">
             <div class="col-lg-6 col-md-7 col-sm-9">
-              <h1>{!! $langSt($main_page['block_1']) !!}</h1>
+              <h1>{!! $langSt($main_page['offer']) !!}</h1>
 
               <div class="billboard-slider">
                 @foreach(explode("\r", (string) $langSt($main_page['little_description'])) ?? [] as $description)

@@ -153,56 +153,56 @@
 											<br class="clear"/>
 										</div>
 
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">
-												@lang('admin::main.anotherUserType')
-											</label>
+										{{--<div class="form-group">--}}
+											{{--<label class="control-label col-md-3 col-sm-3 col-xs-12">--}}
+												{{--@lang('admin::main.anotherUserType')--}}
+											{{--</label>--}}
 
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<select name="pl[user_another_type]" id="selectAnotherUserType" class="form-control select2">
-													<option value="">-</option>
+											{{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+												{{--<select name="pl[user_another_type]" id="selectAnotherUserType" class="form-control select2">--}}
+													{{--<option value="">-</option>--}}
 
-													<option
-														value="author"
-														{!! ($data->user_another_type ?? '') == 'author' ? 'selected' : '' !!}
-													>@lang('admin::main.client')</option>
+													{{--<option--}}
+														{{--value="author"--}}
+														{{--{!! ($data->user_another_type ?? '') == 'author' ? 'selected' : '' !!}--}}
+													{{-->@lang('admin::main.client')</option>--}}
 
-													<option
-														value="specialist"
-														{!! ($data->user_another_type ?? '') == 'specialist' ? 'selected' : '' !!}
-													>@lang('admin::main.specialist')</option>
-												</select>
-											</div>
+													{{--<option--}}
+														{{--value="specialist"--}}
+														{{--{!! ($data->user_another_type ?? '') == 'specialist' ? 'selected' : '' !!}--}}
+													{{-->@lang('admin::main.specialist')</option>--}}
+												{{--</select>--}}
+											{{--</div>--}}
 
-											<br class="clear"/>
-										</div>
+											{{--<br class="clear"/>--}}
+										{{--</div>--}}
 
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">
-												@lang('admin::main.is_about_us')
-											</label>
+										{{--<div class="form-group">--}}
+											{{--<label class="control-label col-md-3 col-sm-3 col-xs-12">--}}
+												{{--@lang('admin::main.is_about_us')--}}
+											{{--</label>--}}
 
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<select
-													autocomplete="off"
-													name="pl[is_about_us]"
-													id="selectAnotherUserType"
-													class="form-control select2"
-												>
-													<option
-														value="0"
-														{!! ($data->is_about_us ?? '') == 0 ? 'selected' : '' !!}
-													>@lang('admin::main.no')</option>
+											{{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+												{{--<select--}}
+													{{--autocomplete="off"--}}
+													{{--name="pl[is_about_us]"--}}
+													{{--id="selectAnotherUserType"--}}
+													{{--class="form-control select2"--}}
+												{{-->--}}
+													{{--<option--}}
+														{{--value="0"--}}
+														{{--{!! ($data->is_about_us ?? '') == 0 ? 'selected' : '' !!}--}}
+													{{-->@lang('admin::main.no')</option>--}}
 
-													<option
-														value="1"
-														{!! ($data->is_about_us ?? '') == 1 ? 'selected' : '' !!}
-													>@lang('admin::main.yes')</option>
-												</select>
-											</div>
+													{{--<option--}}
+														{{--value="1"--}}
+														{{--{!! ($data->is_about_us ?? '') == 1 ? 'selected' : '' !!}--}}
+													{{-->@lang('admin::main.yes')</option>--}}
+												{{--</select>--}}
+											{{--</div>--}}
 
-											<br class="clear"/>
-										</div>
+											{{--<br class="clear"/>--}}
+										{{--</div>--}}
 
 										<div class="col-md-offset-3 col-md-6 col-sm-6 col-xs-12">
 											<a class="btn btn-default" onclick="$('.flat-power').iCheck('check')">

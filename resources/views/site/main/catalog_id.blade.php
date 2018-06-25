@@ -28,9 +28,11 @@
           <li data-class="tab_1" data-type="gallery" class="active"><a href="#">@lang('main.photos')</a></li>
         @endif
 
-        <li data-class="tab_2" data-type="map" class="{{empty($photos) ? 'active' : '' }}">
-          <a href="#">@lang('main.map')</a>
-        </li>
+        @if(count(explode(',', $page['coordinates'])) === 2)
+          <li data-class="tab_2" data-type="map" class="{{empty($photos) ? 'active' : '' }}">
+            <a href="#">@lang('main.map')</a>
+          </li>
+        @endif
 
         @if(!empty($plan))
           <li data-class="tab_3" data-type="plan"><a href="#">@lang('main.plan')</a></li>
@@ -77,11 +79,68 @@
             </div>
           @endif
 
-          <div class="tab-item tab-item-tab_2 {{empty($photos) ? 'active' : '' }}">
-            <div id="map">
-              <img src="/images/content/img_23-1.jpg" alt="">
+          @if(count(explode(',', $page['coordinates'])) === 2)
+            <div class="tab-item tab-item-tab_2 {{empty($photos) ? 'active' : '' }}">
+              <div id="map" style="height: 720px; width: 100%"></div>
+
+              <script type="text/javascript">
+                var map;
+
+                function initMap() {
+                  var mapOptions = {
+                    zoom  : 17,
+
+                    styles: [
+                      {"featureType": "road", "stylers": [{"hue": "#5e00ff"}, {"saturation": -79}]},
+
+                      {
+                        "featureType": "poi",
+
+                        "stylers": [
+                          {"saturation": -78},
+                          {"hue": "#6600ff"},
+                          {"lightness": -47},
+                          {"visibility": "off"}
+                        ]
+                      },
+
+                      {"featureType": "road.local", "stylers": [{"lightness": 22}]},
+                      {"featureType": "landscape", "stylers": [{"hue": "#6600ff"}, {"saturation": -11}]},
+                      {},
+                      {},
+                      {"featureType": "water", "stylers": [{"saturation": -65}, {"hue": "#1900ff"}, {"lightness": 8}]},
+                      {"featureType": "road.local", "stylers": [{"weight": 1.3}, {"lightness": 30}]},
+
+                      {
+                        "featureType": "transit",
+                        "stylers"    : [{"visibility": "simplified"}, {"hue": "#5e00ff"}, {"saturation": -16}]
+                      },
+
+                      {"featureType": "transit.line", "stylers": [{"saturation": -72}]},
+                      {}
+                    ],
+                    scrollwheel: false,
+                    center     : new google.maps.LatLng({{ explode(',', $page['coordinates'])[0] ?? 0 }}, {{ explode(',', $page['coordinates'])[1] ?? 0 }})
+                  };
+                  map            = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+                  var marker = new google.maps.Marker({
+                    position: {lat: {{ explode(',', $page['coordinates'])[0] ?? 0 }}, lng: {{ explode(',', $page['coordinates'])[1] ?? 0 }}},
+                    map     : map,
+
+                    icon    : {
+                      url:  window.location.origin + '/images/pin.png',
+                      scaledSize: new google.maps.Size(60, 66), // scaled size
+                      origin: new google.maps.Point(0,0), // origin
+                      anchor: new google.maps.Point(0, 0) // anchor
+                    },
+                  });
+                }
+              </script>
+
+              <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6PFq1z3G7_YGiZl1KUuVVH_kxI2YAdaA&callback=initMap&language={{ $lang }}"></script>
             </div>
-          </div>
+          @endif
 
           @if(!empty($plan))
             <div class="tab-item tab-item-tab_3">

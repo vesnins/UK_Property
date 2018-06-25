@@ -128,6 +128,8 @@ var
     },
 
     addCart: function(id, type, nameUrl) {
+//      $( ".position-box > .wish-list" ).toggle("explode");
+
       $.ajax
        ({
          type: "post",

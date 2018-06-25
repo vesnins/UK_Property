@@ -161,10 +161,10 @@
         </ul>
       </nav>
       <div class="position-box">
-        <a href="/selection-request" class="button light">@lang('main.selection_request')</a>
+        <a href="/selection-request" class="button light" style="/*margin-right: 67px;*/">@lang('main.selection_request')</a>
 
-        <a href="/favorite" class="wish-list">
-          <svg>
+        <a href="/favorite" class="wish-list" style="position: relative">
+          <svg style="/*position: absolute;top: 0;right: 15px;bottom: 0;*/">
             <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
           </svg>
 

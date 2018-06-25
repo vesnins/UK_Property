@@ -131,6 +131,7 @@ class MainController extends Controller
       ->dynamic
       ->t('files')
       ->where('files.name_table', '=', 'mainfiles')
+      ->orderBy('files.sort', 'ASC')
       ->get()
       ->toArray();
 
@@ -1559,7 +1560,7 @@ class MainController extends Controller
       $data['meta_c'] = $this->base->getMeta($data, 'page');
 
       $data['similar_objects'] = $this->dynamic->t($filters['table'])
-        ->where([["{$filters['table']}.active", '=', 1]])
+        ->where([["{$filters['table']}.active", '=', 1], ["{$filters['table']}.in_portfolio", '=', 0]])
         ->whereNotIn("{$filters['table']}.id", [$data['page']['id']])
         ->join(
           'files',
@@ -1742,7 +1743,7 @@ class MainController extends Controller
       }
 
       // Для фиксированной площади
-      if(isset($form['area_from'])) {
+      if(isset($form['area'])) {
         if(!($form['type_ft_m2'] ?? false)) {
           $form['area_from_fixed'] = ($form['area_from_fixed'] * 3.28) - 1;
           $form['area_to_fixed']   = ($form['area_to_fixed'] * 3.28) + 2;
@@ -1751,6 +1752,11 @@ class MainController extends Controller
         $where = array_merge($where, [["{$filters['table']}.area", '>=', $form['area_from_fixed']]]);
         $where = array_merge($where, [["{$filters['table']}.area", '<=', $form['area_to_fixed']]]);
       }
+
+//      echo '<pre>';
+//      print_r($where);
+//      echo '</pre>';
+//      exit();
 
       $catalog_sql = $this->dynamic->t($filters['table'])
         ->where($where);

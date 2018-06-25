@@ -6,7 +6,7 @@
   <main class="main">
     <div id="map-canvas"></div>
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO4_qS5tqKWQwDl2-ujJpAn95dHU90GzU&amp;libraries=places&amp;sensor=false"></script>
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO4_qS5tqKWQwDl2-ujJpAn95dHU90GzU&amp;libraries=places&amp;sensor=false&language={{ $lang }}"></script>
     <script>
       function initMap() {
         var myLatLng = {lat: 51.5127637, lng: -0.1530711};
@@ -48,7 +48,7 @@
         var marker = new google.maps.Marker({
           position: myLatLng,
           map     : map,
-          icon    : window.location.origin + '/images/pin.png'
+          icon    : window.location.origin + '/images/pin(old).png',
         });
       }
 
