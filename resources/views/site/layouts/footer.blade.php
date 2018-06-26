@@ -54,10 +54,10 @@
       <div class="foo-col foo-menu mb-hidden">
         <h4>@lang('main.about_us')</h4>
         <ul class="menu">
-          <li><a href="#">О компании</a></li>
-          <li><a href="#">Портфолио</a></li>
-          <li><a href="/blog">Блог</a></li>
-          <li><a href="#">Контакты</a></li>
+          <li><a href="/about-company">@lang('main.about_company')</a></li>
+          <li><a href="/portfolio">@lang('main.portfolio')</a></li>
+          <li><a href="/blog">@lang('main.blog')</a></li>
+          <li><a href="/contact-us">@lang('main.contacts')</a></li>
         </ul>
       </div>
 

@@ -324,22 +324,27 @@
     <section class="indent-block">
       <h2 class="text-center">@lang('main.how_we_are_working')</h2>
 
-      <div class="video-box mb-md" style="background-image: url('/images/banners/img_3.jpg')">
-        <a
-          href="{{ $about['link_how_working'] }}"
-          class="play-btn venobox-btn"
-          data-autoplay="true"
-          data-vbtype="video"
-        >
-          <svg>
-            <use xlink:href="/images/svg/sprite.svg#triangle-icon"></use>
-          </svg>
-        </a>
-      </div>
-      <div class="container">
-        <div class="service-slider simple-slider">
-          @include('site.block.how_working', ['how_working' => $about['how_working']])
+      @if($about['link_how_working'])
+        <div class="video-box mb-md" style="background-image: url('/images/banners/img_3.jpg')">
+          <a
+            href="{{ $about['link_how_working'] }}"
+            class="play-btn venobox-btn"
+            data-autoplay="true"
+            data-vbtype="video"
+          >
+            <svg>
+              <use xlink:href="/images/svg/sprite.svg#triangle-icon"></use>
+            </svg>
+          </a>
         </div>
+      @endif
+
+      <div class="container">
+        @if(!empty($about['how_working']))
+          <div class="service-slider simple-slider">
+            @include('site.block.how_working', ['how_working' => $about['how_working']])
+          </div>
+        @endif
 
         <div class="preview-post flex-row">
           <div class="text-box">
@@ -371,11 +376,11 @@
           <div class="text-center">
             <a href="/blog" class="button">@lang('main.all_articles')</a>
           </div>
-        </div>
 
-        <img class="decor-left" src="/images/decor/img_5.png" data-parallax='{"y": -60, "smoothness": 30}' />
-        <img class="decor-right" src="/images/decor/img_6.png" data-parallax='{"y": -100, "smoothness": 15}' />
-        <img class="decor-bottom" src="/images/decor/img_7.png" data-parallax='{"y": -140, "smoothness": 45}' />
+          <img class="decor-left" src="/images/decor/img_5.png" data-parallax='{"y": -60, "smoothness": 30}' />
+          <img class="decor-right" src="/images/decor/img_6.png" data-parallax='{"y": -100, "smoothness": 15}' />
+          <img class="decor-bottom" src="/images/decor/img_7.png" data-parallax='{"y": -140, "smoothness": 45}' />
+        </div>
       </div>
     @endif
 

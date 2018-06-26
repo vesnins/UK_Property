@@ -222,3 +222,7 @@ a:focus {
 .mce-content-body [contentEditable="false"] iframe {
 	pointer-events: none;
 }
+
+img {
+	height: auto;
+}

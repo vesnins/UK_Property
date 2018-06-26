@@ -202,7 +202,7 @@
 			"Trebuchet MS=trebuchet ms,geneva;" +
 			"Verdana=verdana,geneva;" +
 			"Webdings=webdings;" +
-			"Wingdings=wingdings,zapf dingbats"
+			"Wingdings=wingdings,zapf dingbats",
 		});
 
 		tinymce.init({

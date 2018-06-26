@@ -1121,7 +1121,9 @@ class MainController extends Controller
    */
   public function contact_us()
   {
-    return $this->helper->_page('contact-us', 'site.main.contact_us');
+    $data = $this->helper->duplicate_data();
+
+    return $this->helper->_page('contact-us', 'site.main.contact_us', 'str', $data);
   }
 
   /**
@@ -1132,6 +1134,7 @@ class MainController extends Controller
    */
   public function search($page = 0)
   {
+    $data  = $this->helper->duplicate_data();
     $limit = 4;
     $page  = $page * $limit;
     $q     = $this->request['q'];
@@ -1544,8 +1547,9 @@ class MainController extends Controller
    */
   public function catalog($name, $id = null)
   {
-    $data    = $this->helper->duplicate_data();
-    $filters = $this->_catalog_array($name);
+    $data          = $this->helper->duplicate_data();
+    $filters       = $this->_catalog_array($name);
+    $where_similar = [["{$filters['table']}.active", '=', 1], ["{$filters['table']}.in_portfolio", '=', 0]];
 
     if(empty($filters))
       return $this->helper->_errors_404();
@@ -1559,8 +1563,36 @@ class MainController extends Controller
       $data['name']   = $name;
       $data['meta_c'] = $this->base->getMeta($data, 'page');
 
+      if($data['page']['area_from']) {
+        $where_similar = array_merge($where_similar, [
+          ["{$filters['table']}.area_from", '>', (int) $data['page']['area_from'] - 20],
+          ["{$filters['table']}.area_to", '<', (int) $data['page']['area_to'] + 20],
+        ]);
+      } else {
+        $where_similar = array_merge($where_similar, [
+          ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
+          ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
+        ]);
+      }
+
+      if($data['page']['price_money_from']) {
+        $where_similar = array_merge($where_similar, [
+          ["{$filters['table']}.price_money_from", '>', (int) $data['page']['price_money_from'] - 250000],
+          ["{$filters['table']}.price_money_to", '<', (int) $data['page']['price_money_to'] + 250000],
+        ]);
+      } else {
+        $where_similar = array_merge($where_similar, [
+          ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
+          ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
+        ]);
+      }
+
+      $where_similar = array_merge($where_similar, [
+        ["{$filters['table']}.cat_location", '=', $data['page']['cat_location']],
+      ]);
+
       $data['similar_objects'] = $this->dynamic->t($filters['table'])
-        ->where([["{$filters['table']}.active", '=', 1], ["{$filters['table']}.in_portfolio", '=', 0]])
+        ->where($where_similar)
         ->whereNotIn("{$filters['table']}.id", [$data['page']['id']])
         ->join(
           'files',
@@ -1618,7 +1650,7 @@ class MainController extends Controller
       else
         $data['params_cat_location'] = [];
 
-      if($data['page']['type_object'] && !empty(json_decode($data['page']['type_object'], true)))
+      if($data['page']['type_object'] && is_array(json_decode($data['page']['type_object'], true)))
         $data['params_type_object'] = $this
           ->dynamic
           ->t('params_type_object')
@@ -1629,7 +1661,7 @@ class MainController extends Controller
       else
         $data['params_type_object'] = [];
 
-      if($data['page']['development_facilities'] && !empty(json_decode($data['page']['development_facilities'], true)))
+      if($data['page']['development_facilities'] && is_array(json_decode($data['page']['development_facilities'], true)))
         $data['development_facilities'] = $this
           ->dynamic
           ->t('params_development_facilities')
@@ -1640,20 +1672,16 @@ class MainController extends Controller
       else
         $data['development_facilities'] = [];
 
-      if($data['page']['estimated_completion'])
-        $data['params_estimated_completion'] = $this
+      if($data['page']['estimated_completion'] && is_array(json_decode($data['page']['estimated_completion'], true)))
+        $data['estimated_completion'] = $this
           ->dynamic
           ->t('params_estimated_completion')
-          ->where(
-            [
-              ['active', '=', 1],
-              ['id', '=', $data['page']['estimated_completion']],
-            ]
-          )
-          ->first()
+          ->where('active', '=', 1)
+          ->whereIn('id', json_decode($data['page']['estimated_completion'], true) ?? [])
+          ->get()
           ->toArray();
       else
-        $data['params_estimated_completion'] = [];
+        $data['estimated_completion'] = [];
 
       return $this->base->view_s('site.main.catalog_id', $data);
     } else {
@@ -1794,9 +1822,16 @@ class MainController extends Controller
         );
 
       if(isset($form['estimated_completion']))
-        $catalog_sql = $catalog_sql->whereIn(
-          "{$filters['table']}.estimated_completion",
-          $form['estimated_completion']
+        $catalog_sql = $catalog_sql->where(
+          function($query) use ($form, $filters) {
+            for($i = 0; $i < count($form['estimated_completion']); $i++) {
+              $query->orwhere(
+                "{$filters['table']}.estimated_completion",
+                'like',
+                '%"' . $form['estimated_completion'][$i] . '"%'
+              );
+            }
+          }
         );
 
       $order_by = $filters['group']["group_{$form['group']}_{$form['sort_by']}"];

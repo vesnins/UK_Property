@@ -4,7 +4,6 @@ return [
   'request_for_accommodation'       => 'Запрос на размещение',
   'selection_request_title'         => 'Заполните заявку и получите подборку вилл по вашим критериям',
   'all'                             => 'Все',
-  'blog'                            => 'Блог',
   'blog_title'                      => 'Самое интересное о Греции от местных',
   'more_articles'                   => 'Больше статей',
   'our_best_offers'                 => 'Наши лучшие предложения',
@@ -228,4 +227,7 @@ return [
   'latest_'                                  => 'новинки',
   'availability_date_'                       => 'дате доступности',
   'cost_per_month'                           => 'Стоимость в месяц',
+  'about_company'                            => 'О компании',
+  'portfolio'                                => 'Портфолио',
+  'blog'                                     => 'Блог',
 ];

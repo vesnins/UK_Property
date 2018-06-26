@@ -299,14 +299,23 @@
                       {{ join($st, ', ') }}
                     </td>
                   </tr>
-                @endif
+                  @endif
 
-                @if(!empty($params_estimated_completion))
-                  <tr>
-                    <td>@lang('main.expected_completion')</td>
-                    <td>{{ $langSt($params_estimated_completion['name']) }}</td>
-                  </tr>
-                @endif
+                  @if(!empty($estimated_completion))
+                    <tr>
+                      <td>@lang('main.expected_completion')</td>
+
+                      <td>
+                        @php($st = [])
+
+                        @foreach($estimated_completion as $completion)
+                          @php($st[] = $langSt($completion['name']))
+                        @endforeach
+
+                        {{ join($st, ', ') }}
+                      </td>
+                    </tr>
+                  @endif
               </table>
             </div>
           </div>
@@ -326,11 +335,13 @@
       @include('site.block.contacts-form')
     </div>
 
-    <section class="indent-block">
-      <div class="container-fluid related-products-section">
-        <h2 class="text-center">@lang('main.similar_objects')</h2>
-        @include('site.block.catalog_list', ['catalog' => $similar_objects, 'name_url' => $name])
-      </div>
-    </section>
+    @if(!empty($similar_objects))
+      <section class="indent-block">
+        <div class="container-fluid related-products-section">
+          <h2 class="text-center">@lang('main.similar_objects')</h2>
+          @include('site.block.catalog_list', ['catalog' => $similar_objects, 'name_url' => $name])
+        </div>
+      </section>
+    @endif
   </main>
 @endsection
