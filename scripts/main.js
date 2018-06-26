@@ -9,6 +9,8 @@ jQuery(function () {
 
     if (isTouchDevice === true && jQuery(window).width() < 767 && audioTrack.length > 0) {
         audioTrack.remove();
+    } else{
+        audioPlaySwitcher();
     }
 
     if (isTouchDevice === true && jQuery(window).width() < 1200) {
@@ -21,6 +23,14 @@ jQuery(function () {
         jQuery('.video-poster').fadeIn();
     }
 
+    var scrollHolder = jQuery('.product-grid-section .scroll-box');
+    if (scrollHolder.length !== 0) {
+        scrollHolder.mCustomScrollbar({
+            axis: "y",
+            theme:"minimal-dark"
+        });
+    }
+
     svg4everybody();
     pageLoaderInit();
     initSearchFormSwitcher();
@@ -28,7 +38,6 @@ jQuery(function () {
     mobileMenuInit();
     subMenuNavigation();
     btnPosition.init();
-    audioPlaySwitcher();
 
     if (jQuery('.fixed-subheader').length !== 0) {
         fixedSubHeader.init();
@@ -447,6 +456,7 @@ function audioPlaySwitcher() {
             }
         });
     }
+
     togglePlay();
 }
 

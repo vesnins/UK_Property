@@ -73,9 +73,7 @@ h5 {
 }
 
 h6 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #2c2543;
+
 }
 
 p {
@@ -2791,6 +2789,11 @@ body:not(.touch-device) .posts-list .post:hover:before {
     -ms-flex-align: start;
     align-items: flex-start;
     padding-top: 45px;
+    margin-bottom: 4.2%;
+}
+
+.product-section + .indent-block {
+    padding-top: 0;
 }
 
 .product-section.alt {
@@ -3303,6 +3306,11 @@ body:not(.touch-device) .posts-list .post:hover:before {
 .entry-holder ul {
     margin-bottom: 25px;
     overflow: hidden;
+}
+
+.entry-holder ol ol,
+.entry-holder ul ul {
+    padding: 10px 0 0 20px;
 }
 
 .product-info .product-description ul li,
@@ -3994,6 +4002,20 @@ body:not(.touch-device) .posts-list .post:hover:before {
 .location-info .button:hover {
     background: #ba8558;
     color: #fff;
+}
+
+.mCS-autoHide > .mCustomScrollBox > .mCSB_scrollTools,
+.mCS-autoHide > .mCustomScrollBox ~ .mCSB_scrollTools {
+    opacity: 1;
+}
+
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    width: 6px;
+    border-radius: 0;
+}
+
+.mCS-minimal-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background: #2c2543 !important;
 }
 
 /*--------------------------------------------------------------
