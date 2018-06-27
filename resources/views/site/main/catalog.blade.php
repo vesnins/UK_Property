@@ -38,127 +38,129 @@
                   </svg>
                 </span>
 
-                <input type="hidden" name="name_url" value="{{ $name }}" />
-                <input name="pagination" value="1" type="hidden" autocomplete="off" />
+                <div class="product-filter-form">
+                  <input type="hidden" name="name_url" value="{{ $name }}" />
+                  <input name="pagination" value="1" type="hidden" autocomplete="off" />
 
-                @foreach($filters['filters'] as $filter)
-                  <div class="filter-item {{ $filter['class'] ?? '' }}">
-                    <a href="#" class="item-title">{{ current($filter['fields'])['title'] ?? '' }}</a>
+                  @foreach($filters['filters'] as $filter)
+                    <div class="filter-item {{ $filter['class'] ?? '' }}">
+                      <a href="#" class="item-title">{{ current($filter['fields'])['title'] ?? '' }}</a>
 
-                    <div class="item-info">
-                      @if($filter['type'] === 'multi_checkbox')
-                        @foreach($filter['data'] ?? [] as $d)
-                          <label class="checkbox-label">
+                      <div class="item-info">
+                        @if($filter['type'] === 'multi_checkbox')
+                          @foreach($filter['data'] ?? [] as $d)
+                            <label class="checkbox-label">
+                              <input
+                                type="checkbox"
+                                name="{{ current($filter['fields'])['name'] ?? '' }}[]"
+                                value="{{ $d['id'] }}"
+                              />
+
+                              <span>{{ $langSt($d['name']) }}</span>
+                            </label>
+                          @endforeach
+                        @endif
+
+                        @if($filter['type'] === 'slider_select')
+                          @php($f = [])
+                          @php($i = 0)
+
+                          @foreach($filter['fields'] as $field)
+                            @php($f[$i]['data'] = $field['data'])
+                            @php($f[$i]['name'] = $field['name'])
+                            @php($i++)
+                          @endforeach
+
+                          <div class="range-slider">
                             <input
-                              type="checkbox"
-                              name="{{ current($filter['fields'])['name'] ?? '' }}[]"
-                              value="{{ $d['id'] }}"
+                              class="slider"
+                              type="text"
+                              data-slider-min="{{ $f[0]['data'] }}"
+                              data-slider-max="{{ $f[1]['data'] }}"
+                              data-slider-step="{{ $filter['step'] ?? 5 }}"
+                              data-slider-value="[{{ $f[0]['data'] }},{{ $f[1]['data'] }}]"
                             />
 
-                            <span>{{ $langSt($d['name']) }}</span>
-                          </label>
-                        @endforeach
-                      @endif
+                            <div class="input-group">
+                              <label>
+                                @lang('main.from_')
+                                <input
+                                  type="text"
+                                  name="{{ $f[0]['name'] }}"
+                                  class="range-value min"
+                                  placeholder="{{ $f[1]['title'] }}"
+                                />
+                              </label>
 
-                      @if($filter['type'] === 'slider_select')
-                        @php($f = [])
-                        @php($i = 0)
-
-                        @foreach($filter['fields'] as $field)
-                          @php($f[$i]['data'] = $field['data'])
-                          @php($f[$i]['name'] = $field['name'])
-                          @php($i++)
-                        @endforeach
-
-                        <div class="range-slider">
-                          <input
-                            class="slider"
-                            type="text"
-                            data-slider-min="{{ $f[0]['data'] }}"
-                            data-slider-max="{{ $f[1]['data'] }}"
-                            data-slider-step="{{ $filter['step'] ?? 5 }}"
-                            data-slider-value="[{{ $f[0]['data'] }},{{ $f[1]['data'] }}]"
-                          />
-
-                          <div class="input-group">
-                            <label>
-                              @lang('main.from_')
-                              <input
-                                type="text"
-                                name="{{ $f[0]['name'] }}"
-                                class="range-value min"
-                                placeholder="{{ $f[1]['title'] }}"
-                              />
-                            </label>
-
-                            <label>
-                              @lang('main.to_')
-                              <input
-                                type="text"
-                                name="{{ $f[1]['name'] }}"
-                                class="range-value max"
-                                placeholder="{{ $f[1]['title'] }}"
-                              />
-                            </label>
+                              <label>
+                                @lang('main.to_')
+                                <input
+                                  type="text"
+                                  name="{{ $f[1]['name'] }}"
+                                  class="range-value max"
+                                  placeholder="{{ $f[1]['title'] }}"
+                                />
+                              </label>
+                            </div>
                           </div>
-                        </div>
-                      @endif
+                        @endif
 
-                      @if($filter['type'] === 'slider_select_area')
-                        <div class="mb-xs">
-                          <div class="switch-btn">
-                            <input type="checkbox" value="ft" checked="" autocomplete="off" name="type_ft_m2"/>
-                            <label><i>м<sup>2</sup></i> <i>ft<sup>2</sup></i></label>
+                        @if($filter['type'] === 'slider_select_area')
+                          <div class="mb-xs">
+                            <div class="switch-btn">
+                              <input type="checkbox" value="ft" checked="" autocomplete="off" name="type_ft_m2"/>
+                              <label><i>м<sup>2</sup></i> <i>ft<sup>2</sup></i></label>
+                            </div>
                           </div>
-                        </div>
 
-                        <div class="range-slider slider-area">
-                          {{--@php($min min)--}}
-                          {{--@php(print_r($filter))--}}
-                          <input
-                            class="slider"
-                            type="text"
-                            data-slider-min="{{ $filter['fields']['area_from']['data'] }}"
-                            data-slider-max="{{ $filter['fields']['area_to']['data'] }}"
-                            data-slider-step="5"
-                            name="slider_area"
+                          <div class="range-slider slider-area">
+                            {{--@php($min min)--}}
+                            {{--@php(print_r($filter))--}}
+                            <input
+                              class="slider"
+                              type="text"
+                              data-slider-min="{{ $filter['fields']['area_from']['data'] }}"
+                              data-slider-max="{{ $filter['fields']['area_to']['data'] }}"
+                              data-slider-step="5"
+                              name="slider_area"
 
-                            data-slider-value="[
+                              data-slider-value="[
                               {{ $filter['fields']['area_from']['data'] }},
                               {{ $filter['fields']['area_to']['data'] }}
-                              ]"
-                          />
+                                ]"
+                            />
 
-                          <div class="input-group">
-                            <label>
-                              @lang('main.from_')
+                            <div class="input-group">
+                              <label>
+                                @lang('main.from_')
 
-                              <input
-                                type="text"
-                                name="{{ $filter['fields']['area_from']['name'] }}"
-                                class="range-value min"
-                              />
-                            </label>
+                                <input
+                                  type="text"
+                                  name="{{ $filter['fields']['area_from']['name'] }}"
+                                  class="range-value min"
+                                />
+                              </label>
 
-                            <label>
-                              @lang('main.to_')
-                              <input
-                                type="text"
-                                class="range-value max"
-                                name="{{ $filter['fields']['area_to']['name'] }}"
-                              />
-                            </label>
+                              <label>
+                                @lang('main.to_')
+                                <input
+                                  type="text"
+                                  class="range-value max"
+                                  name="{{ $filter['fields']['area_to']['name'] }}"
+                                />
+                              </label>
+                            </div>
                           </div>
-                        </div>
-                      @endif
+                        @endif
+                      </div>
                     </div>
-                  </div>
-                @endforeach
+                  @endforeach
 
-                <div class="text-center">
-                  <a href="javascript:void(0)" class="reset-btn" onclick="$('[name=\'catalog_form\']')[0].reset();">
-                    @lang('main.clear_filter')
-                  </a>
+                  <div class="text-center">
+                    <a href="javascript:void(0)" class="reset-btn" onclick="$('[name=\'catalog_form\']')[0].reset();">
+                      @lang('main.clear_filter')
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -231,7 +233,7 @@
                       </svg>
                     </a>
                   </li>
-                  <li data-class="tab_2" data-type="map">
+                  <li data-class="tab_2" onclick="catAll.addMarker(true)" data-type="map">
                     <a href="#">
                       <svg>
                         <use xlink:href="/images/svg/sprite.svg#pin-full"></use>
@@ -245,8 +247,7 @@
                 <div class="tab-item tab-item-tab_1 active sys-sel-catalog"></div>
 
                 <div class="tab-item tab-item-tab_2">
-                  <div id="map">
-                    <img src="/images/content/img_23.jpg" alt="">
+                  <div id="map" style="height: 100%; width: 100%">
                   </div>
                 </div>
               </div>
@@ -304,5 +305,7 @@
         })
       });
     </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6PFq1z3G7_YGiZl1KUuVVH_kxI2YAdaA&callback=catAll.initMap&language={{ $lang }}"></script>
   @endpush
 @endsection

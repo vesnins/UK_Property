@@ -59,7 +59,7 @@
     }
 
     .subheader {
-        padding: 180px 0;
+        padding: 220px 0 180px;
     }
 
     .product-grid-section .grid-holder .sort-form-holder {
@@ -355,7 +355,7 @@
     }
 
     .subheader {
-        padding: 150px 0;
+        padding: 190px 0 150px;
     }
 
     .product-section {
@@ -577,7 +577,7 @@
     }
 
     .subheader {
-        padding: 130px 0;
+        padding: 170px 0 130px;
     }
 
     .sort-form-holder .sort-form select {
@@ -1010,7 +1010,7 @@
     }
 
     .subheader {
-        padding: 110px 0;
+        padding: 150px 0 110px;
     }
 
     .product-grid-section .grid-holder {
@@ -1217,6 +1217,36 @@
 
     .page-search-form {
         margin-bottom: 40px;
+    }
+
+    .location-info {
+        width: 300px;
+        height: 300px;
+        overflow-y: auto;
+    }
+
+    .location-info .img-box {
+        height: 160px;
+        width: 100%;
+    }
+
+    .location-info .content-box {
+        height: auto;
+        width: 100%;
+    }
+
+    .location-info .scroll-box {
+        overflow-y: unset;
+    }
+
+    .location-info .add-to-wishList {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .location-info .add-to-wishList svg {
+        width: 24px;
+        height: 24px;
     }
 }
 
@@ -1534,13 +1564,17 @@
         flex-wrap: wrap;
     }
 
-    .characteristics {
-        border: 1px solid #cfcfcf;
+    .characteristics td {
+        width: 50%;
+        border: none;
+    }
+
+    .characteristics tr td:not(:last-child) {
+        border-right: none;
     }
 
     .characteristics td {
-        width: 50%;
-        border: 1px solid #cfcfcf;
+        border-bottom: 1px solid #cfcfcf;
     }
 
     .related-products-section h2 {
@@ -1743,6 +1777,10 @@
         min-width: 130px;
         margin-left: 10px;
         padding: 11px 20px;
+    }
+
+    .product-section {
+        margin-bottom: 40px;
     }
 }
 
@@ -1959,6 +1997,10 @@
         width: 100%;
     }
 
+    .characteristics tr td:last-child {
+        border-bottom: none;
+    }
+
     .characteristics .value {
         font-size: 1.5em;
     }
@@ -1976,6 +2018,10 @@
         right: 5px;
         font-size: 14px;
         padding: 6px 10px;
+    }
+
+    .product-section {
+        margin-bottom: 35px;
     }
 
     .tag-list {

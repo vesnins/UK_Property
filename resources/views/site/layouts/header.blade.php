@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/css/additional.css">
   <link rel="stylesheet" href="/css/libs/bootstrap-components.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.css">
   <link rel="stylesheet" href="/css/libs/venobox.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/responsive.css">

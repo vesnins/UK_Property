@@ -5,6 +5,7 @@ var
       this.container   = this.conf.container;
       this.isLoad      = this.conf.isLoad == undefined ? true : this.conf.isLoad;
       this.isPortfolio = this.conf.isPortfolio == undefined ? true : this.conf.isPortfolio;
+      this.markers     = [];
       catAll.loadOnclick();
     },
 
@@ -27,6 +28,10 @@ var
       selectorForm.mouseup(function() {
         catAll.generateUrlCatalog();
       });
+
+      $(window).resize(function() {
+        $('#map').height($(window).height() - 102);
+      })
     },
 
     reversFtM2: function() {
@@ -122,13 +127,15 @@ var
               $('[name="pagination"]').val(page);
               catAll.selectCatalog();
             }
+
+            catAll.addMarker();
           }, 200)
         }
       });
     },
 
     addCart: function(id, type, nameUrl) {
-//      $( ".position-box > .wish-list" ).toggle("explode");
+      //      $( ".position-box > .wish-list" ).toggle("explode");
 
       $.ajax
        ({
@@ -153,10 +160,10 @@ var
 
              fav.find('.qty').html('(' + data.count + ')');
 
-//             if(data.count)
-//               fav.show();
-//             else
-//               fav.hide();
+             //             if(data.count)
+             //               fav.show();
+             //             else
+             //               fav.hide();
 
              if(selectorLice.hasClass('like-button-' + id))
                selectorLice = $('.like-button-' + id);
@@ -176,4 +183,122 @@ var
          }
        })
     },
+
+    initMap: function() {
+      $('#map').height($(window).height() - 102);
+
+      var
+        mapOptions;
+
+      mapOptions = {
+        zoom: 17,
+
+        styles     : [
+          {"featureType": "road", "stylers": [{"hue": "#5e00ff"}, {"saturation": -79}]},
+
+          {
+            "featureType": "poi",
+
+            "stylers": [
+              {"saturation": -78},
+              {"hue": "#6600ff"},
+              {"lightness": -47},
+              {"visibility": "off"}
+            ]
+          },
+
+          {"featureType": "road.local", "stylers": [{"lightness": 22}]},
+          {"featureType": "landscape", "stylers": [{"hue": "#6600ff"}, {"saturation": -11}]},
+          {},
+          {},
+          {"featureType": "water", "stylers": [{"saturation": -65}, {"hue": "#1900ff"}, {"lightness": 8}]},
+          {"featureType": "road.local", "stylers": [{"weight": 1.3}, {"lightness": 30}]},
+
+          {
+            "featureType": "transit",
+            "stylers"    : [{"visibility": "simplified"}, {"hue": "#5e00ff"}, {"saturation": -16}]
+          },
+
+          {"featureType": "transit.line", "stylers": [{"saturation": -72}]},
+          {}
+        ],
+        scrollwheel: true,
+        center     : new google.maps.LatLng(7.893542000, 98.29680200)
+      };
+
+      catAll.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    },
+
+    addMarker: function(update) {
+      if(!update) {
+        var
+          val = {};
+
+        catAll.bounds     = new google.maps.LatLngBounds();
+        catAll.infoWindow = new google.maps.InfoWindow();
+
+        for(var i = 0; (catAll.markers || []).length > i; i++) {
+          catAll.markers[i].setMap(null);
+        }
+
+        for(var i = 0; window.objectCurrent.length > i; i++) {
+          val = window.objectCurrent[i];
+
+          if(val.coordinates.split(',').length === 2) {
+            catAll.markers[i] = new google.maps.Marker({
+              position: {
+                lat: parseFloat(val.coordinates.split(',')[0]),
+                lng: parseFloat(val.coordinates.split(',')[1])
+              },
+
+              val : val,
+              map : catAll.map,
+              icon: window.location.origin + '/images/pin.png'
+            });
+
+
+            catAll.markers[i].addListener('click', function(val, i) {
+              return function() {
+                catAll.infoWindow.setContent(
+                  '<div class="location-info">' +
+                  '<div class="img-box" style="background-image: url(' + val.img + ')">' +
+                  '<a href="javascript:void(0)" class="add-to-wishList" target="_blank">' +
+                  '<svg><use xlink:href="images/svg/sprite.svg#heart-icon"></use></svg>' +
+                  '</a>' +
+                  '</div>' +
+                  '<div class="content-box">' +
+                  '<div class="scroll-box">' +
+                  '<h6>' + (val.name || '') + '</h6>' +
+                  '<p>' + (val.little_description || '') + '</p>' +
+                  '<ul class="data-list">' +
+                  '<li>' + (val.area || '') + '</li>' +
+                  '<li>' + (val.bedrooms || '') + '</li>' +
+                  '</ul>' +
+                  '<span class="price">' + (val.price || '') + '</span>' +
+                  '<div class="text-center">' +
+                  '<a href="' + val.url + '" class="button">' + val.choose + '</a>' +
+                  '</div>' +
+                  '</div>' +
+                  '</div>' +
+                  '</div>'
+                );
+                catAll.infoWindow.open(catAll.markers[i], this);
+              }
+            }(val, i));
+
+            catAll.bounds.extend(
+              new google.maps.LatLng(
+                parseFloat(val.coordinates.split(',')[0]),
+                parseFloat(val.coordinates.split(',')[1])
+              )
+            );
+          }
+        }
+      }
+
+      if(catAll.map) {
+        google.maps.event.trigger(catAll.map, "resize");
+        catAll.map.fitBounds(catAll.bounds);
+      }
+    }
   };

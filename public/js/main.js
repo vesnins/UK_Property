@@ -197,13 +197,11 @@
   }
 
   function subMenuNavigation() {
-    var
-      doc           = $(document),
-
-      isTouchDevice = /Windows Phone/.test(navigator.userAgent) ||
-        ('ontouchstart' in window) ||
-        window.DocumentTouch &&
-        document instanceof DocumentTouch;
+    var doc           = $(document),
+        isTouchDevice = /Windows Phone/.test(navigator.userAgent) ||
+          ('ontouchstart' in window) ||
+          window.DocumentTouch &&
+          document instanceof DocumentTouch;
 
     if(isTouchDevice === true) {
       $('.site-nav .menu .parent-item').each(function() {
@@ -238,39 +236,36 @@
     }
   }
 
-  var
-    fixedSubHeader = {
-      init: function() {
-        this.siteHeader     = $('.site-header');
-        this.fixedSubheader = $('.fixed-subheader');
-        this.scrollContant  = $('.scroll-content');
-        this.attachEvent();
-      },
+  var fixedSubHeader = {
+    init       : function() {
+      this.siteHeaderTopArea    = $('.site-header .action-line');
+      this.headerNavigationArea = $('.site-header .navigation-area');
+      this.fixedSubheader       = $('.fixed-subheader');
+      this.scrollContant        = $('.scroll-content');
+      this.attachEvent();
+    },
+    updateState: function() {
+      this.topAreaHeight        = this.siteHeaderTopArea.outerHeight(true);
+      this.navigationAreaHeight = this.headerNavigationArea.outerHeight(true);
+      this.fixedSubheaderHeight = this.fixedSubheader.outerHeight(false);
+    },
+    attachEvent: function() {
+      var self = this;
 
-      updateState: function() {
-        this.siteHeaderHeight     = this.siteHeader.outerHeight(true);
-        this.fixedSubheaderHeight = this.fixedSubheader.outerHeight(false);
-      },
+      this.resizeHandler = function() {
+        self.updateState();
 
-      attachEvent: function() {
-        var
-          self = this;
+        self.fixedSubheader.css({
+          "margin-top": self.navigationAreaHeight
+        });
 
-        this.resizeHandler = function() {
-          self.updateState();
-
-          self.fixedSubheader.css({
-            "margin-top": self.siteHeaderHeight
-          });
-
-          self.scrollContant.css({
-            "margin-top": self.fixedSubheaderHeight
-          });
-        };
-
-        $(window).on('load resize orientationchange resize', this.resizeHandler);
-      }
-    };
+        self.scrollContant.css({
+          "margin-top": self.fixedSubheaderHeight - self.topAreaHeight
+        });
+      };
+      $(window).on('load resize orientationchange resize', this.resizeHandler);
+    }
+  };
 
   if($('.fixed-subheader').length !== 0) {
     fixedSubHeader.init();
@@ -630,6 +625,14 @@
     });
   }
 
+  var scrollHolder = jQuery('.product-grid-section .scroll-box');
+  if (scrollHolder.length !== 0) {
+      scrollHolder.mCustomScrollbar({
+          axis: "y",
+          theme:"minimal-dark"
+      });
+  }
+
   function customTabInit() {
     function toggleActiveTab(navListItem, locationHash) {
       $('.tab-content .tab-item')
@@ -723,7 +726,7 @@
       sl = $('.range-slider');
 
     if(t)
-      sl = t ;
+      sl = t;
 
     sl.each(function() {
       var

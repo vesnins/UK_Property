@@ -3,6 +3,7 @@
 @section('content')
   @php($path_small = '/images/files/small/')
   @php($path_big = '/images/files/big/')
+  @php($is_favorite = array_search($page['id'], $favorites_id ?? []) !== false ? true : false)
 
   <main class="main">
     <div
@@ -44,7 +45,16 @@
           @if(!empty($photos))
             <div class="tab-item tab-item-tab_1 active">
               <div class="product-gallery">
-                <a href="#" class="add-to-wishList">
+                <a
+                  href="javascript:void(0)"
+                  class="add-to-wishList like-button {!! $is_favorite ? 'active' : '' !!} like-button-{{ $page['id'] }}"
+
+                  onclick="catAll.addCart(
+                    '{{ $page['id'] }}',
+                    '{!! $is_favorite ? 'remove' : 'add' !!}',
+                    '{{ $name_url ?? $url[$page['name_table']] }}'
+                    )"
+                >
                   <svg>
                     <use xlink:href="/images/svg/sprite.svg#heart-icon"></use>
                   </svg>

@@ -829,7 +829,7 @@
     "small_height"    : "350",
     "sort"            : "1",
     "views_module"    : "table",
-    "translate_key"   : "params_cat_location",
+    "translate_key"   : "params_estimated_completion",
     "menu_table_name" : "params_estimated_completion"
   },
   {
@@ -975,7 +975,7 @@
     }
   },
   {
-    "id"              : "23",
+    "id"              : "24",
     "active"          : true,
     "big_width"       : "1200",
     "big_height"      : "800",
@@ -1052,7 +1052,7 @@
     }
   },
   {
-    "id"              : "24",
+    "id"              : "25",
     "active"          : true,
     "big_width"       : "1200",
     "big_height"      : "800",

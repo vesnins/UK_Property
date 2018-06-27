@@ -133,4 +133,5 @@ return [
   'params_cat_location_dp'         => 'Location D.P.',
   'params_type_object'             => 'Type object',
   'params_type_object_dp'          => 'Type object D.P.',
+  'params_estimated_completion'    => 'Completion date',
 ];

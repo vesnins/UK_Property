@@ -1550,6 +1550,8 @@ class MainController extends Controller
     $data          = $this->helper->duplicate_data();
     $filters       = $this->_catalog_array($name);
     $where_similar = [["{$filters['table']}.active", '=', 1], ["{$filters['table']}.in_portfolio", '=', 0]];
+    $cart          = array_values($this->requests->session()->get('cart') ?? []);
+    $favorites_id  = [];
 
     if(empty($filters))
       return $this->helper->_errors_404();
@@ -1683,6 +1685,11 @@ class MainController extends Controller
       else
         $data['estimated_completion'] = [];
 
+      for($i = 0; count($cart ?? []) > $i; $i++)
+        $favorites_id[] = $cart[$i]['id'];
+
+      $data['favorites_id'] = $favorites_id;
+
       return $this->base->view_s('site.main.catalog_id', $data);
     } else {
       foreach($data['filters']['filters'] as $key => $filter) {
@@ -1714,6 +1721,7 @@ class MainController extends Controller
         if($service['translation'] === $name)
           $data['service'] = $service;
 
+
       $data['meta_c'] = $this->base->getMeta($data, 'service');
       $data['name']   = $name;
 
@@ -1729,6 +1737,9 @@ class MainController extends Controller
     $favorites_id = [];
     $session      = $form['session'] ?? false;
     $portfolio    = $form['is_portfolio'] ?? false;
+
+    for($i = 0; count($cart ?? []) > $i; $i++)
+      $favorites_id[] = $cart[$i]['id'];
 
     if($form['name_url'] && !$session) {
       $filters = $this->_catalog_array($form['name_url']);
@@ -1854,8 +1865,7 @@ class MainController extends Controller
         ->groupBy($filters['table'] . '.id')
         ->orderBy($order_by, $form['sort_by'])
         ->select("{$filters['table']}.*", 'files.file', 'files.crop')
-        ->get()
-        ->toArray();
+        ->paginate(40);
     }
 
     // For Favorite
