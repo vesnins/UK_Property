@@ -278,7 +278,7 @@
         padding-left: 30px;
     }
 
-    .service-info-area + .products {
+    .container-fluid .service-info-area ~ .products {
         padding-top: 50px;
     }
 
@@ -916,7 +916,7 @@
         padding-right: 0;
     }
 
-    .service-info-area + .products {
+    .container-fluid .service-info-area ~ .products {
         padding-top: 35px;
     }
 
@@ -1074,6 +1074,10 @@
 
     .modal .modal-body .decor-box {
         display: none;
+    }
+
+    .modal-body .success-message {
+        width: 100%;
     }
 
     .articles {
@@ -1479,7 +1483,7 @@
     }
 
     .product-grid-section .sidebar .scroll-box {
-        max-height: initial;
+        max-height: 100%;
         background: #f5f5f5;
     }
 
@@ -1573,7 +1577,7 @@
         border-right: none;
     }
 
-    .characteristics td:not(:last-child) {
+    .characteristics td {
         border-bottom: 1px solid #cfcfcf;
     }
 
@@ -1865,7 +1869,7 @@
         margin-bottom: 20px;
     }
 
-    .service-info-area + .products {
+    .container-fluid .service-info-area ~ .products {
         padding-top: 25px;
     }
 
@@ -1995,6 +1999,10 @@
 
     .characteristics td {
         width: 100%;
+    }
+
+    .characteristics tr td:last-child {
+        border-bottom: none;
     }
 
     .characteristics .value {
