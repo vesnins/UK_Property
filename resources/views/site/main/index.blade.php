@@ -53,7 +53,7 @@
               <h3>{{ $langSt($services['invest-in-a-new-building']['name']) }}</h3>
               <p>{{ $langSt($services['invest-in-a-new-building']['little_description']) }}</p>
 
-              <a href="/{{ $langSt($services['invest-in-a-new-building']['translation']) }}" class="more-link">
+              <a href="/catalog/{{ $langSt($services['invest-in-a-new-building']['translation']) }}" class="more-link">
                 @lang('main.more')
               </a>
             </div>
@@ -109,7 +109,7 @@
               <h3>{{ $langSt($services['invest-in-development-projects']['name']) }}</h3>
               <p>{{ $langSt($services['invest-in-development-projects']['little_description']) }}</p>
 
-              <a href="/{{ $langSt($services['invest-in-development-projects']['translation']) }}" class="more-link">
+              <a href="/catalog/{{ $langSt($services['invest-in-development-projects']['translation']) }}" class="more-link">
                 @lang('main.more')
               </a>
             </div>
@@ -165,7 +165,7 @@
               <h3>{{ $langSt($services['buy']['name']) }}</h3>
               <p>{{ $langSt($services['buy']['little_description']) }}</p>
 
-              <a href="/{{ $langSt($services['buy']['translation']) }}" class="more-link">
+              <a href="/catalog/{{ $langSt($services['buy']['translation']) }}" class="more-link">
                 @lang('main.more')
               </a>
             </div>
@@ -220,7 +220,10 @@
             <div class="limit-box">
               <h3>{{ $langSt($services['rent']['name']) }}</h3>
               <p>{{ $langSt($services['rent']['little_description']) }}</p>
-              <a href="/{{ $langSt($services['rent']['translation']) }}" class="more-link">@lang('main.more')</a>
+
+              <a href="/catalog/{{ $langSt($services['rent']['translation']) }}" class="more-link">
+                @lang('main.more')
+              </a>
             </div>
           </div>
 
@@ -314,7 +317,7 @@
               @lang('main.i_have_read_and_agree_to_the')
               <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
               @lang('main._and_')
-              <a href="/privacy-policy" target="_blank">@lang('main._privacy_policy_')</a>.
+              <a href="/terms-conditions" target="_blank">@lang('main._privacy_policy_')</a>.
             </span>
           </label>
         </form>
@@ -324,8 +327,8 @@
     <section class="indent-block">
       <h2 class="text-center">@lang('main.how_we_are_working')</h2>
 
-      @if($about['link_how_working'])
-        <div class="video-box mb-md" style="background-image: url('/images/banners/img_3.jpg')">
+      @if(!empty($about['link_how_working']))
+        <div class="video-box mb-md" style="background-image: url({{ $imG($img_to_main) }})">
           <a
             href="{{ $about['link_how_working'] }}"
             class="play-btn venobox-btn"
@@ -340,7 +343,7 @@
       @endif
 
       <div class="container">
-        @if(!empty($about['how_working']))
+        @if(!empty($langSt($about['how_working'])) && $langSt($about['how_working']) !== 'null')
           <div class="service-slider simple-slider">
             @include('site.block.how_working', ['how_working' => $about['how_working']])
           </div>
@@ -355,7 +358,7 @@
 
           <div class="img-box">
             <div class="position-box">
-              <img src="/images/content/img_18.jpg" />
+              <img src="{{ $imG($photo_to_main) }}" />
 
               <a href="{!! $langSt($params['link_on_linkedin']['key']) !!}" class="social-link">
                 <svg><use xlink:href="/images/svg/sprite.svg#linkedin-square"></use></svg>

@@ -97,7 +97,7 @@
               @lang('main.i_have_read_and_agree_to_the')
               <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
               @lang('main._and_')
-              <a href="/privacy-policy" target="_blank">@lang('main._privacy_policy_')</a>.
+              <a href="/terms-conditions" target="_blank">@lang('main._privacy_policy_')</a>.
             </span>
           </label>
 

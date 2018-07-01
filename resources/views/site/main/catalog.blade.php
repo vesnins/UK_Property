@@ -18,18 +18,18 @@
           <div class="container">
             <div class="row text-center">
               <div class="col-md-10 col-md-offset-1">
-                <p>{!! $langSt($service['little_description_catalog']) !!}</p>
+                <p>{!! $langSt($service['text']) !!}</p>
               </div>
             </div>
 
-            @if(!empty($langSt($service['how_working'])))
+            @if(!empty($langSt($service['how_working'])) && $langSt($service['how_working']) !== 'null')
               <div class="service-slider simple-slider">
                 @include('site.block.how_working', ['how_working' => $service['how_working']])
               </div>
             @endif
           </div>
 
-          <div class="product-grid-section" data-sticky-container>
+          <div class="product-grid-section" data-sticky-container id="catalog">
             <div class="sidebar" data-sticky data-sticky-class="sticky" data-sticky-for="768" data-margin-top="82">
               <div class="scroll-box collapse-menu-holder">
                 <span class="collapse-btn"><span class="dt">Show</span><span class="t">Hide</span> filters
@@ -123,11 +123,24 @@
                               data-slider-max="{{ $filter['fields']['area_to']['data'] }}"
                               data-slider-step="5"
                               name="slider_area"
+                              autocomplete="off"
 
                               data-slider-value="[
                               {{ $filter['fields']['area_from']['data'] }},
                               {{ $filter['fields']['area_to']['data'] }}
                                 ]"
+                            />
+
+                            <input
+                              type="hidden"
+                              name="data-slider-min"
+                              value="{{ $filter['fields']['area_from']['data'] }}"
+                            />
+
+                            <input
+                              type="hidden"
+                              name="data-slider-max"
+                              value="{{ $filter['fields']['area_to']['data'] }}"
                             />
 
                             <div class="input-group">

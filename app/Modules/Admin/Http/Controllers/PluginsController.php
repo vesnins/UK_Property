@@ -49,6 +49,28 @@ class PluginsController extends Controller
   }
 
   /**
+   * @param        $field
+   * @param string $table_params
+   * @param array  $params
+   * @return string
+   */
+  public function img_to_main($field, $table_params = '', $params = [])
+  {
+    return $this->album($field, $table_params, $params);
+  }
+
+  /**
+   * @param        $field
+   * @param string $table_params
+   * @param array  $params
+   * @return string
+   */
+  public function photo_to_main($field, $table_params = '', $params = [])
+  {
+    return $this->album($field, $table_params, $params);
+  }
+
+  /**
    * Function generation field album
    *
    * @see FilesController::getLoaderAlbum()
@@ -476,7 +498,7 @@ class PluginsController extends Controller
 
     $limit = $params['modules']['params'][$field['name']]['limit'] ?? -1;
 
-    return Base::view(
+    return view(
       "admin::plugins.translation",
 
       [

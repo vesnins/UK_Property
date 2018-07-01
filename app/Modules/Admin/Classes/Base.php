@@ -731,6 +731,17 @@ class Base
       return $this->lang($t, $l);
     };
 
+    $args['imG'] = function($a, $t = 'big', $path = '') {
+      if(!$path) {
+        $path          = [];
+        $path['big']   = '/images/files/big/';
+        $path['small'] = '/images/files/small/';
+        $path          = $path[$t];
+      }
+
+      return $a['file'] ? $a['crop'] ? $path . $a['crop'] : $path . $a['file'] : '';
+    };
+
     $args['mount'] = function($m) {
       return $this->monthLang[\App::getLocale()][$m];
     };

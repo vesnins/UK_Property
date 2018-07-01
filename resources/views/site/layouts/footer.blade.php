@@ -21,7 +21,7 @@
           <span class="address-info">
             <svg><use xlink:href="/images/svg/sprite.svg#phone"></use></svg>
 
-            WhatsApp/Viber/Telegram:
+            WhatsApp/Viber:
             <br />
 
             <a href="tel:{!! $langSt($params['soc_phone_by_footer_1']['key']) !!}">
@@ -81,7 +81,7 @@
               @lang('main.i_have_read_and_agree_to_the')
               <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
               @lang('main._and_')
-              <a href="/privacy-policy" target="_blank">@lang('main._privacy_policy_')</a>.
+              <a href="/terms-conditions" target="_blank">@lang('main._privacy_policy_')</a>.
             </span>
           </label>
 
@@ -99,13 +99,13 @@
 
         <ul class="social-list">
           <li>
-            <a href="/{!! $langSt($params['link_on_facebook']['key']) !!}" target="_blank">
+            <a href="{!! $langSt($params['link_on_facebook']['key']) !!}" target="_blank">
               <svg><use xlink:href="/images/svg/sprite.svg#facebook"></use></svg>
             </a>
           </li>
 
           <li>
-            <a href="/{!! $langSt($params['link_on_linkedin']['key']) !!}" target="_blank">
+            <a href="{!! $langSt($params['link_on_linkedin']['key']) !!}" target="_blank">
               <svg><use xlink:href="/images/svg/sprite.svg#linkedin"></use></svg>
             </a>
           </li>
@@ -121,7 +121,7 @@
           <p>
             © 2018 - {{ date('Y') != '2018' ? date('Y') : '' }}
             UK Property @lang('main.all_rights_reserved')
-            <a href="/privacy-policy">@lang('main.agreement_on_processing_personal_data')</a>
+            <a href="/terms-conditions">@lang('main.agreement_on_processing_personal_data')</a>
           </p>
         </div>
 
@@ -189,7 +189,7 @@
                 @lang('main.i_have_read_and_agree_to_the')
                 <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
                 @lang('main._and_')
-                <a href="/privacy-policy" target="_blank">@lang('main._privacy_policy_')</a>.
+                <a href="/terms-conditions" target="_blank">@lang('main._privacy_policy_')</a>.
               </span>
             </label>
 

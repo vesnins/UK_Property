@@ -91,7 +91,7 @@
 
           @if(count(explode(',', $page['coordinates'])) === 2)
             <div class="tab-item tab-item-tab_2 {{empty($photos) ? 'active' : '' }}">
-              <div id="map" style="height: 720px; width: 100%"></div>
+              <div id="map" style="height: auto; width: 100%"></div>
 
               <script type="text/javascript">
                 var map;
@@ -145,6 +145,13 @@
                       anchor: new google.maps.Point(0, 0) // anchor
                     },
                   });
+                  var
+                    bounds = (new google.maps.LatLngBounds()).extend(
+                      new google.maps.LatLng(
+                        parseFloat(val.coordinates.split(',')[0]),
+                        parseFloat(val.coordinates.split(',')[1])
+                      )
+                    );
                 }
               </script>
 
@@ -326,12 +333,20 @@
                       </td>
                     </tr>
                   @endif
+
+                  @if(!empty($page['availability_date']))
+                    <tr>
+                      <td>@lang('main.availability_date')</td>
+
+                      <td>{{ $page['availability_date'] }}</td>
+                    </tr>
+                  @endif
               </table>
             </div>
           </div>
 
           <div>
-            <a href="/catalog/{{ $name }}" class="back-btn">
+            <a href="/catalog/{{ $name }}#catalog" class="back-btn">
               <svg>
                 <use xlink:href="/images/svg/sprite.svg#long-arrow-left"></use>
               </svg>
@@ -345,13 +360,37 @@
       @include('site.block.contacts-form')
     </div>
 
+    @php($i = 0)
     @if(!empty($similar_objects))
       <section class="indent-block">
         <div class="container-fluid related-products-section">
           <h2 class="text-center">@lang('main.similar_objects')</h2>
-          @include('site.block.catalog_list', ['catalog' => $similar_objects, 'name_url' => $name])
+          @include('site.block.catalog_list', ['catalog' => $similar_objects, 'name_url' => $name, 'limit' => 4])
         </div>
       </section>
+
+      @php($i++)
     @endif
   </main>
+
+  @push('footer')
+    <script>
+      $(document).ready(function() {
+        $('#map').height($('.image-slider').height());
+      });
+
+      $(window).resize(function() {
+        $('[data-class="tab_1"], .tab-item-tab_1').addClass('active');
+        $('[data-class="tab_2"], .tab-item-tab_2').removeClass('active');
+        $('[data-class="tab_3"], .tab-item-tab_3').removeClass('active');
+
+        setTimeout(function() {
+          if($('.image-slider').height() > 50)
+            $('#map').height($('.image-slider').height());
+          else
+            $('#map').height(400);
+        }, 1000)
+      })
+    </script>
+  @endpush
 @endsection

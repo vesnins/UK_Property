@@ -19,11 +19,13 @@
           </div>
         </div>
 
-        <div class="container">
-          <div class="service-slider simple-slider">
-            @include('site.block.how_working', ['how_working' => $page['how_working']])
+        @if(!empty($langSt($page['how_working']) ?? []) && $langSt($page['how_working']) !== 'null')
+          <div class="container">
+            <div class="service-slider simple-slider">
+              @include('site.block.how_working', ['how_working' => $page['how_working']])
+            </div>
           </div>
-        </div>
+        @endif
       </div>
     </div>
   </main>

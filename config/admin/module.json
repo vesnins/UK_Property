@@ -24,7 +24,6 @@
       "title",
       "keywords",
       "description",
-      "order",
       "class",
       "translation",
       "controller",
@@ -104,7 +103,6 @@
       "name",
       "text",
       "little_description",
-      "little_description_catalog",
       "how_working",
       "title",
       "keywords",
@@ -119,7 +117,6 @@
       "name",
       "text",
       "little_description",
-      "little_description_catalog",
       "how_working",
       "active",
       "sort",
@@ -274,8 +271,18 @@
       "how_working",
       "quote_main_block_1_1",
       "quote_main_block_1_2",
-      "link_how_working"
+      "link_how_working",
+      "img_to_main",
+      "photo_to_main"
     ],
+    "params"          : {
+      "photo_to_main": {
+        "limit": 1
+      },
+      "img_to_main": {
+        "limit": 1
+      }
+    },
     "small_width"     : "500",
     "small_height"    : "350",
     "sort"            : "1",

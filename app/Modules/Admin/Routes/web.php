@@ -29,7 +29,14 @@ Route::group([
 	"middleware"=>["authAdmin"]
 ],
 	function() {
-		// главная (рабочий стол)
+    // Engineer
+    Route::get('/engineer','EngineerController@main');
+    Route::get('/engineer/update/{page?}','EngineerController@update');
+    Route::any('/engineer/update/{page?}/{id?}','EngineerController@update');
+    Route::any('/engineer/update/{page?}/{id?}/{apply?}','EngineerController@update');
+    Route::post('/engineer/getmodele','EngineerController@getmodele');
+
+    // главная (рабочий стол)
 		Route::get('/','MainController@getIndex');
 		Route::get('/index','MainController@getIndex');
 		Route::get('/docs','DocsController@getIndex');
@@ -78,9 +85,6 @@ Route::group([
 
 		// delete row in mySQL
 		Route::post('/rowDelete','MainController@rowDelete');
-
-		// сборщик
-		Route::get('/engineer','EngineerController@getIndex');
 
 		// /tools
 		Route::post('/_tools/change_param','SettingsController@change_param');

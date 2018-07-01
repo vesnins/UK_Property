@@ -10,29 +10,55 @@ use App\Modules\Admin\Models\Plugins;
 use Illuminate\Http\Request;
 use Schema;
 
-class EngineerController extends Controller
+class EngineerController extends ModuleController
 {
+  /**
+   * @var Request
+   */
+  public static $requests_self;
+
+  /**
+   * @var \Illuminate\Config\Repository|mixed
+   */
+  public $admin_plugins;
+
+  /**
+   * @var \Illuminate\Config\Repository|mixed
+   */
+  public $admin_modules;
+
   /**
    * EngineerController constructor.
    * @param Request $request
    */
   public function __construct(Request $request)
   {
-    parent::__construct();
+    parent::__construct($request);
 
-    $this->request = $request->all();
-    $this->modules = new Modules();
-    $this->plugins = new Plugins();
+    $this->request       = $request->all();
+    $this->modules       = new Modules();
+    $this->admin_plugins = config('admin.plugins');
+    $this->admin_modules = config('admin.module');
+    self::$requests_self = $this->requests = $request;
+  }
+
+  public function main()
+  {
+    return Base::view("admin::engineer.index", ['modules' => $this->admin_modules]);
   }
 
   /**
-   * @return mixed
+   * @param        $page
+   * @param string $id
+   * @param null   $apply
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View|mixed
    */
-  public function getIndex()
+  public function update($page, $id = '', $apply = null)
   {
-    $plugins = $this->plugins->all();
+    $data['module']  = Base::getModule("link_module", $page)[0] ?? [];
+    $data['plugins'] = $this->admin_plugins;
 
-    return Base::view("admin::engineer.index", ['plugins' => $plugins]);
+    return Base::view("admin::engineer.update", $data);
   }
 
   public function postIndex()
@@ -73,7 +99,7 @@ class EngineerController extends Controller
     }
     if(isset($this->request['plugins'])) {
       $Modules->plugins = json_encode($this->request['plugins']);
-      $plugins          = $this->plugins->whereIn('id', $this->request['plugins'])->get();
+//      $plugins          = $this->plugins->whereIn('id', $this->request['plugins'])->get();
     } else {
       $plugins = [];
     }
@@ -114,10 +140,17 @@ class EngineerController extends Controller
     return redirect('/admin');
   }
 
-  public function postGetmodele()
+  public function getmodele()
   {
     if($this->request['id']) {
-      $res['mass']   = $this->plugins->find($this->request['id']);
+      $res['mass']   = $this->admin_plugins[$this->request['id']] ?? [];
+
+      $res['mass']['body'] = ModuleController::_switcher(
+        $res['mass'],
+        'menu',
+        ['id' => '', 'table' => 'menu', 'modules' => Base::getModule("link_module", 'str')[0]]
+      );
+
       $res['result'] = 'ok';
     } else {
       $res['result'] = 'error';

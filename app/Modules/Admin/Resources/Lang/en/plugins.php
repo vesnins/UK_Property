@@ -89,4 +89,6 @@ return [
   'offer'                       => 'Offer',
   'popularity'                  => 'Popularity',
   'availability_date'           => 'Availability date',
+  'photo_to_main'               => 'Photo to main',
+  'img_to_main'                 => 'Img for video to main',
 ];

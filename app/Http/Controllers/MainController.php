@@ -127,6 +127,40 @@ class MainController extends Controller
       ->first()
       ->toArray();
 
+    $data['img_to_main'] = $this
+      ->dynamic
+      ->t('about_company')
+      ->where('about_company.active', 1)
+      ->join(
+        'files',
+
+        function($join) {
+          $join->type = 'LEFT OUTER';
+          $join->on('about_company.id', '=', 'files.id_album')
+            ->where('files.name_table', '=', 'about_companyimg_to_main')
+            ->where('files.main', '=', 1);
+        }
+      )
+      ->select('files.file', 'files.crop')
+      ->first();
+
+    $data['photo_to_main'] = $this
+      ->dynamic
+      ->t('about_company')
+      ->where('about_company.active', 1)
+      ->join(
+        'files',
+
+        function($join) {
+          $join->type = 'LEFT OUTER';
+          $join->on('about_company.id', '=', 'files.id_album')
+            ->where('files.name_table', '=', 'about_companyphoto_to_main')
+            ->where('files.main', '=', 1);
+        }
+      )
+      ->select('files.file', 'files.crop')
+      ->first();
+
     $data['main_page_video'] = $this
       ->dynamic
       ->t('files')
@@ -664,14 +698,6 @@ class MainController extends Controller
   {
     $data = $this->helper->duplicate_data();
 
-    $data['blog_useful'] = $this->helper->_blog(
-      null,
-      [
-        'count_box' => 12,
-        'order_by'  => [['blog.useful', 'DESC'], ['blog.id', 'DESC']],
-      ]
-    );
-
     return $this->helper->_page($id, 'site.main.service_id', 'services', $data);
   }
 
@@ -689,14 +715,6 @@ class MainController extends Controller
       ->where('reviews.active', '=', 1)
       ->get()
       ->toArray();
-
-    $data['blog_useful'] = $this->helper->_blog(
-      null,
-      [
-        'count_box' => 12,
-        'order_by'  => [['blog.useful', 'DESC'], ['blog.id', 'DESC']],
-      ]
-    );
 
     $data['about'] = $this
       ->dynamic
@@ -1750,7 +1768,8 @@ class MainController extends Controller
       ];
 
       if(isset($form['price_money_from'])) {
-        $where = array_merge($where, [["{$filters['table']}.price_money_from", '>=', $form['price_money_from']]]);
+//        $where = array_merge($where, [["{$filters['table']}.price_money_from", '>=', $form['price_money_from']]]);
+        $where = array_merge($where, [["{$filters['table']}.price_money_to", '>=', $form['price_money_from']]]);
         $where = array_merge($where, [["{$filters['table']}.price_money_to", '<=', $form['price_money_to']]]);
       }
 
@@ -1761,7 +1780,10 @@ class MainController extends Controller
       }
 
       if(isset($form['bedrooms_from'])) {
-        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '>=', $form['bedrooms_from']]]);
+//        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '>=', $form['bedrooms_from']]]);
+//        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '<=', $form['bedrooms_to']]]);
+
+        $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '>=', $form['bedrooms_from']]]);
         $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '<=', $form['bedrooms_to']]]);
       }
 
@@ -1772,30 +1794,26 @@ class MainController extends Controller
       }
 
       if(isset($form['area_from'])) {
-        if(!($form['type_ft_m2'] ?? false)) {
-          $form['area_from'] = ($form['area_from'] * 3.28) - 1;
-          $form['area_to']   = ($form['area_to'] * 3.28) + 2;
+        if(($form['type_ft_m2'] ?? false) === 'ft') {
+          $form['area_from'] = round($form['area_from'] / 3.28);
+          $form['area_to']   = round($form['area_to'] / 3.28);
         }
 
-        $where = array_merge($where, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
+//        $where = array_merge($where, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
+        $where = array_merge($where, [["{$filters['table']}.area_to", '>=', $form['area_from']]]);
         $where = array_merge($where, [["{$filters['table']}.area_to", '<=', $form['area_to']]]);
       }
 
       // Для фиксированной площади
       if(isset($form['area'])) {
-        if(!($form['type_ft_m2'] ?? false)) {
-          $form['area_from_fixed'] = ($form['area_from_fixed'] * 3.28) - 1;
-          $form['area_to_fixed']   = ($form['area_to_fixed'] * 3.28) + 2;
+        if(($form['type_ft_m2'] ?? false) === 'ft') {
+          $form['area_from_fixed'] = round($form['area_from_fixed'] / 3.28) - 1;
+          $form['area_to_fixed']   = round($form['area_to_fixed'] / 3.28) + 2;
         }
 
         $where = array_merge($where, [["{$filters['table']}.area", '>=', $form['area_from_fixed']]]);
         $where = array_merge($where, [["{$filters['table']}.area", '<=', $form['area_to_fixed']]]);
       }
-
-//      echo '<pre>';
-//      print_r($where);
-//      echo '</pre>';
-//      exit();
 
       $catalog_sql = $this->dynamic->t($filters['table'])
         ->where($where);

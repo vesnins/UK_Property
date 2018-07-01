@@ -287,6 +287,11 @@ class HelperController extends Controller
       [
         'count_box' => 6,
         'order_by'  => [['blog.useful', 'DESC'], ['blog.id', 'DESC']],
+      ],
+
+      [
+        ['blog.useful', '=', 1],
+        ['blog.active', '=', 1],
       ]
     );
 

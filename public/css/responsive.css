@@ -278,7 +278,7 @@
         padding-left: 30px;
     }
 
-    .service-info-area + .products {
+    .container-fluid .service-info-area ~ .products {
         padding-top: 50px;
     }
 
@@ -916,7 +916,7 @@
         padding-right: 0;
     }
 
-    .service-info-area + .products {
+    .container-fluid .service-info-area ~ .products {
         padding-top: 35px;
     }
 
@@ -1864,8 +1864,8 @@
     .service-info-area .image-section {
         margin-bottom: 20px;
     }
-
-    .service-info-area + .products {
+    
+    .container-fluid .service-info-area ~ .products {
         padding-top: 25px;
     }
 

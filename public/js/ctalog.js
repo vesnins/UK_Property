@@ -6,6 +6,7 @@ var
       this.isLoad      = this.conf.isLoad == undefined ? true : this.conf.isLoad;
       this.isPortfolio = this.conf.isPortfolio == undefined ? true : this.conf.isPortfolio;
       this.markers     = [];
+      this.firstLoad   = false;
       catAll.loadOnclick();
     },
 
@@ -16,17 +17,26 @@ var
       catAll.addCart(0, 'init', false);
 
       setTimeout(function() {
+        catAll.reversFtM2Click();
+        $('[name="type_ft_m2"]').click();
+        $('[name="type_ft_m2"]').click();
+      }, 50);
+
+      setTimeout(function() {
         if(catAll.isLoad)
           catAll.generateUrlCatalog();
-        catAll.reversFtM2();
       }, 100);
 
       selectorForm.click(function() {
-        catAll.generateUrlCatalog();
+        setTimeout(function() {
+          catAll.generateUrlCatalog();
+        }, 100);
       });
 
       selectorForm.mouseup(function() {
-        catAll.generateUrlCatalog();
+        setTimeout(function() {
+          catAll.generateUrlCatalog();
+        }, 100);
       });
 
       $(window).resize(function() {
@@ -35,29 +45,42 @@ var
     },
 
     reversFtM2: function() {
+      var
+        val = $('[name="type_ft_m2"]').val();
+
+      if(val === 'ft') {
+        $('.s-pl').map(function(k, v) {
+          $(this).html(Math.round(parseFloat($(v).html()) * 3.28))
+        });
+
+        $('.s-mf').map(function() {
+          $(this).html('ft²');
+        });
+      } else {
+        $('.s-mf').map(function() {
+          $(this).html('m²');
+        });
+      }
+    },
+
+    reversFtM2Click: function() {
       $('[name="type_ft_m2"]').click(function() {
         var
           val = $(this).val(),
           r   = $('[name="slider_area"]'),
+          from   = $('[name="data-slider-min"]').val(),
+          to   = $('[name="data-slider-max"]').val(),
           min,
           max;
 
         $(this).val(val === 'ft' ? 'm2' : 'ft');
 
         if(val === 'ft') {
-          $('.s-pl').map(function(k, v) {
-            $(this).html(Math.round(parseFloat($(v).html()) / 3.28))
-          });
-
-          min = Math.round(parseFloat(r.attr('data-slider-min') / 3.28));
-          max = Math.round(parseFloat(r.attr('data-slider-max') / 3.28));
+          min = Math.round(from);
+          max = Math.round(to);
         } else {
-          $('.s-pl').map(function(k, v) {
-            $(this).html(Math.round(parseFloat($(v).html()) * 3.28))
-          });
-
-          min = Math.round(parseFloat(r.attr('data-slider-min') * 3.28));
-          max = Math.round(parseFloat(r.attr('data-slider-max') * 3.28) + 1);
+          min = Math.round(parseFloat(from * 3.28));
+          max = Math.round(parseFloat(to * 3.28) + 1);
         }
 
         r.attr('data-slider-min', min);
@@ -112,6 +135,10 @@ var
           $(catAll.container).html(data);
           $(catAll.container).animate({opacity: 1}, 150);
 
+          setTimeout(function() {
+            catAll.reversFtM2();
+          }, 50);
+
           $('[data-page]').click(function(e) {
             e.preventDefault();
             $('[name="pagination"]').val($(this).data('page'));
@@ -129,6 +156,7 @@ var
             }
 
             catAll.addMarker();
+            $('.product-details').animate({opacity: 1}, 150);
           }, 200)
         }
       });
@@ -237,8 +265,12 @@ var
         catAll.bounds     = new google.maps.LatLngBounds();
         catAll.infoWindow = new google.maps.InfoWindow();
 
+        if(!_.isArray(catAll.markers))
+          catAll.markers = [];
+
         for(var i = 0; (catAll.markers || []).length > i; i++) {
-          catAll.markers[i].setMap(null);
+          if(catAll.markers[i])
+            catAll.markers[i].setMap(null);
         }
 
         for(var i = 0; window.objectCurrent.length > i; i++) {
@@ -246,15 +278,21 @@ var
 
           if(val.coordinates.split(',').length === 2) {
             catAll.markers[i] = new google.maps.Marker({
-              position: {
-                lat: parseFloat(val.coordinates.split(',')[0]),
-                lng: parseFloat(val.coordinates.split(',')[1])
-              },
+              position: new google.maps.LatLng(
+                parseFloat(val.coordinates.split(',')[0]),
+                parseFloat(val.coordinates.split(',')[1])
+                ),
 
-              val : val,
               map : catAll.map,
               icon: window.location.origin + '/images/pin.png'
             });
+
+            console.log(parseFloat(val.coordinates.split(',')[0]), parseFloat(val.coordinates.split(',')[1]), (val.name || ''))
+            console.log({
+              lat: parseFloat(val.coordinates.split(',')[0]),
+              lng: parseFloat(val.coordinates.split(',')[1])
+            })
+
 
 
             catAll.markers[i].addListener('click', function(val, i) {
@@ -296,9 +334,13 @@ var
         }
       }
 
-      if(catAll.map) {
-        google.maps.event.trigger(catAll.map, "resize");
-        catAll.map.fitBounds(catAll.bounds);
+      if(catAll.map && !catAll.firstLoad && update) {
+        setTimeout(function() {
+
+          google.maps.event.trigger(catAll.map, "resize");
+          catAll.map.fitBounds(catAll.bounds);
+          catAll.firstLoad = true;
+        }, 1000);
       }
     }
   };

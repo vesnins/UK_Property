@@ -101,7 +101,7 @@
 											'<input id="file_upload{{ $name }}" name="file_upload" type="file" multiple="multiple">'
 										);
 
-										fileUpload();
+										fileUpload{{ $name }}();
 									}
 								};
 
@@ -122,7 +122,7 @@
 								];
 
 								var
-									fileUpload = function() {
+									fileUpload{{ $name }} = function() {
 										$('#file_upload{{ $name }}').uploadifive({
 											'formData': {
 												'timestamp': '{{ $timestamp }}',
@@ -258,7 +258,7 @@
 
 
 								$(document).ready(function() {
-									fileUpload();
+									fileUpload{{ $name }}();
 								});
 							</script>
 

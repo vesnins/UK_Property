@@ -226,6 +226,7 @@ return [
   'popularity_'                              => 'популярности',
   'latest_'                                  => 'новинки',
   'availability_date_'                       => 'дате доступности',
+  'availability_date'                        => 'Дата доступности',
   'cost_per_month'                           => 'Стоимость в месяц',
   'about_company'                            => 'О компании',
   'portfolio'                                => 'Портфолио',

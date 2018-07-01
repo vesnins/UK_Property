@@ -100,7 +100,7 @@
 
           <ul class="social-list">
             <li>
-              <a href="/{!! $langSt($params['link_on_facebook']['key']) !!}" target="_blank">
+              <a href="{!! $langSt($params['link_on_facebook']['key']) !!}" target="_blank">
                 <svg>
                   <use xlink:href="/images/svg/sprite.svg#facebook"></use>
                 </svg>
@@ -108,7 +108,7 @@
             </li>
 
             <li>
-              <a href="/{!! $langSt($params['link_on_linkedin']['key']) !!}" target="_blank">
+              <a href="{!! $langSt($params['link_on_linkedin']['key']) !!}" target="_blank">
                 <svg>
                   <use xlink:href="/images/svg/sprite.svg#linkedin"></use>
                 </svg>
@@ -159,7 +159,7 @@
                   @lang('main.i_have_read_and_agree_to_the')
                   <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
                   @lang('main._and_')
-                  <a href="/privacy-policy" target="_blank">@lang('main._privacy_policy_')</a>.
+                  <a href="/terms-conditions" target="_blank">@lang('main._privacy_policy_')</a>.
                 </span>
               </label>
 
@@ -181,7 +181,7 @@
         : env('PATH_TO_IMG_DEFAULT')
       )
 
-      <div class="row flex-row align-row">
+      <div class="row flex-row align-row text-justify">
         <div class="col-sm-7 col-xs-12">{!! $langSt($page['text']) !!}</div>
         <div class="col-sm-5 col-xs-12 text-right"><img src="{{ $img }}" /></div>
       </div>

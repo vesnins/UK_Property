@@ -1449,7 +1449,7 @@ select::-ms-expand {
     right: 200px;
 }
 
-.service-info-area + .products {
+.container-fluid .service-info-area ~ .products {
     padding-top: 90px;
 }
 
@@ -3635,6 +3635,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
 .about-info .percent-box {
     max-width: 350px;
     margin-top: 55px;
+    text-align: left;
 }
 
 .percent-box {

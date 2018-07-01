@@ -6,6 +6,7 @@ use App\Classes\DynamicModel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Modules\Admin\Classes\Base;
+use App\Modules\Admin\Models\Plugins;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -391,6 +392,31 @@ class ModuleController extends Controller
 
     if($c['typeField'] == 'functions')
       $plugins = $this->plugins->$name($c, $t, $p);
+
+    return $plugins;
+  }
+
+  public static function _switcher($c, $t, $p)
+  {
+    $plugins = '';
+    $name    = $c['name'];
+
+    if($c['typeField'] == 'input')
+      $plugins = (string) self::_input($c);
+
+    if($c['typeField'] == 'textarea')
+      $plugins = (string) self::_textarea($c);
+
+    if($c['typeField'] == 'select')
+      $plugins =(string)  self::_cat($c, $t, $p);
+
+    if($c['typeField'] == 'checkbox')
+      $plugins = (string) self::_checkbox($c);
+
+    if($c['typeField'] == 'functions')
+      $plugins = (string) (new PluginsController(self::$requests_self))->$name($c, $t, $p);
+
+   // print_r($name);
 
     return $plugins;
   }

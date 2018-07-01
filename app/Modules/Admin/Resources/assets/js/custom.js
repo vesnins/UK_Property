@@ -398,23 +398,46 @@ $('.date_time').daterangepicker({
 
 });
 
+//$('.date_time_mysql_format').daterangepicker({
+//  format             : 'YYYY-MM-DD',
+//  dateFormat         : 'YYYY-MM-DD',
+//  language           : 'ru',
+//  todayHighlight     : true,
+//  singleDatePicker   : true,
+//  timePicker         : true,
+//  calender_style     : "picker_4",
+//  timePickerIncrement: 10,
+//}, function(ev, picker) {
+//  var
+//    date = ev.format('YYYY-MM-DD'),
+//    selector = $(this)[0].element[0];
+//
+//  setTimeout(function() {
+//    $(selector).val(date);
+//  }, 0);
+//});
+
 $('.date_time_mysql_format').daterangepicker({
+//  locale             : {format: 'YYYY-MM-DD'},
   format             : 'YYYY-MM-DD',
   dateFormat         : 'YYYY-MM-DD',
   language           : 'ru',
   todayHighlight     : true,
   singleDatePicker   : true,
   timePicker         : true,
+  autoApply          : true,
   calender_style     : "picker_4",
   timePickerIncrement: 10,
-}, function(ev, picker) {
-  var
-    date = ev.format('YYYY-MM-DD'),
-    selector = $(this)[0].element[0];
+}).on('apply.daterangepicker', function(ev, picker) {
+
+//  console.log(ev.)
 
   setTimeout(function() {
-    $(selector).val(date);
+//    $(ev.target).val(picker.format('YYYY-MM-DD'));
+    $(ev.target).val(picker.endDate.format('YYYY-MM-DD'));
   }, 0);
+
+  console.log(picker.endDate.format('YYYY-MM-DD'))
 });
 
 $(document).ready(function() {

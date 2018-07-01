@@ -1302,6 +1302,28 @@
     "translateKey"   : "useful"
   },
   {
+    "name"            : "photo_to_main",
+    "typeField"       : "functions",
+    "nameText"        : "Фото на главную",
+    "nameAttr"        : "pl[photo_to_main]",
+    "description"     : "Плагин \"photo_to_main\" сделанный из album",
+    "idAttr"          : "inputPhoto_to_main",
+    "sql_column"      : "photo_to_main",
+    "noSaveInDatabase": true,
+    "translateKey"    : "photo_to_main"
+  },
+  {
+    "name"            : "img_to_main",
+    "typeField"       : "functions",
+    "nameText"        : "Изображение для видео на главную",
+    "nameAttr"        : "pl[img_to_main]",
+    "description"     : "Плагин \"img_to_main\" сделанный из album",
+    "idAttr"          : "inputImg_to_main",
+    "sql_column"      : "img_to_main",
+    "noSaveInDatabase": true,
+    "translateKey"    : "img_to_main"
+  },
+  {
     "name"            : "what_is_next",
     "typeField"       : "functions",
     "nameText"        : "Что есть рядом",

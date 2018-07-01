@@ -77,11 +77,11 @@
         <div class="custom-row">
           <div class="description-box tab-content">
             <div class="tab-item tab-item-tab_1 active"><h3>{!! $langSt($about['block_4_1']) !!}</h3></div>
-            <div class="tab-item tab-item-tab_2"><h3>{!! $langSt($about['block_4_2']) !!}</h3></div>
+            <div class="tab-item tab-item-tab_2"><h3>{!! $langSt($about['block_4_1']) !!}</h3></div>
 
             <ul class="tab-navigation-list">
               <li class="active" data-class="tab_1"><a href="#">{!! $langSt($about['block_4_2']) !!}</a></li>
-              <li data-class="tab_2"><a href="#">{!! $langSt($about['block_4_1']) !!}</a></li>
+              <li data-class="tab_2"><a href="#">{!! $langSt($about['block_4_2']) !!}</a></li>
             </ul>
           </div>
 
