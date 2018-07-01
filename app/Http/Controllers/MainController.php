@@ -7,8 +7,8 @@ use App\Modules\Admin\Classes\Base;
 use App\Modules\Admin\Http\Controllers\FilesController;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class MainController extends Controller
 {
@@ -215,8 +215,9 @@ class MainController extends Controller
         'filters' => [
           // Район(Расположение)
           'cat_location'           => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_cat_location',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_cat_location',
+            'column' => 'cat_location',
 
             'fields' => [
               'cat_location' => [
@@ -294,8 +295,9 @@ class MainController extends Controller
 
           // Тип объекта
           'type_object'            => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_type_object',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_type_object',
+            'column' => 'type_object',
 
             'fields' => [
               'type_object' => [
@@ -307,8 +309,9 @@ class MainController extends Controller
 
           // Инфраструктура
           'development_facilities' => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_development_facilities',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_development_facilities',
+            'column' => 'development_facilities',
 
             'fields' => [
               'development_facilities' => [
@@ -320,8 +323,9 @@ class MainController extends Controller
 
           // Ожидаемый срок
           'estimated_completion'   => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_estimated_completion',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_estimated_completion',
+            'column' => 'estimated_completion',
 
             'fields' => [
               'estimated_completion' => [
@@ -358,8 +362,9 @@ class MainController extends Controller
         'filters' => [
           // Район(Расположение)
           'cat_location'         => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_cat_location_dp',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_cat_location_dp',
+            'column' => 'cat_location',
 
             'fields' => [
               'cat_location' => [
@@ -373,8 +378,9 @@ class MainController extends Controller
 
           // Тип объекта
           'type_object'          => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_type_object_dp',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_type_object_dp',
+            'column' => 'type_object',
 
             'fields' => [
               'type_object' => [
@@ -388,8 +394,9 @@ class MainController extends Controller
 
           // Ожидаемый срок
           'estimated_completion' => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_estimated_completion',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_estimated_completion',
+            'column' => 'estimated_completion',
 
             'fields' => [
               'estimated_completion' => [
@@ -428,8 +435,9 @@ class MainController extends Controller
         'filters' => [
           // Район(Расположение)
           'cat_location'           => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_cat_location',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_cat_location',
+            'column' => 'cat_location',
 
             'fields' => [
               'cat_location' => [
@@ -513,8 +521,9 @@ class MainController extends Controller
 
           // Тип объекта
           'type_object'            => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_type_object',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_type_object',
+            'column' => 'type_object',
 
             'fields' => [
               'type_object' => [
@@ -526,8 +535,9 @@ class MainController extends Controller
 
           // Инфраструктура
           'development_facilities' => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_development_facilities',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_development_facilities',
+            'column' => 'development_facilities',
 
             'fields' => [
               'development_facilities' => [
@@ -573,8 +583,9 @@ class MainController extends Controller
         'filters' => [
           // Район(Расположение)
           'cat_location'           => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_cat_location',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_cat_location',
+            'column' => 'cat_location',
 
             'fields' => [
               'cat_location' => [
@@ -658,8 +669,9 @@ class MainController extends Controller
 
           // Тип объекта
           'type_object'            => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_type_object',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_type_object',
+            'column' => 'type_object',
 
             'fields' => [
               'type_object' => [
@@ -671,8 +683,9 @@ class MainController extends Controller
 
           // Инфраструктура
           'development_facilities' => [
-            'type'  => 'multi_checkbox',
-            'table' => 'params_development_facilities',
+            'type'   => 'multi_checkbox',
+            'table'  => 'params_development_facilities',
+            'column' => 'development_facilities',
 
             'fields' => [
               'development_facilities' => [
@@ -1710,13 +1723,87 @@ class MainController extends Controller
 
       return $this->base->view_s('site.main.catalog_id', $data);
     } else {
+      $flt_res = [];
+
       foreach($data['filters']['filters'] as $key => $filter) {
         if($filter['type'] === 'multi_checkbox') {
-          $data['filters']['filters'][$key]['data'] = $this->dynamic
+          $flt = $data['filters']['filters'][$key]['data'] = $this->dynamic
             ->t($filter['table'])
             ->where([['active', '=', 1]])
             ->get()
             ->toArray();
+
+
+          // жопа что бы убрать чекбоксы в фильтрах для которых нету объектов
+          foreach($flt as $f) {
+            $flt_res[$key][] = $this->dynamic
+              ->t($data['filters']['table'])
+              ->where(
+                [
+                  ['active', '=', 1],
+
+                  ["{$data['filters']['table']}.{$filter['column']}", '=', $f['id']]
+                ]
+              )
+              ->orWhere(
+                [
+                  ['active', '=', 1],
+
+                  [
+                    "{$data['filters']['table']}.{$filter['column']}",
+                    'like',
+                    '%"' . $f['id'] . '"%'
+                  ]
+                ]
+              )
+              ->select("{$data['filters']['table']}.{$filter['column']}")
+              ->first();
+          }
+
+          $tmp                                      = $data['filters']['filters'][$key]['data'];
+          $data['filters']['filters'][$key]['data'] = [];
+
+          if(is_numeric($flt_res[$key][$filter['column']]))
+            $flt_res[$key][$filter['column']] = [$flt_res[$key][$filter['column']]];
+          else
+            $flt_res[$key][$filter['column']] = json_decode($flt_res[$key][$filter['column']], true);
+
+          $ids = [];
+
+          foreach($flt_res[$key] ?? [] as $f) {
+            if($f[$key])
+              if(is_numeric($f[$key]))
+                $ids = array_merge($ids, [$f[$key]]);
+              else
+                $ids = array_merge($ids, json_decode($f[$key], true));
+          }
+
+          $ids = array_unique($ids);
+
+            foreach($tmp as $k => $ff) {
+              if(array_search($ff['id'], $ids) !== false)
+                if(!isset($data['filters']['filters'][$key]['data'][$ff['id']]))
+                  $data['filters']['filters'][$key]['data'][$ff['id']] = $ff;
+            }
+
+            usort(
+              $data['filters']['filters'][$key]['data'],
+
+              function($a, $b) {
+                if($a['id'] == $b['id'])
+                  return ($a['id'] < $b['id']) ? -1 : 1;
+
+                return ($a['id'] < $b['id']) ? -1 : 1;
+              });
+
+            for($i = 1, $j = 0, $n = count($data['filters']['filters'][$key]['data']); $i < $n; ++$i) {
+              if($data['filters']['filters'][$key]['data'][$i]['id'] == $data['filters']['filters'][$key]['data'][$j]['id']) {
+                unset($data['filters']['filters'][$key]['data'][$i]);
+              } else {
+                $j = $i;
+              }
+            }
+          // конец жопы
         }
 
         if($filter['type'] === 'slider_select' || $filter['type'] === 'slider_select_area') {

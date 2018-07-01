@@ -157,7 +157,7 @@
     @php($i++)
   @empty
     @if(!isset($no_empty_message))
-      <p style="border-radius: 3px; text-align: center; border: solid 1px #eeeeee; padding: 15px; margin: 15px; width: 100%">
+      <p style="color: hsl(254, 28.8%, 20.4%); font: 16px/1.625 'Roboto', sans-serif; background: hsl(0, 0%, 96.1%); border-radius:0; text-align: center; padding: 15px; margin: 15px; width: 100%">
         @lang('main.empty_result')
       </p>
     @endif

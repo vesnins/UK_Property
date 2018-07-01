@@ -175,7 +175,7 @@ return [
   'estimated_completion'                     => 'Ожидаемый срок',
   'from_'                                    => 'от',
   'to'                                       => 'до',
-  'empty_result'                             => 'Ничего не найдено..',
+  'empty_result'                             => 'Извините, по вашему запросу ничего не найдено',
   'subscribe_to_our_newsletter'              => 'Подпишитесь на рассылку!',
   'once_a_week'                              => '1 раз в неделю',
   '1_time_per_month'                         => '1 раз в месяц',
