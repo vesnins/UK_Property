@@ -91,4 +91,6 @@ return [
   'availability_date'           => 'Дата доступности',
   'photo_to_main'               => 'Фото на главную',
   'img_to_main'                 => 'Изображение для видео на главную',
+  'periodicity'                 => 'Периодичность',
+  'type_subscribe'              => 'Тип подписки',
 ];

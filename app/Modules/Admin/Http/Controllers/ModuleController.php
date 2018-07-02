@@ -238,6 +238,42 @@ class ModuleController extends Controller
             $req['data'][$key]['active'] = $st[$val[$v['name']]];
           break;
 
+          case 'price_money':
+            $req['data'][$key]['price_money'] = $req['data'][$key]['price_money'] ?? 'forthcoming';
+          break;
+
+          case 'price_money_from':
+            $req['data'][$key]['price_money_from'] = $req['data'][$key]['price_money_from'] ?? 'forthcoming';
+          break;
+
+          case 'price_money_to':
+            $req['data'][$key]['price_money_to'] = $req['data'][$key]['price_money_to'] ?? 'forthcoming';
+          break;
+
+          case 'area_from':
+            $req['data'][$key]['area_from'] = $req['data'][$key]['area_from'] ?? 'to be confirmed';
+          break;
+
+          case 'area_to':
+            $req['data'][$key]['area_to'] = $req['data'][$key]['area_to'] ?? 'to be confirmed';
+          break;
+
+          case 'area':
+            $req['data'][$key]['area'] = $req['data'][$key]['area'] ?? 'to be confirmed';
+          break;
+
+          case 'bedrooms_from':
+            $req['data'][$key]['bedrooms_from'] = $req['data'][$key]['bedrooms_from'] ?? 'to be confirmed';
+          break;
+
+          case 'bedrooms_to':
+            $req['data'][$key]['bedrooms_to'] = $req['data'][$key]['bedrooms_to'] ?? 'to be confirmed';
+          break;
+
+          case 'bedrooms':
+            $req['data'][$key]['bedrooms'] = $req['data'][$key]['bedrooms'] ?? 'to be confirmed';
+          break;
+
           case 'tags':
             $id        = json_decode($val['tags'], true);
             $tags_name = '';

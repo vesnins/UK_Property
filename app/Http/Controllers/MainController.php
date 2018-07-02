@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class MainController extends Controller
 {
@@ -1331,244 +1332,84 @@ class MainController extends Controller
     foreach($param as $key => $p)
       $params['params'][$p->name] = $p->toArray();
 
-    if(isset($this->request['data2']))
-      $form = $this->base->decode_serialize($this->request['data2']);
-    else
-      $form = $this->base->decode_serialize($this->request['data']);
-
-    $form_data = [];
-    $type      = $this->request['type'];
-    $title     = '';
-    $from      = 'no-realy@greecobooking.niws.ru';
-
-    $param = $this
-      ->dynamic
-      ->t('params')
-      ->select('params.*', 'little_description as key')
-      ->where('name', 'email_alerts')
-      ->first();
+    $form                  = $this->base->decode_serialize($this->request);
+    $params['current_url'] = $form['current_url'];
+    $form_data             = [];
+    $type                  = $this->request['type'];
+    $title                 = '';
+    $from                  = 'no-realy@' . env('APP_URL_DOMIN');
 
     foreach($form as $k => $v)
       $form_data[$k] = (int) $v == -1 ? '' : $v;
 
-    if($type === 'selection_request') {
-      if($form['way'] != -1) {
-        $way         = $this->dynamic->t('menu')->select('menu.name')->where('id', $form['way'])->first();
-        $form['way'] = $this->base->lang($way['name']);
-      } else
-        $form['way'] = __('main.all_destinations');
+//    echo '<pre>';
+//    print_r($form);
+//    echo '</pre>';
+//
+//    exit;
 
-      Mail::send(
-        'emails.' . $type,
-        array_merge($form_data, $params),
-
-        function($m) use ($param, $title, $from, $form_data) {
-          $m->from($from, __('main.selection_request_mess_user'));
-          $m->to($form_data['mail'], 'no-realy')->subject(__('main.selection_request_mess_user'));
-        }
-      );
-
-      $title = __('main.selection_request_mess_admin');
-
-      //			/* subscription */
-      //			if($form_data['subscription'] === 'on') {
-      //				// Insert Subscribe email
-      //				$subscribe_mail = $this->dynamic->t('params_subscribe')
-      //					->where('subscribe_mail', '=', trim($form_data['mail']))
-      //					->first();
-      //
-      //				if(!$subscribe_mail)
-      //					$this->dynamic->t('params_subscribe')->insertGetId(
-      //						[
-      //							'created_at'     => Carbon::now(),
-      //							'subscribe_mail' => $form_data['mail'],
-      //						]
-      //					);
-      //			}
-      //			/* subscription */
-    }
-
-    if($type == 'request_for_accommodation') {
-      Mail::send(
-        'emails.' . $type,
-        array_merge($form_data, $params),
-
-        function($m) use ($param, $title, $from, $form_data) {
-          $m->from($from, __('main.request_for_accommodation_user'));
-          $m->to($form_data['mail'], 'no-realy')->subject(__('main.request_for_accommodation_user'));
-        }
-      );
-
-      $title = __('main.request_for_accommodation_admin');
-    }
-
-    if($type == 'contact_us')
-      $title = __('main.contact_us_admin');
-
-    if($type == 'subscription') {
+    if($type == 'subscription_form') {
       $title = __('main.subscription_admin');
 
       // Insert Subscribe email
       $subscribe_mail = $this->dynamic->t('params_subscribe')
-        ->where('subscribe_mail', '=', trim($form_data['subscribe_mail']))
+        ->where('subscribe_mail', '=', trim($form_data['email']))
         ->first();
 
       if(!$subscribe_mail)
         $this->dynamic->t('params_subscribe')->insertGetId(
           [
             'created_at'     => Carbon::now(),
-            'subscribe_mail' => $form_data['subscribe_mail'],
-          ]
-        );
-    }
-
-    if($type == 'friend_form') {
-      $cart                   = array_values($this->requests->session()->get('cart') ?? []);
-      $title                  = __('main.send_compilation_friend_user');
-      $form_data['message_s'] = $form_data['message'];
-
-      for($i = 0; count($cart ?? []) > $i; $i++)
-        $form_data['selected_villas'][] = $cart[$i]['id'] ?? 0;
-
-      $form_data['selected_villas'] = $this->dynamic->t('villas')
-        ->join(
-          'files', function($join) {
-          $join->type = 'LEFT OUTER';
-          $join->on('villas.id', '=', 'files.id_album')
-            ->where('files.name_table', '=', 'villasalbum')
-            ->where('files.main', '=', 1);
-        }
-        )
-        ->join(
-          'menu', function($join) {
-          $join->type = 'LEFT OUTER';
-          $join->on('villas.cat_location', '=', 'menu.id');
-        }
-        )
-        ->whereIn('villas.id', $form_data['selected_villas'])
-        ->select('villas.*', 'files.file', 'files.crop', 'menu.name AS place')
-        ->groupBy('villas.id')
-        ->orderBy('villas.id', 'DESC')
-        ->get()
-        ->toArray();
-
-      $form_data['langSt'] = function($t, $l = '') {
-        return Base::langSt($t, $l);
-      };
-
-      if(isset($form['send-me']))
-        Mail::send(
-          'emails.' . $type,
-          array_merge($form_data, $params),
-
-          function($m) use ($param, $title, $from, $form_data) {
-            $m->from($from, __('main.send_compilation_friend_user'));
-            $m->to($form_data['yourEmail'], 'no-realy')->subject(__('main.send_compilation_friend_user'));
-          }
-        );
-
-      foreach($form_data['friendMail'] ?? [] as $mail) {
-        Mail::send(
-          'emails.' . $type . '_friend',
-          array_merge($form_data, $params),
-
-          function($m) use ($param, $title, $from, $form_data, $mail) {
-            $m->from($from, $form_data['yourName'] ?? __('main.send_compilation_friend_user'));
-            $m->to($mail, 'no-realy')->subject(__('main.send_compilation_friend_user'));
-          }
-        );
-      }
-
-      $title = __('main.send_compilation_friend_admin');
-    }
-
-    if($type == 'resume_form') {
-      $form_data              = $this->request['data'];
-      $title                  = __('main.job_request_from_admin');
-      $form_data['file']      = '';
-      $form_data['message_s'] = $form_data['message'];
-
-      if(!empty($this->request['file_cv'])) {
-        $form_data['file'] = (new FilesController($this->requests))->upload_files(
-          [
-            'file'       => [$this->request['file_cv']],
-            'name_table' => 'resume_form',
-            'id_album'   => 0,
-            'limit'      => 0,
-            'path'       => '/images/resume_form/',
+            'subscribe_mail' => $form_data['email'],
+            'periodicity'    => $form_data['periodicity'],
+            'type_subscribe' => $form_data['type_subscribe'],
           ]
         );
 
-        $form_data['file'] = "http://greecobooking.niws.ru/images/resume_form/{$form_data['file']['name']}";
-      }
-    }
-
-    if($type == 'villa_request') {
-      $title                  = __('main.villa_request_user');
-      $form_data['message_s'] = $form_data['message'];
-
-      $form_data['selected_villa'] = $this->dynamic->t('villas')
-        ->join(
-          'files',
-
-          function($join) {
-            $join->type = 'LEFT OUTER';
-            $join->on('villas.id', '=', 'files.id_album')
-              ->where('files.name_table', '=', 'villasalbum')
-              ->where('files.main', '=', 1);
-          }
-        )
-        ->join(
-          'menu',
-
-          function($join) {
-            $join->type = 'LEFT OUTER';
-            $join->on('villas.cat_location', '=', 'menu.id');
-          }
-        )
-        ->where('villas.id', $this->request['id'])
-        ->select('villas.*', 'files.file', 'files.crop', 'menu.name AS place')
-        ->groupBy('villas.id')
-        ->orderBy('villas.id', 'DESC')
-        ->first();
-
-      $form_data['langSt'] = function($t, $l = '') {
-        return Base::langSt($t, $l);
-      };
-
+      // Отправка уведомления
       Mail::send(
         'emails.' . $type,
         array_merge($form_data, $params),
 
-        function($m) use ($param, $title, $from, $form_data) {
+        function($m) use ($params, $param, $title, $from, $form_data) {
           $m->from($from, $title);
-          $m->to($form_data['mail'], 'no-realy')->subject($title);
+          $m->to(trim($form_data['email']), 'no-realy')->subject($title);
         }
       );
-
-      $title = __('main.villa_request_admin');
     }
 
-    //		print_r($form);
-    //		print_r($type);
-    //		print_r($this->request);
-    //		exit;
+    $params['admin_text']  = __('main.' . $type);
 
-    foreach(explode(',', $this->base->lang($param->key)) as $mail)
+    // Отправка уведомления администратору
+    foreach(explode(',', $params['langSt']($params['params']['email_notifications']['key'])) as $mail)
       Mail::send(
         'emails.' . $type,
         array_merge($form_data, $params),
 
-        function($m) use ($param, $title, $from, $mail) {
+        function($m) use ($params, $param, $title, $from, $mail) {
           $m->from($from, $title);
           $m->to(trim($mail), 'no-realy')->subject($title);
         }
       );
 
+//        echo '<pre>';
+//        print_r($form);
+//        echo '</pre>';
+//
+//        exit;
+
     $ret['result'] = 'ok';
     echo json_encode($ret);
 
     exit;
+  }
+
+  public function form()
+  {
+    $data['admin_text'] = '';
+
+
+    return $this->base->view_s('emails.subscription', $data);
   }
 
   /**
@@ -1725,6 +1566,11 @@ class MainController extends Controller
     } else {
       $flt_res = [];
 
+      $data['catalog_count'] = $this->dynamic
+        ->t($data['filters']['table'])
+        ->where([['active', '=', 1]])
+        ->count();
+
       foreach($data['filters']['filters'] as $key => $filter) {
         if($filter['type'] === 'multi_checkbox') {
           $flt = $data['filters']['filters'][$key]['data'] = $this->dynamic
@@ -1854,16 +1700,25 @@ class MainController extends Controller
         ["{$filters['table']}.in_portfolio", '=', 0],
       ];
 
+      $or_where = [
+        ["{$filters['table']}.active", '=', 1],
+        ["{$filters['table']}.in_portfolio", '=', 0],
+      ];
+
       if(isset($form['price_money_from'])) {
 //        $where = array_merge($where, [["{$filters['table']}.price_money_from", '>=', $form['price_money_from']]]);
         $where = array_merge($where, [["{$filters['table']}.price_money_to", '>=', $form['price_money_from']]]);
         $where = array_merge($where, [["{$filters['table']}.price_money_to", '<=', $form['price_money_to']]]);
+
+        $or_where = array_merge($or_where, [["{$filters['table']}.price_money_to", '=', null]]);
       }
 
       //  Для фиксированной цены
       if(isset($form['price_money_from_fixed'])) {
         $where = array_merge($where, [["{$filters['table']}.price_money", '>=', $form['price_money_from_fixed']]]);
         $where = array_merge($where, [["{$filters['table']}.price_money", '<=', $form['price_money_to_fixed']]]);
+
+        $or_where = array_merge($or_where, [["{$filters['table']}.price_money", '=', null]]);
       }
 
       if(isset($form['bedrooms_from'])) {
@@ -1872,12 +1727,16 @@ class MainController extends Controller
 
         $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '>=', $form['bedrooms_from']]]);
         $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '<=', $form['bedrooms_to']]]);
+
+        $or_where = array_merge($or_where, [["{$filters['table']}.bedrooms_to", '=', null]]);
       }
 
       //  Для фиксированного кол-ва комнат
       if(isset($form['bedrooms_from_fixed'])) {
         $where = array_merge($where, [["{$filters['table']}.bedrooms", '>=', $form['bedrooms_from_fixed']]]);
         $where = array_merge($where, [["{$filters['table']}.bedrooms", '<=', $form['bedrooms_to_fixed']]]);
+
+        $or_where = array_merge($or_where, [["{$filters['table']}.bedrooms", '=', null]]);
       }
 
       if(isset($form['area_from'])) {
@@ -1889,6 +1748,8 @@ class MainController extends Controller
 //        $where = array_merge($where, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
         $where = array_merge($where, [["{$filters['table']}.area_to", '>=', $form['area_from']]]);
         $where = array_merge($where, [["{$filters['table']}.area_to", '<=', $form['area_to']]]);
+
+        $or_where = array_merge($or_where, [["{$filters['table']}.area_to", '=', null]]);
       }
 
       // Для фиксированной площади
@@ -1900,10 +1761,14 @@ class MainController extends Controller
 
         $where = array_merge($where, [["{$filters['table']}.area", '>=', $form['area_from_fixed']]]);
         $where = array_merge($where, [["{$filters['table']}.area", '<=', $form['area_to_fixed']]]);
+
+        $or_where = array_merge($or_where, [["{$filters['table']}.area", '=', null]]);
       }
 
       $catalog_sql = $this->dynamic->t($filters['table'])
-        ->where($where);
+        ->where($where)
+        ->orWhere($or_where)
+      ;
 
       if(isset($form['cat_location']))
         $catalog_sql = $catalog_sql->whereIn("{$filters['table']}.cat_location", $form['cat_location']);
@@ -2152,6 +2017,7 @@ class MainController extends Controller
     //    print_r(json_decode(json_encode($data), true));
     //    echo '</pre>';
 
+    $data['type_ft_m2']   = $form['type_ft_m2'];
     $data['name_url']     = $form['name_url'];
     $data['show_like']    = $form['show_like'] ?? false;
     $data['favorites_id'] = $favorites_id;

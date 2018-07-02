@@ -1791,6 +1791,42 @@
     }
   },
   {
+    "name"        : "periodicity",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Периодичность",
+    "nameAttr"    : "pl[periodicity]",
+    "description" : "Текстовое поле селект \"periodicity\" для выбора Типа объекта",
+    "idAttr"      : "selectPeriodicity",
+    "sql_column"  : "periodicity",
+    "accurate"    : true,
+    "recursive"   : true,
+    "parent_table": "menu",
+    "translateKey": "periodicity",
+    "body"        : {
+      "text": "<option value=\"0\">(Без категории)</option>{-option-}",
+      "type": "replace"
+    }
+  },
+  {
+    "name"        : "type_subscribe",
+    "typeField"   : "select",
+    "classAttr"   : "select2",
+    "nameText"    : "Периодичность",
+    "nameAttr"    : "pl[type_subscribe]",
+    "description" : "Текстовое поле селект \"type_subscribe\" для выбора Типа объекта",
+    "idAttr"      : "selectType_subscribe",
+    "sql_column"  : "type_subscribe",
+    "accurate"    : true,
+    "recursive"   : true,
+    "parent_table": "menu",
+    "translateKey": "type_subscribe",
+    "body"        : {
+      "text": "<option value=\"0\">(Без категории)</option>{-option-}",
+      "type": "replace"
+    }
+  },
+  {
     "name"        : "development_facilities",
     "typeField"   : "select",
     "classAttr"   : "select2",

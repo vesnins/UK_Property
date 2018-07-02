@@ -98,7 +98,8 @@
 
                 function initMap() {
                   var mapOptions = {
-                    zoom  : 17,
+                    zoom   : 17,
+                    minZoom: 15,
 
                     styles: [
                       {"featureType": "road", "stylers": [{"hue": "#5e00ff"}, {"saturation": -79}]},
@@ -146,12 +147,12 @@
                     },
                   });
                   var
-                    bounds = (new google.maps.LatLngBounds()).extend(
-                      new google.maps.LatLng(
-                        parseFloat(val.coordinates.split(',')[0]),
-                        parseFloat(val.coordinates.split(',')[1])
-                      )
-                    );
+                      bounds = (new google.maps.LatLngBounds()).extend(
+                        new google.maps.LatLng(
+                          parseFloat(val.coordinates.split(',')[0]),
+                          parseFloat(val.coordinates.split(',')[1])
+                        )
+                      );
                 }
               </script>
 
@@ -316,31 +317,31 @@
                       {{ join($st, ', ') }}
                     </td>
                   </tr>
-                  @endif
+                @endif
 
-                  @if(!empty($estimated_completion))
-                    <tr>
-                      <td>@lang('main.expected_completion')</td>
+                @if(!empty($estimated_completion))
+                  <tr>
+                    <td>@lang('main.expected_completion')</td>
 
-                      <td>
-                        @php($st = [])
+                    <td>
+                      @php($st = [])
 
-                        @foreach($estimated_completion as $completion)
-                          @php($st[] = $langSt($completion['name']))
-                        @endforeach
+                      @foreach($estimated_completion as $completion)
+                        @php($st[] = $langSt($completion['name']))
+                      @endforeach
 
-                        {{ join($st, ', ') }}
-                      </td>
-                    </tr>
-                  @endif
+                      {{ join($st, ', ') }}
+                    </td>
+                  </tr>
+                @endif
 
-                  @if(!empty($page['availability_date']))
-                    <tr>
-                      <td>@lang('main.availability_date')</td>
+                @if(!empty($page['availability_date']))
+                  <tr>
+                    <td>@lang('main.availability_date')</td>
 
-                      <td>{{ $page['availability_date'] }}</td>
-                    </tr>
-                  @endif
+                    <td>{{ $page['availability_date'] }}</td>
+                  </tr>
+                @endif
               </table>
             </div>
           </div>
@@ -391,6 +392,21 @@
             $('#map').height(400);
         }, 1000)
       })
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        catAll.initialize({
+          container  : '.sys-sel-catalog',
+          num        : '.selReN > .i',
+          pagination : false,
+          isLoad     : false,
+          isPortfolio: false,
+          url_req    : '/',
+        });
+      });
+
+      $('#header').addClass('static');
     </script>
   @endpush
 @endsection

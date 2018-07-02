@@ -317,9 +317,17 @@
               @lang('main.i_have_read_and_agree_to_the')
               <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
               @lang('main._and_')
-              <a href="/terms-conditions" target="_blank">@lang('main._privacy_policy_')</a>.
+              <a href="/privacy-cookies" target="_blank">@lang('main._privacy_policy_')</a>.
             </span>
           </label>
+
+          <div class="success-message">
+            <div class="flex-container">
+              <div class="align-box">
+                <h4 class="text-center">{!! $langSt($params['subscribe_form_title']['key']) !!}</h4>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </section>
@@ -360,7 +368,7 @@
             <div class="position-box">
               <img src="{{ $imG($photo_to_main) }}" />
 
-              <a href="{!! $langSt($params['link_on_linkedin']['key']) !!}" class="social-link">
+              <a href="{!! $langSt($params['link_on_linkedin']['key']) !!}" target="_blank" class="social-link">
                 <svg><use xlink:href="/images/svg/sprite.svg#linkedin-square"></use></svg>
               </a>
             </div>
@@ -403,4 +411,21 @@
       </div>
     </div>
   </main>
+
+  @push('footer')
+    <script>
+      $(document).ready(function() {
+        catAll.initialize({
+          container  : '.sys-sel-catalog',
+          num        : '.selReN > .i',
+          pagination : false,
+          isLoad     : false,
+          isPortfolio: false,
+          url_req    : '/',
+        });
+      });
+
+      $('#header').addClass('static');
+    </script>
+  @endpush
 @endsection

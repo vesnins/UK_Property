@@ -163,8 +163,6 @@ var
     },
 
     addCart: function(id, type, nameUrl) {
-      //      $( ".position-box > .wish-list" ).toggle("explode");
-
       $.ajax
        ({
          type: "post",
@@ -286,14 +284,6 @@ var
               map : catAll.map,
               icon: window.location.origin + '/images/pin.png'
             });
-
-            console.log(parseFloat(val.coordinates.split(',')[0]), parseFloat(val.coordinates.split(',')[1]), (val.name || ''))
-            console.log({
-              lat: parseFloat(val.coordinates.split(',')[0]),
-              lng: parseFloat(val.coordinates.split(',')[1])
-            })
-
-
 
             catAll.markers[i].addListener('click', function(val, i) {
               return function() {

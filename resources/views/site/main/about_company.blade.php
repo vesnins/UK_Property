@@ -77,10 +77,10 @@
         <div class="custom-row">
           <div class="description-box tab-content">
             <div class="tab-item tab-item-tab_1 active"><h3>{!! $langSt($about['block_4_1']) !!}</h3></div>
-            <div class="tab-item tab-item-tab_2"><h3>{!! $langSt($about['block_4_1']) !!}</h3></div>
+            <div class="tab-item tab-item-tab_2"><h3>{!! $langSt($about['block_4_2']) !!}</h3></div>
 
             <ul class="tab-navigation-list">
-              <li class="active" data-class="tab_1"><a href="#">{!! $langSt($about['block_4_2']) !!}</a></li>
+              <li class="active" data-class="tab_1"><a href="#">{!! $langSt($about['block_4_1']) !!}</a></li>
               <li data-class="tab_2"><a href="#">{!! $langSt($about['block_4_2']) !!}</a></li>
             </ul>
           </div>
@@ -115,7 +115,7 @@
             <div class="section-title">@lang('main.contact_us_for_free_initial_consultation')</div>
             <p>{!! $langSt($params['contact_us_text_contact_an_agent']['key']) !!}</p>
 
-            <a href="#" class="link" data-toggle="modal" data-target=".consultation-modal">
+            <a href="#" class="link" data-toggle="modal" data-target=".request-modal">
               @lang('main.contact_an_agent')
             </a>
           </div>
@@ -141,4 +141,21 @@
       </div>
     </section>
   </main>
+
+  @push('footer')
+    <script>
+      $(document).ready(function() {
+        catAll.initialize({
+          container  : '.sys-sel-catalog',
+          num        : '.selReN > .i',
+          pagination : false,
+          isLoad     : false,
+          isPortfolio: false,
+          url_req    : '/',
+        });
+      });
+
+      $('#header').addClass('static');
+    </script>
+  @endpush
 @endsection

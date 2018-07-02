@@ -71,4 +71,21 @@
       </section>
     @endif
   </main>
+
+  @push('footer')
+    <script>
+      $(document).ready(function() {
+        catAll.initialize({
+          container  : '.sys-sel-catalog',
+          num        : '.selReN > .i',
+          pagination : false,
+          isLoad     : false,
+          isPortfolio: false,
+          url_req    : '/',
+        });
+      });
+
+      $('#header').addClass('static');
+    </script>
+  @endpush
 @endsection

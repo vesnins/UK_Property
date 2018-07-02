@@ -470,6 +470,7 @@
       "name",
       "little_description",
       "subscribe_mail",
+      "type_object",
       "active"
     ],
     "count_module"    : "20",
@@ -485,8 +486,18 @@
     "plugins"         : [
       "name",
       "subscribe_mail",
+      "periodicity",
+      "type_subscribe",
       "little_description"
     ],
+    "params"          : {
+      "type_subscribe": {
+        "parent_table": "params_type_subscribe"
+      },
+      "periodicity": {
+        "parent_table": "params_periodicity"
+      }
+    },
     "small_width"     : "500",
     "small_height"    : "350",
     "sort"            : "1",

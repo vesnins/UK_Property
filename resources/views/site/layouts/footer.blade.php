@@ -76,12 +76,13 @@
         <form action="#" class="subscribe-form validate-form">
           @include('site.block.subscribe_form', ['send' => 'Ok'])
 
-          <label class="checkbox-label"><input type="checkbox" name="checkbox" checked />
+          <label class="checkbox-label">
+            <input type="checkbox" name="checkbox" checked />
             <span>
               @lang('main.i_have_read_and_agree_to_the')
               <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
               @lang('main._and_')
-              <a href="/terms-conditions" target="_blank">@lang('main._privacy_policy_')</a>.
+              <a href="/privacy-cookies" target="_blank">@lang('main._privacy_policy_')</a>.
             </span>
           </label>
 
@@ -89,6 +90,14 @@
             <input type="checkbox" checked />
             <span>@lang('main.text_mail_sending')</span>
           </label>
+
+          <div class="success-message">
+            <div class="flex-container">
+              <div class="align-box">
+                <h4 class="text-center">{!! $langSt($params['subscribe_form_title']['key']) !!}</h4>
+              </div>
+            </div>
+          </div>
         </form>
 
         <ul class="additional-links">
@@ -189,7 +198,7 @@
                 @lang('main.i_have_read_and_agree_to_the')
                 <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
                 @lang('main._and_')
-                <a href="/terms-conditions" target="_blank">@lang('main._privacy_policy_')</a>.
+                <a href="/privacy-cookies" target="_blank">@lang('main._privacy_policy_')</a>.
               </span>
             </label>
 

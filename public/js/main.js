@@ -210,7 +210,7 @@
             dataClick   = navItem.attr('data-click', 0),
             subMenu     = navItem.children('.sub-menu');
 
-        navItemLink.on('touchstart', function(e) {
+        navItemLink.on('click touchstart', function(e) {
           if(!navItem.attr('data-click')) {
             e.preventDefault();
 
@@ -305,6 +305,25 @@
           priceFrom    : "purpose of error",
           priceTo      : "purpose of error",
           enquirySelect: "purpose of error"
+        },
+
+        submitHandler: function(form) {
+          $.ajax({
+            type    : "post",
+            url     : "/_tools/submit_required",
+            data    : $(form).serializeArray(),
+            cache   : false,
+            dataType: "JSON",
+
+            success: function(data) {
+              if(data.result === 'ok') {
+                $(form).find('.success-message').show();
+                $(form).reset();
+              }
+            }
+          });
+
+          return false;
         }
       });
 
@@ -419,7 +438,7 @@
       arrows       : false,
       fade         : true,
       autoplay     : true,
-      autoplaySpeed: 2000
+      autoplaySpeed: 3500
     });
   }
 

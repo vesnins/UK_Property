@@ -33,10 +33,19 @@
 
   @if($v['area_from'] !== null || $v['area_to'] !== null || $v['area'] !== null)
     @if($v['area_from'] ?? false)
-      @php($catalog_marker[$k]['area'] = 'S =<div class="s-pl">' + $v['area_from'] + '</div> -
-      <div class="s-pl">' + $v['area_to'] + ' </div>' . __('main.м_2'))
+      @if($type_ft_m2 == 'ft')
+        @php($v['area_from'] = round($v['area_from'] * 3.28))
+        @php($v['area_from'] = round($v['area_to'] * 3.28))
+      @endif
+
+      @php($catalog_marker[$k]['area'] = 'S =<div class="s-pl">' . $v['area_from'] . '</div> -
+      <div class="s-pl">' . $v['area_to'] . ' </div>' . ($type_ft_m2 == 'ft' ? 'ft²' : 'm²'))
     @else
-      @php($catalog_marker[$k]['area'] = '<div class="s-pl">' + $v['area'] + '</div>' . __('main.м_2'))
+      @if($type_ft_m2 == 'ft')
+        @php($v['area'] = round($v['area'] * 3.28))
+      @endif
+
+      @php($catalog_marker[$k]['area'] = '<div class="s-pl">' . $v['area'] . '</div>' . ($type_ft_m2 == 'ft' ? 'ft²' : 'm²'))
     @endif
   @endif
 
@@ -54,8 +63,10 @@
 </script>
 <div class="products">
   @forelse($catalog as $val)
-    @if($i >= 4)
-      @break
+    @if(isset($limit))
+      @if($i >= $limit)
+        @break
+      @endif
     @endif
 
     @php($img = $val['file'] && $val['file'] !== '1'
@@ -110,9 +121,11 @@
                 @if($val['area_from'] ?? false)
                   S =
                   <div class="s-pl">{{ $val['area_from'] }}</div>
-                  -
-                  <div class="s-pl">{{ $val['area_to'] }}</div>
-                  <span class="s-mf">@lang('main.м_2')</span>
+                  @if($val['area'])
+                    -
+                    <div class="s-pl">{{ $val['area_to'] }}</div>
+                    <span class="s-mf">@lang('main.м_2')</span>
+                  @endif
                 @else
                   S = <div class="s-pl">{{ $val['area'] }}</div>
                   <span class="s-mf">@lang('main.м_2')</span>
@@ -123,7 +136,7 @@
             @if($val['bedrooms_from'] !== null || $val['bedrooms_to'] !== null || $val['bedrooms'] !== null)
               <div class="cell">
                 @if($val['bedrooms_from'] ?? false)
-                  {{ $val['bedrooms_from'] }} - {{ $val['bedrooms_to'] }}
+                  {{ $val['bedrooms_from'] }} @if($val['bedrooms_to']) - {{ $val['bedrooms_to'] }}@endif
                 @else
                   {{ $val['bedrooms'] }}
                 @endif
@@ -141,8 +154,7 @@
               <span class="price">
                 @if($val['price_money_from'] ?? false)
                   £{{ number_format($val['price_money_from'], 0, ',', ',') }}
-                  -
-                  £{{ number_format($val['price_money_to'], 0, ',', ',') }}
+                  @if($val['bedrooms_to']) - £{{ number_format($val['price_money_to'], 0, ',', ',') }}@endif
                 @else
                   £{{ number_format($val['price_money'], 0, ',', ',') }}
                 @endif

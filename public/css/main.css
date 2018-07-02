@@ -1390,6 +1390,10 @@ select::-ms-expand {
     width: 100%;
     max-width: 730px;
     padding: 80px 31% 0 0;
+    text-align: left;
+}
+
+.service-info-area .limit-box p {
     text-align: justify;
 }
 
@@ -1770,6 +1774,15 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     max-width: 770px;
     margin: 0 auto;
     color: #fff;
+    position: relative;
+}
+
+.subscribe-section .subscribe-form .success-message .flex-container {
+    padding: 15px 25px;
+}
+
+.subscribe-section .subscribe-form .success-message p {
+    color: #240d4d;
 }
 
 .subscribe-form .flex-group {
@@ -1864,6 +1877,7 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     position: relative;
     line-height: 0;
     height: 6px;
+    padding: 0 25px;
 }
 
 .simple-slider .slick-dots {
@@ -1936,7 +1950,6 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     z-index: 3;
     background: #fff;
     padding: 25px 15px 40px;
-    text-align: justify;
 }
 
 .service-slider .slick-active {
@@ -2300,8 +2313,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
     padding: 15px 30px 25px;
 }
 
-.article-slider .slick-slide .text-box p,
-.posts-list .post .text-box p {
+.article-slider .slick-slide .text-box p {
     text-align: justify;
 }
 
@@ -2404,6 +2416,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
 
 .fixed-subheader {
     position: fixed;
+    z-index: 0;
     left: 0;
     top: 0;
     width: 100%;
@@ -2471,7 +2484,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
 }
 
 .product-grid-section .sidebar .scroll-box {
-    max-height: 90vh;
+    max-height: 85vh;
     overflow-y: auto;
     position: relative;
     transition: left .3s ease;
@@ -2960,6 +2973,19 @@ body:not(.touch-device) .posts-list .post:hover:before {
     font-size: 18px;
     line-height: 1.35;
     font-weight: 300;
+}
+
+.product-section .contact-section form {
+    position: relative;
+}
+
+.product-section .contact-section .success-message {
+    background: #240d4d;
+    color: #fff;
+}
+
+.product-section .contact-section .success-message .flex-container {
+    padding: 5%;
 }
 
 .product-section .contact-section a {
@@ -3453,6 +3479,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
     background: #fff;
     width: 58%;
     box-shadow: 4px 7px 57px 12px rgba(0, 0, 0, .06);
+    position: relative;
 }
 
 .contact-area .contact-info form .checkbox-label {
@@ -3544,6 +3571,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
     padding: 60px;
     background: #fff;
     box-shadow: 4px 7px 57px 12px rgba(0, 0, 0, .06);
+    position: relative;
 }
 
 .application-form .input-group {
@@ -4103,6 +4131,20 @@ address .address-info svg {
 .site-footer .subscribe-form {
     padding-top: 5px;
     margin-bottom: 30px;
+    position: relative;
+}
+
+.site-footer .subscribe-form .success-message {
+    background: #2c2543;
+    color: #fff;
+}
+
+.site-footer .subscribe-form .success-message h4 {
+    color: #fff;
+}
+
+.site-footer .subscribe-form .success-message .flex-container {
+    padding: 15px 25px;
 }
 
 .subscribe-form .flex-group {
@@ -4284,4 +4326,52 @@ address .address-info svg {
 
 .selection-modal .collapse-input-group {
     display: none;
+}
+
+.modal-body .success-message {
+    width: calc(100% - 350px);
+}
+
+.success-message {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    color: #2a2042;
+}
+
+.success-message .flex-container {
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 10%;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.success-message .flex-container .align-box {
+    width: 100%;
+}
+
+.success-message p {
+    margin-bottom: 0;
+}
+
+.success-message h4 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+    color: #2a2042;
 }
