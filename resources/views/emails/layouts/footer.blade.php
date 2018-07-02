@@ -12,9 +12,9 @@
           style="font-size: 15px; line-height: 18px; padding: 10px 0; font-family:Verdana, Arial, sans-serif; color:#30343f; text-align: left;">
           <span>
             @lang('main.i_have_read_and_agree_to_the')
-            <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
+            <a href="{{ env('APP_URL') }}/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
             @lang('main._and_')
-            <a href="/privacy-cookies" target="_blank">@lang('main._privacy_policy_')</a>.
+            <a href="{{ env('APP_URL') }}/privacy-cookies" target="_blank">@lang('main._privacy_policy_')</a>.
           </span>
         </td>
       </tr>
