@@ -78,6 +78,7 @@ return [
   'request_for_accommodation_user'  => 'Запрос на размещение с сайта UkPropAdv принят!',
   'contact_us_admin'                => 'Письмо с формы контактов с сайта UkPropAdv.com',
   'consultation_form_admin'         => 'Запрос консультации с сайта UkPropAdv.com',
+  'contact_form_admin'              => 'Запрос c формы контактов с сайта UkPropAdv.com',
   'subscription_admin'              => 'Подписка на рассылку с сайта UkPropAdv.com',
   'from'                            => 'От кого',
   'write_a_message'                 => 'Напишите сообщение',

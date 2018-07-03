@@ -78,6 +78,7 @@ return [
   'request_for_accommodation_user'  => 'Request for accommodation a selection request from the UkPropAdv.com accepted!',
   'contact_us_admin'                => 'Letter from the form of contacts from the site UkPropAdv.com',
   'consultation_form_admin'         => 'Request a consultation from the site UkPropAdv.com',
+  'contact_form_admin'              => 'Request c contact form from the site UkPropAdv.com',
   'subscription_admin'              => 'Subscribe to newsletter from the site the UkPropAdv.com',
   'from'                            => 'From',
   'write_a_message'                 => 'Write a message',

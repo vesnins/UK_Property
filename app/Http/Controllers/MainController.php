@@ -1408,6 +1408,21 @@ class MainController extends Controller
       );
     }
 
+    if($type == 'contact_form') {
+      $title = __('main.contact_form_admin');
+
+      // Отправка уведомления
+      Mail::send(
+        'emails.' . $type,
+        array_merge($form_data, $params),
+
+        function($m) use ($params, $param, $title, $from, $form_data) {
+          $m->from($from, $title);
+          $m->to(trim($form_data['email']), 'no-realy')->subject($title);
+        }
+      );
+    }
+
     $params['admin_text']  = __('main.' . $type);
 
     // Отправка уведомления администратору

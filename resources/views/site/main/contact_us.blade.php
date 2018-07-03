@@ -124,13 +124,13 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="input-holder">
-                  <input type="text" name="name" placeholder="@lang('main.first_name') *" />
+                  <input type="text" name="first_name" placeholder="@lang('main.first_name') *" />
                 </div>
               </div>
 
               <div class="col-sm-6">
                 <div class="input-holder">
-                  <input type="text" name="surname" placeholder="@lang('main.second_name') *" />
+                  <input type="text" name="second_name" placeholder="@lang('main.second_name') *" />
                 </div>
               </div>
             </div>
@@ -138,39 +138,51 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="input-holder">
-                  <input type="tel" name="phone" placeholder="@lang('main.phone_number') *" />
+                  <input type="tel" name="phone_number" placeholder="@lang('main.phone_number') *" />
                 </div>
               </div>
 
               <div class="col-sm-6">
                 <div class="input-holder">
-                  <input type="email" placeholder="Email" />
+                  <input type="email" name="email" placeholder="Email" />
                 </div>
               </div>
             </div>
 
             <div class="input-holder">
-              <textarea placeholder="@lang('main.message')"></textarea>
+              <textarea name="message_text" placeholder="@lang('main.message')"></textarea>
             </div>
 
             <div class="input-holder">
               <label class="checkbox-label"><input type="checkbox" name="checkbox" checked />
                 <span>
                   @lang('main.i_have_read_and_agree_to_the')
-                  <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
+                  <a href="/terms-conditions" name="terms_conditions" target="_blank">
+                    @lang('main._terms_&_Conditions_')
+                  </a>
                   @lang('main._and_')
                   <a href="/privacy-cookies" target="_blank">@lang('main._privacy_policy_')</a>.
                 </span>
               </label>
 
               <label class="checkbox-label">
-                <input type="checkbox" checked />
+                <input type="checkbox" name="news_updates" checked />
                 <span>@lang('main.text_mail_sending')</span>
               </label>
             </div>
 
             <div class="text-center">
+              <input type="hidden" name="current_url" value="{{ \URL::full() }}" />
+              <input type="hidden" name="type" value="contact_form" />
               <input class="button" type="submit" value="@lang('main.send')" />
+            </div>
+
+            <div class="success-message">
+              <div class="flex-container">
+                <div class="align-box">
+                  <h4 class="text-center">{!! $langSt($params['consultation_form_title']['key']) !!}</h4>
+                </div>
+              </div>
             </div>
           </form>
         </div>
