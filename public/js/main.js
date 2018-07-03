@@ -210,9 +210,9 @@
             dataClick   = navItem.attr('data-click', 0),
             subMenu     = navItem.children('.sub-menu');
 
-        navItemLink.on('click touchstart', function(e) {
-          if(!navItem.attr('data-click')) {
-            e.preventDefault();
+        navItemLink.on('click touchstart', function(ev) {
+          if(navItem.attr('data-click') === '0') {
+            ev.preventDefault();
 
             navItem.attr('data-click', 1).addClass('open');
             subMenu.slideDown();
