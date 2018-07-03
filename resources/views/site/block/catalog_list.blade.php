@@ -63,6 +63,8 @@
 </script>
 <div class="products">
   @forelse($catalog as $val)
+    @php($is_favorite = false)
+
     @if(isset($limit))
       @if($i >= $limit)
         @break
@@ -74,12 +76,16 @@
      : '/images/files/no-image.jpg'
     )
 
-    @php($is_favorite = array_search($val['id'], $favorites_id ?? []) !== false ? true : false)
-
+    @foreach($cart as $v)
+      @if(($val['id'] == $v['id']) && $val['name_table'] == array_flip($url)[$v['name_url']])
+        @php($is_favorite = true)
+      @endif
+    @endforeach
 
     <div class="product-item {{ $val['in_portfolio'] ? 'sold-product' : '' }}">
       @if($name_url || $show_like)
         <a href="javascript:void(0)"
+          data-id="{{ $val['id'] }}"
           class="add-to-wishList like-button {!! $is_favorite ? 'active' : '' !!} like-button-{{ $val['id'] }}"
 
           onclick="catAll.addCart(
@@ -95,6 +101,7 @@
       @else
         <a
           href="javascript:void(0)"
+          data-id="{{ $val['id'] }}"
           class="del-btn like-button {!! $is_favorite ? 'active' : '' !!} like-button-{{ $val['id'] }}"
           onclick="catAll.addCart('{{ $val['id'] }}', 'remove', '')"
         >

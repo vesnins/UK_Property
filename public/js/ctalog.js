@@ -193,15 +193,17 @@ var
              //             else
              //               fav.hide();
 
-             if(selectorLice.hasClass('like-button-' + id))
-               selectorLice = $('.like-button-' + id);
+             if(id > 0) {
+               if(selectorLice.hasClass('like-button-' + id))
+                 selectorLice = $('.like-button-' + id);
 
-             if(type === 'add') {
-               selectorLice.addClass('active');
-               selectorLice.attr('onclick', 'catAll.addCart(' + id + ', \'remove\', \'' + nameUrl + '\')');
-             } else {
-               selectorLice.removeClass('active');
-               selectorLice.attr('onclick', 'catAll.addCart(' + id + ', \'add\', \'' + nameUrl + '\')');
+               if(type === 'add') {
+                 selectorLice.addClass('active');
+                 selectorLice.attr('onclick', 'catAll.addCart(' + id + ', \'remove\', \'' + nameUrl + '\')');
+               } else {
+                 selectorLice.removeClass('active');
+                 selectorLice.attr('onclick', 'catAll.addCart(' + id + ', \'add\', \'' + nameUrl + '\')');
+               }
              }
 
              if(window.location.pathname.split('/').indexOf('favorite') !== -1) {

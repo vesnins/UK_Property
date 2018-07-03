@@ -56,6 +56,7 @@ class MainController extends Controller
     $whereBlog[]      = ['blog.tags', '!=', '\'\''];
     $data             = $this->helper->duplicate_data();
     $data['services'] = [];
+    $data['cart']     = array_values($this->requests->session()->get('cart') ?? []);
     $data['blog']     = $this->helper->_blog(
       null,
       [
@@ -2172,6 +2173,7 @@ class MainController extends Controller
     $data['name_url']     = $form['name_url'];
     $data['show_like']    = $form['show_like'] ?? false;
     $data['favorites_id'] = $favorites_id;
+    $data['cart']         = $cart;
 
     return $this->base->view_s("site.block.catalog_list", $data);
   }

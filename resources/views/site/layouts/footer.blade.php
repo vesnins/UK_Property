@@ -155,7 +155,7 @@
     {{ env('AUDIO_LOOP') ? 'loop' : '' }}
     {{ env('AUDIO_HIDDEN') ? 'hidden' : '' }}
   >
-    <source src="/images/files/{{ $music['file'] }}">
+    <source src="/images/files/files/{{ $music['file'] }}">
   </audio>
   @endif
 </div>

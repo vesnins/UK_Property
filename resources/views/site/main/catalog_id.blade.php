@@ -164,44 +164,28 @@
             <div class="tab-item tab-item-tab_3">
               <div class="product-gallery plan-image-slider">
                 <div class="image-slider">
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.1.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.2.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.1.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.2.jpg')"></div>
-                  </div>
+                  @foreach($plan as $p)
+                    @php($img = $p['file']
+                         ? $p['crop'] ? $path_big . $p['crop'] : $path_big . $p['file']
+                         : '/images/files/no-image.jpg'
+                       )
+
+                    <div>
+                      <div class="inner-box" style="background-image: url('{{ $img }}')"></div>
+                    </div>
+                  @endforeach
                 </div>
                 <div class="preview-slider simple-slider">
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.1.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.2.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.1.jpg')"></div>
-                  </div>
-                  <div>
-                    <div class="inner-box" style="background-image: url('/images/content/img_24.2.jpg')"></div>
-                  </div>
+                  @foreach($plan as $s)
+                    @php($img_small = $s['file']
+                      ? $s['crop'] ? $path_small . $s['crop'] : $path_small . $s['file']
+                      : '/images/files/no-image.jpg'
+                    )
+
+                    <div>
+                      <div class="inner-box" style="background-image: url('{{ $img_small }}')"></div>
+                    </div>
+                  @endforeach
                 </div>
               </div>
             </div>
