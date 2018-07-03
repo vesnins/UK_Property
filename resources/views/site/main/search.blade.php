@@ -27,10 +27,20 @@
           <div class="articles">
             @foreach($search as $key => $v)
               <article class="article">
-                @php($u = ['str' => '/blog/', 'str_p' => '/pages/', 'blog' => '/blog/'])
+                @php(
+                  $u = [
+                    'str'                          => '/blog/',
+                    'str_p'                        => '/pages/',
+                    'blog'                         => '/blog/',
+                    'catalog_new_building'         => '/catalog/invest-in-a-new-building/',
+                    'catalog_development_projects' => '/catalog/invest-in-development-projects/',
+                    'catalog_buy'                  => '/catalog/buy/',
+                    'catalog_rent'                 => '/catalog/rent/',
+                  ]
+                )
 
-                <a href="{{ $u[$v->name_table] }}{{ $v->translation ?? $v->id }}">
-                  <h3>{{ $page * ($key + 1) . '. ' }}{{ $langSt($v->name) }}</h3>
+                <a href="{{ $u[$v->name_table] }}{{ $v->translation ?? $v->id }}" target="_blank">
+                  <h3>{{ $page * $limit + ($key + 1) . '. ' }}{{ $langSt($v->name) }}</h3>
 
                   <p>
                     {!! mb_substr(htmlspecialchars(strip_tags($langSt($v->text))), 0, 300, 'UTF-8') !!}
@@ -65,7 +75,7 @@
                   <li class="nav-btn next">
                     <a href="/search/{{ $v }}?q={{ $q }}" class="page-one next">
                       <svg>
-                        <use xlink:href="i/mages/svg/sprite.svg#arrow-right"></use>
+                        <use xlink:href="/images/svg/sprite.svg#arrow-right"></use>
                       </svg>
                     </a>
                   </li>

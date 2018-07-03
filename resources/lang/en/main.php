@@ -263,4 +263,5 @@ We will contact you shortly!',
   'request_form'                             => 'Request Form',
   'consultation_form'                        => 'Consultation Form',
   'contact_form'                             => 'Contact Form',
+  'friend_form '                             => 'Friend Form',
 ];

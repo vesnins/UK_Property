@@ -259,4 +259,5 @@ return [
   'request_form'                             => 'Форма подбора',
   'consultation_form'                        => 'Форма Консультации',
   'contact_form'                             => 'Форма в Контактах',
+  'friend_form '                             => 'Форма Поделиться другу',
 ];

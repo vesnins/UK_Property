@@ -1165,7 +1165,7 @@ class MainController extends Controller
   public function search($page = 0)
   {
     $data  = $this->helper->duplicate_data();
-    $limit = 4;
+    $limit = 12;
     $page  = $page * $limit;
     $q     = $this->request['q'];
     $count = 0;
@@ -1179,9 +1179,49 @@ class MainController extends Controller
 			 str.text COLLATE utf8_general_ci as text')) . '
 			FROM str
 			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
+
+			UNION ALL
+
+			(SELECT
+			 ' . ($count ? 'COUNT(catalog_buy.id) AS count' : ('catalog_buy.id COLLATE utf8_general_ci as id,
+			 catalog_buy.name COLLATE utf8_general_ci as name,
+			 catalog_buy.name_table COLLATE utf8_general_ci as name_table,
+			 catalog_buy.text COLLATE utf8_general_ci as text')) . '
+			FROM catalog_buy
+			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
+
+			UNION ALL
+
+			(SELECT
+			 ' . ($count ? 'COUNT(catalog_development_projects.id) AS count' : ('catalog_development_projects.id COLLATE utf8_general_ci as id,
+			 catalog_development_projects.name COLLATE utf8_general_ci as name,
+			 catalog_development_projects.name_table COLLATE utf8_general_ci as name_table,
+			 catalog_development_projects.text COLLATE utf8_general_ci as text')) . '
+			FROM catalog_development_projects
+			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
 			
 			UNION ALL
-			
+
+			(SELECT
+			 ' . ($count ? 'COUNT(catalog_new_building.id) AS count' : ('catalog_new_building.id COLLATE utf8_general_ci as id,
+			 catalog_new_building.name COLLATE utf8_general_ci as name,
+			 catalog_new_building.name_table COLLATE utf8_general_ci as name_table,
+			 catalog_new_building.text COLLATE utf8_general_ci as text')) . '
+			FROM catalog_new_building
+			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
+
+			UNION ALL
+
+			(SELECT
+			 ' . ($count ? 'COUNT(catalog_rent.id) AS count' : ('catalog_rent.id COLLATE utf8_general_ci as id,
+			 catalog_rent.name COLLATE utf8_general_ci as name,
+			 catalog_rent.name_table COLLATE utf8_general_ci as name_table,
+			 catalog_rent.text COLLATE utf8_general_ci as text')) . '
+			FROM catalog_rent
+			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
+
+			UNION ALL
+
 			(SELECT
 		 ' . ($count ? 'COUNT(blog.id) AS count' : ('blog.id COLLATE utf8_general_ci as id,
 			 blog.name COLLATE utf8_general_ci as name,
