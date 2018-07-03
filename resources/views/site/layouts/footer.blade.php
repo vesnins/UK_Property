@@ -175,19 +175,19 @@
 
         <form action="#" class="validate-form">
           <div class="input-holder">
-            <input type="text" name="fullName" placeholder="@lang('main.full_name') *" />
+            <input type="text" name="full_name" placeholder="@lang('main.full_name') *" />
           </div>
 
           <div class="input-holder">
-            <input type="email" placeholder="Email" />
+            <input type="email" name="email" placeholder="Email" />
           </div>
 
           <div class="input-holder">
-            <input type="tel" name="phone" placeholder="@lang('main.phone_number') *" />
+            <input type="tel" name="phone_number" placeholder="@lang('main.phone_number') *" />
           </div>
 
           <div class="input-holder">
-            <textarea placeholder="@lang('main.write_here')"></textarea>
+            <textarea name="write_here" placeholder="@lang('main.write_here')"></textarea>
           </div>
 
           <div class="input-holder">
@@ -209,7 +209,17 @@
           </div>
 
           <div class="text-center">
+            <input type="hidden" name="current_url" value="{{ \URL::full() }}" />
+            <input type="hidden" name="type" value="consultation_form" />
             <input class="button" type="submit" value="send" />
+          </div>
+
+          <div class="success-message">
+            <div class="flex-container">
+              <div class="align-box">
+                <h4 class="text-center">{!! $langSt($params['consultation_form_title']['key']) !!}</h4>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -217,25 +227,6 @@
   </div>
 </div>
 
-<div class="modal fade success-message" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <svg>
-            <use xlink:href="/images/svg/sprite.svg#close-icon"></use>
-          </svg>
-        </button>
-
-        <div class="decor-box" style="background-image: url('/images/decor/img_14.jpg')"></div>
-        <p>&nbsp;</p>
-        <h3 class="text-center">Your request has been sent!</h3>
-        <h4 class="text-center">Our specialists will contact you!</h4>
-        <p>&nbsp;</p>
-      </div>
-    </div>
-  </div>
-</div>
 <script src="/js/jquery-1.12.4.min.js"></script>
 <script>
   if(!window.jQuery) document.write('<script src="/js/jquery-1.12.4.min.js"><\/script>');

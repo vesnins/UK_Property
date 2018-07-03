@@ -277,6 +277,7 @@
         rules: {
           phone           : "required",
           name            : "required",
+          full_name       : "required",
           first_name      : "required",
           second_name     : "required",
           price_from      : "required",
@@ -303,6 +304,7 @@
           phone           : "purpose of error",
           email           : "purpose of error",
           name            : "purpose of error",
+          full_name       : "purpose of error",
           first_name      : "purpose of error",
           second_name     : "purpose of error",
           price_from      : "purpose of error",

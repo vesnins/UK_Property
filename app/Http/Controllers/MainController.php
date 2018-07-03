@@ -1393,6 +1393,21 @@ class MainController extends Controller
       );
     }
 
+    if($type == 'consultation_form') {
+      $title = __('main.consultation_form_admin');
+
+      // Отправка уведомления
+      Mail::send(
+        'emails.' . $type,
+        array_merge($form_data, $params),
+
+        function($m) use ($params, $param, $title, $from, $form_data) {
+          $m->from($from, $title);
+          $m->to(trim($form_data['email']), 'no-realy')->subject($title);
+        }
+      );
+    }
+
     $params['admin_text']  = __('main.' . $type);
 
     // Отправка уведомления администратору
@@ -1425,7 +1440,7 @@ class MainController extends Controller
 //    $data['admin_text'] = '';
 
 
-    return $this->base->view_s('emails.request_form', $data);
+    return $this->base->view_s('emails.consultation_form', $data);
   }
 
   /**
