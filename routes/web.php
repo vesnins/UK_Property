@@ -13,6 +13,9 @@ Route::group(
     Route::get('/about-company', 'MainController@about_company');
     Route::get('/portfolio/{page?}', 'MainController@portfolio');
 
+
+    Route::get('/form', 'MainController@form');
+
     // Catalog
     Route::get('/catalog/{name?}/{id?}', 'MainController@catalog');
     Route::post('/_tools/search_render_catalog', 'MainController@search_render_catalog');

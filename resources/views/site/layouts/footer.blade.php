@@ -77,7 +77,7 @@
           @include('site.block.subscribe_form', ['send' => 'Ok'])
 
           <label class="checkbox-label">
-            <input type="checkbox" name="checkbox" checked />
+            <input type="checkbox" name="terms_conditions" checked />
             <span>
               @lang('main.i_have_read_and_agree_to_the')
               <a href="/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
@@ -87,7 +87,7 @@
           </label>
 
           <label class="checkbox-label">
-            <input type="checkbox" checked />
+            <input type="checkbox" name="news_updates" checked />
             <span>@lang('main.text_mail_sending')</span>
           </label>
 
@@ -192,7 +192,7 @@
 
           <div class="input-holder">
             <label class="checkbox-label">
-              <input type="checkbox" name="checkbox" checked />
+              <input type="checkbox" name="terms_conditions" checked />
 
               <span>
                 @lang('main.i_have_read_and_agree_to_the')
@@ -203,7 +203,7 @@
             </label>
 
             <label class="checkbox-label">
-              <input type="checkbox" checked />
+              <input type="checkbox" name="news_updates" checked />
               <span>@lang('main.text_mail_sending')</span>
             </label>
           </div>

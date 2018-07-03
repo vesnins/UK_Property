@@ -6,7 +6,8 @@
         <td style="height: 20px; font-size: 20px; line-height: 20px;">
           <img width="20" height="20" title="OK" alt="OK"
             src="{{ env('APP_URL') }}/images/check.png"
-            style="border:none; max-width: 20px; height: auto; max-height: 20px;">
+            style="border:none; max-width: 20px; height: auto; max-height: 20px;"
+          />
         </td>
         <td
           style="font-size: 15px; line-height: 18px; padding: 10px 0; font-family:Verdana, Arial, sans-serif; color:#30343f; text-align: left;">
@@ -20,9 +21,17 @@
       </tr>
       <tr>
         <td style="height: 20px; font-size: 20px; line-height: 20px;">
-          <img width="20" height="20" title="OK" alt="OK"
-            src="{{ env('APP_URL') }}/images/check.png"
-            style="border:none; max-width: 20px; height: auto; max-height: 20px;">
+          @if(($news_updates ?? '') == 'on')
+            <img width="20" height="20" title="OK" alt="OK"
+              src="{{ env('APP_URL') }}/images/check.png"
+              style="border:none; max-width: 20px; height: auto; max-height: 20px;"
+            />
+          @else
+            <img width="20" height="20" title="OK" alt="OK"
+              src="{{ env('APP_URL') }}/images/no_check.png"
+              style="border:none; max-width: 20px; height: auto; max-height: 20px;"
+            />
+          @endif
         </td>
         <td
           style="font-size: 15px; line-height: 18px; padding: 10px 0; font-family:Verdana, Arial, sans-serif; color:#30343f; text-align: left;">
