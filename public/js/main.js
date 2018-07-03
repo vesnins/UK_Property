@@ -977,7 +977,7 @@
     });
   }
 
-  function additionalContactInfo() {
+  (function() {
     var
       collapseBox = $('form .collapse-input-group');
 
@@ -988,7 +988,7 @@
         collapseBox.slideUp();
       }
     });
-  }
+  })();
 
   var
     customSelect = $('.selectpicker');

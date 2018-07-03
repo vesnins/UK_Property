@@ -155,7 +155,9 @@ var
               catAll.selectCatalog();
             }
 
-            catAll.addMarker();
+            if(catAll.isLoad)
+              catAll.addMarker();
+
             $('.product-details').animate({opacity: 1}, 150);
           }, 200)
         }
@@ -211,6 +213,9 @@ var
     },
 
     initMap: function() {
+      if(!_.isFunction(google))
+        return false;
+
       $('#map').height($(window).height() - 102);
 
       var

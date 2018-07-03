@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Classes\DynamicModel;
 use App\Modules\Admin\Classes\Base;
-use App\Modules\Admin\Http\Controllers\FilesController;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\URL;
 
 class MainController extends Controller
 {
@@ -1342,11 +1340,11 @@ class MainController extends Controller
     foreach($form as $k => $v)
       $form_data[$k] = (int) $v == -1 ? '' : $v;
 
-//    echo '<pre>';
-//    print_r($form);
-//    echo '</pre>';
-//
-//    exit;
+    //    echo '<pre>';
+    //    print_r($form);
+    //    echo '</pre>';
+    //
+    //    exit;
 
     if($type == 'subscription_form') {
       $title = __('main.subscription_admin');
@@ -1423,7 +1421,79 @@ class MainController extends Controller
       );
     }
 
-    $params['admin_text']  = __('main.' . $type);
+    if($type == 'friend_form') {
+      $title     = __('main.send_compilation_friend_admin');
+      $cart_data = [];
+      $cart      = array_values($this->requests->session()->get('cart') ?? []);
+
+      for($i = 0; count($cart ?? []) > $i; $i++)
+        $cart_data[$cart[$i]['name_url']][] = $cart[$i]['id'] ?? 0;
+
+      foreach($cart_data as $k => $ids) {
+        $filters = $this->_catalog_array($k);
+
+        if($filters) {
+          $query = $this->dynamic->t($filters['table']);
+
+          if(!empty($ids))
+            $query = $query->whereIn("{$filters['table']}.id", $ids);
+
+          $catalog = $query
+            ->join(
+              'files',
+
+              function($join) use ($filters) {
+                $join->type = 'LEFT OUTER';
+                $join->on("{$filters['table']}.id", '=', 'files.id_album')
+                  ->where('files.name_table', '=', "{$filters['table']}album")
+                  ->where('files.main', '=', 1);
+              }
+            )
+            ->select("{$filters['table']}.*", 'files.file', 'files.crop')
+            ->get()
+            ->toArray();
+
+          $params['objects'] = ($data['catalog'] ?? []) +
+            array_map(
+              function($v) use ($k) {
+                return array_merge($v, ['name_url' => $k]);
+              }, $catalog
+            );
+        }
+      }
+
+      // Отправка уведомления
+      foreach($form_data['friend_email'] as $em) {
+        $form_data['email'] = $em;
+        Mail::send(
+          'emails.' . $type,
+          array_merge($form_data, $params),
+
+          function($m) use ($params, $param, $title, $from, $form_data) {
+            $m->from($from, $title);
+            $m->to(trim($form_data['email']), 'no-realy')->subject($title);
+          }
+        );
+      }
+
+      if(isset($form_data['send_agent'])) {
+        $title                   = __('main.send_compilation_friend_admin');
+        $params['is_agent_form'] = true;
+
+        // Отправка уведомления
+        Mail::send(
+          'emails.' . $type,
+          array_merge($form_data, $params),
+
+          function($m) use ($params, $param, $title, $from, $form_data) {
+            $m->from($from, $title);
+            $m->to(trim($params['email_notifications_agent']), 'no-realy')->subject($title);
+          }
+        );
+      }
+    }
+
+    $params['admin_text'] = __('main.' . $type);
 
     // Отправка уведомления администратору
     foreach(explode(',', $params['langSt']($params['params']['email_notifications']['key'])) as $mail)
@@ -1437,25 +1507,10 @@ class MainController extends Controller
         }
       );
 
-//        echo '<pre>';
-//        print_r($form);
-//        echo '</pre>';
-//
-//        exit;
-
     $ret['result'] = 'ok';
     echo json_encode($ret);
 
     exit;
-  }
-
-  public function form()
-  {
-    $data = [];
-//    $data['admin_text'] = '';
-
-
-    return $this->base->view_s('emails.consultation_form', $data);
   }
 
   /**
@@ -1484,32 +1539,42 @@ class MainController extends Controller
       $data['meta_c'] = $this->base->getMeta($data, 'page');
 
       if($data['page']['area_from']) {
-        $where_similar = array_merge($where_similar, [
+        $where_similar = array_merge(
+          $where_similar, [
           ["{$filters['table']}.area_from", '>', (int) $data['page']['area_from'] - 20],
           ["{$filters['table']}.area_to", '<', (int) $data['page']['area_to'] + 20],
-        ]);
+        ]
+        );
       } else {
-        $where_similar = array_merge($where_similar, [
+        $where_similar = array_merge(
+          $where_similar, [
           ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
           ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
-        ]);
+        ]
+        );
       }
 
       if($data['page']['price_money_from']) {
-        $where_similar = array_merge($where_similar, [
+        $where_similar = array_merge(
+          $where_similar, [
           ["{$filters['table']}.price_money_from", '>', (int) $data['page']['price_money_from'] - 250000],
           ["{$filters['table']}.price_money_to", '<', (int) $data['page']['price_money_to'] + 250000],
-        ]);
+        ]
+        );
       } else {
-        $where_similar = array_merge($where_similar, [
+        $where_similar = array_merge(
+          $where_similar, [
           ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
           ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
-        ]);
+        ]
+        );
       }
 
-      $where_similar = array_merge($where_similar, [
+      $where_similar = array_merge(
+        $where_similar, [
         ["{$filters['table']}.cat_location", '=', $data['page']['cat_location']],
-      ]);
+      ]
+      );
 
       $data['similar_objects'] = $this->dynamic->t($filters['table'])
         ->where($where_similar)
@@ -1634,7 +1699,7 @@ class MainController extends Controller
                 [
                   ['active', '=', 1],
 
-                  ["{$data['filters']['table']}.{$filter['column']}", '=', $f['id']]
+                  ["{$data['filters']['table']}.{$filter['column']}", '=', $f['id']],
                 ]
               )
               ->orWhere(
@@ -1644,8 +1709,8 @@ class MainController extends Controller
                   [
                     "{$data['filters']['table']}.{$filter['column']}",
                     'like',
-                    '%"' . $f['id'] . '"%'
-                  ]
+                    '%"' . $f['id'] . '"%',
+                  ],
                 ]
               )
               ->select("{$data['filters']['table']}.{$filter['column']}")
@@ -1672,29 +1737,30 @@ class MainController extends Controller
 
           $ids = array_unique($ids);
 
-            foreach($tmp as $k => $ff) {
-              if(array_search($ff['id'], $ids) !== false)
-                if(!isset($data['filters']['filters'][$key]['data'][$ff['id']]))
-                  $data['filters']['filters'][$key]['data'][$ff['id']] = $ff;
-            }
+          foreach($tmp as $k => $ff) {
+            if(array_search($ff['id'], $ids) !== false)
+              if(!isset($data['filters']['filters'][$key]['data'][$ff['id']]))
+                $data['filters']['filters'][$key]['data'][$ff['id']] = $ff;
+          }
 
-            usort(
-              $data['filters']['filters'][$key]['data'],
+          usort(
+            $data['filters']['filters'][$key]['data'],
 
-              function($a, $b) {
-                if($a['id'] == $b['id'])
-                  return ($a['id'] < $b['id']) ? -1 : 1;
-
+            function($a, $b) {
+              if($a['id'] == $b['id'])
                 return ($a['id'] < $b['id']) ? -1 : 1;
-              });
 
-            for($i = 1, $j = 0, $n = count($data['filters']['filters'][$key]['data']); $i < $n; ++$i) {
-              if($data['filters']['filters'][$key]['data'][$i]['id'] == $data['filters']['filters'][$key]['data'][$j]['id']) {
-                unset($data['filters']['filters'][$key]['data'][$i]);
-              } else {
-                $j = $i;
-              }
+              return ($a['id'] < $b['id']) ? -1 : 1;
             }
+          );
+
+          for($i = 1, $j = 0, $n = count($data['filters']['filters'][$key]['data']); $i < $n; ++$i) {
+            if($data['filters']['filters'][$key]['data'][$i]['id'] == $data['filters']['filters'][$key]['data'][$j]['id']) {
+              unset($data['filters']['filters'][$key]['data'][$i]);
+            } else {
+              $j = $i;
+            }
+          }
           // конец жопы
         }
 
@@ -1752,7 +1818,7 @@ class MainController extends Controller
       ];
 
       if(isset($form['price_money_from'])) {
-//        $where = array_merge($where, [["{$filters['table']}.price_money_from", '>=', $form['price_money_from']]]);
+        //        $where = array_merge($where, [["{$filters['table']}.price_money_from", '>=', $form['price_money_from']]]);
         $where = array_merge($where, [["{$filters['table']}.price_money_to", '>=', $form['price_money_from']]]);
         $where = array_merge($where, [["{$filters['table']}.price_money_to", '<=', $form['price_money_to']]]);
 
@@ -1768,8 +1834,8 @@ class MainController extends Controller
       }
 
       if(isset($form['bedrooms_from'])) {
-//        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '>=', $form['bedrooms_from']]]);
-//        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '<=', $form['bedrooms_to']]]);
+        //        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '>=', $form['bedrooms_from']]]);
+        //        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '<=', $form['bedrooms_to']]]);
 
         $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '>=', $form['bedrooms_from']]]);
         $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '<=', $form['bedrooms_to']]]);
@@ -1791,7 +1857,7 @@ class MainController extends Controller
           $form['area_to']   = round($form['area_to'] / 3.28);
         }
 
-//        $where = array_merge($where, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
+        //        $where = array_merge($where, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
         $where = array_merge($where, [["{$filters['table']}.area_to", '>=', $form['area_from']]]);
         $where = array_merge($where, [["{$filters['table']}.area_to", '<=', $form['area_to']]]);
 
@@ -1813,8 +1879,7 @@ class MainController extends Controller
 
       $catalog_sql = $this->dynamic->t($filters['table'])
         ->where($where)
-        ->orWhere($or_where)
-      ;
+        ->orWhere($or_where);
 
       if(isset($form['cat_location']))
         $catalog_sql = $catalog_sql->whereIn("{$filters['table']}.cat_location", $form['cat_location']);
@@ -2042,12 +2107,12 @@ class MainController extends Controller
       $data['catalog'] = json_decode(
         json_encode(
           DB::select(
-            $query(false) . ' ORDER BY `id` DESC LIMIT ' . ($page - 1) . ', ' . ($limit) .' ;'
+            $query(false) . ' ORDER BY `id` DESC LIMIT ' . ($page - 1) . ', ' . ($limit) . ' ;'
           )
         ), true
       );
 
-      $data['count']   = DB::select($query(true));
+      $data['count'] = DB::select($query(true));
 
       foreach($data['count'] as $v)
         $count = $count + $v->count;
