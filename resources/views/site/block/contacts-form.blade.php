@@ -17,7 +17,7 @@
 
   <form action="#" class="validate-form">
     <div class="input-holder">
-      <input type="text" name="fullName" placeholder="@lang('main.full_name')" />
+      <input type="text" name="full_name" placeholder="@lang('main.full_name')" />
     </div>
 
     <div class="input-holder">
@@ -25,15 +25,15 @@
     </div>
 
     <div class="input-holder">
-      <input type="tel" name="phone" placeholder="@lang('main.phone_number')" />
+      <input type="tel" name="phone_number" placeholder="@lang('main.phone_number')" />
     </div>
 
     <div class="input-holder">
-      <textarea placeholder="@lang('main.write_here')" name="message"></textarea>
+      <textarea placeholder="@lang('main.write_here')" name="write_here"></textarea>
     </div>
 
     <label class="checkbox-label">
-      <input type="checkbox" name="checkbox" checked />
+      <input type="checkbox" name="terms_conditions" checked />
 
       <span>
         @lang('main.i_have_read_and_agree_to_the')
@@ -44,12 +44,22 @@
     </label>
 
     <label class="checkbox-label">
-      <input type="checkbox" checked />
+      <input type="checkbox" name="news_updates" checked />
       <span>@lang('main.text_mail_sending')</span>
     </label>
 
     <div class="text-center">
+      <input type="hidden" name="current_url" value="{{ \URL::full() }}" />
+      <input type="hidden" name="type" value="consultation_form" />
       <input type="submit" class="button" value="@lang('main.send')" />
+    </div>
+
+    <div class="success-message">
+      <div class="flex-container">
+        <div class="align-box">
+          <h4 class="text-center">{!! $langSt($params['consultation_form_title']['key']) !!}</h4>
+        </div>
+      </div>
     </div>
   </form>
 </div>
