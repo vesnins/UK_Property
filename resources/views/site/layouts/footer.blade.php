@@ -238,7 +238,7 @@
 <script src="/js/mirror/slick.min.js"></script>
 <script src="/js/mirror/bootstrap-slider.min.js"></script>
 <script src="/js/mirror/sticky.compile.js"></script>
-<script src="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/js/mirror/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/js/bootstrap-components/bootstrap-modal.min.js"></script>
 <script src="/js/parallax-js/jquery.parallax-scroll.js"></script>
 <script src="/js/libs/venobox.min.js"></script>
@@ -246,6 +246,7 @@
 <script src="/js/lodash.min.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/ctalog.js"></script>
+<script src="/js/soc.js"></script>
 @stack('footer')
 </body>
 </html>
