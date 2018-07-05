@@ -229,9 +229,11 @@
 
                 <span class="value">
                   @if($page['area_from'] ?? false)
-                    {{ round($page['area_from'] * 3.28, 0) }} - {{ round($page['area_to'] * 3.28, 0) }}
+                    {{ round($page['area_from'] * 10.7638673611111, 0) }}
+                    -
+                    {{ round($page['area_to'] * 10.7638673611111, 0) }}
                   @else
-                    {{ round($page['area'] * 3.28, 0) }}
+                    {{ round($page['area'] * 10.7638673611111, 0) }}
                   @endif
                 </span>
               </td>
