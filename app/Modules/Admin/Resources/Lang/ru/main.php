@@ -134,4 +134,5 @@ return [
   'params_type_object'             => 'Тип объектов',
   'params_type_object_dp'          => 'Тип объектов Д.П.',
   'params_estimated_completion'    => 'Срок сдачи',
+  'params_development_facilities'  => 'Инфраструктура',
 ];

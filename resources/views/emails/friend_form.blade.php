@@ -15,13 +15,36 @@
         <tr>
           <td
             style="color:#000000;  font-family:Verdana, Arial, sans-serif; font-size:15px; line-height: 21px;">
-            {{ str_replace('&&', $your_name . ' ' . $your_surname, $langSt($params['friends_form_text']['key'])) }}
+            @php($n = (!empty($your_name) || !empty($your_surname))
+              ? $your_name . ' ' . $your_surname
+              : "<a style=\"color: #332243\">$email</a>")
+            {!! str_replace('&&', $n, $langSt($params['friends_form_text']['key'])) !!}
           </td>
         </tr>
         </tbody>
       </table>
     </td>
   </tr>
+
+  @if(!empty($comment_text))
+    <tr>
+      <td align="center" style="padding-top: 23px;">
+        <table width="90%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;">
+          <tbody>
+          <tr>
+            <td valign="top" style="height: 21px; font-size: 21px; line-height: 21px;">
+              <img width="26" height="21" title="''" alt="''" src="{{ env('APP_URL') }}/images/quotes.png" style="border:none; max-width: 26px; height: auto; max-height: 21px;">
+            </td>
+
+            <td style="font-size: 15px; line-height: 20px; font-style: italic; padding-left: 30px; font-family:Verdana, Arial, sans-serif; color:#332243; text-align: left;">
+              {{ empty($comment_text) ? '-' : $comment_text }}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  @endif
 
   @if(!empty($message_s))
     <tr>
@@ -185,7 +208,7 @@
             </td>
             <td width="50%"
               style="font-size: 15px; line-height: 18px; padding: 10px 0; font-family:Verdana, Arial, sans-serif; color:#30343f; text-align: left; border-top-width: 1px; border-top-color: #dcbaa1; border-top-style: dashed;">
-              {{ empty($email) ? '-' : $email }}
+              {!! empty($email) ? '-' : "<a style=\"color: #332243\">$email</a>" !!}
             </td>
           </tr>
 

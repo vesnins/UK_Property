@@ -1224,9 +1224,34 @@
     }
 
     .location-info {
-        width: 300px;
-        height: 300px;
-        overflow-y: auto;
+        width: 260px;
+    }
+
+    .location-info .content-box {
+        padding: 15px 0 0;
+    }
+
+    .location-info .price {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .location-info .data-list li:not(:last-child) {
+        margin-bottom: 5px;
+    }
+
+    .location-info h6 {
+        margin-bottom: 5px;
+    }
+
+    .location-info p {
+        display: none;
+    }
+
+    .location-info .data-list {
+        padding: 5px 0;
+        margin-bottom: 5px;
+        font-size: 15px;
     }
 
     .location-info .img-box {
@@ -1483,7 +1508,7 @@
     }
 
     .product-grid-section .sidebar .scroll-box {
-        max-height: 100%;
+        max-height: initial;
         background: #f5f5f5;
     }
 
@@ -1491,7 +1516,8 @@
         display: block;
     }
 
-    .collapse-menu-holder .hidden-box {
+    .collapse-menu-holder .hidden-box,
+    .collapse-menu-holder .product-filter-form {
         display: none;
     }
 

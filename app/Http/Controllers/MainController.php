@@ -1177,6 +1177,7 @@ class MainController extends Controller
 			 ' . ($count ? 'COUNT(str.id) AS count' : ('str.id COLLATE utf8_general_ci as id,
 			 str.name COLLATE utf8_general_ci as name,
 			 str.name_table COLLATE utf8_general_ci as name_table,
+			 str.translation COLLATE utf8_general_ci as translation,
 			 str.text COLLATE utf8_general_ci as text')) . '
 			FROM str
 			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
@@ -1187,6 +1188,7 @@ class MainController extends Controller
 			 ' . ($count ? 'COUNT(catalog_buy.id) AS count' : ('catalog_buy.id COLLATE utf8_general_ci as id,
 			 catalog_buy.name COLLATE utf8_general_ci as name,
 			 catalog_buy.name_table COLLATE utf8_general_ci as name_table,
+			 catalog_buy.translation COLLATE utf8_general_ci as translation,
 			 catalog_buy.text COLLATE utf8_general_ci as text')) . '
 			FROM catalog_buy
 			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
@@ -1197,6 +1199,7 @@ class MainController extends Controller
 			 ' . ($count ? 'COUNT(catalog_development_projects.id) AS count' : ('catalog_development_projects.id COLLATE utf8_general_ci as id,
 			 catalog_development_projects.name COLLATE utf8_general_ci as name,
 			 catalog_development_projects.name_table COLLATE utf8_general_ci as name_table,
+			 catalog_development_projects.translation COLLATE utf8_general_ci as translation,
 			 catalog_development_projects.text COLLATE utf8_general_ci as text')) . '
 			FROM catalog_development_projects
 			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
@@ -1207,6 +1210,7 @@ class MainController extends Controller
 			 ' . ($count ? 'COUNT(catalog_new_building.id) AS count' : ('catalog_new_building.id COLLATE utf8_general_ci as id,
 			 catalog_new_building.name COLLATE utf8_general_ci as name,
 			 catalog_new_building.name_table COLLATE utf8_general_ci as name_table,
+			 catalog_new_building.translation COLLATE utf8_general_ci as translation,
 			 catalog_new_building.text COLLATE utf8_general_ci as text')) . '
 			FROM catalog_new_building
 			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
@@ -1217,8 +1221,31 @@ class MainController extends Controller
 			 ' . ($count ? 'COUNT(catalog_rent.id) AS count' : ('catalog_rent.id COLLATE utf8_general_ci as id,
 			 catalog_rent.name COLLATE utf8_general_ci as name,
 			 catalog_rent.name_table COLLATE utf8_general_ci as name_table,
+			 catalog_rent.translation COLLATE utf8_general_ci as translation,
 			 catalog_rent.text COLLATE utf8_general_ci as text')) . '
 			FROM catalog_rent
+			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
+
+			UNION ALL
+
+			(SELECT
+			 ' . ($count ? 'COUNT(services.id) AS count' : ('services.id COLLATE utf8_general_ci as id,
+			 services.name COLLATE utf8_general_ci as name,
+			 services.name_table COLLATE utf8_general_ci as name_table,
+			 services.translation COLLATE utf8_general_ci as translation,
+			 services.text COLLATE utf8_general_ci as text')) . '
+			FROM services
+			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
+
+			UNION ALL
+
+			(SELECT
+			 ' . ($count ? 'COUNT(main.id) AS count' : ('main.id COLLATE utf8_general_ci as id,
+			 main.name COLLATE utf8_general_ci as name,
+			 main.name_table COLLATE utf8_general_ci as name_table,
+			 main.translation COLLATE utf8_general_ci as translation,
+			 main.text COLLATE utf8_general_ci as text')) . '
+			FROM main
 			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')
 
 			UNION ALL
@@ -1227,6 +1254,7 @@ class MainController extends Controller
 		 ' . ($count ? 'COUNT(blog.id) AS count' : ('blog.id COLLATE utf8_general_ci as id,
 			 blog.name COLLATE utf8_general_ci as name,
 			 blog.name_table COLLATE utf8_general_ci as name_table,
+			 blog.translation COLLATE utf8_general_ci as translation,
 			 blog.text COLLATE utf8_general_ci as text')) . '
 			FROM blog
 			WHERE `text` LIKE \'%' . trim($q) . '%\' OR `name` LIKE \'%' . trim($q) . '%\')';
@@ -1410,9 +1438,9 @@ class MainController extends Controller
         'emails.' . $type,
         array_merge($form_data, $params),
 
-        function($m) use ($params, $param, $title, $from, $form_data) {
-          $m->from($from, $title);
-          $m->to(trim($form_data['email']), 'no-realy')->subject($title);
+        function($m) use ($params, $param, $from, $form_data) {
+          $m->from($from, __('main.uk_property_advisors'));
+          $m->to(trim($form_data['email']), 'no-realy')->subject(__('main.uk_property_advisors'));
         }
       );
     }
@@ -1425,9 +1453,9 @@ class MainController extends Controller
         'emails.' . $type,
         array_merge($form_data, $params),
 
-        function($m) use ($params, $param, $title, $from, $form_data) {
-          $m->from($from, $title);
-          $m->to(trim($form_data['email']), 'no-realy')->subject($title);
+        function($m) use ($params, $param, $from, $form_data) {
+          $m->from($from, __('main.uk_property_advisors'));
+          $m->to(trim($form_data['email']), 'no-realy')->subject(__('main.uk_property_advisors'));
         }
       );
     }
@@ -1440,9 +1468,9 @@ class MainController extends Controller
         'emails.' . $type,
         array_merge($form_data, $params),
 
-        function($m) use ($params, $param, $title, $from, $form_data) {
-          $m->from($from, $title);
-          $m->to(trim($form_data['email']), 'no-realy')->subject($title);
+        function($m) use ($params, $param, $from, $form_data) {
+          $m->from($from, __('main.uk_property_advisors'));
+          $m->to(trim($form_data['email']), 'no-realy')->subject(__('main.uk_property_advisors'));
         }
       );
     }
@@ -1455,9 +1483,9 @@ class MainController extends Controller
         'emails.' . $type,
         array_merge($form_data, $params),
 
-        function($m) use ($params, $param, $title, $from, $form_data) {
-          $m->from($from, $title);
-          $m->to(trim($form_data['email']), 'no-realy')->subject($title);
+        function($m) use ($params, $param, $from, $form_data) {
+          $m->from($from, __('main.uk_property_advisors'));
+          $m->to(trim($form_data['email']), 'no-realy')->subject(__('main.uk_property_advisors'));
         }
       );
     }
@@ -1510,9 +1538,9 @@ class MainController extends Controller
           'emails.' . $type,
           array_merge($form_data, $params),
 
-          function($m) use ($params, $param, $title, $from, $form_data) {
-            $m->from($from, $title);
-            $m->to(trim($form_data['email']), 'no-realy')->subject($title);
+          function($m) use ($params, $param, $from, $form_data) {
+            $m->from($from, __('main.uk_property_advisors'));
+            $m->to(trim($form_data['email']), 'no-realy')->subject(__('main.uk_property_advisors'));
           }
         );
       }
@@ -1522,15 +1550,16 @@ class MainController extends Controller
         $params['is_agent_form'] = true;
 
         // Отправка уведомления
-        Mail::send(
-          'emails.' . $type,
-          array_merge($form_data, $params),
+        foreach(explode(',', $params['langSt']($params['params']['email_notifications_agent']['key'])) as $mail)
+          Mail::send(
+            'emails.' . $type,
+            array_merge($form_data, $params),
 
-          function($m) use ($params, $param, $title, $from, $form_data) {
-            $m->from($from, $title);
-            $m->to(trim($params['email_notifications_agent']), 'no-realy')->subject($title);
-          }
-        );
+            function($m) use ($params, $param, $title, $from, $form_data, $mail) {
+              $m->from($from, $title);
+              $m->to(trim($mail), 'no-realy')->subject($title);
+            }
+          );
       }
     }
 
@@ -1845,6 +1874,10 @@ class MainController extends Controller
     for($i = 0; count($cart ?? []) > $i; $i++)
       $favorites_id[] = $cart[$i]['id'];
 
+//    echo '<pre>';
+//    print_r($form);
+//    echo '</pre>';
+
     if($form['name_url'] && !$session) {
       $filters = $this->_catalog_array($form['name_url']);
 
@@ -1894,8 +1927,8 @@ class MainController extends Controller
 
       if(isset($form['area_from'])) {
         if(($form['type_ft_m2'] ?? false) === 'ft') {
-          $form['area_from'] = round($form['area_from'] / 3.28);
-          $form['area_to']   = round($form['area_to'] / 3.28);
+          $form['area_from'] = round($form['area_from'] / 10.7638673611111);
+          $form['area_to']   = round($form['area_to'] / 10.7638673611111);
         }
 
         //        $where = array_merge($where, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
@@ -1908,8 +1941,8 @@ class MainController extends Controller
       // Для фиксированной площади
       if(isset($form['area'])) {
         if(($form['type_ft_m2'] ?? false) === 'ft') {
-          $form['area_from_fixed'] = round($form['area_from_fixed'] / 3.28) - 1;
-          $form['area_to_fixed']   = round($form['area_to_fixed'] / 3.28) + 2;
+          $form['area_from_fixed'] = round($form['area_from_fixed'] / 10.7638673611111) - 1;
+          $form['area_to_fixed']   = round($form['area_to_fixed'] / 10.7638673611111) + 2;
         }
 
         $where = array_merge($where, [["{$filters['table']}.area", '>=', $form['area_from_fixed']]]);
@@ -1919,8 +1952,7 @@ class MainController extends Controller
       }
 
       $catalog_sql = $this->dynamic->t($filters['table'])
-        ->where($where)
-        ->orWhere($or_where);
+        ->where($where);
 
       if(isset($form['cat_location']))
         $catalog_sql = $catalog_sql->whereIn("{$filters['table']}.cat_location", $form['cat_location']);
@@ -1945,6 +1977,8 @@ class MainController extends Controller
 
           function($query) use ($form, $filters) {
             for($i = 0; $i < count($form['development_facilities']); $i++) {
+              print_r('%"' . $form['development_facilities'][$i] . '"%');
+
               $query->orwhere(
                 "{$filters['table']}.development_facilities",
                 'like',
@@ -1967,7 +2001,8 @@ class MainController extends Controller
           }
         );
 
-      $order_by = $filters['group']["group_{$form['group']}_{$form['sort_by']}"];
+      $catalog_sql = $catalog_sql->orWhere($or_where);
+      $order_by    = $filters['group']["group_{$form['group']}_{$form['sort_by']}"];
 
       if(is_array($order_by))
         $order_by = DB::raw("{$order_by['mode']}({$filters['table']}.{$order_by['name']})");

@@ -32,7 +32,7 @@
           </td>
           <td width="50%"
             style="font-size: 15px; line-height: 18px; padding: 10px 0; font-family:Verdana, Arial, sans-serif; color:#30343f; text-align: left; border-top-width: 1px; border-top-color: #dcbaa1; border-top-style: dashed;">
-            {{ empty($email) ? '-' : $email}}
+            {!! empty($email) ? '-' : "<a style=\"color: #332243\">$email</a>" !!}
           </td>
         </tr>
 

@@ -26,21 +26,26 @@
 
           <div class="articles">
             @foreach($search as $key => $v)
+{{--              @php(print_r($v))--}}
               <article class="article">
                 @php(
                   $u = [
-                    'str'                          => '/blog/',
+                    'str'                          => '/',
                     'str_p'                        => '/pages/',
                     'blog'                         => '/blog/',
                     'catalog_new_building'         => '/catalog/invest-in-a-new-building/',
                     'catalog_development_projects' => '/catalog/invest-in-development-projects/',
                     'catalog_buy'                  => '/catalog/buy/',
                     'catalog_rent'                 => '/catalog/rent/',
+                    'services'                     => '/services/',
+                    'main'                         => '/',
                   ]
                 )
 
-                <a href="{{ $u[$v->name_table] }}{{ $v->translation ?? $v->id }}" target="_blank">
-                  <h3>{{ $page * $limit + ($key + 1) . '. ' }}{{ $langSt($v->name) }}</h3>
+                @php($translation = ($v->translation !== '0' && $v->translation !== '') ? $v->translation : false)
+
+                <a href="{{ $u[$v->name_table] }}{{ $translation or $v->id }}" target="_blank">
+                  <h3>{{ $page * $limit + ($key + 1 - $limit) . '. ' }}{{ $langSt($v->name) }}</h3>
 
                   <p>
                     {!! mb_substr(htmlspecialchars(strip_tags($langSt($v->text))), 0, 300, 'UTF-8') !!}

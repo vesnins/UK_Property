@@ -142,8 +142,8 @@
                     icon    : {
                       url:  window.location.origin + '/images/pin.png',
                       scaledSize: new google.maps.Size(60, 66), // scaled size
-                      origin: new google.maps.Point(0,0), // origin
-                      anchor: new google.maps.Point(0, 0) // anchor
+                      origin: new google.maps.Point(0, 0), // origin
+                      anchor: new google.maps.Point(30, 33) // anchor
                     },
                   });
                   var
@@ -323,7 +323,13 @@
                   <tr>
                     <td>@lang('main.availability_date')</td>
 
-                    <td>{{ $page['availability_date'] }}</td>
+                    <td>
+                      @php($date = explode('-', $page['availability_date']))
+
+                      <time datetime="{{ $page['availability_date'] }}">
+                        {{ $date['0'] . '.' . $date['1'] . '.' . $date['2'] }}
+                      </time>
+                    </td>
                   </tr>
                 @endif
               </table>

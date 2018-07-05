@@ -682,6 +682,7 @@
       "coordinates",
       "location",
       "album",
+      "plan",
       "developer",
       "post_code",
       "number_object",
@@ -742,7 +743,7 @@
     "small_height"    : "350",
     "sort"            : "1",
     "views_module"    : "table",
-    "translate_key"   : "",
+    "translate_key"   : "params_cat_location",
     "menu_table_name" : "params_cat_location"
   },
   {
@@ -812,7 +813,7 @@
     "small_height"    : "350",
     "sort"            : "1",
     "views_module"    : "table",
-    "translate_key"   : "",
+    "translate_key"   : "params_development_facilities",
     "menu_table_name" : "params_development_facilities"
   },
   {
@@ -1044,6 +1045,7 @@
       "coordinates",
       "location",
       "album",
+      "plan",
       "developer",
       "post_code",
       "number_object",
@@ -1123,6 +1125,7 @@
       "coordinates",
       "location",
       "album",
+      "plan",
       "developer",
       "post_code",
       "number_object",

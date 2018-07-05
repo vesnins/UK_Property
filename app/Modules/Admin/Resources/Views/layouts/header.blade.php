@@ -60,7 +60,7 @@
 			],
 
 			toolbar: "insertfile undo redo | styleselect | bold italic blockquote |" +
-			" bullist numlist | link | media image | alignleft aligncenter alignright alignjustify | code",
+			" bullist numlist | removeformat | link | media image | alignleft aligncenter alignright alignjustify | code",
 
 			images_upload_handler: function(blobInfo, success, failure) {
 				var

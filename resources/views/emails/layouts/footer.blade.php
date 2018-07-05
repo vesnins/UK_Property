@@ -13,9 +13,9 @@
           style="font-size: 15px; line-height: 18px; padding: 10px 0; font-family:Verdana, Arial, sans-serif; color:#30343f; text-align: left;">
           <span>
             @lang('main.i_have_read_and_agree_to_the')
-            <a href="{{ env('APP_URL') }}/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
+            <a style="color: #332243" href="{{ env('APP_URL') }}/terms-conditions" target="_blank">@lang('main._terms_&_Conditions_')</a>
             @lang('main._and_')
-            <a href="{{ env('APP_URL') }}/privacy-cookies" target="_blank">@lang('main._privacy_policy_')</a>.
+            <a style="color: #332243" href="{{ env('APP_URL') }}/privacy-cookies" target="_blank">@lang('main._privacy_policy_')</a>.
           </span>
         </td>
       </tr>
@@ -24,12 +24,12 @@
           @if(($news_updates ?? '') == 'on')
             <img width="20" height="20" title="OK" alt="OK"
               src="{{ env('APP_URL') }}/images/check.png"
-              style="border:none; max-width: 20px; height: auto; max-height: 20px;"
+              style="border:none; max-width: 20px; height: auto; max-height: 20px; padding-right: 5px"
             />
           @else
             <img width="20" height="20" title="OK" alt="OK"
               src="{{ env('APP_URL') }}/images/no_check.png"
-              style="border:none; max-width: 20px; height: auto; max-height: 20px;"
+              style="border:none; max-width: 20px; height: auto; max-height: 20px; padding-right: 5px"
             />
           @endif
         </td>
@@ -57,7 +57,7 @@
       <tr>
         <td
           style="text-align: center; font-weight: 600;font-size: 14px; line-height: 14px; padding: 10px 0; font-family:Verdana, Arial, sans-serif; color:#332243; text-align: center;">
-          <a href="www.UkPropAdv.com">www.UkPropAdv.com</a>
+          <a style="color: #332243" href="www.UkPropAdv.com?setLang={{ $lang }}">www.UkPropAdv.com</a>
         </td>
       </tr>
       </tbody>

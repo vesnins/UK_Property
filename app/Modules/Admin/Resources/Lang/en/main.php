@@ -14,7 +14,7 @@ return [
   'areYouSure'                     => 'Are you sure?',
   'desktop'                        => 'Desktop',
   'menu'                           => 'Menu',
-  'articles'                       => 'Текстовые страницы',
+  'articles'                       => 'Text pages',
   'news'                           => 'News',
   'seo'                            => 'Seo',
   'users'                          => 'Users',
@@ -134,4 +134,5 @@ return [
   'params_type_object'             => 'Type object',
   'params_type_object_dp'          => 'Type object D.P.',
   'params_estimated_completion'    => 'Completion date',
+  'params_development_facilities'  => 'Infrastructure',
 ];

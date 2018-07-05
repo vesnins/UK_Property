@@ -54,6 +54,17 @@ class PluginsController extends Controller
    * @param array  $params
    * @return string
    */
+  public function plan($field, $table_params = '', $params = [])
+  {
+    return $this->album($field, $table_params, $params);
+  }
+
+  /**
+   * @param        $field
+   * @param string $table_params
+   * @param array  $params
+   * @return string
+   */
   public function img_to_main($field, $table_params = '', $params = [])
   {
     return $this->album($field, $table_params, $params);

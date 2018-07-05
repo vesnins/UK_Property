@@ -1777,12 +1777,19 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     position: relative;
 }
 
+.subscribe-section .subscribe-form .success-message {
+    background: -moz-linear-gradient(left, rgba(58,47,86,1) 0%, rgba(79,64,119,1) 100%);
+    background: -webkit-linear-gradient(left, rgba(58,47,86,1) 0%,rgba(79,64,119,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(58,47,86,1) 0%,rgba(79,64,119,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
 .subscribe-section .subscribe-form .success-message .flex-container {
     padding: 15px 25px;
 }
 
+.subscribe-section .subscribe-form .success-message h4,
 .subscribe-section .subscribe-form .success-message p {
-    color: #240d4d;
+    color: #fff;
 }
 
 .subscribe-form .flex-group {

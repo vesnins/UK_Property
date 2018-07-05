@@ -34,15 +34,15 @@
   @if($v['area_from'] !== null || $v['area_to'] !== null || $v['area'] !== null)
     @if($v['area_from'] ?? false)
       @if($type_ft_m2 == 'ft')
-        @php($v['area_from'] = round($v['area_from'] * 3.28))
-        @php($v['area_from'] = round($v['area_to'] * 3.28))
+        @php($v['area_from'] = round($v['area_from'] * 10.7638673611111))
+        @php($v['area_to'] = round($v['area_to'] * 10.7638673611111))
       @endif
 
       @php($catalog_marker[$k]['area'] = 'S =<div class="s-pl">' . $v['area_from'] . '</div> -
       <div class="s-pl">' . $v['area_to'] . ' </div>' . ($type_ft_m2 == 'ft' ? 'ft²' : 'm²'))
     @else
       @if($type_ft_m2 == 'ft')
-        @php($v['area'] = round($v['area'] * 3.28))
+        @php($v['area'] = round($v['area'] * 10.7638673611111))
       @endif
 
       @php($catalog_marker[$k]['area'] = '<div class="s-pl">' . $v['area'] . '</div>' . ($type_ft_m2 == 'ft' ? 'ft²' : 'm²'))
@@ -125,17 +125,22 @@
           <div class="product-details" style="opacity: 0;">
             @if($val['area_from'] !== null || $val['area_to'] !== null || $val['area'] !== null)
               <div class="cell">
-                @if($val['area_from'] ?? false)
+                @if(!empty($val['area_from']))
                   S =
-                  <div class="s-pl">{{ $val['area_from'] }}</div>
-                  @if($val['area'])
-                    -
-                    <div class="s-pl">{{ $val['area_to'] }}</div>
-                    <span class="s-mf">@lang('main.м_2')</span>
+                  @if($val['area_from'])
+                    <div class="s-pl">{{ $val['area_from']}}</div> -
                   @endif
+                  <div class="s-pl">{{ $val['area_to'] }}</div>
                 @else
-                  S = <div class="s-pl">{{ $val['area'] }}</div>
-                  <span class="s-mf">@lang('main.м_2')</span>
+                  @if(!empty($val['area']))
+                    S = <div class="s-pl">{{ $val['area'] }}</div>
+                  @endif
+                @endif
+
+                @if($type_ft_m2 == 'ft')
+                    <span class="s-mf">@lang('main.ft_2')</span>
+                @else
+                    <span class="s-mf">@lang('main.м_2')</span>
                 @endif
               </div>
             @endif

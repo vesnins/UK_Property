@@ -8,7 +8,7 @@
   <meta content="{{ $meta['description'] ?? '' }}" name="description">
   <meta content="{{ $meta['keywords'] ?? '' }}" name="keywords">
   <meta http-equiv="Last-Modified" content="{{ ($meta['created_at'] ?? '') ?? ($meta['updated_at'] ?? '') }}" />
-  <link rel="icon" href="/images/favicon.png" sizes="32x32" />
+  <link rel="icon" href="/images/favicon.png" sizes="32x32" type="favicon" />
   <link rel="stylesheet" href="/css/additional.css">
   <link rel="stylesheet" href="/css/libs/bootstrap-components.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">

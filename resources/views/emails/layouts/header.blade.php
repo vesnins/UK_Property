@@ -42,7 +42,7 @@
     }
 
     a, a:link {
-      color: #332243;
+      color: #332243!important;
       text-decoration: none;
     }
 
@@ -165,7 +165,7 @@
                                 style="margin: 0 4px; font-weight: 600; font-size: 14px; color: #332243; text-transform: uppercase; text-decoration: none; font-family:Verdana, Arial, sans-serif;"
                                 target="_blank"
                               >BLOG</a>
-                              <a href="{{ env('APP_URL') }}/about-us"
+                              <a href="{{ env('APP_URL') }}/about-company"
                                 style="margin: 0 4px; font-weight: 600; font-size: 14px; color: #332243; text-transform: uppercase; text-decoration: none; font-family:Verdana, Arial, sans-serif;"
                                 target="_blank"
                               >ABOUT US</a>

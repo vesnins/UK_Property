@@ -50,7 +50,8 @@ var
 
       if(val === 'ft') {
         $('.s-pl').map(function(k, v) {
-          $(this).html(Math.round(parseFloat($(v).html()) * 3.28))
+          console.log(parseFloat($(this).html()))
+          $(this).html(Math.round(parseFloat($(this).html()) * 10.7638673611111))
         });
 
         $('.s-mf').map(function() {
@@ -79,8 +80,8 @@ var
           min = Math.round(from);
           max = Math.round(to);
         } else {
-          min = Math.round(parseFloat(from * 3.28));
-          max = Math.round(parseFloat(to * 3.28) + 1);
+          min = Math.round(parseFloat(from * 10.7638673611111));
+          max = Math.round(parseFloat(to * 10.7638673611111) + 1);
         }
 
         r.attr('data-slider-min', min);
@@ -116,8 +117,9 @@ var
     },
 
     selectCatalog: function(data) {
-      if(_.isEqual(data, catAll.currentData))
-        return false;
+      if(!data.session)
+        if(_.isEqual(data, catAll.currentData))
+          return false;
 
       catAll.currentData = data;
 
@@ -135,9 +137,9 @@ var
           $(catAll.container).html(data);
           $(catAll.container).animate({opacity: 1}, 150);
 
-          setTimeout(function() {
-            catAll.reversFtM2();
-          }, 50);
+//          setTimeout(function() {
+//            catAll.reversFtM2();
+//          }, 50);
 
           $('[data-page]').click(function(e) {
             e.preventDefault();
@@ -207,6 +209,7 @@ var
              }
 
              if(window.location.pathname.split('/').indexOf('favorite') !== -1) {
+               console.log('fff')
                catAll.selectCatalog({session: 1});
              }
            }
@@ -215,16 +218,14 @@ var
     },
 
     initMap: function() {
-      if(!_.isFunction(google))
-        return false;
-
       $('#map').height($(window).height() - 102);
 
       var
         mapOptions;
 
       mapOptions = {
-        zoom: 17,
+        zoom   : 17,
+        minZoom: 6,
 
         styles     : [
           {"featureType": "road", "stylers": [{"hue": "#5e00ff"}, {"saturation": -79}]},
@@ -288,8 +289,14 @@ var
                 parseFloat(val.coordinates.split(',')[1])
                 ),
 
-              map : catAll.map,
-              icon: window.location.origin + '/images/pin.png'
+              map: catAll.map,
+
+              icon: {
+                url:  window.location.origin + '/images/pin.png',
+                scaledSize: new google.maps.Size(40, 43), // scaled size
+                origin: new google.maps.Point(0, 0), // origin
+                anchor: new google.maps.Point(20, 22) // anchor
+              },
             });
 
             catAll.markers[i].addListener('click', function(val, i) {
@@ -311,7 +318,7 @@ var
                   '</ul>' +
                   '<span class="price">' + (val.price || '') + '</span>' +
                   '<div class="text-center">' +
-                  '<a href="' + val.url + '" class="button">' + val.choose + '</a>' +
+                  '<a target="_blank" href="' + val.url + '" class="button">' + val.choose + '</a>' +
                   '</div>' +
                   '</div>' +
                   '</div>' +

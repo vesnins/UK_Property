@@ -16,9 +16,9 @@
 
         <div class="collapse-menu-holder">
           <span class="collapse-btn">
-            <span class="dt">Show</span>
-            <span class="t">Hide</span>
-            filters
+            <span class="dt">@lang('main.show')</span>
+            <span class="t">@lang('main.hide')</span>
+            @lang('main.filters_')
             <svg>
               <use xlink:href="/images/svg/sprite.svg#arrow-down"></use>
             </svg>
