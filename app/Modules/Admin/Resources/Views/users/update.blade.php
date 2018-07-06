@@ -153,26 +153,26 @@
 											<br class="clear"/>
 										</div>
 
-										{{--<div class="form-group">--}}
-											{{--<label class="control-label col-md-3 col-sm-3 col-xs-12">--}}
-												{{--@lang('admin::main.anotherUserType')--}}
-											{{--</label>--}}
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												@lang('admin::main.anotherUserType')
+											</label>
 
-											{{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
-												{{--<select name="pl[user_another_type]" id="selectAnotherUserType" class="form-control select2">--}}
-													{{--<option value="">-</option>--}}
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<select name="pl[user_another_type]" id="selectAnotherUserType" class="form-control select2">
+													<option value="">-</option>
 
 													{{--<option--}}
 														{{--value="author"--}}
 														{{--{!! ($data->user_another_type ?? '') == 'author' ? 'selected' : '' !!}--}}
-													{{-->@lang('admin::main.client')</option>--}}
+													{{-->@lang('admin::main.author')</option>--}}
 
-													{{--<option--}}
-														{{--value="specialist"--}}
-														{{--{!! ($data->user_another_type ?? '') == 'specialist' ? 'selected' : '' !!}--}}
-													{{-->@lang('admin::main.specialist')</option>--}}
-												{{--</select>--}}
-											{{--</div>--}}
+													<option
+														value="specialist"
+														{!! ($data->user_another_type ?? '') == 'specialist' ? 'selected' : '' !!}
+													>@lang('admin::main.author')</option>
+												</select>
+											</div>
 
 											{{--<br class="clear"/>--}}
 										{{--</div>--}}

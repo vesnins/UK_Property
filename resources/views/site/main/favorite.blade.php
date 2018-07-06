@@ -104,7 +104,7 @@
             </div>
 
             <div class="text-center">
-              <input type="hidden" name="friend_form" value="{{ \URL::full() }}" />
+              <input type="hidden" name="current_url" value="{{ \URL::full() }}" />
               <input type="hidden" name="type" value="friend_form" />
               <input class="button" type="submit" value="@lang('main.send')" />
             </div>
