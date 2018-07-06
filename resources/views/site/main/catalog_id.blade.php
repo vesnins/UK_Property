@@ -193,67 +193,94 @@
         </div>
 
         <div class="product-description">
-          <table class="characteristics">
-            <tr>
-              <td>
-                <span class="caption">@lang('main.asking_price')</span>
+          @if($page['price_money_to'] ||
+            $page['price_money_from'] ||
+            $page['price_money'] ||
+            $page['bedrooms_to'] ||
+            $page['bedrooms_from'] ||
+            $page['bedrooms'] ||
+            $page['area_from'] ||
+            $page['area_to'] ||
+            $page['area']
+          )
+            <table class="characteristics">
+              <tr>
+                <td>
+                  <span class="caption">@lang('main.asking_price')</span>
 
-                <span class="value {{ $page['in_portfolio'] ? 'price-value' : '' }}">
-                  @if($page['price_money_from'] ?? false)
-                    £{{ number_format($page['price_money_from'], 0, ',', ',') }}
-                    -
-                    £{{ number_format($page['price_money_to'], 0, ',', ',') }}
-                  @else
-                    £{{ number_format($page['price_money'], 0, ',', ',') }}
-                  @endif
-                </span>
-              </td>
+                  <span class="value {{ $page['in_portfolio'] ? 'price-value' : '' }}">
+                    @if($page['price_money_from'] ?? false || $page['price_money_to'] ?? false)
+                      @if(!empty($page['price_money_from']))
+                        £{{ number_format($page['price_money_from'], 0, ',', ',') }}
+                        -
+                      @endif
 
-              <td>
-                <span class="caption">@lang('main.number_of_bedrooms')</span>
+                      £{{ number_format($page['price_money_to'], 0, ',', ',') }}
+                    @else
+                      £{{ number_format($page['price_money'], 0, ',', ',') }}
+                    @endif
+                  </span>
+                </td>
 
-                <span class="value">
-                  @if($page['bedrooms_from'] ?? false)
-                    {{ $page['bedrooms_from'] }} - {{ $page['bedrooms_to'] }}
-                  @else
-                    {{ $page['bedrooms'] }}
-                  @endif
-                </span>
-              </td>
+                <td>
+                  <span class="caption">@lang('main.number_of_bedrooms')</span>
 
-              <td>
-                <span class="caption">
-                  @lang('main.area_in_ft')
-                  <sup>2</sup>
-                </span>
+                  <span class="value">
+                    @if($page['bedrooms_from'] ?? false || $page['bedrooms_to'] ?? false)
+                      @if(!empty($page['bedrooms_from']))
+                        {{ $page['bedrooms_from'] }}
+                        -
+                      @endif
 
-                <span class="value">
-                  @if($page['area_from'] ?? false)
-                    {{ round($page['area_from'] * 10.7638673611111, 0) }}
-                    -
-                    {{ round($page['area_to'] * 10.7638673611111, 0) }}
-                  @else
-                    {{ round($page['area'] * 10.7638673611111, 0) }}
-                  @endif
-                </span>
-              </td>
+                      {{ $page['bedrooms_to'] }}
+                    @else
+                      {{ $page['bedrooms'] }}
+                    @endif
+                  </span>
+                </td>
 
-              <td>
-                <span class="caption">
-                  @lang('main.area_in_m')
-                  <sup>2</sup>
-                </span>
+                <td>
+                  <span class="caption">
+                    @lang('main.area_in_ft')
+                    <sup>2</sup>
+                  </span>
 
-                <span class="value">
-                  @if($page['area_from'] ?? false)
-                    {{ $page['area_from'] }} - {{ $page['area_to'] }}
-                  @else
-                    {{ $page['area'] }}
-                  @endif
-                </span>
-              </td>
-            </tr>
-          </table>
+                  <span class="value">
+                    @if($page['area_from'] ?? false || $page['area_to'] ?? false)
+                      @if(!empty($page['area_from']))
+                        {{ round($page['area_from'] * 10.7638673611111, 0) }}
+                        -
+                      @endif
+
+                      {{ round($page['area_to'] * 10.7638673611111, 0) }}
+                    @else
+                      {{ round($page['area'] * 10.7638673611111, 0) }}
+                    @endif
+                  </span>
+                </td>
+
+                <td>
+                  <span class="caption">
+                    @lang('main.area_in_m')
+                    <sup>2</sup>
+                  </span>
+
+                  <span class="value">
+                    @if($page['area_from'] ?? false || $page['area_to'] ?? false)
+                      @if(!empty($page['area_from']))
+                        {{ $page['area_from'] }}
+                        -
+                      @endif
+
+                      {{ $page['area_to'] }}
+                    @else
+                      {{ $page['area'] }}
+                    @endif
+                  </span>
+                </td>
+              </tr>
+            </table>
+          @endif
 
           <div class="row" data-sticky-container>
             <div class="col-lg-8">{!! $langSt($page['text']) !!}</div>

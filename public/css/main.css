@@ -29,6 +29,15 @@ body {
     position: relative;
 }
 
+.touch-device.not-scroll {
+    position: fixed;
+    -webkit-overflow-scrolling: auto;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
 h1,
 h2,
 h3,
@@ -1778,9 +1787,9 @@ body:not(.touch-device) .products .product-item:hover .image-box {
 }
 
 .subscribe-section .subscribe-form .success-message {
-    background: -moz-linear-gradient(left, rgba(58,47,86,1) 0%, rgba(79,64,119,1) 100%);
-    background: -webkit-linear-gradient(left, rgba(58,47,86,1) 0%,rgba(79,64,119,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right, rgba(58,47,86,1) 0%,rgba(79,64,119,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: -moz-linear-gradient(left, rgba(58, 47, 86, 1) 0%, rgba(79, 64, 119, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(58, 47, 86, 1) 0%, rgba(79, 64, 119, 1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(58, 47, 86, 1) 0%, rgba(79, 64, 119, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .subscribe-section .subscribe-form .success-message .flex-container {

@@ -108,6 +108,7 @@
 								var typeFile = [
 									'application/pdf',
 									'video/webm',
+									'video/mp4',
 									'audio/mp3',
 									'audio/mpeg',
 									'audio/wav',

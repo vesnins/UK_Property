@@ -23,19 +23,30 @@
       : '/images/files/no-image.jpg')
 
   @if($v['price_money_from'] !== null || $v['price_money_to'] !== null || $v['price_money'] !== null)
-    @if($v['price_money_from'] ?? false)
-      @php($catalog_marker[$k]['price'] = '£' . number_format($v['price_money_from'], 0, ',', ',') . ' - ' .
-       number_format($v['price_money_to'], 0, ',', ','))
+    @if($v['price_money_from'] ?? false || $v['price_money_from'] ?? false)
+      @if(!empty($v['price_money_from']))
+        @php($catalog_marker[$k]['price'] = '£' . number_format($v['price_money_from'], 0, ',', ',') . ' - ' .
+         number_format($v['price_money_to'], 0, ',', ','))
+      @else
+        @php($catalog_marker[$k]['price'] = '£' . number_format($v['price_money_to'], 0, ',', ','))
+      @endif
     @else
       @php($catalog_marker[$k]['price'] = '£' . number_format($v['price_money'], 0, ',', ','))
     @endif
   @endif
 
   @if($v['area_from'] !== null || $v['area_to'] !== null || $v['area'] !== null)
-    @if($v['area_from'] ?? false)
+    @if($v['area_from'] ?? false || $v['area_to'] ?? false)
       @if($type_ft_m2 == 'ft')
         @php($v['area_from'] = round($v['area_from'] * 10.7638673611111))
         @php($v['area_to'] = round($v['area_to'] * 10.7638673611111))
+      @endif
+
+      @if(!empty($v['area_from']))
+        @php($catalog_marker[$k]['area'] = 'S =<div class="s-pl">' . $v['area_from'] . '</div> -
+        <div class="s-pl">' . $v['area_to'] . ' </div>' . ($type_ft_m2 == 'ft' ? 'ft²' : 'm²'))
+      @else
+        @php($catalog_marker[$k]['area'] = 'S =<div class="s-pl">' . $v['area_to'] . ' </div>' . ($type_ft_m2 == 'ft' ? 'ft²' : 'm²'))
       @endif
 
       @php($catalog_marker[$k]['area'] = 'S =<div class="s-pl">' . $v['area_from'] . '</div> -
@@ -50,8 +61,12 @@
   @endif
 
   @if($v['bedrooms_from'] !== null || $v['bedrooms_to'] !== null || $v['bedrooms'] !== null)
-    @if($v['bedrooms_from'] ?? false)
-      @php($catalog_marker[$k]['bedrooms'] = $v['bedrooms_from'] . ' - ' . $v['bedrooms_to'] . ' ' . __('main.bedrooms'))
+    @if($v['bedrooms_from'] ?? false || $v['bedrooms_from'] ?? false)
+      @if(!empty($v['bedrooms_from']))
+        @php($catalog_marker[$k]['bedrooms'] = $v['bedrooms_from'] . ' - ' . $v['bedrooms_to'] . ' ' . __('main.bedrooms'))
+      @else
+        @php($catalog_marker[$k]['bedrooms'] = $v['bedrooms_to'] . ' ' . __('main.bedrooms'))
+      @endif
     @else
       @php($catalog_marker[$k]['bedrooms'] = $v['bedrooms'] . ' ' . __('main.bedrooms'))
     @endif
@@ -137,18 +152,21 @@
                   @endif
                 @endif
 
-                @if($type_ft_m2 == 'ft')
+                @if((int) $val['area_from'] || (int) $val['area_to'] || (int) $val['area'])
+                  @if($type_ft_m2 == 'ft')
                     <span class="s-mf">@lang('main.ft_2')</span>
-                @else
+                  @else
                     <span class="s-mf">@lang('main.м_2')</span>
+                  @endif
                 @endif
               </div>
             @endif
 
             @if($val['bedrooms_from'] !== null || $val['bedrooms_to'] !== null || $val['bedrooms'] !== null)
               <div class="cell">
-                @if($val['bedrooms_from'] ?? false)
-                  {{ $val['bedrooms_from'] }} @if($val['bedrooms_to']) - {{ $val['bedrooms_to'] }}@endif
+                @if($val['bedrooms_from'] ?? false || $val['bedrooms_to'] ?? false)
+                  @if(!empty($val['bedrooms_from'])) {{ $val['bedrooms_from'] }} - @endif
+                  {{ $val['bedrooms_to'] }}
                 @else
                   {{ $val['bedrooms'] }}
                 @endif
@@ -164,9 +182,9 @@
           <div class="col-xs-9">
             @if($val['price_money_from'] !== null || $val['price_money_to'] !== null || $val['price_money'] !== null)
               <span class="price">
-                @if($val['price_money_from'] ?? false)
-                  £{{ number_format($val['price_money_from'], 0, ',', ',') }}
-                  @if($val['bedrooms_to']) - £{{ number_format($val['price_money_to'], 0, ',', ',') }}@endif
+                @if($val['price_money_from'] ?? false || $val['bedrooms_to'] ?? false)
+                  @if($val['price_money_from']) £{{ number_format($val['price_money_from'], 0, ',', ',') }} - @endif
+                    £{{ number_format($val['price_money_to'], 0, ',', ',') }}
                 @else
                   £{{ number_format($val['price_money'], 0, ',', ',') }}
                 @endif

@@ -321,6 +321,11 @@
             </span>
           </label>
 
+          <label class="checkbox-label">
+            <input type="checkbox" name="news_updates" checked />
+            <span>@lang('main.text_mail_sending')</span>
+          </label>
+
           <div class="success-message">
             <div class="flex-container">
               <div class="align-box">

@@ -231,7 +231,7 @@
           }
         }
 
-        doc.on('click touchstart', outsideClickHandler);
+        doc.on('click', outsideClickHandler);
       });
     }
   }
@@ -717,7 +717,7 @@
       doc          = $(document),
       filterHolder = $('.collapse-menu-holder'),
       menuSwitcher = filterHolder.find('.collapse-btn'),
-      filterMenu   = filterHolder.find('.hidden-box');
+      filterMenu   = filterHolder.find('.product-filter-form, .hidden-box');
 
     menuSwitcher.on('click', function() {
       menuSwitcher.toggleClass('active');
