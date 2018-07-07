@@ -137,10 +137,6 @@ var
           $(catAll.container).html(data);
           $(catAll.container).animate({opacity: 1}, 150);
 
-//          setTimeout(function() {
-//            catAll.reversFtM2();
-//          }, 50);
-
           $('[data-page]').click(function(e) {
             e.preventDefault();
             $('[name="pagination"]').val($(this).data('page'));
@@ -190,11 +186,6 @@ var
 
              fav.find('.qty').html('(' + data.count + ')');
 
-             //             if(data.count)
-             //               fav.show();
-             //             else
-             //               fav.hide();
-
              if(id > 0) {
                if(selectorLice.hasClass('like-button-' + id))
                  selectorLice = $('.like-button-' + id);
@@ -209,7 +200,6 @@ var
              }
 
              if(window.location.pathname.split('/').indexOf('favorite') !== -1) {
-               console.log('fff')
                catAll.selectCatalog({session: 1});
              }
            }
@@ -346,5 +336,51 @@ var
           catAll.firstLoad = true;
         }, 1000);
       }
+    },
+
+    catalogReset: function() {
+      $('[name=\'catalog_form\']')[0].reset();
+
+      // сброс для max
+      $('.s-map-reset').map(function() {
+        $(this).val($(this)
+          .parents('.range-slider')
+          .find('.parent-input')
+          .attr('data-slider-' + ($(this).hasClass('max') ? 'max' : 'min')));
+      });
+
+      setTimeout(function() {
+        $('.max').map(function() {
+          $(this).focus();
+          $(this).focusout();
+
+          setTimeout(function() {
+            $('.reset-btn').focus();
+          })
+        });
+      }.bind(this));
+      // сброс для max
+
+      // сброс для min
+      setTimeout(function() {
+        $('.s-map-reset').map(function() {
+          $(this).val($(this)
+            .parents('.range-slider')
+            .find('.parent-input')
+            .attr('data-slider-' + ($(this).hasClass('max') ? 'max' : 'min')));
+        });
+
+        setTimeout(function() {
+          $('.min').map(function() {
+            $(this).focus();
+            $(this).focusout();
+
+            setTimeout(function() {
+              $('.reset-btn').focus();
+            })
+          });
+        }.bind(this));
+      }, 300);
+      // сброс для max
     }
   };

@@ -28,10 +28,18 @@
               {!! $langSt($params['soc_phone_by_footer_1']['key']) !!}
             </a>
 
+            @if(empty($langSt($params['soc_phone_by_footer_2']['key'])))
+              <br />
+              <a href="tel:{!! $langSt($params['soc_phone_by_footer_2']['key']) !!}">
+                {!! $langSt($params['soc_phone_by_footer_2']['key']) !!}
+              </a>
+            @endif
+
+            @lang('main.office'):
             <br />
 
             <a href="tel:{!! $langSt($params['soc_phone_by_footer_2']['key']) !!}">
-              {!! $langSt($params['soc_phone_by_footer_2']['key']) !!}
+              {!! $langSt($params['soc_phone_by_footer_3']['key']) !!}
             </a>
           </span>
         </address>
@@ -171,7 +179,7 @@
         </button>
 
         <div class="decor-box" style="background-image: url('/images/banners/img_6.jpg')"></div>
-        <h3 class="text-center">@lang('main.consultation')</h3>
+        <h3 class="text-center">@lang('main.call_back_form')</h3>
 
         <form action="#" class="validate-form">
           <div class="input-holder">

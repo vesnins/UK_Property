@@ -113,10 +113,10 @@
         <div class="row text-center">
           <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
             <div class="section-title">@lang('main.contact_us_for_free_initial_consultation')</div>
-            <p>{!! $langSt($params['contact_us_text_contact_an_agent']['key']) !!}</p>
+{{--            <p>{!! $langSt($params['contact_us_text_contact_an_agent']['key']) !!}</p>--}}
 
             <a href="#" class="link" data-toggle="modal" data-target=".request-modal">
-              @lang('main.contact_an_agent')
+              @lang('main.to_get_a_consultation')
             </a>
           </div>
         </div>

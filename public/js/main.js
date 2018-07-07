@@ -331,7 +331,7 @@
 
             success: function(data) {
               if(data.result === 'ok') {
-                $(form).find('.success-message').show();
+                $(form).find('.success-message').addClass('success').show();
                 $(form).reset();
               }
             }
@@ -1086,4 +1086,24 @@
   subMenuNavigation();
   btnPosition.init();
   audioPlaySwitcher();
+
+  $(window).resize(function() {
+    var
+      sz = $('.depends-on-size');
+
+    if($(window).width() > 767)
+      sz.addClass('is-view-pc');
+    else
+      sz.removeClass('is-view-pc');
+  });
+
+  $(document).ready(function() {
+    var
+      sz = $('.depends-on-size');
+
+    if($(window).width() > 767)
+      sz.addClass('is-view-pc');
+    else
+      sz.removeClass('is-view-pc');
+  });
 })(jQuery);

@@ -175,18 +175,21 @@
                     </div>
                   @endforeach
                 </div>
-                <div class="preview-slider simple-slider">
-                  @foreach($plan as $s)
-                    @php($img_small = $s['file']
-                      ? $s['crop'] ? $path_small . $s['crop'] : $path_small . $s['file']
-                      : '/images/files/no-image.jpg'
-                    )
 
-                    <div>
-                      <div class="inner-box" style="background-image: url('{{ $img_small }}')"></div>
-                    </div>
-                  @endforeach
-                </div>
+                @if(count($plan) > 1)
+                  <div class="preview-slider simple-slider">
+                    @foreach($plan as $s)
+                      @php($img_small = $s['file']
+                        ? $s['crop'] ? $path_small . $s['crop'] : $path_small . $s['file']
+                        : '/images/files/no-image.jpg'
+                      )
+
+                      <div>
+                        <div class="inner-box" style="background-image: url('{{ $img_small }}')"></div>
+                      </div>
+                    @endforeach
+                  </div>
+                @endif
               </div>
             </div>
           @endif

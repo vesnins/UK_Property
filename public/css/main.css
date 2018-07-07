@@ -4391,3 +4391,7 @@ address .address-info svg {
     margin-bottom: 10px;
     color: #2a2042;
 }
+
+.is-view-pc {
+    display: none!important;
+}

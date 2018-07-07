@@ -163,6 +163,19 @@
         ],
       });
 
+    $('#table_id').on('draw.dt', function () {
+      if($("input.flat")[0]) {
+        $('input.flat').iCheck({
+          checkboxClass: 'icheckbox_flat-green',
+          radioClass: 'iradio_flat-green'
+        });
+
+        $('input[type="radio"]').on('ifChanged', function(event) {
+          $.adm.inp_edit(event['target']['id'], event['target']['title'])
+        });
+      }
+    });
+
     {{--table.on('mousedown', 'tbody tr', function() {--}}
     {{--@php($i = 1)--}}
     {{--var order = parseInt(' @foreach($column as $v) @if($v['name'] == 'order'){{ $i }}@endif @php($i++) @endforeach');--}}

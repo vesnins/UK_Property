@@ -168,6 +168,7 @@ return [
   'contact_an_agent'                         => 'Связаться с агентом',
   'company_details'                          => 'Подробнее о компании',
   'how_we_are_working'                       => 'Как мы работаем',
+  'what_service_you_can_expert_from_us'      => 'Услуги которые Вы можете получить у нас',
   'cat_location'                             => 'Район',
   'cost_$_million'                           => 'Стоимость, £',
   'area'                                     => 'Площадь',
@@ -266,4 +267,6 @@ return [
   'filters_'                                 => 'фильтры',
   'hide'                                     => 'Скрыть',
   'show'                                     => 'Показать',
+  'call_back_form'                           => 'Обратный звонок',
+  'office'                                   => 'Офис',
 ];

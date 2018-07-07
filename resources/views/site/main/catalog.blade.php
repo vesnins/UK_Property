@@ -76,12 +76,13 @@
 
                             <div class="range-slider">
                               <input
-                                class="slider"
+                                class="slider parent-input"
                                 type="text"
                                 data-slider-min="{{ $f[0]['data'] }}"
                                 data-slider-max="{{ $f[1]['data'] }}"
                                 data-slider-step="{{ $filter['step'] ?? 5 }}"
                                 data-slider-value="[{{ $f[0]['data'] }},{{ $f[1]['data'] }}]"
+                                autocomplete="off"
                               />
 
                               <div class="input-group">
@@ -90,8 +91,9 @@
                                   <input
                                     type="text"
                                     name="{{ $f[0]['name'] }}"
-                                    class="range-value min"
+                                    class="range-value min s-map-reset"
                                     placeholder="{{ $f[1]['title'] }}"
+                                    autocomplete="off"
                                   />
                                 </label>
 
@@ -100,8 +102,9 @@
                                   <input
                                     type="text"
                                     name="{{ $f[1]['name'] }}"
-                                    class="range-value max"
+                                    class="range-value max s-map-reset"
                                     placeholder="{{ $f[1]['title'] }}"
+                                    autocomplete="off"
                                   />
                                 </label>
                               </div>
@@ -118,7 +121,7 @@
 
                             <div class="range-slider slider-area">
                               <input
-                                class="slider"
+                                class="slider parent-input"
                                 type="text"
                                 data-slider-min="{{ $filter['fields']['area_from']['data'] }}"
                                 data-slider-max="{{ $filter['fields']['area_to']['data'] }}"
@@ -127,21 +130,25 @@
                                 autocomplete="off"
 
                                 data-slider-value="[
-                              {{ $filter['fields']['area_from']['data'] }},
-                              {{ $filter['fields']['area_to']['data'] }}
-                                  ]"
+                                  {{ $filter['fields']['area_from']['data'] }},
+                                  {{ $filter['fields']['area_to']['data'] }}
+                                ]"
                               />
 
                               <input
                                 type="hidden"
                                 name="data-slider-min"
+                                class="s-map-reset"
                                 value="{{ $filter['fields']['area_from']['data'] }}"
+                                autocomplete="off"
                               />
 
                               <input
                                 type="hidden"
                                 name="data-slider-max"
+                                class="s-map-reset"
                                 value="{{ $filter['fields']['area_to']['data'] }}"
+                                autocomplete="off"
                               />
 
                               <div class="input-group">
@@ -151,7 +158,8 @@
                                   <input
                                     type="text"
                                     name="{{ $filter['fields']['area_from']['name'] }}"
-                                    class="range-value min"
+                                    class="range-value min s-map-reset"
+                                    autocomplete="off"
                                   />
                                 </label>
 
@@ -159,8 +167,9 @@
                                   @lang('main.to_')
                                   <input
                                     type="text"
-                                    class="range-value max"
+                                    class="range-value max s-map-reset"
                                     name="{{ $filter['fields']['area_to']['name'] }}"
+                                    autocomplete="off"
                                   />
                                 </label>
                               </div>
@@ -171,7 +180,7 @@
                     @endforeach
 
                     <div class="text-center">
-                      <a href="javascript:void(0)" class="reset-btn" onclick="$('[name=\'catalog_form\']')[0].reset();">
+                      <a href="javascript:void(0)" class="reset-btn" onclick="catAll.catalogReset()">
                         @lang('main.clear_filter')
                       </a>
                     </div>

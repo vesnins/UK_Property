@@ -19,7 +19,7 @@
 
   <meta property="og:title" content="{{ $meta['title'] ?? '' }}" />
   {{--<meta property="og:type" content="movie"/>--}}
-  <meta property="og:url" content="http://greecobooking.niws.ru/villas/1" />
+  <meta property="og:url" content="{{ \URL::full() }}" />
   <meta property="og:image" content="{{ $meta['og_image'] ?? '' }}" />
   {{--<meta property="og:site_name" content="IMDb"/>--}}
   {{--<meta property="fb:admins" content="USER_ID"/>--}}
@@ -159,6 +159,12 @@
               @endforeach
             @endif
           @endforeach
+
+          <li class="depends-on-size">
+            <a style="margin-bottom: 15px; width: 100%" href="#" class="modal-btn link button light" data-toggle="modal" data-target=".request-modal">
+              @lang('main.request_a_call')
+            </a>
+          </li>
         </ul>
       </nav>
       <div class="position-box">

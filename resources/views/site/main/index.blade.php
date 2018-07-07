@@ -338,7 +338,7 @@
     </section>
 
     <section class="indent-block">
-      <h2 class="text-center">@lang('main.how_we_are_working')</h2>
+      <h2 class="text-center">@lang('main.what_service_you_can_expert_from_us')</h2>
 
       @if(!empty($about['link_how_working']))
         <div class="video-box mb-md" style="background-image: url({{ $imG($img_to_main) }})">
