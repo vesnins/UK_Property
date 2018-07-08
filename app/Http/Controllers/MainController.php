@@ -1032,7 +1032,6 @@ class MainController extends Controller
   {
     $idd      = false;
     $id       = $this->request['id'];
-    $get_data = $this->request['get_data'];
     $type     = $this->request['type'];
     $name_url = $this->request['name_url'];
     $cart     = array_values($this->requests->session()->get('cart') ?? []);
@@ -1060,39 +1059,6 @@ class MainController extends Controller
 
       $this->requests->session()->flush('cart');
       $this->requests->session()->put('cart', $cart);
-    }
-
-    if($get_data) {
-      //      $where[]   = ['villas.active', 1];
-      //      $group     = 'id';
-      //      $count_box = 24;
-      //      $cart_0    = array_values($this->requests->session()->get('cart') ?? []);
-      //
-      //      for($i = 0; count($cart_0 ?? []) > $i; $i++)
-      //        $cart_id[] = $cart_0[$i]['id'] ?? 0;
-      //
-      //      $data['villas'] = $this->dynamic->t('villas')
-      //        ->where($where)
-      //        ->whereIn('villas.id', $cart_id ?? [])
-      //        ->where('villas.text', 'like', '%' . trim($this->requests['input_search'] ?? '') . '%')
-      //        ->join(
-      //          'files', function($join) {
-      //          $join->type = 'LEFT OUTER';
-      //          $join->on('villas.id', '=', 'files.id_album')
-      //            ->where('files.name_table', '=', 'villas')
-      //            ->where('files.main', '=', 1);
-      //        }
-      //        )
-      //        ->join(
-      //          'menu', function($join) {
-      //          $join->type = 'LEFT OUTER';
-      //          $join->on('villas.cat_location', '=', 'menu.id');
-      //        }
-      //        )
-      //        ->select('villas.*', 'files.file', 'files.crop', 'menu.name as cat_parent')
-      //        ->groupBy('villas.id')
-      //        ->orderBy('villas.' . $group, 'DESC')
-      //        ->paginate($count_box);
     }
 
     foreach($this->requests->session()->get('cart') ?? [] as $v)
@@ -1158,12 +1124,6 @@ class MainController extends Controller
 
     foreach($form as $k => $v)
       $form_data[$k] = (int) $v == -1 ? '' : $v;
-
-    //    echo '<pre>';
-    //    print_r($form);
-    //    echo '</pre>';
-    //
-    //    exit;
 
     if($type == 'subscription_form') {
       $title = __('main.subscription_admin');
@@ -1361,39 +1321,39 @@ class MainController extends Controller
       if($data['page']['area_from']) {
         $where_similar = array_merge(
           $where_similar, [
-          ["{$filters['table']}.area_from", '>', (int) $data['page']['area_from'] - 20],
-          ["{$filters['table']}.area_to", '<', (int) $data['page']['area_to'] + 20],
-        ]
+                          ["{$filters['table']}.area_from", '>', (int) $data['page']['area_from'] - 20],
+                          ["{$filters['table']}.area_to", '<', (int) $data['page']['area_to'] + 20],
+                        ]
         );
       } else {
         $where_similar = array_merge(
           $where_similar, [
-          ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
-          ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
-        ]
+                          ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
+                          ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
+                        ]
         );
       }
 
       if($data['page']['price_money_from']) {
         $where_similar = array_merge(
           $where_similar, [
-          ["{$filters['table']}.price_money_from", '>', (int) $data['page']['price_money_from'] - 250000],
-          ["{$filters['table']}.price_money_to", '<', (int) $data['page']['price_money_to'] + 250000],
-        ]
+                          ["{$filters['table']}.price_money_from", '>', (int) $data['page']['price_money_from'] - 250000],
+                          ["{$filters['table']}.price_money_to", '<', (int) $data['page']['price_money_to'] + 250000],
+                        ]
         );
       } else {
         $where_similar = array_merge(
           $where_similar, [
-          ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
-          ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
-        ]
+                          ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
+                          ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
+                        ]
         );
       }
 
       $where_similar = array_merge(
         $where_similar, [
-        ["{$filters['table']}.cat_location", '=', $data['page']['cat_location']],
-      ]
+                        ["{$filters['table']}.cat_location", '=', $data['page']['cat_location']],
+                      ]
       );
 
       $data['similar_objects'] = $this->dynamic->t($filters['table'])
@@ -1596,10 +1556,6 @@ class MainController extends Controller
         }
       }
 
-      // echo '<pre>';
-      // print_r($data['filters']['filters']);
-      // echo '</pre>';
-
       foreach($data['services'] as $service)
         if($service['translation'] === $name)
           $data['service'] = $service;
@@ -1623,10 +1579,6 @@ class MainController extends Controller
 
     for($i = 0; count($cart ?? []) > $i; $i++)
       $favorites_id[] = $cart[$i]['id'];
-
-//    echo '<pre>';
-//    print_r($form);
-//    echo '</pre>';
 
     if($form['name_url'] && !$session) {
       $filters = $this->_catalog_array($form['name_url']);
@@ -1950,15 +1902,12 @@ class MainController extends Controller
       $data['paginate']   = true;
     }
 
-    //    echo '<pre>';
-    //    print_r(json_decode(json_encode($data), true));
-    //    echo '</pre>';
-
     $data['type_ft_m2']   = $form['type_ft_m2'];
     $data['name_url']     = $form['name_url'];
     $data['show_like']    = $form['show_like'] ?? false;
     $data['favorites_id'] = $favorites_id;
     $data['cart']         = $cart;
+    $data['paginate']     = true;
 
     return $this->base->view_s("site.block.catalog_list", $data);
   }
