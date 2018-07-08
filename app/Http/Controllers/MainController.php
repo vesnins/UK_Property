@@ -1320,40 +1320,50 @@ class MainController extends Controller
 
       if($data['page']['area_from']) {
         $where_similar = array_merge(
-          $where_similar, [
-                          ["{$filters['table']}.area_from", '>', (int) $data['page']['area_from'] - 20],
-                          ["{$filters['table']}.area_to", '<', (int) $data['page']['area_to'] + 20],
-                        ]
+          $where_similar,
+
+          [
+            ["{$filters['table']}.area_from", '>', (int) $data['page']['area_from'] - 20],
+            ["{$filters['table']}.area_to", '<', (int) $data['page']['area_to'] + 20],
+          ]
         );
       } else {
         $where_similar = array_merge(
-          $where_similar, [
-                          ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
-                          ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
-                        ]
+          $where_similar,
+
+          [
+            ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
+            ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
+          ]
         );
       }
 
       if($data['page']['price_money_from']) {
         $where_similar = array_merge(
-          $where_similar, [
-                          ["{$filters['table']}.price_money_from", '>', (int) $data['page']['price_money_from'] - 250000],
-                          ["{$filters['table']}.price_money_to", '<', (int) $data['page']['price_money_to'] + 250000],
-                        ]
+          $where_similar,
+
+          [
+            ["{$filters['table']}.price_money_from", '>', (int) $data['page']['price_money_from'] - 250000],
+            ["{$filters['table']}.price_money_to", '<', (int) $data['page']['price_money_to'] + 250000],
+          ]
         );
       } else {
         $where_similar = array_merge(
-          $where_similar, [
-                          ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
-                          ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
-                        ]
+          $where_similar,
+
+          [
+            ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
+            ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
+          ]
         );
       }
 
       $where_similar = array_merge(
-        $where_similar, [
-                        ["{$filters['table']}.cat_location", '=', $data['page']['cat_location']],
-                      ]
+        $where_similar,
+
+        [
+          ["{$filters['table']}.cat_location", '=', $data['page']['cat_location']],
+        ]
       );
 
       $data['similar_objects'] = $this->dynamic->t($filters['table'])
