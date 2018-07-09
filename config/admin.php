@@ -16,4 +16,5 @@ function getArr($name, $toName = false) {
 return [
     'module' => getArr("module", true),
     'plugins' => getArr("plugins"),
+    'module_test' => getArr("module_test"),
 ];

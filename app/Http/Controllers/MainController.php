@@ -772,7 +772,7 @@ class MainController extends Controller
    */
   public function selection_request()
   {
-    $data['locations'] = [];
+    $data = $this->helper->duplicate_data();
 
     return $this->base->view_s("site.main.selection_request", $data);
   }
@@ -1324,6 +1324,9 @@ class MainController extends Controller
 
           [
             ["{$filters['table']}.area_from", '>', (int) $data['page']['area_from'] - 20],
+            ["{$filters['table']}.area_from", '<', (int) $data['page']['area_from'] + 20],
+
+            ["{$filters['table']}.area_to", '>', (int) $data['page']['area_to'] - 20],
             ["{$filters['table']}.area_to", '<', (int) $data['page']['area_to'] + 20],
           ]
         );
@@ -1332,6 +1335,9 @@ class MainController extends Controller
           $where_similar,
 
           [
+            ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
+            ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
+
             ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
             ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
           ]
@@ -1344,6 +1350,9 @@ class MainController extends Controller
 
           [
             ["{$filters['table']}.price_money_from", '>', (int) $data['page']['price_money_from'] - 250000],
+            ["{$filters['table']}.price_money_from", '<', (int) $data['page']['price_money_from'] + 250000],
+
+            ["{$filters['table']}.price_money_to", '>', (int) $data['page']['price_money_to'] - 250000],
             ["{$filters['table']}.price_money_to", '<', (int) $data['page']['price_money_to'] + 250000],
           ]
         );
@@ -1352,6 +1361,9 @@ class MainController extends Controller
           $where_similar,
 
           [
+            ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
+            ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
+
             ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
             ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
           ]
@@ -1734,7 +1746,7 @@ class MainController extends Controller
         ->groupBy($filters['table'] . '.id')
         ->orderBy($order_by, $form['sort_by'])
         ->select("{$filters['table']}.*", 'files.file', 'files.crop')
-        ->paginate(40);
+        ->paginate($form['show_items'] ?? 36);
     }
 
     // For Favorite

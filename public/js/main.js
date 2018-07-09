@@ -417,6 +417,9 @@
     }
 
     function togglePlay() {
+      if(!myAudio.get(0))
+        return false;
+
       var playState = getCookie('play-state');
 
       if(playState && playState === 'pause') {

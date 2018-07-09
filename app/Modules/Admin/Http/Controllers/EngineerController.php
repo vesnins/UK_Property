@@ -55,8 +55,57 @@ class EngineerController extends ModuleController
    */
   public function update($page, $id = '', $apply = null)
   {
-    $data['module']  = Base::getModule("link_module", $page)[0] ?? [];
-    $data['plugins'] = $this->admin_plugins;
+    $url = (isset($_SESSION['url'])) ? '?' . $_SESSION['url'] : '';
+
+    if($this->requests->isMethod('post')) {
+      $page = $this->request['link_module'] ?? '';
+    //  print_r($this->request);
+     // print_r(Base::getModule("id", $this->request['id'])[0]);
+
+      if($this->request['id'])
+        $current_module = Base::getModule("id", $this->request['id'])[0] ?? [];
+      else
+        $current_module = [];
+
+      if(empty($current_module)) {
+        $arr = $this->request;
+        unset($arr['q']);
+
+
+        //print_r($arr);
+       // exit;
+
+        $this->admin_modules[count($this->admin_modules)] = $arr;
+      } else {
+        foreach($current_module as $k => $v)
+          // Заменяем значения
+          $current_module[$k] = $this->request[$k] ?? $v;
+
+        // Заменяем модуль
+        foreach($this->admin_modules as $k => $v)
+          if($current_module['id'] === $v['id'])
+            $this->admin_modules[$k] = $current_module;
+      }
+
+      $fd = fopen(config_path() . "/admin/module_test.json", 'w') or die("не удалось создать файл");
+      fwrite($fd, (string) json_encode($this->admin_modules, JSON_UNESCAPED_UNICODE)); // запишем строку в начало
+      fseek($fd, 0);
+      fclose($fd);
+
+      if($apply && $page) {
+        return redirect('/admin/engineer/update/' . $page . '/' . $id);
+      } else {
+        return redirect('/admin/engineer/');
+      }
+    } else {
+      if($page)
+        $data['module'] = Base::getModule("link_module", $page)[0] ?? [];
+      else
+        $data['module'] = [];
+
+      $data['modules'] = $this->admin_modules;
+      $data['plugins'] = $this->admin_plugins;
+    }
 
     return Base::view("admin::engineer.update", $data);
   }

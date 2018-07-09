@@ -61,6 +61,7 @@
           pagination : true,
           isPortfolio: true,
           url_req    : '/',
+          show_items : 40,
         })
       });
     </script>

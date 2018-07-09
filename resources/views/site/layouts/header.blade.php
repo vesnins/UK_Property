@@ -160,10 +160,8 @@
             @endif
           @endforeach
 
-          <li class="depends-on-size">
-            <a style="margin-bottom: 15px; width: 100%" href="#" class="modal-btn link button light" data-toggle="modal" data-target=".request-modal">
-              @lang('main.request_a_call')
-            </a>
+          <li class="depends-on-size is-view-pc">
+            <a href="/selection-request" class="button light" style="/*margin-right: 67px;*/">@lang('main.selection_request')</a>
           </li>
         </ul>
       </nav>

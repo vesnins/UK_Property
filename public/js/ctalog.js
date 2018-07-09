@@ -106,7 +106,7 @@ var
         data = {},
         page = $('[name="pagination"]').val();
 
-      _.assign(data, {page: page});
+      _.assign(data, {page: page, show_items: catAll.conf.show_items});
 
       catAll.isPortfolio &&
       _.assign(data, {is_portfolio: 1});
