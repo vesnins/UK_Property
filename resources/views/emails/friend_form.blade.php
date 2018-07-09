@@ -78,7 +78,7 @@
           <tr>
             <td align="center" style="height: 128px; font-size: 128px; line-height: 128px;">
               <a
-                href="/catalog/{{ $name_url ?? $url[$val['name_table']] }}/{{ $val['translation'] ?? $val['id'] }}"
+                href="{{ env('APP_URL') }}/catalog/{{ $name_url ?? $url[$val['name_table']] }}/{{ $val['translation'] ?? $val['id'] }}"
                 style="color: #909192; text-decoration: none;" target="_blank">
 
                 @php($path_small = env('APP_URL') . '/images/files/small/')
@@ -102,7 +102,7 @@
                 <tr>
                   <td align="left" colspan="2" style="text-align: left;">
                     <a
-                      href="/catalog/{{ $name_url ?? $url[$val['name_table']] }}/{{ $val['translation'] ?? $val['id'] }}"
+                      href="{{ env('APP_URL') }}/catalog/{{ $name_url ?? $url[$val['name_table']] }}/{{ $val['translation'] ?? $val['id'] }}"
                       style="text-decoration: none; text-transform: uppercase; color: #000000; font-size: 17px; line-height: 20px; font-family: Verdana, Arial, sans-serif;"
                     >
                       <strong>{{ $langSt($val['name']) }}</strong>
@@ -114,14 +114,27 @@
                   <td align="left"
                     style="text-align: left; color: #000000; font-size: 12px; line-height: 20px; font-family: Verdana, Arial, sans-serif;">
                     @if($val['area_from'] !== null || $val['area_to'] !== null || $val['area'] !== null)
-                      @if($val['area_from'] ?? false)
-                        S = {{ $val['area_from'] }}
-                        @if($val['area'])
-                          - {{ $val['area_to'] }}
+                      @if($lang == 'ru')
+                        @if($val['area_from'] ?? false)
+                          S = {{ $val['area_from'] }}
+                          @if($val['area'])
+                            - {{ $val['area_to'] }}
+                          @endif
                           @lang('main.м_2')
+                        @else
+                          S = {{ $val['area'] }} @lang('main.м_2')
                         @endif
                       @else
-                        S = {{ $val['area'] }}@lang('main.м_2')
+                        @if($val['area_from'] ?? false)
+                          S = {{ round($val['area_from'] * 10.7638673611111) }}
+                          @if($val['area'])
+                            - {{ round($val['area_to'] * 10.7638673611111) }}
+                          @endif
+
+                          @lang('main.ft_2')
+                        @else
+                          S = {{ round($val['area'] * 10.7638673611111) }} @lang('main.ft_2')
+                        @endif
                       @endif
                     @endif
                   </td>

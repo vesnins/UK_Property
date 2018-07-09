@@ -1038,7 +1038,7 @@ class MainController extends Controller
 
     if($type === 'add') {
       for($i = 0; count($cart) > $i; $i++)
-        if($cart[$i]['id'] == $id) {
+        if($cart[$i]['id'] == $id && $cart[$i]['name_url'] == $name_url) {
           $idd = true;
           break;
         }
@@ -1052,7 +1052,7 @@ class MainController extends Controller
 
     if($type === 'remove') {
       for($i = 0; count($cart) > $i; $i++)
-        if($cart[$i]['id'] == $id) {
+        if($cart[$i]['id'] == $id && $cart[$i]['name_url'] == $name_url) {
           unset($cart[$i]);
           break;
         }
@@ -1632,9 +1632,6 @@ class MainController extends Controller
       }
 
       if(isset($form['bedrooms_from'])) {
-        //        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '>=', $form['bedrooms_from']]]);
-        //        $where = array_merge($where, [["{$filters['table']}.bedrooms_from", '<=', $form['bedrooms_to']]]);
-
         $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '>=', $form['bedrooms_from']]]);
         $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '<=', $form['bedrooms_to']]]);
 
@@ -1655,7 +1652,6 @@ class MainController extends Controller
           $form['area_to']   = round($form['area_to'] / 10.7638673611111);
         }
 
-        //        $where = array_merge($where, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
         $where = array_merge($where, [["{$filters['table']}.area_to", '>=', $form['area_from']]]);
         $where = array_merge($where, [["{$filters['table']}.area_to", '<=', $form['area_to']]]);
 
@@ -1681,9 +1677,9 @@ class MainController extends Controller
       if(isset($form['cat_location']))
         $catalog_sql = $catalog_sql->whereIn("{$filters['table']}.cat_location", $form['cat_location']);
 
+
       if(isset($form['type_object']))
         $catalog_sql = $catalog_sql->where(
-
           function($query) use ($form, $filters) {
             for($i = 0; $i < count($form['type_object']); $i++) {
               $query->orwhere(
@@ -1697,11 +1693,8 @@ class MainController extends Controller
 
       if(isset($form['development_facilities']))
         $catalog_sql = $catalog_sql->where(
-        // "{$filters['table']}.development_facilities",
-
           function($query) use ($form, $filters) {
             for($i = 0; $i < count($form['development_facilities']); $i++) {
-              print_r('%"' . $form['development_facilities'][$i] . '"%');
 
               $query->orwhere(
                 "{$filters['table']}.development_facilities",
@@ -1725,8 +1718,10 @@ class MainController extends Controller
           }
         );
 
-      $catalog_sql = $catalog_sql->orWhere($or_where);
-      $order_by    = $filters['group']["group_{$form['group']}_{$form['sort_by']}"];
+      if(count($or_where) > 2)
+        $catalog_sql = $catalog_sql->orWhere($or_where);
+
+      $order_by = $filters['group']["group_{$form['group']}_{$form['sort_by']}"];
 
       if(is_array($order_by))
         $order_by = DB::raw("{$order_by['mode']}({$filters['table']}.{$order_by['name']})");
@@ -1751,7 +1746,8 @@ class MainController extends Controller
 
     // For Favorite
     if($session) {
-      $cart_data = [];
+      $data['catalog'] = [];
+      $cart_data       = [];
 
       for($i = 0; count($cart ?? []) > $i; $i++)
         $cart_data[$cart[$i]['name_url']][] = $cart[$i]['id'] ?? 0;
@@ -1780,14 +1776,20 @@ class MainController extends Controller
             ->get()
             ->toArray();
 
-          $data['catalog'] = ($data['catalog'] ?? []) +
+          $data['catalog'] = array_merge(
             array_map(
               function($v) use ($k) {
                 return array_merge($v, ['name_url' => $k]);
-              }, $catalog
-            );
+              },
+
+              $catalog
+            ),
+
+            $data['catalog']
+          );
         }
       }
+
     }
 
     if($portfolio) {

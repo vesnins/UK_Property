@@ -118,7 +118,7 @@
           href="javascript:void(0)"
           data-id="{{ $val['id'] }}"
           class="del-btn like-button {!! $is_favorite ? 'active' : '' !!} like-button-{{ $val['id'] }}"
-          onclick="catAll.addCart('{{ $val['id'] }}', 'remove', '')"
+          onclick="catAll.addCart('{{ $val['id'] }}', 'remove', '{{ $name_url ?? $url[$val['name_table']] }}')"
         >
           <svg>
             <use xlink:href="/images/svg/sprite.svg#close-icon"></use>

@@ -67,9 +67,9 @@ var
     reversFtM2Click: function() {
       $('[name="type_ft_m2"]').click(function() {
         var
-          val = $(this).val(),
-          r   = $('[name="slider_area"]'),
-          from   = $('[name="data-slider-min"]').val(),
+          val  = $(this).val(),
+          r    = $('[name="slider_area"]'),
+          from = $('[name="data-slider-min"]').val(),
           to   = $('[name="data-slider-max"]').val(),
           min,
           max;
@@ -117,6 +117,8 @@ var
     },
 
     selectCatalog: function(data) {
+      data = data || {};
+
       if(!data.session)
         if(_.isEqual(data, catAll.currentData))
           return false;
@@ -126,21 +128,23 @@ var
       if(!data.session)
         $(catAll.container).animate({opacity: .5}, 150);
 
-      $.ajax({
+      if(catAll.currentLoad)
+        catAll.currentLoad.abort();
+
+      catAll.currentLoad = $.ajax({
         type    : "post",
         url     : "/_tools/search_render_catalog",
         cache   : false,
         data    : data,
         dataType: "html",
 
-        success: function(data) {
-          $(catAll.container).html(data);
+        success: function(res) {
+          $(catAll.container).html(res);
           $(catAll.container).animate({opacity: 1}, 150);
 
           $('[data-page]').click(function(e) {
             e.preventDefault();
             $('[name="pagination"]').val($(this).data('page'));
-            catAll.selectCatalog();
           });
 
           setTimeout(function() {
@@ -150,7 +154,6 @@ var
             if(isNaN(parseInt($('[data-page="' + page + '"]').data('page'))) && page > 1) {
               page = page - 1;
               $('[name="pagination"]').val(page);
-              catAll.selectCatalog();
             }
 
             if(catAll.isLoad)
@@ -277,15 +280,15 @@ var
               position: new google.maps.LatLng(
                 parseFloat(val.coordinates.split(',')[0]),
                 parseFloat(val.coordinates.split(',')[1])
-                ),
+              ),
 
               map: catAll.map,
 
               icon: {
-                url:  window.location.origin + '/images/pin.png',
+                url       : window.location.origin + '/images/pin.png',
                 scaledSize: new google.maps.Size(40, 43), // scaled size
-                origin: new google.maps.Point(0, 0), // origin
-                anchor: new google.maps.Point(20, 22) // anchor
+                origin    : new google.maps.Point(0, 0), // origin
+                anchor    : new google.maps.Point(20, 22) // anchor
               },
             });
 

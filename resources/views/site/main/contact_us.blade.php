@@ -9,9 +9,9 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO4_qS5tqKWQwDl2-ujJpAn95dHU90GzU&amp;libraries=places&amp;sensor=false&language={{ $lang }}"></script>
     <script>
       function initMap() {
-        var myLatLng = {lat: 51.5127637, lng: -0.1530711};
+        var myLatLng = {lat: 51.514981, lng: -0.123565};
         var map      = new google.maps.Map(document.getElementById('map-canvas'), {
-          zoom  : 12,
+          zoom  : 18,
           center: myLatLng,
 
           styles: [
@@ -48,7 +48,14 @@
         var marker = new google.maps.Marker({
           position: myLatLng,
           map     : map,
-          icon    : window.location.origin + '/images/pin(old).png',
+        //  icon    : window.location.origin + '/images/pin(old).png',
+
+          icon    : {
+            url:  window.location.origin + '/images/pin(old).png',
+            scaledSize: new google.maps.Size(35, 49), // scaled size
+            origin: new google.maps.Point(0, 0), // origin
+            anchor: new google.maps.Point(17, 24) // anchor
+          },
         });
       }
 
@@ -83,17 +90,25 @@
                 <use xlink:href="/images/svg/sprite.svg#phone"></use>
               </svg>
 
-              WhatsApp/Viber/Telegram:
+              WhatsApp/Viber:
               <br />
 
               <a href="tel:{!! $langSt($params['soc_phone_by_footer_1']['key']) !!}">
                 {!! $langSt($params['soc_phone_by_footer_1']['key']) !!}
               </a>
 
+              @if(empty($langSt($params['soc_phone_by_footer_2']['key'])))
+                <br />
+                <a href="tel:{!! $langSt($params['soc_phone_by_footer_2']['key']) !!}">
+                  {!! $langSt($params['soc_phone_by_footer_2']['key']) !!}
+                </a>
+              @endif
+
+              @lang('main.office'):
               <br />
 
               <a href="tel:{!! $langSt($params['soc_phone_by_footer_2']['key']) !!}">
-                {!! $langSt($params['soc_phone_by_footer_2']['key']) !!}
+                {!! $langSt($params['soc_phone_by_footer_3']['key']) !!}
               </a>
             </span>
           </address>
