@@ -269,4 +269,5 @@ return [
   'show'                                     => 'Показать',
   'call_back_form'                           => 'Обратный звонок',
   'office'                                   => 'Офис',
+  'TBC'                                      => 'TBC',
 ];

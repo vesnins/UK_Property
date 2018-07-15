@@ -1313,6 +1313,45 @@
     "translateKey"    : "photo_to_main"
   },
   {
+    "name"           : "do_not_show_price",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat border-green",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "Полезное",
+    "nameAttr"       : "pl[do_not_show_price]",
+    "description"    : "Селект \"do_not_show_price\"",
+    "idAttr"         : "inputDo_not_show_price",
+    "functionsBefore": "checkboxCheck",
+    "sql_column"     : "do_not_show_price",
+    "translateKey"   : "do_not_show_price"
+  },
+  {
+    "name"           : "do_not_show_area",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat border-green",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "Полезное",
+    "nameAttr"       : "pl[do_not_show_area]",
+    "description"    : "Селект \"do_not_show_area\"",
+    "idAttr"         : "inputDo_not_show_area",
+    "functionsBefore": "checkboxCheck",
+    "sql_column"     : "do_not_show_area",
+    "translateKey"   : "do_not_show_area"
+  },
+  {
+    "name"           : "do_not_show_bedrooms",
+    "typeField"      : "checkbox",
+    "classAttr"      : "flat border-green",
+    "classAttrDiv"   : "border-green-checkbox",
+    "nameText"       : "Полезное",
+    "nameAttr"       : "pl[do_not_show_bedrooms]",
+    "description"    : "Селект \"do_not_show_bedrooms\"",
+    "idAttr"         : "inputDo_not_show_bedrooms",
+    "functionsBefore": "checkboxCheck",
+    "sql_column"     : "do_not_show_bedrooms",
+    "translateKey"   : "do_not_show_bedrooms"
+  },
+  {
     "name"            : "img_to_main",
     "typeField"       : "functions",
     "nameText"        : "Изображение для видео на главную",

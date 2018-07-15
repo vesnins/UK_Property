@@ -93,4 +93,7 @@ return [
   'img_to_main'                 => 'Изображение для видео на главную',
   'periodicity'                 => 'Периодичность',
   'type_subscribe'              => 'Тип подписки',
+  'do_not_show_price'           => 'Не ототбражать цену',
+  'do_not_show_area'            => 'Не ототбражать площадь',
+  'do_not_show_bedrooms'        => 'Не ототбражать Спальни',
 ];

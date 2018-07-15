@@ -662,6 +662,9 @@
     "plugins"         : [
       "to_main",
       "in_portfolio",
+      "do_not_show_price",
+      "do_not_show_area",
+      "do_not_show_bedrooms",
       "sort",
       "active",
       "name",

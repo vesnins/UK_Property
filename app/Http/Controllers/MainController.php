@@ -1030,11 +1030,13 @@ class MainController extends Controller
    */
   public function add_favorite()
   {
-    $idd      = false;
-    $id       = $this->request['id'];
-    $type     = $this->request['type'];
-    $name_url = $this->request['name_url'];
-    $cart     = array_values($this->requests->session()->get('cart') ?? []);
+    $idd           = false;
+    $id            = $this->request['id'];
+    $type          = $this->request['type'];
+    $name_url      = $this->request['name_url'];
+    $cart          = array_values($this->requests->session()->get('cart') ?? []);
+    $data          = [];
+    $data['count'] = 0;
 
     if($type === 'add') {
       for($i = 0; count($cart) > $i; $i++)
@@ -1065,7 +1067,10 @@ class MainController extends Controller
       $data['cart'][$v['id']] = $v;
 
     $data['result'] = 'ok';
-    $data['count']  = count(array_values($this->requests->session()->get('cart') ?? []));
+
+    foreach($cart ?? [] as $c)
+      if(($c['id'] ?? 0) != 0 && ($c['name_url'] ?? '') != '')
+        $data['count']++;
 
     return json_encode($data);
   }
@@ -1273,7 +1278,8 @@ class MainController extends Controller
       }
     }
 
-    $params['admin_text'] = __('main.' . $type);
+    $params['admin_text']    = __('main.' . $type);
+    $params['is_agent_form'] = true;
 
     // Отправка уведомления администратору
     foreach(explode(',', $params['langSt']($params['params']['email_notifications']['key'])) as $mail)

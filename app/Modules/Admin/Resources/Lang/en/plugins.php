@@ -93,4 +93,7 @@ return [
   'img_to_main'                 => 'Img for video to main',
   'periodicity'                 => 'Periodicity',
   'type_subscribe'              => 'Type subscribe',
+  'do_not_show_price'           => 'Do not show Price',
+  'do_not_show_area'            => 'Do not show Area',
+  'do_not_show_bedrooms'        => 'Do not show Bedrooms',
 ];

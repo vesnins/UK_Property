@@ -98,8 +98,9 @@
 
                 function initMap() {
                   var mapOptions = {
-                    zoom   : 17,
-                    minZoom: 15,
+                    zoom          : 17,
+                    minZoom       : 15,
+                    mapTypeControl: false,
 
                     styles: [
                       {"featureType": "road", "stylers": [{"hue": "#5e00ff"}, {"saturation": -79}]},
@@ -211,35 +212,45 @@
                 <td>
                   <span class="caption">@lang('main.asking_price')</span>
 
-                  <span class="value {{ $page['in_portfolio'] ? 'price-value' : '' }}">
-                    @if($page['price_money_from'] ?? false || $page['price_money_to'] ?? false)
-                      @if(!empty($page['price_money_from']))
-                        £{{ number_format($page['price_money_from'], 0, ',', ',') }}
-                        -
-                      @endif
+                  @if(!$page['do_not_show_price'])
+                    <span class="caption">@lang('main.asking_price')</span>
 
-                      £{{ number_format($page['price_money_to'], 0, ',', ',') }}
-                    @else
-                      £{{ number_format($page['price_money'], 0, ',', ',') }}
-                    @endif
-                  </span>
+                    <span class="value {{ $page['in_portfolio'] ? 'price-value' : '' }}">
+                      @if($page['price_money_from'] ?? false || $page['price_money_to'] ?? false)
+                        @if(!empty($page['price_money_from']))
+                          £{{ number_format($page['price_money_from'], 0, ',', ',') }}
+                          -
+                        @endif
+
+                        £{{ number_format($page['price_money_to'], 0, ',', ',') }}
+                      @else
+                        £{{ number_format($page['price_money'], 0, ',', ',') }}
+                      @endif
+                    </span>
+                  @else
+                    <span class="value">@lang('main.TBC')</span>
+                  @endif
                 </td>
 
                 <td>
                   <span class="caption">@lang('main.number_of_bedrooms')</span>
 
-                  <span class="value">
-                    @if($page['bedrooms_from'] ?? false || $page['bedrooms_to'] ?? false)
-                      @if(!empty($page['bedrooms_from']))
-                        {{ $page['bedrooms_from'] }}
-                        -
-                      @endif
+                  @if(!$page['do_not_show_bedrooms'])
+                    <span class="value">
+                      @if($page['bedrooms_from'] ?? false || $page['bedrooms_to'] ?? false)
+                        @if(!empty($page['bedrooms_from']))
+                          {{ $page['bedrooms_from'] }}
+                          -
+                        @endif
 
-                      {{ $page['bedrooms_to'] }}
-                    @else
-                      {{ $page['bedrooms'] }}
-                    @endif
-                  </span>
+                        {{ $page['bedrooms_to'] }}
+                      @else
+                        {{ $page['bedrooms'] }}
+                      @endif
+                    </span>
+                  @else
+                    <span class="value">@lang('main.TBC')</span>
+                  @endif
                 </td>
 
                 <td>
@@ -248,18 +259,22 @@
                     <sup>2</sup>
                   </span>
 
-                  <span class="value">
-                    @if($page['area_from'] ?? false || $page['area_to'] ?? false)
-                      @if(!empty($page['area_from']))
-                        {{ round($page['area_from'] * 10.7638673611111, 0) }}
-                        -
-                      @endif
+                  @if(!$page['do_not_show_area'])
+                    <span class="value">
+                      @if($page['area_from'] ?? false || $page['area_to'] ?? false)
+                        @if(!empty($page['area_from']))
+                          {{ round($page['area_from'] * 10.7638673611111, 0) }}
+                          -
+                        @endif
 
-                      {{ round($page['area_to'] * 10.7638673611111, 0) }}
-                    @else
-                      {{ round($page['area'] * 10.7638673611111, 0) }}
-                    @endif
-                  </span>
+                        {{ round($page['area_to'] * 10.7638673611111, 0) }}
+                      @else
+                        {{ round($page['area'] * 10.7638673611111, 0) }}
+                      @endif
+                    </span>
+                  @else
+                    <span class="value">@lang('main.TBC')</span>
+                  @endif
                 </td>
 
                 <td>
@@ -268,18 +283,22 @@
                     <sup>2</sup>
                   </span>
 
-                  <span class="value">
-                    @if($page['area_from'] ?? false || $page['area_to'] ?? false)
-                      @if(!empty($page['area_from']))
-                        {{ $page['area_from'] }}
-                        -
-                      @endif
+                  @if(!$page['do_not_show_area'])
+                    <span class="value">
+                      @if($page['area_from'] ?? false || $page['area_to'] ?? false)
+                        @if(!empty($page['area_from']))
+                          {{ $page['area_from'] }}
+                          -
+                        @endif
 
-                      {{ $page['area_to'] }}
-                    @else
-                      {{ $page['area'] }}
-                    @endif
-                  </span>
+                        {{ $page['area_to'] }}
+                      @else
+                        {{ $page['area'] }}
+                      @endif
+                    </span>
+                  @else
+                    <span class="value">@lang('main.TBC')</span>
+                  @endif
                 </td>
               </tr>
             </table>
@@ -359,7 +378,7 @@
                       @php($date = explode('-', $page['availability_date']))
 
                       <time datetime="{{ $page['availability_date'] }}">
-                        {{ $date['0'] . '.' . $date['1'] . '.' . $date['2'] }}
+                        {{ $date['2'] . '.' . $date['1'] . '.' . $date['0'] }}
                       </time>
                     </td>
                   </tr>

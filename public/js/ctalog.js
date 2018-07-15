@@ -139,6 +139,14 @@ var
         dataType: "html",
 
         success: function(res) {
+          for(var i = 0; Object.keys(data || {}).length > i; i++) {
+            if((data[i] || {}).name === 'pagination') {
+              catAll.skipClick = true;
+              catAll.currentData[i].value = data[i].value;
+              $('[name="pagination"]').val(data[i].value);
+            }
+          }
+
           $(catAll.container).html(res);
           $(catAll.container).animate({opacity: 1}, 150);
 
@@ -148,14 +156,6 @@ var
           });
 
           setTimeout(function() {
-            var
-              page = $('[name="pagination"]').val();
-
-            if(isNaN(parseInt($('[data-page="' + page + '"]').data('page'))) && page > 1) {
-              page = page - 1;
-              $('[name="pagination"]').val(page);
-            }
-
             if(catAll.isLoad)
               catAll.addMarker();
 
@@ -217,8 +217,9 @@ var
         mapOptions;
 
       mapOptions = {
-        zoom   : 17,
-        minZoom: 6,
+        zoom          : 17,
+        minZoom       : 6,
+        mapTypeControl: false,
 
         styles     : [
           {"featureType": "road", "stylers": [{"hue": "#5e00ff"}, {"saturation": -79}]},
