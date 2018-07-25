@@ -112,7 +112,7 @@
       <div class="container">
         <div class="row text-center">
           <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-            <div class="section-title">@lang('main.contact_us_for_free_initial_consultation')</div>
+            <div class="section-title">{!! $langSt($params['about_company_contact']['key']) !!}</div>
 {{--            <p>{!! $langSt($params['contact_us_text_contact_an_agent']['key']) !!}</p>--}}
 
             <a href="#" class="link" data-toggle="modal" data-target=".request-modal">

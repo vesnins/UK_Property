@@ -72,7 +72,7 @@ class MainController extends Controller
 
     $services_key = array_keys($data['services']);
 
-    for($i = 0; 3 > $i; $i++) {
+    for($i = 0; 3 >= $i; $i++) {
       $filters = $this->_catalog_array($services_key[$i]);
 
       if($filters) {
@@ -96,7 +96,9 @@ class MainController extends Controller
             }
           )
           ->select("{$filters['table']}.*", 'files.file', 'files.crop')
-          ->get(4)
+//          ->orderBy('updated_at', 'ASC')
+         ->limit(4)
+          ->get()
           ->toArray();
       }
     }
@@ -1050,6 +1052,8 @@ class MainController extends Controller
           'cart',
           array_merge($cart, [$id => ['id' => $id, 'name_url' => $name_url]])
         );
+
+      $cart = array_values($this->requests->session()->get('cart') ?? []);
     }
 
     if($type === 'remove') {
@@ -1621,12 +1625,20 @@ class MainController extends Controller
         ["{$filters['table']}.in_portfolio", '=', 0],
       ];
 
+      $or_where_2 = [
+        ["{$filters['table']}.active", '=', 1],
+        ["{$filters['table']}.in_portfolio", '=', 0],
+      ];
+
       if(isset($form['price_money_from'])) {
         //        $where = array_merge($where, [["{$filters['table']}.price_money_from", '>=', $form['price_money_from']]]);
         $where = array_merge($where, [["{$filters['table']}.price_money_to", '>=', $form['price_money_from']]]);
         $where = array_merge($where, [["{$filters['table']}.price_money_to", '<=', $form['price_money_to']]]);
 
         $or_where = array_merge($or_where, [["{$filters['table']}.price_money_to", '=', null]]);
+
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.price_money_from", '>=', $form['price_money_from']]]);
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.price_money_from", '<=', $form['price_money_to']]]);
       }
 
       //  Для фиксированной цены
@@ -1635,6 +1647,9 @@ class MainController extends Controller
         $where = array_merge($where, [["{$filters['table']}.price_money", '<=', $form['price_money_to_fixed']]]);
 
         $or_where = array_merge($or_where, [["{$filters['table']}.price_money", '=', null]]);
+
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.price_money", '>=', $form['price_money_from_fixed']]]);
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.price_money", '<=', $form['price_money_to_fixed']]]);
       }
 
       if(isset($form['bedrooms_from'])) {
@@ -1642,6 +1657,9 @@ class MainController extends Controller
         $where = array_merge($where, [["{$filters['table']}.bedrooms_to", '<=', $form['bedrooms_to']]]);
 
         $or_where = array_merge($or_where, [["{$filters['table']}.bedrooms_to", '=', null]]);
+
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.bedrooms_from", '>=', $form['bedrooms_from']]]);
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.bedrooms_from", '<=', $form['bedrooms_to']]]);
       }
 
       //  Для фиксированного кол-ва комнат
@@ -1650,6 +1668,9 @@ class MainController extends Controller
         $where = array_merge($where, [["{$filters['table']}.bedrooms", '<=', $form['bedrooms_to_fixed']]]);
 
         $or_where = array_merge($or_where, [["{$filters['table']}.bedrooms", '=', null]]);
+
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.bedrooms", '>=', $form['bedrooms_from_fixed']]]);
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.bedrooms", '<=', $form['bedrooms_to_fixed']]]);
       }
 
       if(isset($form['area_from'])) {
@@ -1662,6 +1683,9 @@ class MainController extends Controller
         $where = array_merge($where, [["{$filters['table']}.area_to", '<=', $form['area_to']]]);
 
         $or_where = array_merge($or_where, [["{$filters['table']}.area_to", '=', null]]);
+
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.area_from", '>=', $form['area_from']]]);
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.area_from", '<=', $form['area_to']]]);
       }
 
       // Для фиксированной площади
@@ -1675,6 +1699,9 @@ class MainController extends Controller
         $where = array_merge($where, [["{$filters['table']}.area", '<=', $form['area_to_fixed']]]);
 
         $or_where = array_merge($or_where, [["{$filters['table']}.area", '=', null]]);
+
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.area", '>=', $form['area_from_fixed']]]);
+        $or_where_2 = array_merge($or_where_2, [["{$filters['table']}.area", '<=', $form['area_to_fixed']]]);
       }
 
       $catalog_sql = $this->dynamic->t($filters['table'])
@@ -1726,6 +1753,9 @@ class MainController extends Controller
 
       if(count($or_where) > 2)
         $catalog_sql = $catalog_sql->orWhere($or_where);
+
+      if(count($or_where_2) > 2)
+        $catalog_sql = $catalog_sql->orWhere($or_where_2);
 
       $order_by = $filters['group']["group_{$form['group']}_{$form['sort_by']}"];
 

@@ -305,7 +305,7 @@
 
     <section class="subscribe-section" style="background-image: url('/images/banners/img_2.jpg')">
       <div class="container">
-        <h3 class="text-center">@lang('main.subscribe_to_our_newsletter')</h3>
+        <h3 class="text-center">{!! $langSt($params['subscribe_to_our_newsletter']['key']) !!}</h3>
 
         <form action="#" class="subscribe-form validate-form">
           @include('site.block.subscribe_form', ['send' =>__('main.send')])

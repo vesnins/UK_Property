@@ -137,8 +137,7 @@
         <div class="col-sm-10">
           <p>
             © 2018 - {{ date('Y') != '2018' ? date('Y') : '' }}
-            UK Property @lang('main.all_rights_reserved')
-            <a href="/terms-conditions">@lang('main.agreement_on_processing_personal_data')</a>
+            {!! $langSt($params['copyright_footer']['key']) !!}
           </p>
         </div>
 

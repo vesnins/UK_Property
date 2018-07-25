@@ -23,17 +23,19 @@
       : '/images/files/no-image.jpg')
 
   @if(!$v['do_not_show_price'])
+    @php($pcm = $v['name_table'] === 'catalog_rent' ? ' ' . __('main.pcm') : '')
+
     @if($v['price_money_from'] !== null || $v['price_money_to'] !== null || $v['price_money'] !== null)
       @if($v['price_money_from'] || $v['price_money_from'])
         @if(trim($v['price_money_from']))
           @php($catalog_marker[$k]['price'] = '£' . number_format($v['price_money_from'], 0, ',', ',') . ' - ' .
-           number_format($v['price_money_to'], 0, ',', ','))
+           number_format($v['price_money_to'], 0, ',', ',') . $pcm)
         @else
-          @php($catalog_marker[$k]['price'] = '£' . number_format($v['price_money_to'], 0, ',', ','))
+          @php($catalog_marker[$k]['price'] = '£' . number_format($v['price_money_to'], 0, ',', ',') . $pcm)
         @endif
       @else
         @if($v['price_money'] != 0)
-          @php($catalog_marker[$k]['price'] = '£' . number_format($v['price_money'], 0, ',', ','))
+          @php($catalog_marker[$k]['price'] = '£' . number_format($v['price_money'], 0, ',', ',') . $pcm)
         @endif
       @endif
     @endif
@@ -156,14 +158,14 @@
             @if(!$val['do_not_show_area'])
               @if($val['area_from'] !== null || $val['area_to'] !== null || $val['area'] !== null)
                 <div class="cell">
-                  @if(!empty($val['area_from']) || $val['area_from'] == 0)
+                  @if($val['area_from'] || $val['area_to'])
                     S =
                     @if($val['area_from'])
                       <div class="s-pl">{{ $val['area_from']}}</div> -
                     @endif
                     <div class="s-pl">{{ $val['area_to'] }}</div>
                   @else
-                    @if(!empty($val['area']) || $val['area'] == 0)
+                    @if($val['area'])
                       S = <div class="s-pl">{{ $val['area'] }}</div>
                     @endif
                   @endif
@@ -185,7 +187,7 @@
               @if($val['bedrooms_from'] !== null || $val['bedrooms_to'] !== null || $val['bedrooms'] !== null)
                 <div class="cell">
                   @if($val['bedrooms_from'] ?? false || $val['bedrooms_to'] ?? false)
-                    @if(!empty($val['bedrooms_from']) || $val['bedrooms_from'] == 0) {{ $val['bedrooms_from'] }} - @endif
+                    @if($val['bedrooms_from']) {{ $val['bedrooms_from'] }} - @endif
                     {{ $val['bedrooms_to'] }}
                   @else
                     {{ $val['bedrooms'] }}
@@ -206,11 +208,15 @@
             @if(!$val['do_not_show_price'])
               @if($val['price_money_from'] !== null || $val['price_money_to'] !== null || $val['price_money'] !== null)
                 <span class="price">
-                  @if($val['price_money_from'] ?? false || $val['bedrooms_to'] ?? false)
+                  @if($val['price_money_from'] ?? false || $val['price_money_to'] ?? false)
                     @if($val['price_money_from']) £{{ number_format($val['price_money_from'], 0, ',', ',') }} - @endif
                     £{{ number_format($val['price_money_to'], 0, ',', ',') }}
                   @else
                     £{{ number_format($val['price_money'], 0, ',', ',') }}
+                  @endif
+
+                  @if($val['name_table'] === 'catalog_rent')
+                    @lang('main.pcm')
                   @endif
                 </span>
               @endif

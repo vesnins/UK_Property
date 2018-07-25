@@ -210,11 +210,15 @@
             <table class="characteristics">
               <tr>
                 <td>
-                  <span class="caption">@lang('main.asking_price')</span>
+                  <span class="caption">
+                    @if($page['name_table'] === 'catalog_rent')
+                      @lang('main.rent_pcm')
+                    @else
+                      @lang('main.asking_price')
+                    @endif
+                  </span>
 
                   @if(!$page['do_not_show_price'])
-                    <span class="caption">@lang('main.asking_price')</span>
-
                     <span class="value {{ $page['in_portfolio'] ? 'price-value' : '' }}">
                       @if($page['price_money_from'] ?? false || $page['price_money_to'] ?? false)
                         @if(!empty($page['price_money_from']))
