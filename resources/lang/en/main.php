@@ -10,6 +10,7 @@ return [
   'villas'                          => 'Villas',
   'hot_offers'                      => 'Hot offers',
   'location'                        => 'Location',
+  'location_london'                 => 'Location',
   'check_in'                        => 'Check-in',
   'check_out'                       => 'Check-out',
   'rooms'                           => 'Rooms',

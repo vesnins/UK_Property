@@ -35,26 +35,26 @@
             <label for="location">@lang('main.my_ideal_property_will_be_located_in')</label>
 
             <div class="input-holder">
-              <input type="text" id="location" name="location" placeholder="@lang('main.location') *" />
+              <input type="text" id="location" name="location" placeholder="@lang('main.location_london')" />
             </div>
 
             <br />
             <label for="bedrooms">@lang('main.preferred_number_of_bedrooms_is')</label>
 
             <div class="input-holder">
-              <input class="sm" type="text" id="bedrooms" name="bedrooms" placeholder="@lang('main.bedrooms') *" />
+              <input class="sm" type="text" id="bedrooms" name="bedrooms" placeholder="@lang('main.bedrooms')" />
             </div>
 
             <label for="price-from">"@lang('main.i_ll_consider_options_between') £</label>
 
             <div class="input-holder">
-              <input class="sm" type="text" id="price-from" name="price_from" placeholder="@lang('main.price') *" />
+              <input class="sm" type="text" id="price-from" name="price_from" placeholder="@lang('main.from_')" />
             </div>
 
-            <label for="price-to">@lang('main._and') £</label>
+            <label for="price-to">@lang('main.to_') £</label>
 
             <div class="input-holder">
-              <input class="sm" type="text" id="price-to" name="price_to" placeholder="@lang('main.price') *" />
+              <input class="sm" type="text" id="price-to" name="price_to" placeholder="@lang('main.to_')" />
             </div>
 
             <br />
@@ -62,7 +62,7 @@
             <label for="phone">@lang('main.please_call_me_on_my_mobile_phone')</label>
 
             <div class="input-holder">
-              <input type="tel" id="phone" name="phone_number" placeholder="@lang('main.phone_number') *" />
+              <input type="tel" id="phone" name="phone_number" placeholder="@lang('main.phone_number')" />
             </div>
 
             <label for="time">@lang('main.the_best_time_to_call_me_is')</label>
