@@ -118,7 +118,7 @@
       @if($name_url || $show_like)
         <a href="javascript:void(0)"
           data-id="{{ $val['id'] }}"
-          class="add-to-wishList like-button {!! $is_favorite ? 'active' : '' !!} like-button-{{ $val['id'] }}"
+          class="add-to-wishList like-button {!! $is_favorite ? 'active' : '' !!} like-button-{{ $val['id'] }}-{{ $url[$val['name_table']] }}"
 
           onclick="catAll.addCart(
             '{{ $val['id'] }}',

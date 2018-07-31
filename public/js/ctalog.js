@@ -190,8 +190,8 @@ var
              fav.find('.qty').html('(' + data.count + ')');
 
              if(id > 0) {
-               if(selectorLice.hasClass('like-button-' + id))
-                 selectorLice = $('.like-button-' + id);
+               if(selectorLice.hasClass('like-button-' + id + '-' + nameUrl))
+                 selectorLice = $('.like-button-' + id + '-' + nameUrl);
 
                if(type === 'add') {
                  selectorLice.addClass('active');
