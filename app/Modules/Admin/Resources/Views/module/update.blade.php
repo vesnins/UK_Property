@@ -123,9 +123,9 @@
 									}
 
 									var column, text, typeField;
-									var body = {!! json_encode($data) !!};
-									var plugins = {!! json_encode($plugins) !!};
-									var pluginsLang = {!! json_encode($plugins_lang) !!};
+									var body = {!! json_encode($data, JSON_UNESCAPED_UNICODE) !!};
+									var plugins = {!! json_encode($plugins, JSON_UNESCAPED_UNICODE) !!};
+									var pluginsLang = {!! json_encode($plugins_lang, JSON_UNESCAPED_UNICODE) !!};
 
 									_.map(pluginsLang, function(v, k) {
 										text = _.unescape(body[v.name]);

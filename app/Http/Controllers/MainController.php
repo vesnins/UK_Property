@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Session;
 
 class MainController extends Controller
 {
@@ -81,6 +82,7 @@ class MainController extends Controller
         $data['services'][$services_key[$i]]['data'] = $query
           ->where(
             [
+              ["{$filters['table']}.active", '=', 1],
               ["{$filters['table']}.to_main", '=', 1],
               ["{$filters['table']}.in_portfolio", '=', 0],
             ]
@@ -96,8 +98,8 @@ class MainController extends Controller
             }
           )
           ->select("{$filters['table']}.*", 'files.file', 'files.crop')
-//          ->orderBy('updated_at', 'ASC')
-         ->limit(4)
+          //          ->orderBy('updated_at', 'ASC')
+          ->limit(4)
           ->get()
           ->toArray();
       }
@@ -787,6 +789,7 @@ class MainController extends Controller
   public function favorite()
   {
     $id_segment = $this->requests->segment(1);
+    $data       = $this->helper->duplicate_data();
 
     if(!is_numeric($id_segment))
       $where_id = ['menu.translation' => $id_segment];
@@ -1134,6 +1137,8 @@ class MainController extends Controller
     foreach($form as $k => $v)
       $form_data[$k] = (int) $v == -1 ? '' : $v;
 
+    $form_data['lang'] = Session::get('lang');
+
     if($type == 'subscription_form') {
       $title = __('main.subscription_admin');
 
@@ -1252,14 +1257,14 @@ class MainController extends Controller
 
       // Отправка уведомления
       foreach($form_data['friend_email'] as $em) {
-        $form_data['email'] = $em;
+        $form_data['email_r'] = $em;
         Mail::send(
           'emails.' . $type,
           array_merge($form_data, $params),
 
           function($m) use ($params, $param, $from, $form_data) {
             $m->from($from, __('main.uk_property_advisors'));
-            $m->to(trim($form_data['email']), 'no-realy')->subject(__('main.uk_property_advisors'));
+            $m->to(trim($form_data['email_r']), 'no-realy')->subject(__('main.uk_property_advisors'));
           }
         );
       }
@@ -1287,7 +1292,7 @@ class MainController extends Controller
 
     // Отправка уведомления администратору
     foreach(explode(',', $params['langSt']($params['params']['email_notifications']['key'])) as $mail)
-      Mail::send(
+      $r= Mail::send(
         'emails.' . $type,
         array_merge($form_data, $params),
 
@@ -1328,57 +1333,32 @@ class MainController extends Controller
       $data['name']   = $name;
       $data['meta_c'] = $this->base->getMeta($data, 'page');
 
-      if($data['page']['area_from']) {
-        $where_similar = array_merge(
-          $where_similar,
+      if($filters['name'] === 'buy')
+        if($data['page']['price_money_from']) {
+          $where_similar = array_merge(
+            $where_similar,
 
-          [
-            ["{$filters['table']}.area_from", '>', (int) $data['page']['area_from'] - 20],
-            ["{$filters['table']}.area_from", '<', (int) $data['page']['area_from'] + 20],
+            [
+              ["{$filters['table']}.price_money_from", '>', (int) $data['page']['price_money_from'] - 250000],
+              ["{$filters['table']}.price_money_from", '<', (int) $data['page']['price_money_from'] + 250000],
 
-            ["{$filters['table']}.area_to", '>', (int) $data['page']['area_to'] - 20],
-            ["{$filters['table']}.area_to", '<', (int) $data['page']['area_to'] + 20],
-          ]
-        );
-      } else {
-        $where_similar = array_merge(
-          $where_similar,
+              ["{$filters['table']}.price_money_to", '>', (int) $data['page']['price_money_to'] - 250000],
+              ["{$filters['table']}.price_money_to", '<', (int) $data['page']['price_money_to'] + 250000],
+            ]
+          );
+        } else {
+          $where_similar = array_merge(
+            $where_similar,
 
-          [
-            ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
-            ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
+            [
+              ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
+              ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
 
-            ["{$filters['table']}.area", '>', (int) $data['page']['area'] - 20],
-            ["{$filters['table']}.area", '<', (int) $data['page']['area'] + 20],
-          ]
-        );
-      }
-
-      if($data['page']['price_money_from']) {
-        $where_similar = array_merge(
-          $where_similar,
-
-          [
-            ["{$filters['table']}.price_money_from", '>', (int) $data['page']['price_money_from'] - 250000],
-            ["{$filters['table']}.price_money_from", '<', (int) $data['page']['price_money_from'] + 250000],
-
-            ["{$filters['table']}.price_money_to", '>', (int) $data['page']['price_money_to'] - 250000],
-            ["{$filters['table']}.price_money_to", '<', (int) $data['page']['price_money_to'] + 250000],
-          ]
-        );
-      } else {
-        $where_similar = array_merge(
-          $where_similar,
-
-          [
-            ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
-            ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
-
-            ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
-            ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
-          ]
-        );
-      }
+              ["{$filters['table']}.price_money", '>', (int) $data['page']['price_money'] - 250000],
+              ["{$filters['table']}.price_money", '<', (int) $data['page']['price_money'] + 250000],
+            ]
+          );
+        }
 
       $where_similar = array_merge(
         $where_similar,
@@ -1710,7 +1690,6 @@ class MainController extends Controller
       if(isset($form['cat_location']))
         $catalog_sql = $catalog_sql->whereIn("{$filters['table']}.cat_location", $form['cat_location']);
 
-
       if(isset($form['type_object']))
         $catalog_sql = $catalog_sql->where(
           function($query) use ($form, $filters) {
@@ -1751,11 +1730,102 @@ class MainController extends Controller
           }
         );
 
-      if(count($or_where) > 2)
-        $catalog_sql = $catalog_sql->orWhere($or_where);
+      if(count($or_where) > 2) {
+        if(isset($form['cat_location']))
+          $catalog_sql = $catalog_sql->orWhere($or_where)
+            ->whereIn("{$filters['table']}.cat_location", $form['cat_location']);
+        else
+          $catalog_sql = $catalog_sql->orWhere($or_where);
 
-      if(count($or_where_2) > 2)
-        $catalog_sql = $catalog_sql->orWhere($or_where_2);
+
+        if(isset($form['type_object']))
+          $catalog_sql = $catalog_sql->where(
+            function($query) use ($form, $filters) {
+              for($i = 0; $i < count($form['type_object']); $i++) {
+                $query->orwhere(
+                  "{$filters['table']}.type_object",
+                  'like',
+                  '%"' . $form['type_object'][$i] . '"%'
+                );
+              }
+            }
+          );
+
+        if(isset($form['development_facilities']))
+          $catalog_sql = $catalog_sql->where(
+            function($query) use ($form, $filters) {
+              for($i = 0; $i < count($form['development_facilities']); $i++) {
+
+                $query->orwhere(
+                  "{$filters['table']}.development_facilities",
+                  'like',
+                  '%"' . $form['development_facilities'][$i] . '"%'
+                );
+              }
+            }
+          );
+
+        if(isset($form['estimated_completion']))
+          $catalog_sql = $catalog_sql->where(
+            function($query) use ($form, $filters) {
+              for($i = 0; $i < count($form['estimated_completion']); $i++) {
+                $query->orwhere(
+                  "{$filters['table']}.estimated_completion",
+                  'like',
+                  '%"' . $form['estimated_completion'][$i] . '"%'
+                );
+              }
+            }
+          );
+      }
+
+      if(count($or_where_2) > 2) {
+        if(isset($form['cat_location']))
+          $catalog_sql = $catalog_sql->orWhere($or_where_2)
+            ->whereIn("{$filters['table']}.cat_location", $form['cat_location']);
+        else
+          $catalog_sql = $catalog_sql->orWhere($or_where_2);
+
+        if(isset($form['type_object']))
+          $catalog_sql = $catalog_sql->where(
+            function($query) use ($form, $filters) {
+              for($i = 0; $i < count($form['type_object']); $i++) {
+                $query->orwhere(
+                  "{$filters['table']}.type_object",
+                  'like',
+                  '%"' . $form['type_object'][$i] . '"%'
+                );
+              }
+            }
+          );
+
+        if(isset($form['development_facilities']))
+          $catalog_sql = $catalog_sql->where(
+            function($query) use ($form, $filters) {
+              for($i = 0; $i < count($form['development_facilities']); $i++) {
+
+                $query->orwhere(
+                  "{$filters['table']}.development_facilities",
+                  'like',
+                  '%"' . $form['development_facilities'][$i] . '"%'
+                );
+              }
+            }
+          );
+
+        if(isset($form['estimated_completion']))
+          $catalog_sql = $catalog_sql->where(
+            function($query) use ($form, $filters) {
+              for($i = 0; $i < count($form['estimated_completion']); $i++) {
+                $query->orwhere(
+                  "{$filters['table']}.estimated_completion",
+                  'like',
+                  '%"' . $form['estimated_completion'][$i] . '"%'
+                );
+              }
+            }
+          );
+      }
 
       $order_by = $filters['group']["group_{$form['group']}_{$form['sort_by']}"];
 

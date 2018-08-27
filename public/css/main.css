@@ -1147,7 +1147,7 @@ select::-ms-expand {
 
 .site-header .menu-btn {
     display: none;
-    margin: -4px 0 0 15px;
+    margin: -2px 0 0 15px;
     padding: 0;
     border: none;
     cursor: pointer;
@@ -2082,6 +2082,7 @@ body:not(.touch-device) .products .product-item:hover .image-box {
 .preview-post .img-box {
     width: 50%;
     text-align: right;
+  overflow: hidden;
 }
 
 .preview-post .img-box .position-box {
@@ -2571,8 +2572,17 @@ body:not(.touch-device) .posts-list .post:hover:before {
     -webkit-transition: none;
 }
 
+.product-grid-section[data-type="map"] .sort-form-holder .sort-form,
 .product-grid-section[data-type="listing"] .sidebar-switcher {
     display: none;
+}
+
+.product-grid-section[data-type="map"] .grid-holder .sort-form-holder {
+    -webkit-box-pack: end;
+    -moz-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
 }
 
 .product-grid-section .sidebar-switcher svg {
@@ -2757,7 +2767,6 @@ body:not(.touch-device) .posts-list .post:hover:before {
 }
 
 .product-grid-section #map {
-    margin-top: -81px;
     position: relative;
     z-index: 1;
 }
@@ -3006,6 +3015,10 @@ body:not(.touch-device) .posts-list .post:hover:before {
 
 .product-section .contact-section a {
     color: #fff;
+}
+
+.product-section .contact-section a:hover {
+    color: #bbacd6;
 }
 
 .product-section .contact-section h4 {
@@ -3604,6 +3617,14 @@ body:not(.touch-device) .posts-list .post:hover:before {
     font-size: 16px;
     height: 32px;
     width: 250px;
+}
+
+.application-form .input-group select:not(.sm) {
+    width: 320px;
+}
+
+.application-form .input-group select.sm {
+    width: 125px;
 }
 
 .application-form .input-group .sm {
@@ -4393,5 +4414,5 @@ address .address-info svg {
 }
 
 .is-view-pc {
-    display: none!important;
+    display: none !important;
 }
