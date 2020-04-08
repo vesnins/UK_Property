@@ -190,7 +190,7 @@
         height: 46px;
     }
 
-    .site-header .kw-logo img{
+    .site-header .kw-logo img {
         width: 86px;
     }
 
@@ -813,6 +813,14 @@
     .blockquote cite {
         font-size: 22px;
     }
+
+    .certificates-list {
+        margin-bottom: -45px;
+    }
+
+    .certificates-list li {
+        margin-bottom: 45px;
+    }
 }
 
 /* Medium devices (tablets, 991px and below) */
@@ -1259,6 +1267,15 @@
     .location-info .add-to-wishList svg {
         width: 24px;
         height: 24px;
+    }
+
+    .certificates-list {
+        margin-bottom: -35px;
+    }
+
+    .certificates-list li {
+        width: 33.33%;
+        margin-bottom: 35px;
     }
 }
 
@@ -1795,6 +1812,15 @@
     .product-section {
         margin-bottom: 40px;
     }
+
+    .certificates-list {
+        margin-bottom: -25px;
+    }
+
+    .certificates-list li {
+        width: 50%;
+        margin-bottom: 25px;
+    }
 }
 
 /* Extra-small devices (mobile - portrait, 480px and below) */
@@ -1823,9 +1849,17 @@
         padding: 35px 0;
     }
 
+    .site-header .logo {
+        margin-right: 10px;
+    }
+
     .site-header .logo svg {
         width: 110px;
         height: 34px;
+    }
+
+    .site-header .kw-logo img {
+        width: 70px;
     }
 
     .site-nav .menu {
@@ -2155,5 +2189,21 @@
     .page-search-form .search-form .button {
         min-width: 90px;
         padding: 11px 15px;
+    }
+
+    .certificates-list {
+        font-size: 13px;
+        margin: 0 -10px -20px;
+    }
+
+    .certificates-list li {
+        padding: 0 10px;
+        margin-bottom: 20px;
+    }
+
+    .certificates-list li svg {
+        width: 28px;
+        height: 28px;
+        margin-right: 5px;
     }
 }
