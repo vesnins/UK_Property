@@ -821,6 +821,10 @@
     .certificates-list li {
         margin-bottom: 45px;
     }
+
+    .team-member__info-content {
+        padding: 35px;
+    }
 }
 
 /* Medium devices (tablets, 991px and below) */
@@ -1276,6 +1280,14 @@
     .certificates-list li {
         width: 33.33%;
         margin-bottom: 35px;
+    }
+
+    .team-member__info-content {
+        padding: 25px;
+    }
+
+    .team-member__description {
+        padding-left: 20px;
     }
 }
 
@@ -1821,6 +1833,26 @@
         width: 50%;
         margin-bottom: 25px;
     }
+
+    .team-member {
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .team-member + .team-member {
+        margin-top: 60px;
+    }
+
+    .team-member__info {
+        width: 100%;
+        margin: 0 auto 20px;
+        max-width: 360px
+    }
+
+    .team-member__description {
+        padding-left: 0;
+    }
 }
 
 /* Extra-small devices (mobile - portrait, 480px and below) */
@@ -2205,5 +2237,13 @@
         width: 28px;
         height: 28px;
         margin-right: 5px;
+    }
+
+    .team-member + .team-member {
+        margin-top: 50px;
+    }
+
+    .team-member__info-content {
+        padding: 15px;
     }
 }
