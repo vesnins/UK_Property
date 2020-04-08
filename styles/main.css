@@ -7,7 +7,6 @@
 4.0 Content
 5.0 Footer
 5.0 Custom Modal Styles
-
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 1.0 Typography
@@ -27,6 +26,15 @@ body {
 .not-scroll {
     overflow: hidden;
     position: relative;
+}
+
+.touch-device.not-scroll {
+    position: fixed;
+    -webkit-overflow-scrolling: auto;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
 
 h1,
@@ -1003,9 +1011,21 @@ select::-ms-expand {
     display: none;
 }
 
+.site-header .logo-set > * {
+    vertical-align: middle;
+}
+
+.site-header .logo {
+    margin-right: 20px;
+}
+
 .site-header .logo svg {
     width: 160px;
     height: 51px;
+}
+
+.site-header .kw-logo img {
+    width: 100px;
 }
 
 .site-nav {
@@ -1138,7 +1158,7 @@ select::-ms-expand {
 
 .site-header .menu-btn {
     display: none;
-    margin: -4px 0 0 15px;
+    margin: -2px 0 0 15px;
     padding: 0;
     border: none;
     cursor: pointer;
@@ -1777,12 +1797,19 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     position: relative;
 }
 
+.subscribe-section .subscribe-form .success-message {
+    background: -moz-linear-gradient(left, rgba(58, 47, 86, 1) 0%, rgba(79, 64, 119, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(58, 47, 86, 1) 0%, rgba(79, 64, 119, 1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(58, 47, 86, 1) 0%, rgba(79, 64, 119, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
 .subscribe-section .subscribe-form .success-message .flex-container {
     padding: 15px 25px;
 }
 
+.subscribe-section .subscribe-form .success-message h4,
 .subscribe-section .subscribe-form .success-message p {
-    color: #240d4d;
+    color: #fff;
 }
 
 .subscribe-form .flex-group {
@@ -1877,6 +1904,7 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     position: relative;
     line-height: 0;
     height: 6px;
+    padding: 0 25px;
 }
 
 .simple-slider .slick-dots {
@@ -1949,7 +1977,6 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     z-index: 3;
     background: #fff;
     padding: 25px 15px 40px;
-    text-align: justify;
 }
 
 .service-slider .slick-active {
@@ -2066,6 +2093,7 @@ body:not(.touch-device) .products .product-item:hover .image-box {
 .preview-post .img-box {
     width: 50%;
     text-align: right;
+    overflow: hidden;
 }
 
 .preview-post .img-box .position-box {
@@ -2119,7 +2147,7 @@ body:not(.touch-device) .products .product-item:hover .image-box {
     right: 0;
     left: -25px;
     background: -moz-linear-gradient(left, rgba(89, 89, 89, 0) 0%, rgba(89, 89, 89, 1) 50%, rgba(89, 89, 89, 1) 100%);
-    background: -webkit-linear-gradient(left, rgba(89, 89, 89, 0) 0%, rgba(89, 89, 89, 1) 50%, rgba(89, 89, 89, 1) 100%);
+    background: -webk it-linear-gradient(left, rgba(89, 89, 89, 0) 0%, rgba(89, 89, 89, 1) 50%, rgba(89, 89, 89, 1) 100%);
     background: linear-gradient(to right, rgba(89, 89, 89, 0) 0%, rgba(89, 89, 89, 1) 50%, rgba(89, 89, 89, 1) 100%);
 }
 
@@ -2313,8 +2341,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
     padding: 15px 30px 25px;
 }
 
-.article-slider .slick-slide .text-box p,
-.posts-list .post .text-box p {
+.article-slider .slick-slide .text-box p {
     text-align: justify;
 }
 
@@ -2417,6 +2444,7 @@ body:not(.touch-device) .posts-list .post:hover:before {
 
 .fixed-subheader {
     position: fixed;
+    z-index: 0;
     left: 0;
     top: 0;
     width: 100%;
@@ -2555,8 +2583,17 @@ body:not(.touch-device) .posts-list .post:hover:before {
     -webkit-transition: none;
 }
 
+.product-grid-section[data-type="map"] .sort-form-holder .sort-form,
 .product-grid-section[data-type="listing"] .sidebar-switcher {
     display: none;
+}
+
+.product-grid-section[data-type="map"] .grid-holder .sort-form-holder {
+    -webkit-box-pack: end;
+    -moz-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
 }
 
 .product-grid-section .sidebar-switcher svg {
@@ -2741,7 +2778,6 @@ body:not(.touch-device) .posts-list .post:hover:before {
 }
 
 .product-grid-section #map {
-    margin-top: -81px;
     position: relative;
     z-index: 1;
 }
@@ -2992,6 +3028,10 @@ body:not(.touch-device) .posts-list .post:hover:before {
     color: #fff;
 }
 
+.product-section .contact-section a:hover {
+    color: #bbacd6;
+}
+
 .product-section .contact-section h4 {
     color: #fff;
     font-style: normal;
@@ -3215,8 +3255,8 @@ body:not(.touch-device) .posts-list .post:hover:before {
 }
 
 .articles .article h3:before {
-    counter-increment: article;
-    content: counter(article) ".";
+    /*counter-increment: article;*/
+    /*content: counter(article) ".";*/
     margin-right: 5px;
 }
 
@@ -3588,6 +3628,14 @@ body:not(.touch-device) .posts-list .post:hover:before {
     font-size: 16px;
     height: 32px;
     width: 250px;
+}
+
+.application-form .input-group select:not(.sm) {
+    width: 320px;
+}
+
+.application-form .input-group select.sm {
+    width: 125px;
 }
 
 .application-form .input-group .sm {
@@ -4374,4 +4422,8 @@ address .address-info svg {
     padding-bottom: 0;
     margin-bottom: 10px;
     color: #2a2042;
+}
+
+.is-view-pc {
+    display: none !important;
 }

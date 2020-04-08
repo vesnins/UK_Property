@@ -66,10 +66,6 @@
         padding: 15px 0;
     }
 
-    .product-grid-section #map {
-        margin-top: -71px;
-    }
-
     .product-grid-section .product-filter-form {
         padding: 10px 20px 25px;
     }
@@ -189,35 +185,21 @@
         margin-bottom: 80px;
     }
 
-    .site-header .navigation-area {
-        -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        padding-top: 10px;
+    .site-header .logo svg {
+        width: 145px;
+        height: 46px;
     }
 
-    .site-nav {
-        width: 100%;
-        -webkit-box-ordinal-group: 3;
-        -moz-box-ordinal-group: 3;
-        -webkit-order: 2;
-        -ms-flex-order: 2;
-        order: 2;
-        padding: 5px 0 0;
-        text-align: center;
+    .site-header .kw-logo img{
+        width: 86px;
     }
 
     .site-nav .menu {
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: justify;
-        -moz-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
+        font-size: 12px;
+    }
+
+    .site-nav .menu > li:not(:last-child) {
+        margin-right: 12px;
     }
 
     .site-nav .menu .sub-menu {
@@ -225,27 +207,23 @@
         margin-top: 0;
         padding: 20px 15px;
         width: 280px;
+        font-size: 14px;
     }
 
     .site-nav .menu > li > a {
-        padding: 8px 0;
-    }
-
-    .site-nav .menu > li > a:before {
-        top: auto;
-        bottom: 0;
-    }
-
-    .site-header .navigation-area .position-box {
-        -webkit-box-ordinal-group: 2;
-        -moz-box-ordinal-group: 2;
-        -webkit-order: 1;
-        -ms-flex-order: 1;
-        order: 1;
+        padding: 25px 0;
     }
 
     .site-nav .menu .sub-menu {
         text-align: left;
+    }
+
+    .site-nav .menu .parent-item > a:after {
+        margin-left: 0;
+    }
+
+    .site-header .button + .wish-list {
+        margin-left: 10px;
     }
 
     .billboard {
@@ -502,9 +480,82 @@
         padding-bottom: 46%;
     }
 
-    .search-results-page .search-form-holder form,
-    .search-form-holder form.active {
-        width: 530px;
+    .site-header .navigation-area {
+        padding: 10px 15px;
+    }
+
+    .site-header .search-form-holder {
+        display: none;
+    }
+
+    .site-nav .close-btn,
+    .site-header .menu-btn {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .site-nav .search-form,
+    .site-nav .menu .mobile-menu-item {
+        display: block;
+    }
+
+    .site-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 15;
+        padding: 80px 15px 15px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 100vh;
+        background: #e1f1fe;
+    }
+
+    .site-nav .menu {
+        display: block;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .site-nav .menu > li {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .site-nav .menu > li:not(:last-child) {
+        margin-right: 0;
+    }
+
+    .site-nav .menu > li > a {
+        padding: 10px 15px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .site-nav .menu > li > a:before {
+        display: none;
+    }
+
+    .site-nav .menu .parent-item > a:after {
+        vertical-align: middle;
+        margin-top: -4px;
+    }
+
+    .site-nav .menu .sub-menu {
+        padding: 15px 0 0;
+        width: 100%;
+        background: transparent;
+        position: static;
+        text-align: center;
+        overflow: hidden;
+        font-size: 1em;
+    }
+
+    .site-nav .menu .sub-menu li:last-child {
+        margin-bottom: 0;
     }
 
     .billboard {
@@ -714,6 +765,14 @@
         width: 200px;
     }
 
+    .application-form .input-group select:not(.sm) {
+        width: 280px;
+    }
+
+    .application-form .input-group select.sm {
+        width: 110px;
+    }
+
     .application-form .input-holder,
     .application-form .input-group label {
         margin-bottom: 20px;
@@ -801,82 +860,6 @@
 
     .mb-lg {
         margin-bottom: 50px;
-    }
-
-    .site-header .navigation-area {
-        padding: 10px 15px;
-    }
-
-    .site-header .search-form-holder {
-        display: none;
-    }
-
-    .site-nav .close-btn,
-    .site-header .menu-btn {
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .site-nav .search-form,
-    .site-nav .menu .mobile-menu-item {
-        display: block;
-    }
-
-    .site-nav {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 15;
-        padding: 100px 15px 15px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        height: 100vh;
-        background: #e1f1fe;
-    }
-
-    .site-nav .menu {
-        display: block;
-        font-size: 20px;
-    }
-
-    .site-nav .menu > li {
-        margin-bottom: 10px;
-        display: block;
-    }
-
-    .site-nav .menu > li:not(:last-child) {
-        margin-right: 0;
-    }
-
-    .site-nav .menu > li > a {
-        padding: 10px 15px;
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .site-nav .menu > li > a:before {
-        display: none;
-    }
-
-    .site-nav .menu .parent-item > a:after {
-        vertical-align: middle;
-        margin-top: -4px;
-    }
-
-    .site-nav .menu .sub-menu {
-        padding: 15px 0 0;
-        width: 100%;
-        background: transparent;
-        position: static;
-        text-align: center;
-        overflow: hidden;
-    }
-
-    .site-nav .menu .sub-menu li:last-child {
-        margin-bottom: 0;
     }
 
     .billboard {
@@ -1224,9 +1207,34 @@
     }
 
     .location-info {
-        width: 300px;
-        height: 300px;
-        overflow-y: auto;
+        width: 260px;
+    }
+
+    .location-info .content-box {
+        padding: 15px 0 0;
+    }
+
+    .location-info .price {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .location-info .data-list li:not(:last-child) {
+        margin-bottom: 5px;
+    }
+
+    .location-info h6 {
+        margin-bottom: 5px;
+    }
+
+    .location-info p {
+        display: none;
+    }
+
+    .location-info .data-list {
+        padding: 5px 0;
+        margin-bottom: 5px;
+        font-size: 15px;
     }
 
     .location-info .img-box {
@@ -1319,12 +1327,12 @@
         padding: 40px 0;
     }
 
-    .site-header .button {
-        font-size: 10px;
+    .site-header .position-box .button {
+        display: none;
     }
 
     .site-header .button + .wish-list {
-        margin-left: 15px;
+        margin-left: 0;
     }
 
     .site-header .sound-switcher {
@@ -1392,7 +1400,7 @@
     }
 
     .simple-slider .slick-dots li {
-        width: 40px;
+        width: 26px;
     }
 
     .simple-slider .slick-dots button {
@@ -1400,8 +1408,8 @@
     }
 
     .simple-slider .slick-dots .circle {
-        width: 40px;
-        margin-left: -20px;
+        width: 26px;
+        margin-left: -13px;
         height: 5px;
     }
 
@@ -1483,7 +1491,7 @@
     }
 
     .product-grid-section .sidebar .scroll-box {
-        max-height: 100%;
+        max-height: initial;
         background: #f5f5f5;
     }
 
@@ -1491,7 +1499,8 @@
         display: block;
     }
 
-    .collapse-menu-holder .hidden-box {
+    .collapse-menu-holder .hidden-box,
+    .collapse-menu-holder .product-filter-form {
         display: none;
     }
 
@@ -1815,8 +1824,8 @@
     }
 
     .site-header .logo svg {
-        width: 130px;
-        height: 41px;
+        width: 110px;
+        height: 34px;
     }
 
     .site-nav .menu {
@@ -1827,7 +1836,20 @@
         margin-bottom: 0;
     }
 
-    .site-header .position-box .button,
+    .site-header .menu-btn > span:before,
+    .site-header .menu-btn > span:after,
+    .site-header .menu-btn > span {
+        height: 2px;
+    }
+
+    .site-header .menu-btn > span:before {
+        top: -8px;
+    }
+
+    .site-header .menu-btn > span:after {
+        bottom: -8px;
+    }
+
     .site-header .action-line .phone-link {
         display: none;
     }
@@ -1846,8 +1868,13 @@
     }
 
     .site-header .menu-btn {
-        margin-left: 10px;
-        width: 28px;
+        margin-left: 8px;
+        width: 24px;
+    }
+
+    .site-header .wish-list svg {
+        width: 22px;
+        height: 22px;
     }
 
     .billboard {
